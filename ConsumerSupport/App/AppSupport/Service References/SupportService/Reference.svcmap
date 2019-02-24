@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e9ad7f24-1059-4922-a8d8-3cc203fb77b6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://apis.ogzkyr.net/ConsumerSupportService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ConsumerSupportService.xsd" MetadataType="Schema" ID="e038772b-41cd-451a-8e0a-d0e0bb80de7c" SourceId="1" SourceUrl="http://apis.ogzkyr.net/ConsumerSupportService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ConsumerSupportService1.xsd" MetadataType="Schema" ID="205321e1-83e1-4ddb-b1d7-2c4f6ccc80f5" SourceId="1" SourceUrl="http://apis.ogzkyr.net/ConsumerSupportService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ConsumerSupportService.disco" MetadataType="Disco" ID="b0c65679-291d-4957-b67e-050f235b0122" SourceId="1" SourceUrl="http://apis.ogzkyr.net/ConsumerSupportService.svc?disco" />
+    <MetadataFile FileName="ConsumerSupportService2.xsd" MetadataType="Schema" ID="38f88be2-d38a-45dd-81c5-57b27e14a4b5" SourceId="1" SourceUrl="http://apis.ogzkyr.net/ConsumerSupportService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ConsumerSupportService.wsdl" MetadataType="Wsdl" ID="1e693fec-05d2-4cbd-a71f-1ad05a8af0bf" SourceId="1" SourceUrl="http://apis.ogzkyr.net/ConsumerSupportService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<club_notice>
+@{
+    ViewBag.Title = "Duyurular";
+    int i = 0;
+}
+<script type="text/javascript">
+    function ChangeApproval(id) {
+        $.post("@Url.Action("changeapproval")/" + id, { id: id }, function (msg) { $("a#" + id + "_approval").fadeOut(500).fadeIn(500, function () { $("a#" + id + "_approval").attr("class", $("a#" + id + "_approval").attr("class") == "approved" ? "deprecated" : "approved").attr("title", $("a#" + id + "_approval").attr("class") == "approved" ? "Onayı Kaldır" : "Onayla"); }); $("body").append(msg); });
+    }
+</script>
+<div class="list">
+    @foreach (var notice in Model)
+    {
+        i++;
+        <ul class="@(i % 2 == 0 ? "second" : "first")">
+            <li>
+                <b>@OK.Summary(notice.Title, 100)</b><br />
+                <small><b>Tarih: </b>@Html.ShortDateTime((DateTime)notice.WritingDate)</small>
+            </li>
+            <li class="manage">
+                <a id="@(notice.Id + "_approval")" class="@(notice.IsApproval == true ? "approved" : "deprecated")" title="@(notice.IsApproval == true ? "Onayı Kaldır" : "Onayla")" href="javascript:void(0)" onclick="ChangeApproval('@notice.Id')"></a>
+                @Html.ActionLink(" ", "edit", new { num = notice.Id }, new { @class = "edit", title = "Düzenle" })
+                @Html.ActionLink(" ", "details", new { num = notice.Id }, new { @class = "details", title = "Detay" })
+                @Html.ActionLink(" ", "delete", new { num = notice.Id }, new { @class = "delete", title = "Sil" })
+            </li>
+        </ul>
+    }
+</div>

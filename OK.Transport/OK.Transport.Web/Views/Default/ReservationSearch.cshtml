@@ -1,0 +1,14 @@
+﻿@{ 
+    ViewBag.ActiveLink = "linkReservationSearch";
+}
+
+<div style="width: 80%;">
+    <div style="background-color: rgba(54, 54, 54, .75); display: table; width: 100%; padding: 20px; margin: 10px;">
+        <h2>Reservation Search</h2>
+        @using (Html.BeginForm("ReservationSearchPost", "Default", FormMethod.Post))
+        {
+            <input type="text" name="code" placeholder="Rezervasyon Kodunuz" />
+            <input type="submit" value="Ara" />
+        }
+    </div>
+</div>

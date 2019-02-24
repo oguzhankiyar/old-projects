@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8cd3b206056645569cc2882127b9cc26" Name="Diagram1" ZoomLevel="26">
+        <EntityTypeShape EntityType="BGKModel.GetMemberRole()" Width="1.5" PointX="5.1774702487408515" PointY="7.37097619817172" />
+        <EntityTypeShape EntityType="BGKModel.bgk_anket" Width="1.5" PointX="5.2288478115707857" PointY="17.053649552657106" />
+        <EntityTypeShape EntityType="BGKModel.bgk_anket_secenek" Width="1.5" PointX="0.094932301014164611" PointY="23.24245097825418" />
+        <EntityTypeShape EntityType="BGKModel.bgk_anket_secim" Width="1.5" PointX="10.349151949560806" PointY="15.512913279008545" />
+        <EntityTypeShape EntityType="BGKModel.bgk_ayar" Width="1.5" PointX="2.5238589842449217" PointY="3.7200870233215797" />
+        <EntityTypeShape EntityType="BGKModel.bgk_bildirim" Width="1.5" PointX="1.5785952683438524" PointY="1.80447004819497" />
+        <EntityTypeShape EntityType="BGKModel.bgk_butce" Width="1.5" PointX="7.7776275909401607" PointY="12.313318019878732" />
+        <EntityTypeShape EntityType="BGKModel.bgk_dokuman" Width="1.5" PointX="11.060467443922754" PointY="24.48210289724269" />
+        <EntityTypeShape EntityType="BGKModel.bgk_dokuman_kategori" Width="1.5" PointX="4.5113106763508686" PointY="18.821402513804568" />
+        <EntityTypeShape EntityType="BGKModel.bgk_dosya" Width="1.5" PointX="11.725236955902183" PointY="1.3958134359660621" />
+        <EntityTypeShape EntityType="BGKModel.bgk_etkinlik" Width="1.5" PointX="10.993853799530235" PointY="26.949681175383592" />
+        <EntityTypeShape EntityType="BGKModel.bgk_etkinlik_gorevli" Width="1.5" PointX="10.606972798056422" PointY="18.636859693861034" />
+        <EntityTypeShape EntityType="BGKModel.bgk_etkinlik_konusmaci" Width="1.5" PointX="5.981457623644479" PointY="29.944760977264849" />
+        <EntityTypeShape EntityType="BGKModel.bgk_firma" Width="1.5" PointX="0.82909988091750986" PointY="27.960887206700111" />
+        <EntityTypeShape EntityType="BGKModel.bgk_galeri" Width="1.5" PointX="7.6110562922484508" PointY="30.583114906485712" />
+        <EntityTypeShape EntityType="BGKModel.bgk_galeri_resim" Width="1.5" PointX="5.154473351852257" PointY="22.558950926437486" />
+        <EntityTypeShape EntityType="BGKModel.bgk_gorev" Width="1.5" PointX="8.7252450793633436" PointY="27.62745643948552" />
+        <EntityTypeShape EntityType="BGKModel.bgk_gorev_kategori" Width="1.5" PointX="3.926896486397319" PointY="14.206521398484018" />
+        <EntityTypeShape EntityType="BGKModel.bgk_gorev_kategori_uye" Width="1.5" PointX="3.102450344293588" PointY="25.510994684654751" />
+        <EntityTypeShape EntityType="BGKModel.bgk_gorev_uye" Width="1.5" PointX="2.7416393639248051" PointY="5.3692153419224615" />
+        <EntityTypeShape EntityType="BGKModel.bgk_grup" Width="1.5" PointX="0.54780253979740778" PointY="24.524581041431325" />
+        <EntityTypeShape EntityType="BGKModel.bgk_grup_uye" Width="1.5" PointX="8.73478295874539" PointY="30.121621548254797" />
+        <EntityTypeShape EntityType="BGKModel.bgk_kategori" Width="1.5" PointX="7.9126090276579415" PointY="15.961601056140662" />
+        <EntityTypeShape EntityType="BGKModel.bgk_menu" Width="1.5" PointX="11.549502337141663" PointY="31.099669009027849" />
+        <EntityTypeShape EntityType="BGKModel.bgk_mesaj" Width="1.5" PointX="6.2961536135040941" PointY="16.370300017469702" />
+        <EntityTypeShape EntityType="BGKModel.bgk_not" Width="1.5" PointX="5.6177455213003542" PointY="3.9279745835475506" />
+        <EntityTypeShape EntityType="BGKModel.bgk_oylama" Width="1.5" PointX="9.9931487059188768" PointY="12.410773894009541" />
+        <EntityTypeShape EntityType="BGKModel.bgk_sayfa" Width="1.5" PointX="3.7702622747841579" PointY="28.639238862618448" />
+        <EntityTypeShape EntityType="BGKModel.bgk_seviye" Width="1.5" PointX="7.8087054583284559" PointY="27.306734470327726" />
+        <EntityTypeShape EntityType="BGKModel.bgk_uye" Width="1.5" PointX="0.4136609586019353" PointY="2.3083918254395908" />
+        <EntityTypeShape EntityType="BGKModel.bgk_yazi" Width="1.5" PointX="7.8868192359278062" PointY="31.636851325462036" />
+        <EntityTypeShape EntityType="BGKModel.bgk_yorum" Width="1.5" PointX="10.206286187379755" PointY="8.1471757181674125" />
+        <AssociationConnector Association="BGKModel.FK_bgk_anket_secenek_bgk_anket" />
+        <AssociationConnector Association="BGKModel.FK_bgk_anket_secim_bgk_anket_secenek" />
+        <AssociationConnector Association="BGKModel.FK_bgk_anket_secim_bgk_uye" />
+        <AssociationConnector Association="BGKModel.FK__bgk_bildi__UyeID__3EDC53F0" />
+        <AssociationConnector Association="BGKModel.FK_bgk_butce_bgk_dosya" />
+        <AssociationConnector Association="BGKModel.FK_bgk_butce_bgk_etkinlik" />
+        <AssociationConnector Association="BGKModel.FK_bgk_butce_bgk_firma" />
+        <AssociationConnector Association="BGKModel.FK__bgk_dokum__Dosya__54CB950F" />
+        <AssociationConnector Association="BGKModel.FK__bgk_dokum__Kateg__53D770D6" />
+        <AssociationConnector Association="BGKModel.FK__bgk_dokum__UyeID__4B422AD5" />
+        <AssociationConnector Association="BGKModel.FK_bgk_dosya_bgk_uye" />
+        <AssociationConnector Association="BGKModel.FK_bgk_etkinlik_bgk_dosya" />
+        <AssociationConnector Association="BGKModel.FK_bgk_firma_bgk_dosya" />
+        <AssociationConnector Association="BGKModel.FK_bgk_galeri_resim_bgk_dosya" />
+        <AssociationConnector Association="BGKModel.FK_bgk_gorev_kategori_bgk_dosya" />
+        <AssociationConnector Association="BGKModel.FK_bgk_gorev_uye_bgk_dosya" />
+        <AssociationConnector Association="BGKModel.FK_bgk_etkinlik_bgk_firma" />
+        <AssociationConnector Association="BGKModel.FK_bgk_etkinlik_gorevli_bgk_etkinlik" />
+        <AssociationConnector Association="BGKModel.FK_bgk_etkinlik_konusmaci_bgk_etkinlik" />
+        <AssociationConnector Association="BGKModel.FK_bgk_etkinlik_gorevli_bgk_gorev" />
+        <AssociationConnector Association="BGKModel.FK_bgk_etkinlik_gorevli_bgk_uye" />
+        <AssociationConnector Association="BGKModel.FK_bgk_firma_bgk_uye" />
+        <AssociationConnector Association="BGKModel.FK_bgk_galeri_resim_bgk_galeri" />
+        <AssociationConnector Association="BGKModel.FK_bgk_gorev_bgk_gorev_kategori" />
+        <AssociationConnector Association="BGKModel.FK_bgk_gorev_bgk_grup" />
+        <AssociationConnector Association="BGKModel.FK_bgk_gorev_bgk_uye" />
+        <AssociationConnector Association="BGKModel.FK_bgk_gorev_uye_bgk_gorev" />
+        <AssociationConnector Association="BGKModel.FK_bgk_gorev_kategori_bgk_uye" />
+        <AssociationConnector Association="BGKModel.FK_bgk_gorev_kategori_uye_bgk_gorev_kategori" />
+        <AssociationConnector Association="BGKModel.FK_bgk_kategori_uye_bgk_uye" />
+        <AssociationConnector Association="BGKModel.FK_bgk_gorev_uye_bgk_uye" />
+        <AssociationConnector Association="BGKModel.FK_bgk_grup_uye_bgk_grup" />
+        <AssociationConnector Association="BGKModel.FK_bgk_grup_uye_bgk_uye" />
+        <AssociationConnector Association="BGKModel.FK_bgk_yazi_bgk_kategori" />
+        <AssociationConnector Association="BGKModel.FK__bgk_not__UyeID__3A179ED3" />
+        <AssociationConnector Association="BGKModel.FK_bgk_oylama_bgk_uye" />
+        <AssociationConnector Association="BGKModel.FK_bgk_oylama_bgk_yazi" />
+        <AssociationConnector Association="BGKModel.FK_bgk_yazi_bgk_uye" />
+        <AssociationConnector Association="BGKModel.FK_bgk_yorum_bgk_uye" />
+        <AssociationConnector Association="BGKModel.FK_bgk_yorum_bgk_yazi" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

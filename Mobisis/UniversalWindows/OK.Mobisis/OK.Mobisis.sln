@@ -1,0 +1,156 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OK.Mobisis.Api", "OK.Mobisis.API\OK.Mobisis.Api.csproj", "{D7D01E9A-FFC1-4FAD-9BBA-8607F1D9A725}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "OK.Mobisis.Shared", "OK.Mobisis.Shared\OK.Mobisis.Shared.shproj", "{0C774B01-41AA-442D-8CF6-2FC483E05686}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OK.Mobisis.Windows", "OK.Mobisis.Windows\OK.Mobisis.Windows.csproj", "{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OK.Mobisis.WindowsPhone", "OK.Mobisis.WindowsPhone\OK.Mobisis.WindowsPhone.csproj", "{FC890B9A-BC7F-4C08-8F05-7427B881449D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OK.Mobisis.Entities", "OK.Mobisis.Entities\OK.Mobisis.Entities.csproj", "{A5ECA135-608D-4B19-8515-3BF44D71D088}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OK.Mobisis.BackgroundTasks", "OK.Mobisis.BackgroundTasks\OK.Mobisis.BackgroundTasks.csproj", "{9947A18F-9199-41C2-BFFE-03228DC05762}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OK.Mobisis.Api.Helper", "OK.Mobisis.Api.Helper\OK.Mobisis.Api.Helper.csproj", "{328B7D5D-6F87-4F8F-93BC-6B4CEB6B5466}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		OK.Mobisis.Shared\OK.Mobisis.Shared.projitems*{fc890b9a-bc7f-4c08-8f05-7427b881449d}*SharedItemsImports = 4
+		OK.Mobisis.Shared\OK.Mobisis.Shared.projitems*{edc2f0ee-53b7-4d4c-8a82-89d61e231097}*SharedItemsImports = 4
+		OK.Mobisis.Shared\OK.Mobisis.Shared.projitems*{0c774b01-41aa-442d-8cf6-2fc483e05686}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7D01E9A-FFC1-4FAD-9BBA-8607F1D9A725}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7D01E9A-FFC1-4FAD-9BBA-8607F1D9A725}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7D01E9A-FFC1-4FAD-9BBA-8607F1D9A725}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{D7D01E9A-FFC1-4FAD-9BBA-8607F1D9A725}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D7D01E9A-FFC1-4FAD-9BBA-8607F1D9A725}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D7D01E9A-FFC1-4FAD-9BBA-8607F1D9A725}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7D01E9A-FFC1-4FAD-9BBA-8607F1D9A725}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7D01E9A-FFC1-4FAD-9BBA-8607F1D9A725}.Release|ARM.ActiveCfg = Release|Any CPU
+		{D7D01E9A-FFC1-4FAD-9BBA-8607F1D9A725}.Release|x64.ActiveCfg = Release|Any CPU
+		{D7D01E9A-FFC1-4FAD-9BBA-8607F1D9A725}.Release|x86.ActiveCfg = Release|Any CPU
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Debug|ARM.ActiveCfg = Debug|ARM
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Debug|ARM.Build.0 = Debug|ARM
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Debug|ARM.Deploy.0 = Debug|ARM
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Debug|x64.ActiveCfg = Debug|x64
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Debug|x64.Build.0 = Debug|x64
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Debug|x64.Deploy.0 = Debug|x64
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Debug|x86.ActiveCfg = Debug|x86
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Debug|x86.Build.0 = Debug|x86
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Debug|x86.Deploy.0 = Debug|x86
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Release|ARM.ActiveCfg = Release|ARM
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Release|ARM.Build.0 = Release|ARM
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Release|ARM.Deploy.0 = Release|ARM
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Release|x64.ActiveCfg = Release|x64
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Release|x64.Build.0 = Release|x64
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Release|x64.Deploy.0 = Release|x64
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Release|x86.ActiveCfg = Release|x86
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Release|x86.Build.0 = Release|x86
+		{EDC2F0EE-53B7-4D4C-8A82-89D61E231097}.Release|x86.Deploy.0 = Release|x86
+		{FC890B9A-BC7F-4C08-8F05-7427B881449D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC890B9A-BC7F-4C08-8F05-7427B881449D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC890B9A-BC7F-4C08-8F05-7427B881449D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FC890B9A-BC7F-4C08-8F05-7427B881449D}.Debug|ARM.ActiveCfg = Debug|ARM
+		{FC890B9A-BC7F-4C08-8F05-7427B881449D}.Debug|ARM.Build.0 = Debug|ARM
+		{FC890B9A-BC7F-4C08-8F05-7427B881449D}.Debug|ARM.Deploy.0 = Debug|ARM
+		{FC890B9A-BC7F-4C08-8F05-7427B881449D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FC890B9A-BC7F-4C08-8F05-7427B881449D}.Debug|x86.ActiveCfg = Debug|x86
+		{FC890B9A-BC7F-4C08-8F05-7427B881449D}.Debug|x86.Build.0 = Debug|x86
+		{FC890B9A-BC7F-4C08-8F05-7427B881449D}.Debug|x86.Deploy.0 = Debug|x86
+		{FC890B9A-BC7F-4C08-8F05-7427B881449D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC890B9A-BC7F-4C08-8F05-7427B881449D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC890B9A-BC7F-4C08-8F05-7427B881449D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{FC890B9A-BC7F-4C08-8F05-7427B881449D}.Release|ARM.ActiveCfg = Release|ARM
+		{FC890B9A-BC7F-4C08-8F05-7427B881449D}.Release|ARM.Build.0 = Release|ARM
+		{FC890B9A-BC7F-4C08-8F05-7427B881449D}.Release|ARM.Deploy.0 = Release|ARM
+		{FC890B9A-BC7F-4C08-8F05-7427B881449D}.Release|x64.ActiveCfg = Release|Any CPU
+		{FC890B9A-BC7F-4C08-8F05-7427B881449D}.Release|x86.ActiveCfg = Release|x86
+		{FC890B9A-BC7F-4C08-8F05-7427B881449D}.Release|x86.Build.0 = Release|x86
+		{FC890B9A-BC7F-4C08-8F05-7427B881449D}.Release|x86.Deploy.0 = Release|x86
+		{A5ECA135-608D-4B19-8515-3BF44D71D088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5ECA135-608D-4B19-8515-3BF44D71D088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5ECA135-608D-4B19-8515-3BF44D71D088}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{A5ECA135-608D-4B19-8515-3BF44D71D088}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A5ECA135-608D-4B19-8515-3BF44D71D088}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A5ECA135-608D-4B19-8515-3BF44D71D088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5ECA135-608D-4B19-8515-3BF44D71D088}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5ECA135-608D-4B19-8515-3BF44D71D088}.Release|ARM.ActiveCfg = Release|Any CPU
+		{A5ECA135-608D-4B19-8515-3BF44D71D088}.Release|x64.ActiveCfg = Release|Any CPU
+		{A5ECA135-608D-4B19-8515-3BF44D71D088}.Release|x86.ActiveCfg = Release|Any CPU
+		{9947A18F-9199-41C2-BFFE-03228DC05762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9947A18F-9199-41C2-BFFE-03228DC05762}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9947A18F-9199-41C2-BFFE-03228DC05762}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{9947A18F-9199-41C2-BFFE-03228DC05762}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9947A18F-9199-41C2-BFFE-03228DC05762}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9947A18F-9199-41C2-BFFE-03228DC05762}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9947A18F-9199-41C2-BFFE-03228DC05762}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9947A18F-9199-41C2-BFFE-03228DC05762}.Release|ARM.ActiveCfg = Release|Any CPU
+		{9947A18F-9199-41C2-BFFE-03228DC05762}.Release|x64.ActiveCfg = Release|Any CPU
+		{9947A18F-9199-41C2-BFFE-03228DC05762}.Release|x86.ActiveCfg = Release|Any CPU
+		{328B7D5D-6F87-4F8F-93BC-6B4CEB6B5466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{328B7D5D-6F87-4F8F-93BC-6B4CEB6B5466}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{328B7D5D-6F87-4F8F-93BC-6B4CEB6B5466}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{328B7D5D-6F87-4F8F-93BC-6B4CEB6B5466}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{328B7D5D-6F87-4F8F-93BC-6B4CEB6B5466}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{328B7D5D-6F87-4F8F-93BC-6B4CEB6B5466}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{328B7D5D-6F87-4F8F-93BC-6B4CEB6B5466}.Release|Any CPU.Build.0 = Release|Any CPU
+		{328B7D5D-6F87-4F8F-93BC-6B4CEB6B5466}.Release|ARM.ActiveCfg = Release|Any CPU
+		{328B7D5D-6F87-4F8F-93BC-6B4CEB6B5466}.Release|x64.ActiveCfg = Release|Any CPU
+		{328B7D5D-6F87-4F8F-93BC-6B4CEB6B5466}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://ogzkyr.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = OK.Mobisis.Api.Helper\\OK.Mobisis.Api.Helper.csproj
+		SccProjectName1 = OK.Mobisis.Api.Helper
+		SccLocalPath1 = OK.Mobisis.Api.Helper
+		SccProjectUniqueName2 = OK.Mobisis.API\\OK.Mobisis.Api.csproj
+		SccProjectName2 = OK.Mobisis.API
+		SccLocalPath2 = OK.Mobisis.API
+		SccProjectUniqueName3 = OK.Mobisis.BackgroundTasks\\OK.Mobisis.BackgroundTasks.csproj
+		SccProjectName3 = OK.Mobisis.BackgroundTasks
+		SccLocalPath3 = OK.Mobisis.BackgroundTasks
+		SccProjectUniqueName4 = OK.Mobisis.Entities\\OK.Mobisis.Entities.csproj
+		SccProjectName4 = OK.Mobisis.Entities
+		SccLocalPath4 = OK.Mobisis.Entities
+		SccProjectUniqueName5 = OK.Mobisis.Shared\\OK.Mobisis.Shared.projitems
+		SccProjectTopLevelParentUniqueName5 = OK.Mobisis.Shared\\OK.Mobisis.Shared.shproj
+		SccProjectName5 = OK.Mobisis.Shared
+		SccLocalPath5 = OK.Mobisis.Shared
+		SccProjectUniqueName6 = OK.Mobisis.Shared\\OK.Mobisis.Shared.shproj
+		SccProjectName6 = OK.Mobisis.Shared
+		SccLocalPath6 = OK.Mobisis.Shared
+		SccProjectUniqueName7 = OK.Mobisis.Windows\\OK.Mobisis.Windows.csproj
+		SccProjectName7 = OK.Mobisis.Windows
+		SccLocalPath7 = OK.Mobisis.Windows
+		SccProjectUniqueName8 = OK.Mobisis.WindowsPhone\\OK.Mobisis.WindowsPhone.csproj
+		SccProjectName8 = OK.Mobisis.WindowsPhone
+		SccLocalPath8 = OK.Mobisis.WindowsPhone
+	EndGlobalSection
+EndGlobal

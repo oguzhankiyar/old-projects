@@ -1,0 +1,11 @@
+﻿@model bgk_etkinlik_gorevli
+
+<div class="title">@Model.bgk_uye.AdSoyad</div>
+<div class="content details">
+    <b>@Model.bgk_gorev.Adi</b>
+    @Html.Raw(Model.bgk_gorev.Aciklama)
+</div>
+<div class="buttons">
+    @Html.Button("Görevliyi Sil", new { onclick = "$.BGK.FormModal('" + Url.Action("deleteofficer", new { num = Model.Id }) + "', 'Eminim, sil', 'Vazgeç');" })
+    @Html.Button("Kapat", new { onclick = "$.BGK.ModalClose();" })
+</div>

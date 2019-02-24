@@ -1,0 +1,39 @@
+﻿@model OKBlog.Models.Category
+@{
+    ViewBag.Title = Model.Name;
+    var posts = Model.Posts.Where(x => x.Post.Approval);
+}
+
+<div class="section">
+    <h2>@Model.Name Posts</h2>
+    @foreach (var catpost in posts.Take(6))
+    {
+        var post = catpost.Post;
+        <div style="cursor:pointer; display: inline-table; background-color: rgba(0,0,0,0.2); width: 385px; margin: 7.5px; min-height: 175px; padding: 10px;" onclick="openPage('@Url.Action("Details", "Post", new { url = post.ShortURL })');">
+            <span style="font-weight: bold; padding-bottom: 10px; display: table;">@post.Title</span>
+            <span style="font-size: 14px;">@post.Summary</span>
+        </div>
+    }
+</div>
+<div class="section">
+    <h2>@Model.Name Posts</h2>
+    @foreach (var catpost in posts.Skip(6).Take(6))
+    {
+        var post = catpost.Post;
+        <div style="cursor: pointer; display: inline-table; background-color: rgba(0,0,0,0.2); width: 385px; margin: 7.5px; min-height: 175px; padding: 10px;" onclick="openPage('@Url.Action("Details", "Post", new { url = post.ShortURL })');">
+            <span style="font-weight: bold; padding-bottom: 10px; display: table;">@post.Title</span>
+            <span style="font-size: 14px;">@post.Summary</span>
+        </div>
+    }
+</div>
+<div class="section">
+    <h2>@Model.Name Posts</h2>
+    @foreach (var catpost in posts.Skip(12).Take(6))
+    {
+        var post = catpost.Post;
+        <div style="cursor: pointer; display: inline-table; background-color: rgba(0,0,0,0.2); width: 385px; margin: 7.5px; min-height: 175px; padding: 10px;" onclick="openPage('@Url.Action("Details", "Post", new { url = post.ShortURL })');">
+            <span style="font-weight: bold; padding-bottom: 10px; display: table;">@post.Title</span>
+            <span style="font-size: 14px;">@post.Summary</span>
+        </div>
+    }
+</div>

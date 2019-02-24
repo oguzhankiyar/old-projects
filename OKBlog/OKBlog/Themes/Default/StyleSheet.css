@@ -1,0 +1,108 @@
+﻿body {
+	background: #ee3b3b;
+	font-family: 'Segoe WP SemiLight', 'Segoe WP Light', 'Segoe UI Light', 'Segoe UI', 'Trebuchet MS', 'Verdana';
+	font-size: 17px;
+	margin: 0;
+	color: #fff;
+	overflow-x: hidden;
+	width: 99999999px;
+}
+ul {
+	padding: 0;
+}
+li {
+	list-style: none;
+}
+h1, h2, h3, h4, h5 {
+	font-weight: normal;
+}
+a {
+    text-decoration: none;
+    color: gold;
+}
+a:hover {
+    color: skyblue;
+}
+div.page {
+	
+}
+div.header {
+	position: fixed;
+	display: table;
+	background-color: rgba(0,0,0,.3);
+	width: 100%;
+}
+div.header div.logo {
+	float: left;
+	padding: 5px 10px;
+}
+div.header div.logo span {
+	font-size: 17px;
+	opacity: .5;
+	padding-left: 5px;
+}
+div.container {
+    position: relative;
+	padding: 50px 0;
+}
+div.menu {
+	display: table;
+	margin-top: 75px;
+}
+div.menu ul li {
+	width: 200px;
+	margin-bottom: 10px;
+	text-align: center;
+	padding: 25px 0;
+	font-size: 25px;
+}
+div.menu ul li:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+div.minimized {
+	position: fixed;
+	left: -135px;
+}
+div.minimized ul li {
+	width: 150px;
+	opacity: .5;
+}
+div.minimized ul li:hover {
+	margin-left: 135px;
+}
+div.sections div.section {
+	display: inline-table;
+	width: auto;
+	float: left;
+	padding-left: 75px;
+	text-align: justify;
+    max-width: 1350px;
+}
+div.footer {
+	position: fixed;
+	bottom: 5px;
+	right: 10px;
+	opacity: .75;
+	font-size: 15px;
+}
+div.pages {
+	position: fixed;
+	bottom: 25px;
+	right: 25px;
+}
+div.pages ul li {
+	display: inline-table;
+	padding: 0 6px;
+	font-size: 15px;
+    margin: 2px;
+}
+div.pages ul li.active, div.pages ul li:hover {
+	background-color: #fff;
+	color: darkred;
+	border-radius: 100px;
+}
+div.pages ul li:hover:not(.active) {
+	background-color: rgba(255,255,255,.75);
+	cursor: pointer;
+}

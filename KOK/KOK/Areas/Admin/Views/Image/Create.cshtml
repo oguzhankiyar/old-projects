@@ -1,0 +1,56 @@
+﻿@model KOK.Models.resim
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>resim</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Adi)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Adi)
+            @Html.ValidationMessageFor(model => model.Adi)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Adres)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Adres)
+            @Html.ValidationMessageFor(model => model.Adres)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Tarih)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Tarih)
+            @Html.ValidationMessageFor(model => model.Tarih)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Onay)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Onay)
+            @Html.ValidationMessageFor(model => model.Onay)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

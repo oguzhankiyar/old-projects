@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "Anasayfa";
+}
+
+@{
+    Html.RenderAction("Posts", "Post", new { page = 1 });
+}

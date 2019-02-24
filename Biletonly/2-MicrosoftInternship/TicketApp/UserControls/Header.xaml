@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="TicketApp.UserControls.Header"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <Grid Background="Orange" VerticalAlignment="Top" Height="65">
+        <Grid x:Name="LogoGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Width="65" Tap="GoBack_Tap" Background="Transparent">
+                <Image Source="/Assets/back.png" Width="28" Margin="0,5,0,0" />
+            </Grid>
+            <TextBlock x:Name="TitleText" VerticalAlignment="Center" FontSize="30" FontWeight="Thin" Grid.Column="1">Uçak+Otobüs</TextBlock>
+        </Grid>
+        <Grid x:Name="ProgressGrid" Visibility="Collapsed" Margin="30,0,15,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="32" />
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="ProgressText" VerticalAlignment="Center" FontSize="25" FontWeight="Thin"/>
+            <Grid Grid.Column="1">
+                <control:ProgressRing x:Name="ProgressRing" Visibility="Collapsed" />
+                <Image x:Name="ProgressImage" Width="32" Visibility="Collapsed" />
+            </Grid>
+        </Grid>
+        
+    </Grid>
+
+</UserControl>

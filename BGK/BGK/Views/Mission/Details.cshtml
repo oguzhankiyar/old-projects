@@ -1,0 +1,61 @@
+﻿@model bgk_gorev
+@{
+    ViewBag.Title = Model.Adi + " Detayları";
+    var member = Model.bgk_gorev_uye;
+    var mission = member.SingleOrDefault(x => x.UyeID == (int)Session["memberID"]);
+}
+
+<div class="table">
+    <div class="title">@Model.Adi</div>
+    <div class="content">
+        @if (mission != null)
+        {
+            <span>Açıklama: @Html.Raw(Model.Aciklama)</span><br />
+        }
+        Puan: @Model.Puan<br />
+        Oluşturan: @BGKFunction.GetMember(Model.OlusturanID).AdSoyad<br />
+        Oluşturulma Tarihi: @Html.ShortDateTime((DateTime)Model.OlusturulmaTarihi)<br />
+        Bitirme Gün Sayısı: @Model.GunSayisi<br />
+    </div>
+</div>                    
+@if (Model.OlusturanID == (int)Session["memberID"] || mission != null)
+{
+    <div class="table">
+        <div class="title">Görevi Alanlar (@member.Count())</div>
+        <div class="content">
+            @if (member.Count() == 0)
+            {
+                <div class="warning">
+                    Henüz bu görevi alan yok :(
+                </div>
+            }
+            @foreach (var missionMember in member)
+	        {
+		        <div>
+                    @missionMember.bgk_uye.AdSoyad
+                    @if (Model.OlusturanID == (int)Session["memberID"])
+                    {
+                        @Html.ActionLink("Detay", "missionmember", new { id = missionMember.Id })
+                    }
+                </div>
+	        }
+        </div>
+    </div>
+}
+<div class="buttons">
+    @if (mission == null)
+    {
+        if (Model.OlusturanID == (int)Session["memberID"])
+        {
+            @Html.Button("Görevi Sil", new { onclick = "$.BGK.FormModal('" + Url.Action("DeleteMission", new { id = Model.Id }) + "', 'Görevi Sil', 'Vazgeç');" })
+        }
+        else
+        {
+            @Html.Button("Görevi Al", new { onclick = "$.BGK.FormModal('" + Url.Action("TakeMission", new { id = Model.Id }) + "', 'Görevi Al', 'Vazgeç');" })
+        }
+    }
+    else
+    {
+        @Html.Button("Detaylar", new { onclick = "window.location.href='" + Url.Action("MissionMember", new { id = mission.Id }) + "';" })
+    }
+</div>

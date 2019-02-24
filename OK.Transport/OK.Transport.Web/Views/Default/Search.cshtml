@@ -1,0 +1,100 @@
+﻿@model OK.Transport.Web.ViewModels.SearchViewModel
+@{
+    ViewBag.ActiveLink = "linkSearch";
+}
+<script type="text/javascript">
+    $(function () {
+        $("#from").keyup(function () {
+            $("#from_results").hide();
+            $("#from_results").text("");
+
+            $.ajax({
+                url: "@Url.Action("AutoComplete")",
+                dataType: "json",
+                data: { query: $(this).val() },
+                success: function (data) {
+                    if (data.predictions.length != 0)
+                        $("#from_results").show();
+                    for (var i = 0; i < data.predictions.length; i++) {
+                        var place = $("<div class=\"from_place\" id=\"" + data.predictions[i].place_id + "\" style=\"cursor: pointer; margin: 5px; background: #363636; color: #fff; font-size: 13px; padding: 10px; width: 100%;\">" + data.predictions[i].description + "</div>");
+                        place.click(function () {
+                            $("#from").val($(this).text());
+                            $("#from_results").hide();
+                            $(".from_place").css("background", "#363636");
+                            $(this).css("background", "darkred");
+                            $("#from_id").val($(this).attr("id"));
+                        });
+                        place.prependTo("#from_results");
+                    }
+                }
+            });
+        });
+
+        $("#to").keyup(function () {
+            $("#to_results").hide();
+            $("#to_results").text("");
+
+            $.ajax({
+                url: "@Url.Action("AutoComplete")",
+                dataType: "json",
+                data: { query: $(this).val() },
+                success: function (data) {
+                    if (data.predictions.length != 0)
+                        $("#to_results").show();
+                    for (var i = 0; i < data.predictions.length; i++) {
+                        var place = $("<div class=\"to_place\" id=\"" + data.predictions[i].place_id + "\" style=\"cursor: pointer; margin: 5px; background: #363636; color: #fff; font-size: 13px; padding: 10px; width: 100%;\">" + data.predictions[i].description + "</div>");
+                        place.click(function () {
+                            $("#to").val($(this).text());
+                            $("#to_results").hide();
+                            $(".to_place").css("background", "#363636");
+                            $(this).css("background", "darkred");
+                            $("#to_id").val($(this).attr("id"));
+                        });
+                        place.prependTo("#to_results");
+                    }
+                }
+            });
+        });
+
+        $("#btnMore").click(function () {
+            if ($(this).text() == "+ Daha fazla seçenek") {
+                $(this).text("- Daha az seçenek");
+                $("#pnlMore").stop().fadeIn();
+            }
+            else {
+                $(this).text("+ Daha fazla seçenek");
+                $("#pnlMore").stop().fadeOut();
+            }
+        });
+    });
+</script>
+<h1 style="font-weight: 100; padding-top: 100px; padding-left: 25px;">Arayın, Kıyaslayın, Kiralayın</h1>
+@using (Html.BeginForm())
+{
+    <div style="display: table; width: 100%; margin: auto; padding-top: 25px;">
+        <div id="from_panel" style="float: left; width: 30%;">
+            <input id="from" type="text" placeholder="nereden?" autocomplete="off" />
+            @Html.HiddenFor(model => model.From, new { id = "from_id" })
+            <div id="from_results" style="max-height: 300px; width: 375px; position: absolute; z-index: 1500;"></div>
+        </div>
+        <div id="to_panel" style="float: left; width: 30%;">
+            <input id="to" type="text" placeholder="nereye?" autocomplete="off" />
+            @Html.HiddenFor(model => model.To, new { id = "to_id" })
+            <div id="to_results" style="max-height: 300px; width: 375px; position: absolute; z-index: 1500;"></div>
+        </div>
+        <div style="float: left;">
+            <button id="btnSearch">Servis Ara</button>
+        </div>
+    </div>
+    <div style="padding-left: 15px;">
+        <a id="btnMore" style="cursor: pointer;">+ Daha fazla seçenek</a>
+    </div>
+    <div id="pnlMore" style="display: none; width: 100%; margin: auto;">
+        <div style="float: left; width: 30%;">
+            <input type="text" placeholder="na zaman?" />
+        </div>
+        <div style="float: left; width: 30%;">
+            <input type="text" placeholder="araç tipi?" />
+        </div>
+    </div>
+}

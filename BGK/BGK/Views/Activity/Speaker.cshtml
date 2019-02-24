@@ -1,0 +1,11 @@
+﻿@model bgk_etkinlik_konusmaci
+@{
+    ViewBag.Title = Model.bgk_etkinlik.Adi + " Konuşmacısı";    
+}
+<div class="table">
+    <div class="title">@Model.AdSoyad</div>
+    <div class="content">
+            <h3>@Model.Konu</h3>
+            @Html.Raw(Model.Aciklama)
+    </div>
+</div>

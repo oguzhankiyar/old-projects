@@ -1,0 +1,890 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TransportDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Factory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddressId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Journey">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="DeparturePlaceId" Type="int" Nullable="false" />
+          <Property Name="ArrivalPlaceId" Type="int" Nullable="false" />
+          <Property Name="DepartureDate" Type="datetime" Nullable="false" />
+          <Property Name="ArrivalDate" Type="datetime" Nullable="false" />
+          <Property Name="TransporterId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JourneyStop">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JourneyId" Type="int" Nullable="false" />
+          <Property Name="PlaceId" Type="int" Nullable="false" />
+          <Property Name="EstimatedDate" Type="datetime" Nullable="false" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+          <Property Name="PassengerCountGetOff" Type="int" Nullable="false" />
+          <Property Name="PassengerCountGetOn" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TCKN" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="PhoneNumber" Type="int" Nullable="false" />
+          <Property Name="AddressId" Type="int" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="State" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Provision" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Place">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GoogleId" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Street" Type="nvarchar(max)" />
+          <Property Name="HighRoad" Type="nvarchar(max)" />
+          <Property Name="Neighborhood" Type="nvarchar(max)" />
+          <Property Name="District" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Country" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Longitude" Type="float" Nullable="false" />
+          <Property Name="Latitude" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="JourneyId" Type="int" Nullable="false" />
+          <Property Name="PaymentId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReservationAction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReservationId" Type="int" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="EditedMemberId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transporter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Plate" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="SeatSchema" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DriverId" Type="int" Nullable="false" />
+          <Property Name="FactoryId" Type="int" />
+          <Property Name="WorkingCityId" Type="int" Nullable="false" />
+          <Property Name="DepartureDistance" Type="int" Nullable="false" />
+          <Property Name="ArrivalDistance" Type="int" Nullable="false" />
+          <Property Name="WorkingHours" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActivatedUpstate" Type="bit" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="MinimumDistance" Type="int" Nullable="false" />
+          <Property Name="MaximumDistance" Type="int" Nullable="false" />
+          <Property Name="PricePerKilometer" Type="float" Nullable="false" />
+          <Property Name="PassengerCount" Type="int" Nullable="false" />
+          <Property Name="TotalBaggageCapacity" Type="int" />
+        </EntityType>
+        <Association Name="FK_Factory_Address">
+          <End Role="Place" Type="Self.Place" Multiplicity="1" />
+          <End Role="Factory" Type="Self.Factory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Place">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Factory">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journey_ArrivalPlace">
+          <End Role="Place" Type="Self.Place" Multiplicity="1" />
+          <End Role="Journey" Type="Self.Journey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Place">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Journey">
+              <PropertyRef Name="ArrivalPlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journey_DeparturePlace">
+          <End Role="Place" Type="Self.Place" Multiplicity="1" />
+          <End Role="Journey" Type="Self.Journey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Place">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Journey">
+              <PropertyRef Name="DeparturePlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journey_Transporter">
+          <End Role="Transporter" Type="Self.Transporter" Multiplicity="1" />
+          <End Role="Journey" Type="Self.Journey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transporter">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Journey">
+              <PropertyRef Name="TransporterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JourneyStop_Journey">
+          <End Role="Journey" Type="Self.Journey" Multiplicity="1" />
+          <End Role="JourneyStop" Type="Self.JourneyStop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Journey">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JourneyStop">
+              <PropertyRef Name="JourneyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JourneyStop_Place">
+          <End Role="Place" Type="Self.Place" Multiplicity="1" />
+          <End Role="JourneyStop" Type="Self.JourneyStop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Place">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JourneyStop">
+              <PropertyRef Name="PlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_Address">
+          <End Role="Place" Type="Self.Place" Multiplicity="0..1" />
+          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Place">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Journey">
+          <End Role="Journey" Type="Self.Journey" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Journey">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="JourneyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Payment">
+          <End Role="Payment" Type="Self.Payment" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="PaymentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservationaction_EditedMember">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="ReservationAction" Type="Self.ReservationAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReservationAction">
+              <PropertyRef Name="EditedMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservationaction_Reservation">
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+          <End Role="ReservationAction" Type="Self.ReservationAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReservationAction">
+              <PropertyRef Name="ReservationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transporter_Driver">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Transporter" Type="Self.Transporter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transporter">
+              <PropertyRef Name="DriverId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transporter_Factory">
+          <End Role="Factory" Type="Self.Factory" Multiplicity="0..1" />
+          <End Role="Transporter" Type="Self.Transporter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transporter">
+              <PropertyRef Name="FactoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transporter_WorkingCity">
+          <End Role="Place" Type="Self.Place" Multiplicity="1" />
+          <End Role="Transporter" Type="Self.Transporter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Place">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transporter">
+              <PropertyRef Name="WorkingCityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TransportDbModelStoreContainer">
+          <EntitySet Name="Factory" EntityType="Self.Factory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Journey" EntityType="Self.Journey" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JourneyStop" EntityType="Self.JourneyStop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Place" EntityType="Self.Place" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReservationAction" EntityType="Self.ReservationAction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transporter" EntityType="Self.Transporter" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Factory_Address" Association="Self.FK_Factory_Address">
+            <End Role="Place" EntitySet="Place" />
+            <End Role="Factory" EntitySet="Factory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journey_ArrivalPlace" Association="Self.FK_Journey_ArrivalPlace">
+            <End Role="Place" EntitySet="Place" />
+            <End Role="Journey" EntitySet="Journey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journey_DeparturePlace" Association="Self.FK_Journey_DeparturePlace">
+            <End Role="Place" EntitySet="Place" />
+            <End Role="Journey" EntitySet="Journey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journey_Transporter" Association="Self.FK_Journey_Transporter">
+            <End Role="Transporter" EntitySet="Transporter" />
+            <End Role="Journey" EntitySet="Journey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JourneyStop_Journey" Association="Self.FK_JourneyStop_Journey">
+            <End Role="Journey" EntitySet="Journey" />
+            <End Role="JourneyStop" EntitySet="JourneyStop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JourneyStop_Place" Association="Self.FK_JourneyStop_Place">
+            <End Role="Place" EntitySet="Place" />
+            <End Role="JourneyStop" EntitySet="JourneyStop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_Address" Association="Self.FK_Member_Address">
+            <End Role="Place" EntitySet="Place" />
+            <End Role="Member" EntitySet="Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Journey" Association="Self.FK_Reservation_Journey">
+            <End Role="Journey" EntitySet="Journey" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Payment" Association="Self.FK_Reservation_Payment">
+            <End Role="Payment" EntitySet="Payment" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservationaction_EditedMember" Association="Self.FK_Reservationaction_EditedMember">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="ReservationAction" EntitySet="ReservationAction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservationaction_Reservation" Association="Self.FK_Reservationaction_Reservation">
+            <End Role="Reservation" EntitySet="Reservation" />
+            <End Role="ReservationAction" EntitySet="ReservationAction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transporter_Driver" Association="Self.FK_Transporter_Driver">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Transporter" EntitySet="Transporter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transporter_Factory" Association="Self.FK_Transporter_Factory">
+            <End Role="Factory" EntitySet="Factory" />
+            <End Role="Transporter" EntitySet="Transporter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transporter_WorkingCity" Association="Self.FK_Transporter_WorkingCity">
+            <End Role="Place" EntitySet="Place" />
+            <End Role="Transporter" EntitySet="Transporter" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TransportDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TransportDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Factories" EntityType="TransportDbModel.Factory" />
+          <EntitySet Name="Journeys" EntityType="TransportDbModel.Journey" />
+          <EntitySet Name="JourneyStops" EntityType="TransportDbModel.JourneyStop" />
+          <EntitySet Name="Members" EntityType="TransportDbModel.Member" />
+          <EntitySet Name="Payments" EntityType="TransportDbModel.Payment" />
+          <EntitySet Name="Places" EntityType="TransportDbModel.Place" />
+          <EntitySet Name="Reservations" EntityType="TransportDbModel.Reservation" />
+          <EntitySet Name="ReservationActions" EntityType="TransportDbModel.ReservationAction" />
+          <EntitySet Name="Transporters" EntityType="TransportDbModel.Transporter" />
+          <AssociationSet Name="FK_Factory_Address" Association="TransportDbModel.FK_Factory_Address">
+            <End Role="Place" EntitySet="Places" />
+            <End Role="Factory" EntitySet="Factories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transporter_Factory" Association="TransportDbModel.FK_Transporter_Factory">
+            <End Role="Factory" EntitySet="Factories" />
+            <End Role="Transporter" EntitySet="Transporters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journey_ArrivalPlace" Association="TransportDbModel.FK_Journey_ArrivalPlace">
+            <End Role="Place" EntitySet="Places" />
+            <End Role="Journey" EntitySet="Journeys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journey_DeparturePlace" Association="TransportDbModel.FK_Journey_DeparturePlace">
+            <End Role="Place" EntitySet="Places" />
+            <End Role="Journey" EntitySet="Journeys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journey_Transporter" Association="TransportDbModel.FK_Journey_Transporter">
+            <End Role="Transporter" EntitySet="Transporters" />
+            <End Role="Journey" EntitySet="Journeys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JourneyStop_Journey" Association="TransportDbModel.FK_JourneyStop_Journey">
+            <End Role="Journey" EntitySet="Journeys" />
+            <End Role="JourneyStop" EntitySet="JourneyStops" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JourneyStop_Place" Association="TransportDbModel.FK_JourneyStop_Place">
+            <End Role="Place" EntitySet="Places" />
+            <End Role="JourneyStop" EntitySet="JourneyStops" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_Address" Association="TransportDbModel.FK_Member_Address">
+            <End Role="Place" EntitySet="Places" />
+            <End Role="Member" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservationaction_EditedMember" Association="TransportDbModel.FK_Reservationaction_EditedMember">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="ReservationAction" EntitySet="ReservationActions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transporter_Driver" Association="TransportDbModel.FK_Transporter_Driver">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="Transporter" EntitySet="Transporters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Payment" Association="TransportDbModel.FK_Reservation_Payment">
+            <End Role="Payment" EntitySet="Payments" />
+            <End Role="Reservation" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transporter_WorkingCity" Association="TransportDbModel.FK_Transporter_WorkingCity">
+            <End Role="Place" EntitySet="Places" />
+            <End Role="Transporter" EntitySet="Transporters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservationaction_Reservation" Association="TransportDbModel.FK_Reservationaction_Reservation">
+            <End Role="Reservation" EntitySet="Reservations" />
+            <End Role="ReservationAction" EntitySet="ReservationActions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Journey" Association="TransportDbModel.FK_Reservation_Journey">
+            <End Role="Journey" EntitySet="Journeys" />
+            <End Role="Reservation" EntitySet="Reservations" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Factory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddressId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Place" Relationship="TransportDbModel.FK_Factory_Address" FromRole="Factory" ToRole="Place" />
+          <NavigationProperty Name="Transporters" Relationship="TransportDbModel.FK_Transporter_Factory" FromRole="Factory" ToRole="Transporter" />
+        </EntityType>
+        <EntityType Name="Journey">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeparturePlaceId" Type="Int32" Nullable="false" />
+          <Property Name="ArrivalPlaceId" Type="Int32" Nullable="false" />
+          <Property Name="DepartureDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ArrivalDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TransporterId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ArrivalPlace" Relationship="TransportDbModel.FK_Journey_ArrivalPlace" FromRole="Journey" ToRole="Place" />
+          <NavigationProperty Name="DeparturePlace" Relationship="TransportDbModel.FK_Journey_DeparturePlace" FromRole="Journey" ToRole="Place" />
+          <NavigationProperty Name="Transporter" Relationship="TransportDbModel.FK_Journey_Transporter" FromRole="Journey" ToRole="Transporter" />
+          <NavigationProperty Name="JourneyStops" Relationship="TransportDbModel.FK_JourneyStop_Journey" FromRole="Journey" ToRole="JourneyStop" />
+          <NavigationProperty Name="Reservations" Relationship="TransportDbModel.FK_Reservation_Journey" FromRole="Journey" ToRole="Reservation" />
+        </EntityType>
+        <EntityType Name="JourneyStop">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JourneyId" Type="Int32" Nullable="false" />
+          <Property Name="PlaceId" Type="Int32" Nullable="false" />
+          <Property Name="EstimatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="PassengerCountGetOff" Type="Int32" Nullable="false" />
+          <Property Name="PassengerCountGetOn" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Journey" Relationship="TransportDbModel.FK_JourneyStop_Journey" FromRole="JourneyStop" ToRole="Journey" />
+          <NavigationProperty Name="Place" Relationship="TransportDbModel.FK_JourneyStop_Place" FromRole="JourneyStop" ToRole="Place" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TCKN" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="PhoneNumber" Type="Int32" Nullable="false" />
+          <Property Name="AddressId" Type="Int32" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="State" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Place" Relationship="TransportDbModel.FK_Member_Address" FromRole="Member" ToRole="Place" />
+          <NavigationProperty Name="ReservationActions" Relationship="TransportDbModel.FK_Reservationaction_EditedMember" FromRole="Member" ToRole="ReservationAction" />
+          <NavigationProperty Name="Transporters" Relationship="TransportDbModel.FK_Transporter_Driver" FromRole="Member" ToRole="Transporter" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Provision" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Reservations" Relationship="TransportDbModel.FK_Reservation_Payment" FromRole="Payment" ToRole="Reservation" />
+        </EntityType>
+        <EntityType Name="Place">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GoogleId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Street" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HighRoad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Neighborhood" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="District" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Factories" Relationship="TransportDbModel.FK_Factory_Address" FromRole="Place" ToRole="Factory" />
+          <NavigationProperty Name="ArrivalJourneys" Relationship="TransportDbModel.FK_Journey_ArrivalPlace" FromRole="Place" ToRole="Journey" />
+          <NavigationProperty Name="DepartureJourneys" Relationship="TransportDbModel.FK_Journey_DeparturePlace" FromRole="Place" ToRole="Journey" />
+          <NavigationProperty Name="JourneyStops" Relationship="TransportDbModel.FK_JourneyStop_Place" FromRole="Place" ToRole="JourneyStop" />
+          <NavigationProperty Name="Members" Relationship="TransportDbModel.FK_Member_Address" FromRole="Place" ToRole="Member" />
+          <NavigationProperty Name="Transporters" Relationship="TransportDbModel.FK_Transporter_WorkingCity" FromRole="Place" ToRole="Transporter" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="JourneyId" Type="Int32" Nullable="false" />
+          <Property Name="PaymentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Payment" Relationship="TransportDbModel.FK_Reservation_Payment" FromRole="Reservation" ToRole="Payment" />
+          <NavigationProperty Name="ReservationActions" Relationship="TransportDbModel.FK_Reservationaction_Reservation" FromRole="Reservation" ToRole="ReservationAction" />
+          <NavigationProperty Name="Journey" Relationship="TransportDbModel.FK_Reservation_Journey" FromRole="Reservation" ToRole="Journey" />
+        </EntityType>
+        <EntityType Name="ReservationAction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReservationId" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="EditedMemberId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Member" Relationship="TransportDbModel.FK_Reservationaction_EditedMember" FromRole="ReservationAction" ToRole="Member" />
+          <NavigationProperty Name="Reservation" Relationship="TransportDbModel.FK_Reservationaction_Reservation" FromRole="ReservationAction" ToRole="Reservation" />
+        </EntityType>
+        <EntityType Name="Transporter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Plate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Brand" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="SeatSchema" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DriverId" Type="Int32" Nullable="false" />
+          <Property Name="FactoryId" Type="Int32" />
+          <Property Name="WorkingCityId" Type="Int32" Nullable="false" />
+          <Property Name="DepartureDistance" Type="Int32" Nullable="false" />
+          <Property Name="ArrivalDistance" Type="Int32" Nullable="false" />
+          <Property Name="WorkingHours" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActivatedUpstate" Type="Boolean" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="MinimumDistance" Type="Int32" Nullable="false" />
+          <Property Name="MaximumDistance" Type="Int32" Nullable="false" />
+          <Property Name="PricePerKilometer" Type="Double" Nullable="false" />
+          <Property Name="PassengerCount" Type="Int32" Nullable="false" />
+          <Property Name="TotalBaggageCapacity" Type="Int32" />
+          <NavigationProperty Name="Factory" Relationship="TransportDbModel.FK_Transporter_Factory" FromRole="Transporter" ToRole="Factory" />
+          <NavigationProperty Name="Journeys" Relationship="TransportDbModel.FK_Journey_Transporter" FromRole="Transporter" ToRole="Journey" />
+          <NavigationProperty Name="Member" Relationship="TransportDbModel.FK_Transporter_Driver" FromRole="Transporter" ToRole="Member" />
+          <NavigationProperty Name="Place" Relationship="TransportDbModel.FK_Transporter_WorkingCity" FromRole="Transporter" ToRole="Place" />
+        </EntityType>
+        <Association Name="FK_Factory_Address">
+          <End Type="TransportDbModel.Place" Role="Place" Multiplicity="1" />
+          <End Type="TransportDbModel.Factory" Role="Factory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Place">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Factory">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transporter_Factory">
+          <End Type="TransportDbModel.Factory" Role="Factory" Multiplicity="0..1" />
+          <End Type="TransportDbModel.Transporter" Role="Transporter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transporter">
+              <PropertyRef Name="FactoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journey_ArrivalPlace">
+          <End Type="TransportDbModel.Place" Role="Place" Multiplicity="1" />
+          <End Type="TransportDbModel.Journey" Role="Journey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Place">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Journey">
+              <PropertyRef Name="ArrivalPlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journey_DeparturePlace">
+          <End Type="TransportDbModel.Place" Role="Place" Multiplicity="1" />
+          <End Type="TransportDbModel.Journey" Role="Journey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Place">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Journey">
+              <PropertyRef Name="DeparturePlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journey_Transporter">
+          <End Type="TransportDbModel.Transporter" Role="Transporter" Multiplicity="1" />
+          <End Type="TransportDbModel.Journey" Role="Journey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transporter">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Journey">
+              <PropertyRef Name="TransporterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JourneyStop_Journey">
+          <End Type="TransportDbModel.Journey" Role="Journey" Multiplicity="1" />
+          <End Type="TransportDbModel.JourneyStop" Role="JourneyStop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Journey">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JourneyStop">
+              <PropertyRef Name="JourneyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JourneyStop_Place">
+          <End Type="TransportDbModel.Place" Role="Place" Multiplicity="1" />
+          <End Type="TransportDbModel.JourneyStop" Role="JourneyStop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Place">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JourneyStop">
+              <PropertyRef Name="PlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_Address">
+          <End Type="TransportDbModel.Place" Role="Place" Multiplicity="0..1" />
+          <End Type="TransportDbModel.Member" Role="Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Place">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservationaction_EditedMember">
+          <End Type="TransportDbModel.Member" Role="Member" Multiplicity="1" />
+          <End Type="TransportDbModel.ReservationAction" Role="ReservationAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReservationAction">
+              <PropertyRef Name="EditedMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transporter_Driver">
+          <End Type="TransportDbModel.Member" Role="Member" Multiplicity="1" />
+          <End Type="TransportDbModel.Transporter" Role="Transporter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transporter">
+              <PropertyRef Name="DriverId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Payment">
+          <End Type="TransportDbModel.Payment" Role="Payment" Multiplicity="1" />
+          <End Type="TransportDbModel.Reservation" Role="Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="PaymentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transporter_WorkingCity">
+          <End Type="TransportDbModel.Place" Role="Place" Multiplicity="1" />
+          <End Type="TransportDbModel.Transporter" Role="Transporter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Place">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transporter">
+              <PropertyRef Name="WorkingCityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservationaction_Reservation">
+          <End Type="TransportDbModel.Reservation" Role="Reservation" Multiplicity="1" />
+          <End Type="TransportDbModel.ReservationAction" Role="ReservationAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReservationAction">
+              <PropertyRef Name="ReservationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Journey">
+          <End Type="TransportDbModel.Journey" Role="Journey" Multiplicity="1" />
+          <End Type="TransportDbModel.Reservation" Role="Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Journey">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="JourneyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TransportDbModelStoreContainer" CdmEntityContainer="TransportDbEntities">
+          <EntitySetMapping Name="Factories">
+            <EntityTypeMapping TypeName="TransportDbModel.Factory">
+              <MappingFragment StoreEntitySet="Factory">
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Journeys">
+            <EntityTypeMapping TypeName="TransportDbModel.Journey">
+              <MappingFragment StoreEntitySet="Journey">
+                <ScalarProperty Name="TransporterId" ColumnName="TransporterId" />
+                <ScalarProperty Name="ArrivalDate" ColumnName="ArrivalDate" />
+                <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
+                <ScalarProperty Name="ArrivalPlaceId" ColumnName="ArrivalPlaceId" />
+                <ScalarProperty Name="DeparturePlaceId" ColumnName="DeparturePlaceId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JourneyStops">
+            <EntityTypeMapping TypeName="TransportDbModel.JourneyStop">
+              <MappingFragment StoreEntitySet="JourneyStop">
+                <ScalarProperty Name="PassengerCountGetOn" ColumnName="PassengerCountGetOn" />
+                <ScalarProperty Name="PassengerCountGetOff" ColumnName="PassengerCountGetOff" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="EstimatedDate" ColumnName="EstimatedDate" />
+                <ScalarProperty Name="PlaceId" ColumnName="PlaceId" />
+                <ScalarProperty Name="JourneyId" ColumnName="JourneyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="TransportDbModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TCKN" ColumnName="TCKN" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="TransportDbModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Provision" ColumnName="Provision" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Places">
+            <EntityTypeMapping TypeName="TransportDbModel.Place">
+              <MappingFragment StoreEntitySet="Place">
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="Neighborhood" ColumnName="Neighborhood" />
+                <ScalarProperty Name="HighRoad" ColumnName="HighRoad" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="GoogleId" ColumnName="GoogleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservations">
+            <EntityTypeMapping TypeName="TransportDbModel.Reservation">
+              <MappingFragment StoreEntitySet="Reservation">
+                <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+                <ScalarProperty Name="JourneyId" ColumnName="JourneyId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReservationActions">
+            <EntityTypeMapping TypeName="TransportDbModel.ReservationAction">
+              <MappingFragment StoreEntitySet="ReservationAction">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="EditedMemberId" ColumnName="EditedMemberId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transporters">
+            <EntityTypeMapping TypeName="TransportDbModel.Transporter">
+              <MappingFragment StoreEntitySet="Transporter">
+                <ScalarProperty Name="TotalBaggageCapacity" ColumnName="TotalBaggageCapacity" />
+                <ScalarProperty Name="PassengerCount" ColumnName="PassengerCount" />
+                <ScalarProperty Name="PricePerKilometer" ColumnName="PricePerKilometer" />
+                <ScalarProperty Name="MaximumDistance" ColumnName="MaximumDistance" />
+                <ScalarProperty Name="MinimumDistance" ColumnName="MinimumDistance" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="IsActivatedUpstate" ColumnName="IsActivatedUpstate" />
+                <ScalarProperty Name="WorkingHours" ColumnName="WorkingHours" />
+                <ScalarProperty Name="ArrivalDistance" ColumnName="ArrivalDistance" />
+                <ScalarProperty Name="DepartureDistance" ColumnName="DepartureDistance" />
+                <ScalarProperty Name="WorkingCityId" ColumnName="WorkingCityId" />
+                <ScalarProperty Name="FactoryId" ColumnName="FactoryId" />
+                <ScalarProperty Name="DriverId" ColumnName="DriverId" />
+                <ScalarProperty Name="SeatSchema" ColumnName="SeatSchema" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Plate" ColumnName="Plate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

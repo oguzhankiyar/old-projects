@@ -1,0 +1,703 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="InfosecModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="InfosecModelStoreContainer">
+          <EntitySet Name="club_category" EntityType="InfosecModel.Store.club_category" store:Type="Tables" Schema="BGUSER" />
+          <EntitySet Name="club_config" EntityType="InfosecModel.Store.club_config" store:Type="Tables" Schema="BGUSER" />
+          <EntitySet Name="club_group" EntityType="InfosecModel.Store.club_group" store:Type="Tables" Schema="BGUSER" />
+          <EntitySet Name="club_groupmember" EntityType="InfosecModel.Store.club_groupmember" store:Type="Tables" Schema="BGUSER" />
+          <EntitySet Name="club_member" EntityType="InfosecModel.Store.club_member" store:Type="Tables" Schema="BGUSER" />
+          <EntitySet Name="club_menulink" EntityType="InfosecModel.Store.club_menulink" store:Type="Tables" Schema="BGUSER" />
+          <EntitySet Name="club_notice" EntityType="InfosecModel.Store.club_notice" store:Type="Tables" store:Schema="BGUSER" store:Name="club_notice">
+            <DefiningQuery>SELECT 
+      [club_notice].[Id] AS [Id], 
+      [club_notice].[Title] AS [Title], 
+      [club_notice].[Content] AS [Content], 
+      [club_notice].[Image] AS [Image], 
+      [club_notice].[WritingDate] AS [WritingDate], 
+      [club_notice].[Seo] AS [Seo], 
+      [club_notice].[Sort] AS [Sort], 
+      [club_notice].[IsApproval] AS [IsApproval]
+      FROM [BGUSER].[club_notice] AS [club_notice]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="club_page" EntityType="InfosecModel.Store.club_page" store:Type="Tables" Schema="BGUSER" />
+          <EntitySet Name="club_post" EntityType="InfosecModel.Store.club_post" store:Type="Tables" Schema="BGUSER" />
+          <EntitySet Name="club_postcomment" EntityType="InfosecModel.Store.club_postcomment" store:Type="Tables" Schema="BGUSER" />
+          <AssociationSet Name="FK_club_groupmember_club_group" Association="InfosecModel.Store.FK_club_groupmember_club_group">
+            <End Role="club_group" EntitySet="club_group" />
+            <End Role="club_groupmember" EntitySet="club_groupmember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_club_groupmember_club_member" Association="InfosecModel.Store.FK_club_groupmember_club_member">
+            <End Role="club_member" EntitySet="club_member" />
+            <End Role="club_groupmember" EntitySet="club_groupmember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_club_post_club_category" Association="InfosecModel.Store.FK_club_post_club_category">
+            <End Role="club_category" EntitySet="club_category" />
+            <End Role="club_post" EntitySet="club_post" />
+          </AssociationSet>
+          <AssociationSet Name="FK_club_post_club_group" Association="InfosecModel.Store.FK_club_post_club_group">
+            <End Role="club_group" EntitySet="club_group" />
+            <End Role="club_post" EntitySet="club_post" />
+          </AssociationSet>
+          <AssociationSet Name="FK_club_post_club_member" Association="InfosecModel.Store.FK_club_post_club_member">
+            <End Role="club_member" EntitySet="club_member" />
+            <End Role="club_post" EntitySet="club_post" />
+          </AssociationSet>
+          <AssociationSet Name="FK_club_postcomment_club_member" Association="InfosecModel.Store.FK_club_postcomment_club_member">
+            <End Role="club_member" EntitySet="club_member" />
+            <End Role="club_postcomment" EntitySet="club_postcomment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_club_postcomment_club_post" Association="InfosecModel.Store.FK_club_postcomment_club_post">
+            <End Role="club_post" EntitySet="club_post" />
+            <End Role="club_postcomment" EntitySet="club_postcomment" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="club_category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Seo" Type="nvarchar" MaxLength="255" />
+          <Property Name="Sort" Type="int" />
+          <Property Name="IsApproval" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="club_config">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="nvarchar" MaxLength="50" />
+          <Property Name="Value" Type="text" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="club_group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Description" Type="text" />
+          <Property Name="IsSubGroup" Type="bit" Nullable="false" />
+          <Property Name="ParentGroupId" Type="int" />
+          <Property Name="Seo" Type="nvarchar" MaxLength="255" />
+          <Property Name="Sort" Type="int" />
+        </EntityType>
+        <EntityType Name="club_groupmember">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="int" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="RegistrationDate" Type="datetime" />
+          <Property Name="Role" Type="int" />
+        </EntityType>
+        <EntityType Name="club_member">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolNo" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Password" Type="nvarchar" MaxLength="255" />
+          <Property Name="Image" Type="nvarchar" MaxLength="255" />
+          <Property Name="Faculty" Type="nvarchar" MaxLength="255" />
+          <Property Name="Program" Type="nvarchar" MaxLength="255" />
+          <Property Name="Class" Type="nvarchar" MaxLength="255" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="255" />
+          <Property Name="About" Type="text" />
+          <Property Name="RegistrationDate" Type="datetime" />
+          <Property Name="Role" Type="int" />
+          <Property Name="IsApproval" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="club_menulink">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="OnClick" Type="nvarchar" MaxLength="255" />
+          <Property Name="Type" Type="int" />
+          <Property Name="Sort" Type="int" />
+          <Property Name="IsApproval" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'infosec.BGUSER.club_notice' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="club_notice">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IsApproval" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Content" Type="text" />
+          <Property Name="Image" Type="nvarchar" MaxLength="255" />
+          <Property Name="WritingDate" Type="datetime" />
+          <Property Name="Seo" Type="nvarchar" MaxLength="255" />
+          <Property Name="Sort" Type="int" />
+          <Property Name="IsApproval" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="club_page">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Content" Type="text" />
+          <Property Name="Seo" Type="nvarchar" MaxLength="255" />
+          <Property Name="Sort" Type="int" />
+          <Property Name="IsApproval" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="club_post">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Content" Type="text" />
+          <Property Name="Image" Type="nvarchar" MaxLength="255" />
+          <Property Name="MemberId" Type="int" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="WritingDate" Type="datetime" />
+          <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="ViewsCount" Type="int" />
+          <Property Name="Seo" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsApproval" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="club_postcomment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Comment" Type="ntext" />
+          <Property Name="PostId" Type="int" />
+          <Property Name="MemberId" Type="int" />
+          <Property Name="WriterName" Type="nvarchar" MaxLength="50" />
+          <Property Name="WritingDate" Type="datetime" />
+          <Property Name="IsApproval" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_club_groupmember_club_group">
+          <End Role="club_group" Type="InfosecModel.Store.club_group" Multiplicity="0..1" />
+          <End Role="club_groupmember" Type="InfosecModel.Store.club_groupmember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="club_group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="club_groupmember">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_club_groupmember_club_member">
+          <End Role="club_member" Type="InfosecModel.Store.club_member" Multiplicity="0..1" />
+          <End Role="club_groupmember" Type="InfosecModel.Store.club_groupmember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="club_member">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="club_groupmember">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_club_post_club_category">
+          <End Role="club_category" Type="InfosecModel.Store.club_category" Multiplicity="0..1" />
+          <End Role="club_post" Type="InfosecModel.Store.club_post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="club_category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="club_post">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_club_post_club_group">
+          <End Role="club_group" Type="InfosecModel.Store.club_group" Multiplicity="0..1" />
+          <End Role="club_post" Type="InfosecModel.Store.club_post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="club_group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="club_post">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_club_post_club_member">
+          <End Role="club_member" Type="InfosecModel.Store.club_member" Multiplicity="0..1" />
+          <End Role="club_post" Type="InfosecModel.Store.club_post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="club_member">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="club_post">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_club_postcomment_club_member">
+          <End Role="club_member" Type="InfosecModel.Store.club_member" Multiplicity="0..1" />
+          <End Role="club_postcomment" Type="InfosecModel.Store.club_postcomment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="club_member">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="club_postcomment">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_club_postcomment_club_post">
+          <End Role="club_post" Type="InfosecModel.Store.club_post" Multiplicity="0..1" />
+          <End Role="club_postcomment" Type="InfosecModel.Store.club_postcomment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="club_post">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="club_postcomment">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InfosecModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="InfosecEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="club_category" EntityType="InfosecModel.club_category" />
+          <EntitySet Name="club_config" EntityType="InfosecModel.club_config" />
+          <EntitySet Name="club_groupmember" EntityType="InfosecModel.club_groupmember" />
+          <EntitySet Name="club_member" EntityType="InfosecModel.club_member" />
+          <EntitySet Name="club_menulink" EntityType="InfosecModel.club_menulink" />
+          <EntitySet Name="club_notice" EntityType="InfosecModel.club_notice" />
+          <EntitySet Name="club_page" EntityType="InfosecModel.club_page" />
+          <EntitySet Name="club_post" EntityType="InfosecModel.club_post" />
+          <EntitySet Name="club_postcomment" EntityType="InfosecModel.club_postcomment" />
+          <AssociationSet Name="FK_club_post_club_category" Association="InfosecModel.FK_club_post_club_category">
+            <End Role="club_category" EntitySet="club_category" />
+            <End Role="club_post" EntitySet="club_post" />
+          </AssociationSet>
+          <AssociationSet Name="FK_club_groupmember_club_member" Association="InfosecModel.FK_club_groupmember_club_member">
+            <End Role="club_member" EntitySet="club_member" />
+            <End Role="club_groupmember" EntitySet="club_groupmember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_club_post_club_member" Association="InfosecModel.FK_club_post_club_member">
+            <End Role="club_member" EntitySet="club_member" />
+            <End Role="club_post" EntitySet="club_post" />
+          </AssociationSet>
+          <AssociationSet Name="FK_club_postcomment_club_member" Association="InfosecModel.FK_club_postcomment_club_member">
+            <End Role="club_member" EntitySet="club_member" />
+            <End Role="club_postcomment" EntitySet="club_postcomment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_club_postcomment_club_post" Association="InfosecModel.FK_club_postcomment_club_post">
+            <End Role="club_post" EntitySet="club_post" />
+            <End Role="club_postcomment" EntitySet="club_postcomment" />
+          </AssociationSet>
+          <EntitySet Name="club_group" EntityType="InfosecModel.club_group" />
+          <AssociationSet Name="FK_club_groupmember_club_group" Association="InfosecModel.FK_club_groupmember_club_group">
+            <End Role="club_group" EntitySet="club_group" />
+            <End Role="club_groupmember" EntitySet="club_groupmember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_club_post_club_group" Association="InfosecModel.FK_club_post_club_group">
+            <End Role="club_group" EntitySet="club_group" />
+            <End Role="club_post" EntitySet="club_post" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="club_category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Seo" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Sort" Type="Int32" />
+          <Property Name="IsApproval" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="club_posts" Relationship="InfosecModel.FK_club_post_club_category" FromRole="club_category" ToRole="club_post" />
+        </EntityType>
+        <EntityType Name="club_config">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Value" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="club_groupmember">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int32" />
+          <Property Name="GroupId" Type="Int32" />
+          <Property Name="RegistrationDate" Type="DateTime" Precision="3" />
+          <Property Name="Role" Type="Int32" />
+          <NavigationProperty Name="club_member" Relationship="InfosecModel.FK_club_groupmember_club_member" FromRole="club_groupmember" ToRole="club_member" />
+          <NavigationProperty Name="club_group" Relationship="InfosecModel.FK_club_groupmember_club_group" FromRole="club_groupmember" ToRole="club_group" />
+        </EntityType>
+        <EntityType Name="club_member">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolNo" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Image" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Faculty" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Program" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Class" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="About" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Precision="3" />
+          <Property Name="Role" Type="Int32" />
+          <Property Name="IsApproval" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="club_groups" Relationship="InfosecModel.FK_club_groupmember_club_member" FromRole="club_member" ToRole="club_groupmember" />
+          <NavigationProperty Name="club_posts" Relationship="InfosecModel.FK_club_post_club_member" FromRole="club_member" ToRole="club_post" />
+          <NavigationProperty Name="club_comments" Relationship="InfosecModel.FK_club_postcomment_club_member" FromRole="club_member" ToRole="club_postcomment" />
+        </EntityType>
+        <EntityType Name="club_menulink">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="OnClick" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="Sort" Type="Int32" />
+          <Property Name="IsApproval" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="club_notice">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IsApproval" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Image" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="WritingDate" Type="DateTime" Precision="3" />
+          <Property Name="Seo" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Sort" Type="Int32" />
+          <Property Name="IsApproval" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="club_page">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Seo" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Sort" Type="Int32" />
+          <Property Name="IsApproval" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="club_post">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Image" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="MemberId" Type="Int32" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="GroupId" Type="Int32" />
+          <Property Name="WritingDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="ViewsCount" Type="Int32" />
+          <Property Name="Seo" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="IsApproval" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="club_category" Relationship="InfosecModel.FK_club_post_club_category" FromRole="club_post" ToRole="club_category" />
+          <NavigationProperty Name="club_member" Relationship="InfosecModel.FK_club_post_club_member" FromRole="club_post" ToRole="club_member" />
+          <NavigationProperty Name="club_comments" Relationship="InfosecModel.FK_club_postcomment_club_post" FromRole="club_post" ToRole="club_postcomment" />
+          <NavigationProperty Name="club_group" Relationship="InfosecModel.FK_club_post_club_group" FromRole="club_post" ToRole="club_group" />
+        </EntityType>
+        <EntityType Name="club_postcomment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comment" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PostId" Type="Int32" />
+          <Property Name="MemberId" Type="Int32" />
+          <Property Name="WriterName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="WritingDate" Type="DateTime" Precision="3" />
+          <Property Name="IsApproval" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="club_member" Relationship="InfosecModel.FK_club_postcomment_club_member" FromRole="club_postcomment" ToRole="club_member" />
+          <NavigationProperty Name="club_post" Relationship="InfosecModel.FK_club_postcomment_club_post" FromRole="club_postcomment" ToRole="club_post" />
+        </EntityType>
+        <Association Name="FK_club_post_club_category">
+          <End Role="club_category" Type="InfosecModel.club_category" Multiplicity="0..1" />
+          <End Role="club_post" Type="InfosecModel.club_post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="club_category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="club_post">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_club_groupmember_club_member">
+          <End Role="club_member" Type="InfosecModel.club_member" Multiplicity="0..1" />
+          <End Role="club_groupmember" Type="InfosecModel.club_groupmember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="club_member">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="club_groupmember">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_club_post_club_member">
+          <End Role="club_member" Type="InfosecModel.club_member" Multiplicity="0..1" />
+          <End Role="club_post" Type="InfosecModel.club_post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="club_member">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="club_post">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_club_postcomment_club_member">
+          <End Role="club_member" Type="InfosecModel.club_member" Multiplicity="0..1" />
+          <End Role="club_postcomment" Type="InfosecModel.club_postcomment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="club_member">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="club_postcomment">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_club_postcomment_club_post">
+          <End Role="club_post" Type="InfosecModel.club_post" Multiplicity="0..1" />
+          <End Role="club_postcomment" Type="InfosecModel.club_postcomment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="club_post">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="club_postcomment">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="club_group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsSubGroup" Nullable="false" />
+          <Property Type="Int32" Name="ParentGroupId" />
+          <Property Type="String" Name="Seo" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Sort" />
+          <NavigationProperty Name="club_members" Relationship="InfosecModel.FK_club_groupmember_club_group" FromRole="club_group" ToRole="club_groupmember" />
+          <NavigationProperty Name="club_posts" Relationship="InfosecModel.FK_club_post_club_group" FromRole="club_group" ToRole="club_post" />
+        </EntityType>
+        <Association Name="FK_club_groupmember_club_group">
+          <End Type="InfosecModel.club_group" Role="club_group" Multiplicity="0..1" />
+          <End Type="InfosecModel.club_groupmember" Role="club_groupmember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="club_group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="club_groupmember">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_club_post_club_group">
+          <End Type="InfosecModel.club_group" Role="club_group" Multiplicity="0..1" />
+          <End Type="InfosecModel.club_post" Role="club_post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="club_group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="club_post">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InfosecModelStoreContainer" CdmEntityContainer="InfosecEntities">
+          <EntitySetMapping Name="club_category">
+            <EntityTypeMapping TypeName="InfosecModel.club_category">
+              <MappingFragment StoreEntitySet="club_category">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Seo" ColumnName="Seo" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="IsApproval" ColumnName="IsApproval" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="club_config">
+            <EntityTypeMapping TypeName="InfosecModel.club_config">
+              <MappingFragment StoreEntitySet="club_config">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="club_groupmember">
+            <EntityTypeMapping TypeName="InfosecModel.club_groupmember">
+              <MappingFragment StoreEntitySet="club_groupmember">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="club_member">
+            <EntityTypeMapping TypeName="InfosecModel.club_member">
+              <MappingFragment StoreEntitySet="club_member">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SchoolNo" ColumnName="SchoolNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Faculty" ColumnName="Faculty" />
+                <ScalarProperty Name="Program" ColumnName="Program" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="IsApproval" ColumnName="IsApproval" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="club_menulink">
+            <EntityTypeMapping TypeName="InfosecModel.club_menulink">
+              <MappingFragment StoreEntitySet="club_menulink">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OnClick" ColumnName="OnClick" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="IsApproval" ColumnName="IsApproval" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="club_notice">
+            <EntityTypeMapping TypeName="InfosecModel.club_notice">
+              <MappingFragment StoreEntitySet="club_notice">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="WritingDate" ColumnName="WritingDate" />
+                <ScalarProperty Name="Seo" ColumnName="Seo" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="IsApproval" ColumnName="IsApproval" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="club_page">
+            <EntityTypeMapping TypeName="InfosecModel.club_page">
+              <MappingFragment StoreEntitySet="club_page">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Seo" ColumnName="Seo" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="IsApproval" ColumnName="IsApproval" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="club_post">
+            <EntityTypeMapping TypeName="InfosecModel.club_post">
+              <MappingFragment StoreEntitySet="club_post">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="WritingDate" ColumnName="WritingDate" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="ViewsCount" ColumnName="ViewsCount" />
+                <ScalarProperty Name="Seo" ColumnName="Seo" />
+                <ScalarProperty Name="IsApproval" ColumnName="IsApproval" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="club_postcomment">
+            <EntityTypeMapping TypeName="InfosecModel.club_postcomment">
+              <MappingFragment StoreEntitySet="club_postcomment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="WriterName" ColumnName="WriterName" />
+                <ScalarProperty Name="WritingDate" ColumnName="WritingDate" />
+                <ScalarProperty Name="IsApproval" ColumnName="IsApproval" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="club_group">
+            <EntityTypeMapping TypeName="InfosecModel.club_group">
+              <MappingFragment StoreEntitySet="club_group">
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Seo" ColumnName="Seo" />
+                <ScalarProperty Name="ParentGroupId" ColumnName="ParentGroupId" />
+                <ScalarProperty Name="IsSubGroup" ColumnName="IsSubGroup" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,64 @@
+﻿@model KOK.Models.link
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>link</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Adi)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Adi)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Adres)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Adres)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Sira)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sira)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Onay)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Onay)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AltLink)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AltLink)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UstLinkID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UstLinkID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AnaMenu)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AnaMenu)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

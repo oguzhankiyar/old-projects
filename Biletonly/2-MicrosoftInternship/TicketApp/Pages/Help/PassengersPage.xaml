@@ -1,0 +1,38 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TicketApp.Pages.Help.PassengersPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    Orientation="Portrait"
+    mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource PageStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <control:Header />
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="5">
+                <control:Title Value="Yolcu işlemleri" />
+                <TextBlock TextWrapping="Wrap" LineHeight="30" FontWeight="Light" Padding="5">
+                    Bu aşamada iletişim ve yolcu bilgilerini belirleyeceksiniz.<LineBreak />
+                    <LineBreak />
+                    - Eğer daha önceden bir işlem gerçekleştirdiyseniz bu bölümden kolaylık olarak iletişim bilgileri dolu olarak gelir. İsterseniz değiştirebilirsiniz.<LineBreak />
+                    - Alt kısımda ise yolcu bölümü bulunmaktadır. Sağa doğru kaydırarak seçtiğiniz diğer yolcuların da bilgilerini düzenleyebilirsiniz.<LineBreak />
+                    - '+ Favori Kişiler' düğmesine dokunduğunuzda daha önceden kaydedilmiş yolcuları görebilirsiniz. Bunlardan birini seçerek formu doldurabilirsiniz.<LineBreak />
+                    - Rezervasyon yapıyorsanız 'Rezervasyonu tamamla' düğmesine dokunarak rezervasyonunuzu gerçekleştirebilirsiniz.<LineBreak />
+                    - Satın alma işlemi yapıyorsanız 'İşleme devam et' düğmesine dokunarak sonraki aşamaya geçebilirsiniz.<LineBreak />
+                    <LineBreak />İpucu: Favori kişileri 'Ayarlar' sayfasından yönetebilirsiniz.
+                </TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</phone:PhoneApplicationPage>

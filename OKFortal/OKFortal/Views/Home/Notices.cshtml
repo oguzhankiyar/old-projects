@@ -1,0 +1,11 @@
+﻿@model IEnumerable<notice>
+
+<div class="notices">
+    @foreach (var notice in Model)
+    {
+        <ul onclick="$.OK.Modal('@Url.Action("NoticeDetail", new { id = notice.Id })');">
+            <li>@Html.Raw(notice.Title)</li>
+            <li>@Html.DisplayFor(model => notice.CreationDate)</li>
+        </ul>
+    }
+</div>

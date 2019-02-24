@@ -1,0 +1,54 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TicketApp.Pages.Help.FeedbackPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    Orientation="Portrait"
+    mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource PageStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <control:Header />
+        <ScrollViewer Margin="5,5,5,2.5" Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <control:InputBox x:Name="txtName" Label="Ad soyad:" CasingMode="UpperAfterSpace" Grid.ColumnSpan="3" />
+                    <control:InputBox x:Name="txtEmail" Label="Email adresi:" CasingMode="Lower" Scope="EmailSmtpAddress" Grid.Row="1" Grid.ColumnSpan="3" />
+                    <RadioButton x:Name="cbSuggestion" Content="Öneri" GroupName="FeedbackType" HorizontalAlignment="Center" Grid.Row="2" />
+                    <RadioButton x:Name="cbBug" Content="Hata" GroupName="FeedbackType" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" />
+                    <RadioButton x:Name="cbOther" Content="Diğer" GroupName="FeedbackType" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="2" />
+                    <control:InputBox x:Name="txtSubject" Label="Konu:" CasingMode="UpperAfterSpace" Grid.Row="3" Grid.ColumnSpan="3" />
+                    <control:InputBox x:Name="txtMessage" Label="Mesaj:" MultiRow="True" Height="200" Grid.Row="4" Grid.ColumnSpan="3" />
+                    <control:DigitBox x:Name="txtRating" Label="Uygulama derecelendirmesi (10 üzerinden):"  Min="0" Max="10" Grid.Row="5" Grid.ColumnSpan="3" />
+                </Grid>
+                <control:Button x:Name="btnSend" Value="Gönder" Clicked="Send_Clicked" Grid.Row="1" />
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+
+</phone:PhoneApplicationPage>

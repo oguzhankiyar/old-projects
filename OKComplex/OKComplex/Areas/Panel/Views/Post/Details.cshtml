@@ -1,0 +1,47 @@
+﻿@model club_post
+@{
+    ViewBag.Title = "Yazı Detayları";
+}
+<div class="detail">
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Title)</li>
+        <li>@Html.DisplayFor(model => model.Title)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.club_category.Name)</li>
+        <li>@Html.DisplayFor(model => model.club_category.Name)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.MemberId)</li>
+        <li>@Model.club_member.Name</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Seo)</li>
+        <li>@Html.DisplayFor(model => model.Seo)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Rating)</li>
+        <li>@Html.DisplayFor(model => model.Rating)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.WritingDate)</li>
+        <li>@Html.DisplayFor(model => model.WritingDate)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.ModifyDate)</li>
+        <li>@Html.DisplayFor(model => model.ModifyDate)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.IsApproval)</li>
+        <li>@Html.DisplayFor(model => model.IsApproval)</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Yorum Sayısı")</li>
+        <li>@Model.club_comments.Count()</li>
+    </ul>
+</div>
+<p>
+    @Html.Button("Yorum Ekle", new { onclick = "OpenNewPage('" + Url.Action("create", "comment") + "');" })
+    @Html.Button("Düzenle", new { onclick = "OpenNewPage('" + Url.Action("edit", new { num = Model.Id }) + "');" })
+    @Html.Button("Sil", new { onclick = "OpenNewPage('" + Url.Action("delete", new { num = Model.Id }) + "');" })
+</p>

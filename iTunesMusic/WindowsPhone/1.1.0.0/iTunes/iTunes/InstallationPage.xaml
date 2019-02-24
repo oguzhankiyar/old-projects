@@ -1,0 +1,37 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="iTunes.InstallationPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"
+    Style="{StaticResource ApplicationPageStyle}"
+    Orientation="Portrait">
+
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="#0340a8" />
+        </Grid.Background>
+        <Grid Margin="12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Grid.Row="0" Style="{StaticResource PhoneTextTitle1Style}" HorizontalAlignment="Center" />
+            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                <toolkit:ListPicker x:Name="Countries" DisplayMemberPath="Name" Header="{Binding Path=LocalizedResources.SelectCountryLabel, Source={StaticResource LocalizedStrings}}">
+                    <toolkit:ListPicker.FullModeItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="0,10" />
+                        </DataTemplate>
+                    </toolkit:ListPicker.FullModeItemTemplate>
+                </toolkit:ListPicker>
+                <Button Content="{Binding Path=LocalizedResources.ContinueButtonContent, Source={StaticResource LocalizedStrings}}" Click="Continue_Click" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

@@ -1,0 +1,32 @@
+﻿@model bgk_menu
+
+<div class="title">Link Detayları</div>
+<div class="content">
+    <div class="details">
+        <ul>
+            <li>@Html.LabelFor(model => model.Adi)</li>
+            <li>@Html.DisplayFor(model => model.Adi)</li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.Adres)</li>
+            <li>@Html.DisplayFor(model => model.Adres)</li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.SadeceUye)</li>
+            <li>@Html.DisplayFor(model => model.SadeceUye)</li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.Sira)</li>
+            <li>@Html.DisplayFor(model => model.Sira)</li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.Onay)</li>
+            <li>@Html.DisplayFor(model => model.Onay)</li>
+        </ul>
+    </div>
+</div>
+<div class="buttons">
+    @Html.Button("Düzenle", new { onclick = "window.location.href='" + Url.Action("edit", new { num = Model.Id }) + "';" })
+    @Html.Button("Linki Sil", new { onclick = "window.location.href='" + Url.Action("delete", new { num = Model.Id }) + "';" })
+    @Html.Button("Kapat", new { onclick = "$.BGK.ModalClose();" })
+</div>

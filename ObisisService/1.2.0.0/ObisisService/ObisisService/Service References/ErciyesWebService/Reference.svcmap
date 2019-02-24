@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b454d333-a2b5-4d2c-95c2-cf6f38e6b57e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="EruWebServis.xsd" MetadataType="Schema" ID="3b429210-63ab-423b-8914-eaaada835197" SourceId="1" SourceUrl="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc?xsd=xsd3" />
+    <MetadataFile FileName="EruWebServis1.xsd" MetadataType="Schema" ID="e038e82c-074c-46a6-b2d6-7cc53fcb9fa3" SourceId="1" SourceUrl="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc?xsd=xsd2" />
+    <MetadataFile FileName="EruWebServis2.xsd" MetadataType="Schema" ID="cfc497e8-a355-403a-8366-fae6e9932dc2" SourceId="1" SourceUrl="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc?xsd=xsd7" />
+    <MetadataFile FileName="EruWebServis3.xsd" MetadataType="Schema" ID="2d7ef442-ece4-46f8-81aa-6d90ec448bd3" SourceId="1" SourceUrl="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc?xsd=xsd1" />
+    <MetadataFile FileName="EruWebServis4.xsd" MetadataType="Schema" ID="edc8ad1f-7167-436f-8232-ccc7370b086a" SourceId="1" SourceUrl="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc?xsd=xsd0" />
+    <MetadataFile FileName="EruWebServis5.xsd" MetadataType="Schema" ID="651dcf46-2547-4926-a966-e802c89c3617" SourceId="1" SourceUrl="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc?xsd=xsd8" />
+    <MetadataFile FileName="EruWebServis6.xsd" MetadataType="Schema" ID="91e8892c-79c6-4f07-b5d4-61fb5e47bfc4" SourceId="1" SourceUrl="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc?xsd=xsd5" />
+    <MetadataFile FileName="EruWebServis.disco" MetadataType="Disco" ID="9ce1c025-4501-4d54-9f89-d90dfe90a375" SourceId="1" SourceUrl="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc?disco" />
+    <MetadataFile FileName="EruWebServis7.xsd" MetadataType="Schema" ID="41bf8798-6f55-4a9a-b689-be062d3493dc" SourceId="1" SourceUrl="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc?xsd=xsd4" />
+    <MetadataFile FileName="EruWebServis8.xsd" MetadataType="Schema" ID="38cff8f9-6adc-4857-998b-0188f2c88481" SourceId="1" SourceUrl="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc?xsd=xsd6" />
+    <MetadataFile FileName="EruWebServis.wsdl" MetadataType="Wsdl" ID="a7a54773-8b1c-47b1-83f6-9a5acefe8949" SourceId="1" SourceUrl="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

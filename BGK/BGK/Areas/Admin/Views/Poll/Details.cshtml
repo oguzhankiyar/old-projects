@@ -1,0 +1,71 @@
+﻿@model bgk_anket
+@{
+    var options = Model.bgk_anket_secenek;
+    BGKEntities Db = new BGKEntities();
+    int total = Db.bgk_anket_secim.Where(x => x.bgk_anket_secenek.AnketID == Model.Id).Count(); 
+}
+
+<div class="table-group-1">
+    <div class="first">
+        <div class="table">
+            <div class="title">Anket Detayları</div>
+            <div class="content details">
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Soru)</li>
+                    <li>@Html.DisplayFor(model => model.Soru)</li>
+                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.SadeceUye)</li>
+                    <li>@Html.DisplayFor(model => model.SadeceUye)</li>
+                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.CokluSecim)</li>
+                    <li>@Html.DisplayFor(model => model.CokluSecim)</li>
+                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.BaslangicTarihi)</li>
+                    <li>@Html.ShortDateTime(Model.BaslangicTarihi)</li>
+                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.BitisTarihi)</li>
+                    <li>@Html.ShortDateTime(Model.BitisTarihi) (@Html.Raw(Model.BitisTarihi < DateTime.Now ? "<font color=\"green\">Tamamlandı</font>" : "<font color=\"red\">Tamamlanmadı</font>"))</li>
+                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Onay)</li>
+                    <li>@Html.DisplayFor(model => model.Onay)</li>
+                </ul>
+                <ul>
+                    <li>@Html.Label("Oy Sayısı")</li>
+                    <li>@total</li>
+                </ul>
+            </div>
+        </div>
+        <div class="buttons">
+            @Html.Button("Düzenle", new { onclick = "window.location.href='" + Url.Action("edit", new { num = Model.Id }) + "';" })
+            @Html.Button("Anketi Sil", new { onclick = "$.BGK.FormModal('" + Url.Action("delete", new { num = Model.Id }) + "', 'Eminim, sil', 'Vazgeç');" })
+        </div>
+    </div>
+    <div class="second">
+        <div class="table">
+            <div class="title">Seçenekler (@options.Count())
+                <span><a href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("addoption", new { num = Model.Id })', 'Ekle', 'Vazgeç');">Seçenek Ekle</a></span>
+            </div>
+            <div class="content details">
+                @foreach (var option in Model.bgk_anket_secenek.OrderBy(x => x.Sira).ToList())
+                {
+                    int selectCount = option.bgk_anket_secim.Count();
+                    <div style="width: 100%;">
+                        <div style="width: 100%; font-weight: bold;">@option.Adi
+                            <span style="font-weight: normal; float: right;">
+                                <a href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("deleteoption", new { num = Model.Id })', 'Eminim, sil', 'Vazgeç');">Seçeneği Sil</a>
+                            </span>
+                        </div>
+                        <div style="background-color: #eee; padding: 2px; width: @(total * selectCount == 0 ? "0" : "" + selectCount * 100 / total)%;">
+                            @((total == 0 ? "%0" : "%" + string.Format("{0:0.#}", (double)selectCount * 100 / total)))
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TicketApp.Pages.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:TicketApp.UserControls"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    Orientation="Portrait"
+    mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource PageStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <control:Header />
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="5">
+            <control:Button Value="Uçak Bileti" Height="100" FontSize="35" Clicked="btnAirplane_Click" />
+            <control:Button Value="Otobüs Bileti" Height="100" FontSize="35" Clicked="btnBus_Click" />
+            <control:Button Value="İşlemlerim" Height="100" FontSize="35" Clicked="btnTicketAction_Click" />
+        </StackPanel>
+        <Grid Opacity=".25" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Grid.Row="1">
+            <Image Source="/Assets/info.png" Width="50" Tap="imgInfo_Tap" Margin="10" HorizontalAlignment="Left" />
+            <Image Source="/Assets/ipektr_logo_big.png" Width="72" Tap="imgIpekTr_Tap" HorizontalAlignment="Center" />
+            <Image Source="/Assets/setting.png" Width="50" Tap="imgSettings_Tap" Margin="10" HorizontalAlignment="Right" />
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

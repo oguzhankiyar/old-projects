@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Sitemize şuanda ulaşılamıyor";    
+}
+<div style="padding: 15px; text-align: justify;">
+    <h2 style="margin-bottom: 10px;">Sitemize şuan ulaşılamıyor..</h2>
+    <big>
+        @Html.Raw(OK.Config("maintenance-message"))
+    </big>
+</div>
+@if (Session["userinfo"] == null)
+{
+    <div style="float: right;">
+        <small>Eğer yönetici iseniz giriş yapabilirsiniz</small>
+    </div>
+}

@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = "~/Views/BaseLayout.cshtml";
+}
+<script src="http://code.jquery.com/jquery-1.9.0.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("input").click(function () {
+            $.post("/okml_decode", { code: htmlEncode($("textarea").val()) }, function (data) {
+                $("div.result").html(data);
+            });
+        });
+
+        function htmlEncode(value) {
+            //create a in-memory div, set it's inner text(which jQuery automatically encodes)
+            //then grab the encoded contents back out.  The div never exists on the page.
+            return $('<div/>').text(value).html();
+        }
+    });
+</script>
+<div style="padding: 25px;">
+    <div style="float:left; width: 30%;">
+        <textarea rows="20" style="width: 100%; padding: 10px;"></textarea><br />
+        <input type="submit" value="Derle" style="padding: 15px 125px;" />
+    </div>
+    <div class="result" style="float: right; padding: 20px; margin: 10px; width: 60%; background-color: white;">
+    </div>
+</div>

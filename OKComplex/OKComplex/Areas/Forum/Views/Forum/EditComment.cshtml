@@ -1,0 +1,25 @@
+﻿@model comment
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div class="title">Yeni Cevap</div>
+<div class="content">
+    @using (Html.BeginForm("EditCommentSave", "Forum", FormMethod.Post))
+    {    
+        <div class="form">
+            <ul>
+                <li><b>@Html.LabelFor(model => model.Content)</b>@Html.DescriptionFor(model => model.Content)</li>
+                <li>@Html.TextAreaFor(model => model.Content)</li>
+            </ul>
+            @Html.MyEditor("Content", "Standard")
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.TopicId)
+            @Html.HiddenFor(model => model.WriterId)
+            @Html.HiddenFor(model => model.QuoteId)
+            @Html.HiddenFor(model => model.Rating)
+            @Html.HiddenFor(model => model.CreationDate)
+        </div>
+        <small>@Html.ValidationMessageFor(model => model.Content)</small>
+    }
+</div>

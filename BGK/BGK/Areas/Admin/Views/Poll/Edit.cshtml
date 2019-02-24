@@ -1,0 +1,57 @@
+﻿@model bgk_anket
+
+<div class="table">
+    <div class="title">Anket Düzenle</div>
+    <div class="content">
+        <div class="form">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <ul>
+                    <li>@Html.LabelFor(model => model.Soru)</li>
+                    <li>@Html.EditorFor(model => model.Soru)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Soru)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.SadeceUye)</li>
+                    <li>@Html.EditorFor(model => model.SadeceUye)</li>
+                    <li>@Html.ValidationMessageFor(model => model.SadeceUye)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.CokluSecim)</li>
+                    <li>@Html.EditorFor(model => model.CokluSecim)</li>
+                    <li>@Html.ValidationMessageFor(model => model.CokluSecim)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.BaslangicTarihi)</li>
+                    <li>@Html.EditorFor(model => model.BaslangicTarihi)</li>
+                    <li>@Html.ValidationMessageFor(model => model.BaslangicTarihi)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.BitisTarihi)</li>
+                    <li>@Html.EditorFor(model => model.BitisTarihi)</li>
+                    <li>@Html.ValidationMessageFor(model => model.BitisTarihi)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Sira)</li>
+                    <li>@Html.EditorFor(model => model.Sira)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Sira)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Onay)</li>
+                    <li>@Html.EditorFor(model => model.Onay)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Onay)</li>
+                </ul>
+                <ul>
+                    <li>Kaydet</li>
+                    <li>
+                        @Html.Button("Kaydet", new { type = "submit" })
+                        @Html.Button("Vazgeç", new { onclick = "window.location.href='" + Url.Action("index") + "';" })
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.Id)
+            }
+        </div>
+    </div>
+</div>

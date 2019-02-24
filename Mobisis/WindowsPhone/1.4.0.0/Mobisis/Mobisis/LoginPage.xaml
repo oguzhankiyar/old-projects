@@ -1,0 +1,57 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Mobisis.LoginPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+
+    <Canvas x:Name="PageCanvas" Style="{StaticResource AppPageStyle}">
+        <Canvas.Resources>
+            <Storyboard x:Name="MoveAnimation">
+                <DoubleAnimation Duration="0:0:0.2" To="0" Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="LayoutRoot" d:IsOptimized="True" />
+            </Storyboard>
+        </Canvas.Resources>
+
+        <Canvas x:Name="LayoutRoot" Background="Transparent" Canvas.Left="-350" CacheMode="BitmapCache">
+            <StackPanel Orientation="Horizontal">
+                <Grid x:Name="LeftMenu" CacheMode="BitmapCache" Style="{StaticResource LefMenuStyle}" />
+                <Grid x:Name="Container" CacheMode="BitmapCache" Style="{StaticResource ContainerStyle}" Width="{Binding ActualWidth, ElementName=PageCanvas}" Height="{Binding ActualHeight, ElementName=PageCanvas}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="giriş" Grid.Row="0" Margin="12,12,12,36" FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}" />
+                    
+                    <Grid Grid.Row="1" Margin="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <toolkit:PhoneTextBox x:Name="txtStudentID" Grid.Row="0" Grid.ColumnSpan="2" Background="White" Hint="Numaranız" InputScope="Number" MaxLength="10" Style="{StaticResource TextBoxStyle}" />
+                        <toolkit:PhoneTextBox x:Name="txtPasswordWatermark" Grid.Row="1" Grid.ColumnSpan="2" Hint="Şifreniz" Style="{StaticResource TextBoxStyle}" />
+                        <PasswordBox x:Name="txtPassword" Grid.Row="1" Grid.ColumnSpan="2" LostFocus="txtPasswordLostFocus" Opacity="0" GotFocus="txtPasswordGotFocus" Style="{StaticResource PasswordBoxStyle}" />
+                        <CheckBox x:Name="cbRememberMe" Grid.Row="2" Grid.Column="0" Content="Beni Hatırla" IsChecked="true" VerticalAlignment="Center" />
+                        <Button x:Name="Login" Click="Login_Click" Grid.Row="2" Grid.Column="1" Content="Giriş Yap" HorizontalAlignment="Right" Style="{StaticResource ButtonStyle}" Width="185" />
+                    </Grid>
+                </Grid>
+            </StackPanel>
+        </Canvas>
+    </Canvas>
+
+</phone:PhoneApplicationPage>

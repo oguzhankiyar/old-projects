@@ -1,0 +1,54 @@
+﻿@model user
+
+
+<div class="title">@OK.UserName(Model)</div>
+<div style="display: inline-table; float: left; width: 200px; margin-top: 10px;">
+    <img src="@Model.ImageFile" style="width: 200px; max-height: 400px;" />
+    <div class="user-info" style="width: 200px;">
+        <div class="name">@OK.UserName(Model)<img src="@Url.Content("~/Themes/" + OK.Config("site-theme") + "/Images/" + OK.UserState(Model.Id, (DateTime)Model.LastLoginDate) + ".png")" /></div>
+        <div class="level">@Html.Raw(Model.type.Name)</div>
+        <div class="rating">@Html.UserRating((int)Model.Rating)</div>
+    </div>
+</div>
+<div class="detail" style="display: inline-table; padding: 10px;">
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.UserName)</li>
+        <li>@Html.DisplayFor(model => model.UserName)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Name)</li>
+        <li>@Html.DisplayFor(model => model.Name)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Email)</li>
+        <li>@Html.DisplayFor(model => model.Email)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.RegistrationDate)</li>
+        <li>@Html.DisplayFor(model => model.RegistrationDate) (@Html.ShortDateTime((DateTime)Model.RegistrationDate))</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.LastLoginDate)</li>
+        <li>@Html.DisplayFor(model => model.LastLoginDate) (@Html.ShortDateTime((DateTime)Model.LastLoginDate))</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.LoginCount)</li>
+        <li>@Html.DisplayFor(model => model.LoginCount)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.IsBanned)</li>
+        <li>@Html.DisplayFor(model => model.IsBanned)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.IsApproval)</li>
+        <li>@Html.DisplayFor(model => model.IsApproval)</li>
+    </ul>
+    <ul>
+        <li>&nbsp;</li>
+    </ul>
+</div>
+<span class="buttons">
+    @Html.Button("Profiline Git", new { onclick = "$.OK.OpenNewPage('" + Url.Action("info", "account", new { username = Model.UserName }) + "');" })
+    @(Model.Id != (int)Session["userid"] ? Html.Button("Mesaj Gönder", new { onclick = "$.OK.FormModal('" + Url.Action("SendMessage", new { id = Model.Id }) + "' , 'Gönder', 'Vazgeç');" }) : null)
+    @Html.Button("Kapat", new { onclick = "$.OK.ModalClose();" })
+</span>

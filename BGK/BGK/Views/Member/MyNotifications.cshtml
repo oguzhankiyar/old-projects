@@ -1,0 +1,25 @@
+﻿@model IEnumerable<bgk_bildirim>
+
+<script type="text/javascript">
+    $(function () {
+        $("div.notice").css("height", $("div#membership").height() - 53);
+    });
+</script>
+
+<b>Bildirimler</b>
+
+
+@if (Model.Count() == 0)
+{
+    <div style="margin: auto;">
+        Henüz bildiriminiz yok :(
+    </div>
+}
+<div class="notice" style="overflow-y: auto; ">
+    @foreach (var notification in Model)
+    {
+        <div style="@(notification.Okundu == true ? "text-align: left; padding: 5px; border-top: 2px solid #f5f5f5;" : "text-align: left; background-color: #f5f5f5; border-top: 2px solid #f5f5f5; padding: 5px;")">
+            @Html.Raw(notification.Icerik)
+        </div>
+    }
+</div>

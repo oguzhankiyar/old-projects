@@ -1,0 +1,45 @@
+﻿@model IEnumerable<bgk_etkinlik>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);
+    int i = 0;
+}
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a class="active" href="@Url.Action("index", "activity")" style="width: 50%;">Etkinlikler</a>
+            <a href="@Url.Action("index", "factory")" style="width: 49%;">Firmalar</a>
+        </div>
+    </div>
+</div>
+<div class="table">
+    <div class="title">Etkinlikler
+        <span>@Html.ActionLink("Yeni Etkinlik", "create")</span>
+    </div>
+    <div class="content">
+        <div class="list">
+            <ul>
+                <li style="width: 50%;">@Html.Label("Adı")</li>
+                <li style="width: 17%;">@Html.Label("Başlangıç Tarihi")</li>
+                <li style="width: 17%;">@Html.Label("Bitiş Tarihi")</li>
+                <li style="width: 15%;">@Html.Label("Araçlar")</li>
+            </ul>
+            @foreach (var activity in Model)
+            {
+                i++;
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li style="width: 50%;">@Html.DisplayFor(modelItem => activity.Adi)</li>
+                    <li style="width: 17%;">@Html.ShortDateTime(activity.BaslangicTarihi)</li>
+                    <li style="width: 17%;">@Html.ShortDateTime(activity.BitisTarihi)</li>
+                    <li style="width: 15%;">
+                        @Html.ActionLink(" ", "edit", new { num = activity.Id }, new { @class = "edit", title = "Düzenle" })
+                        @Html.ActionLink(" ", "details", new { num = activity.Id }, new { @class = "details", title = "Detay" })
+                        <a class="delete" href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("Delete", new { num = activity.Id })', 'Eminim, sil', 'Vazgeç');" title="Sil"></a>
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>
+@Html.Paging()

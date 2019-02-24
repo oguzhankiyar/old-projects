@@ -1,0 +1,65 @@
+﻿@model category
+@{
+    var forums = Model.forums.Where(x => x.IsApproval == true && x.IsSubForum == false).OrderBy(x => x.Sort).ToList();    
+}
+
+@section Map {
+    <div class="map">
+        <span>@Html.ActionLink(OK.Config("site-name"), "Index")</span>
+        <span class="active">@Model.Name</span>
+    </div>
+}
+
+<div class="table">
+    <div class="title">@Model.Name<small>@Model.Description</small></div>
+    <div class="content">
+            @if (forums.Count() == 0)
+            {
+                <div class="noitem">Henüz forum eklenmemiş</div>
+            }
+            else
+            {
+                <div class="forums">
+                    <ul>
+                        <li class="image"></li>
+                        <li class="name">Forum</li>
+                        <li class="topics-views">Konular / Okunma</li>
+                        <li class="lasttopic">Son Konu</li>
+                    </ul>
+                    @foreach (var forum in forums)
+                    {
+                        topic lasttopic = OK.LastTopic(forum);
+                        <ul>
+                            <li class="image"><img src="@forum.ImageFile" /></li>
+                            <li class="name">@Html.ActionLink(forum.Name, "Forum", new { seo = forum.Seo, id = forum.Id, page = 1 })
+                                <span>@forum.Description</span>
+                                @foreach (var subforum in Model.forums.Where(x => x.IsApproval == true && x.IsSubForum == true && x.ParentForumId == forum.Id).OrderBy(x => x.Sort).ToList())
+                                {
+                                    <a href="@Url.Action("Forum", new { seo = subforum.Seo, id = subforum.Id, page = 1 })">
+                                        <div>
+                                            <img src="@subforum.ImageFile" />@subforum.Name
+                                        </div>
+                                    </a>
+                                }
+                            </li>
+                            <li class="topics-views">Konular: @forum.topics.Where(x => x.IsApproval == true).Count()<br />Okunma: @forum.ViewsCount</li>
+                            <li class="lasttopic">
+                                @if (lasttopic != null)
+                                {
+                                    @Html.ActionLink(OK.Summary(lasttopic.Title, 40), "Topic", new { seo = lasttopic.Seo, id = lasttopic.Id, page = 1 })
+                                    <div>
+                                        Gön: <a href="javascript:void(0)" onclick="$.OK.Modal('@Url.Action("UserInfo", "Account", new { username = "i", id = lasttopic.WriterId })');">@OK.UserName(lasttopic.user)</a><br />
+                                        @Html.ShortDateTime((DateTime)lasttopic.CreationDate)
+                                    </div>
+                                }
+                                else
+                                {
+                                    <text>-</text>
+                                }
+                            </li>
+                        </ul>
+                    }
+                </div>
+            }
+        </div>
+    </div>

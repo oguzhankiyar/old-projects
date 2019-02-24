@@ -1,0 +1,18 @@
+﻿@model IEnumerable<link>
+
+<div class="table">
+    <div class="content">
+        <div class="left-menu">
+	       <ul>
+                @foreach (var p_link in Model.Where(x => x.AltLink == false))
+                {
+                    <li class="parent">@p_link.Adi</li>
+                    foreach (var s_link in Model.Where(x => x.UstLinkID == p_link.Id))
+                    {
+                        <li class="sub"><a href="@s_link.Adres">@s_link.Adi</a></li>
+                    }
+                }
+	        </ul>
+        </div>
+    </div>
+</div>

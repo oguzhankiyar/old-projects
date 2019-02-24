@@ -1,0 +1,18 @@
+﻿@model club_group
+@{
+    ViewBag.Title = Model.Name + " Grubundaki Üyeler";
+    int i = 0;
+}
+<div class="list">
+    @foreach (var member in Model.club_members.ToList())
+    {
+        i++;
+        <ul class="@(i % 2 == 0 ? "second" : "first")">
+            <li>@Html.DisplayFor(modelItem => member.club_member.Name)</li>
+            <li class="manage">
+                @Html.ActionLink(" ", "editmember", new { num = member.Id }, new { @class = "edit", title = "Düzenle" })
+                @Html.ActionLink(" ", "deletemember", new { num = member.Id }, new { @class = "delete", title = "Sil" })
+            </li>
+        </ul>
+    }
+</div>

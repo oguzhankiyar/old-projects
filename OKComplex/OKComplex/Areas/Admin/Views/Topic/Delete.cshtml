@@ -1,0 +1,31 @@
+﻿@model topic
+@{
+    ViewBag.Title = "Konu Sil";
+}
+
+<h3>Aşağıdaki konuyu ve bu konuya ait tüm cevapları silmek istediğinizden emin misiniz?</h3>
+<div class="detail">
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Title)</li>
+        <li>@Html.DisplayFor(model => model.Title)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.forum.Name)</li>
+        <li>@Html.DisplayFor(model => model.forum.Name)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.WriterId)</li>
+        <li>@OK.UserName(Model.user)</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Cevap Sayısı")</li>
+        <li>@Model.comments.Count()</li>
+    </ul>
+</div>
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.Button("Eminim, sil", new { type = "submit" })
+        @Html.Button("Vazgeç", new { onclick = "OpenNewPage('" + Url.Action("index") + "');" })
+    </p>
+}

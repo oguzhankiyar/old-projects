@@ -1,0 +1,9 @@
+﻿@model bgk_galeri_resim
+@{
+    ViewBag.Title = "Resim Önizlemesi";    
+}
+<div class="table">
+    <div class="content">
+        <img src="@BGKFunction.GetFile(Model.bgk_dosya)" style="width: 100%; height: auto;" />
+    </div>
+</div>

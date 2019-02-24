@@ -1,0 +1,58 @@
+﻿@model bgk_menu
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a class="active" href="@Url.Action("index", "menu")" style="width: 50%;">Linkler</a>
+            <a href="@Url.Action("index", "page")" style="width: 49%;">Sayfalar</a>
+        </div>
+    </div>
+</div>
+
+<div class="table">
+    <div class="title">Link Ekle</div>
+    <div class="content">
+        <div class="form">
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                @Html.AntiForgeryToken()
+                <ul>
+                    <li>@Html.LabelFor(model => model.Adi)</li>
+                    <li>@Html.EditorFor(model => model.Adi)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Adi)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Adres)</li>
+                    <li>@Html.EditorFor(model => model.Adres)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Adres)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.SadeceUye)</li>
+                    <li>@Html.EditorFor(model => model.SadeceUye)</li>
+                    <li>@Html.ValidationMessageFor(model => model.SadeceUye)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Sira)</li>
+                    <li>@Html.EditorFor(model => model.Sira)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Sira)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Onay)</li>
+                    <li>@Html.EditorFor(model => model.Onay)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Onay)</li>
+                </ul>
+                <ul>
+                    <li>Kaydet</li>
+                    <li>
+                        @Html.Button("Kaydet", new { type = "submit" })
+                        @Html.Button("Vazgeç", new { onclick = "window.location.href='" + Url.Action("index") + "';" })
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>

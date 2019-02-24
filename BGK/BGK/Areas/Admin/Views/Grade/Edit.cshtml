@@ -1,0 +1,48 @@
+﻿@model bgk_seviye
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a href="@Url.Action("index", "group")" style="width: 25%;">Gruplar</a>
+            <a href="@Url.Action("index", "member")" style="width: 24%;">Üyeler</a>
+            <a href="@Url.Action("index", "role")" style="width: 25%;">Yetkiler</a>
+            <a class="active" href="@Url.Action("index", "grade")" style="width: 25%;">Seviyeler</a>
+        </div>
+    </div>
+</div>
+<div class="table">
+    <div class="title">Seviye Düzenle</div>
+    <div class="content">
+        <div class="form">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <ul>
+                    <li>@Html.LabelFor(model => model.Adi)</li>
+                    <li>@Html.EditorFor(model => model.Adi)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Adi)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Aciklama)</li>
+                    <li>@Html.TextAreaFor(model => model.Aciklama)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Aciklama)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.AltSinir)</li>
+                    <li>@Html.EditorFor(model => model.AltSinir)</li>
+                    <li>@Html.ValidationMessageFor(model => model.AltSinir)</li>
+                </ul>
+                <ul>
+                    <li>Kaydet</li>
+                    <li>
+                        @Html.Button("Kaydet", new { type = "submit" })
+                        @Html.Button("Vazgeç", new { onclick = "window.location.href='" + Url.Action("index") + "';" })
+                    </li>
+                </ul>
+                @Html.MyEditor("Aciklama", "Standard")
+                @Html.HiddenFor(model => model.Id)
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Anasayfa";
+    OKDbEntities Db = new OKDbEntities();
+}
+
+<div class="titles">
+    <ul>
+        <li>Ziyaretçilerden..</li>
+        <li><b>2.465</b>Şuan çevrimiçi</li>
+        <li><b>2.301</b>Çevrimiçi üye</li>
+        <li><b>164</b>Çevrimiçi ziyaretçi</li>
+        <li><b>754</b>Bu hafta toplam ziyaretçi</li>
+        <li><b>219</b>Bugün toplam ziyaretçi</li>
+    </ul>
+    <ul class="small">
+        <li>Kategorilerden..</li>
+        <li><b>@Db.category.Count()</b>Toplam kategori</li>
+        <li><b>@Db.category.Where(x => x.IsApproval == true).Count()</b>Normal kategori</li>
+        <li><b>@Db.category.Where(x => x.IsApproval == false).Count()</b>Sayfa kategorisi</li>
+        <li><b>@Db.category.Where(x => x.IsApproval == true).Count()</b>Onaylı kategori</li>
+        <li><b>@Db.category.Where(x => x.IsApproval == false).Count()</b>Onaysız kategori</li>
+    </ul>
+    <ul class="small">
+        <li>Forumlardan..</li>
+        <li><b>@Db.forum.Count()</b>Toplam forum</li>
+        <li><b>@Db.forum.Where(x => x.IsSubForum == false).Count()</b>Normal forum</li>
+        <li><b>@Db.forum.Where(x => x.IsSubForum == true).Count()</b>Alt forum</li>
+        <li><b>@Db.forum.Where(x => x.IsApproval == true).Count()</b>Onaylı forum</li>
+        <li><b>@Db.forum.Where(x => x.IsApproval == false).Count()</b>Onaysız forum</li>
+    </ul>
+    <ul>
+        <li>Konulardan..</li>
+        <li><b>@Db.topic.Count()</b>Toplam konu</li>
+        <li><b>@Db.topic.Where(x => x.IsApproval == true).Count()</b>Onaylı konu</li>
+        <li><b>@Db.topic.Where(x => x.IsApproval == false).Count()</b>Onaysız konu</li>
+        <li><b>@Db.topic.Where(x => x.CreationDate >= DateTime.Now).Count()</b>Bu hafta yazılan konu</li>
+        <li><b>@Db.topic.Where(x => x.CreationDate >= DateTime.Now).Count()</b>Bugün yazılan konu</li>
+    </ul>
+    <ul>
+        <li>Cevaplardan..</li>
+        <li><b>@Db.comment.Count()</b>Toplam cevap</li>
+        <li><b>@Db.comment.Where(x => x.IsApproval == true).Count()</b>Onaylı cevap</li>
+        <li><b>@Db.comment.Where(x => x.IsApproval == false).Count()</b>Onaysız cevap</li>
+        <li><b>@Db.comment.Where(x => x.CreationDate >= DateTime.Now).Count()</b>Bu hafta yazılan cevap</li>
+        <li><b>@Db.comment.Where(x => x.CreationDate >= DateTime.Now).Count()</b>Bugün yazılan cevap</li>
+    </ul>
+    <ul>
+        <li>Üyelerden..</li>
+        <li><b>@Db.user.Count()</b>Toplam üye</li>
+        <li><b>@Db.user.Where(x => x.IsApproval == true).Count()</b>Onaylı üye</li>
+        <li><b>@Db.user.Where(x => x.IsApproval == false).Count()</b>Onaysız üye</li>
+        <li><b>@Db.user.Where(x => x.IsBanned == true).Count()</b>Yasaklı üye</li>
+        <li><b>@Db.user.Where(x => x.TypeId == 1).Count()</b>Yetkili üye</li>
+    </ul>
+    <ul>
+        <li>Mesajlardan..</li>
+        <li><b>2.465</b>Toplam mesaj</li>
+        <li><b>2.301</b>Okunmuş mesaj</li>
+        <li><b>164</b>Okunmamış mesaj</li>
+        <li><b>188</b>Bu hafta yazılan mesaj</li>
+        <li><b>98</b>Bugün yazılan mesaj</li>
+    </ul>
+</div>

@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@(ViewBag.Title + " OKPort ")</title>
+    <link rel="stylesheet" href="/Themes/Sky/StyleSheet.css" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("div.site div.content").css("margin-top", $("div.top").height());
+            $("div.page").css("min-height", $(window).height() - $("div.top").height());
+
+            $("#search").keypress(function (e) {
+                var query = $("#search").val();
+                if (e.keyCode == 13 && isNaN(query))
+                    window.location.href = "/search/" + query;
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="site">
+        <div class="top">
+            <div class="logo" onclick="window.location.href = '/';">OKPort</div>
+            <div class="search">
+                <input id="search" type="search" />
+            </div>
+            <div class="menu">
+                <ul>
+                    <li class="discover">Discover</li>
+                    <li class="notification">Notifications</li>
+                    <li class="user">Oğuzhan</li>
+                    <li class="messages">&nbsp;</li>
+                    <li class="settings">&nbsp;</li>
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

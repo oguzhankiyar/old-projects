@@ -1,0 +1,90 @@
+﻿body {
+    background-color: #f5f5f5;
+    margin: 0;
+    font-family: 'Segoe WP SemiLight';
+    font-size: 17px;
+}
+a, a:active, a:visited {
+    text-decoration: none;
+    color: #7d91dc;
+}
+    a:hover {
+        color: orange;
+    }
+div.site div.top {
+    display: table;
+    position: fixed;
+    top: 0;
+    background-color: #2342bb;
+    width: 100%;
+    color: #fff;
+}
+    div.site div.top div {
+        display: inline-table;
+    }
+        div.site div.top div.logo {
+            padding: 7.5px;
+            width: 7.5%;
+            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+        }
+            div.site div.top div.logo:hover {
+                background-color: rgba(0,0,0,.1);
+            }
+        div.site div.top div.search {
+            width: 35%;
+            margin-left: 70px;
+        }
+            div.site div.top div.search input {
+                width: 100%;
+                border: none;
+                padding: 5px 10px;
+                outline: none;
+                font-size: 15px;
+                color: gray;
+            }
+        div.site div.top div.menu {
+            width: 40%;
+            margin-left: 45px;
+        }
+            div.site div.top div.menu ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+                div.site div.top div.menu ul li {
+                    display: inline-table;
+                    padding: 7.5px 7.5px 7.5px 40px;
+                    width: 7.5%;
+                    text-align: center;
+                    cursor: pointer;
+                    vertical-align: auto;
+                }
+                    div.site div.top div.menu ul li.discover {
+                        background: url('Images/Menu/discover.png') no-repeat center left;
+                    }
+                    div.site div.top div.menu ul li.notification {
+                        background: url('Images/Menu/notification.png') no-repeat center left;
+                    }
+                    div.site div.top div.menu ul li.user {
+                        background: url('Images/Menu/user.png') no-repeat center left;
+                    }
+                    div.site div.top div.menu ul li.messages {
+                        background: url('Images/Menu/messages.png') no-repeat center center;
+                        width: auto;
+                        padding: 7.5px 20px;
+                    }
+                    div.site div.top div.menu ul li.settings {
+                        background: url('Images/Menu/settings.png') no-repeat center center;
+                        width: auto;
+                        padding: 7.5px 20px;
+                    }
+                    div.site div.top div.menu ul li:hover {
+                        background-color: rgba(0,0,0,.1);
+                    }
+div.page {
+    background-color: #fff;
+    margin: auto;
+    width: 75%;
+}

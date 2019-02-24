@@ -1,0 +1,38 @@
+﻿@model user
+
+@section Map {
+    <div class="map">
+        <span>@Html.ActionLink(OK.Config("site-name"), "Index", "Home")</span>
+        <span>@Html.ActionLink("Üyeler", "users", "account", new { type = "all", page = 1 })</span>
+        <span class="active">@OK.UserName(Model)</span>
+    </div>
+}
+
+<div class="left">
+    <div class="userinfo">
+        <img src="@Model.ImageFile" /><br />
+        <b>@OK.UserName(Model)</b><br />
+        <b>@Html.Raw(Model.type.Name)</b><br />
+        <div class="menu">
+            <ul id="info" onclick="$.OK.OpenNewPage('@Url.Action("info", "account", new { username = Model.UserName })');">
+                <li>Hakkında</li>
+            </ul>
+            <ul id="actions" onclick="$.OK.OpenNewPage('@Url.Action("actions", "account", new { username = Model.UserName, page = 1 })');">
+                <li>İşlemleri</li>
+                <li>@Model.posts.Where(x => x.IsApproval == true).Count()</li>
+            </ul>
+            <ul id="topics" onclick="$.OK.OpenNewPage('@Url.Action("topics", "account", new { username = Model.UserName, page = 1 })');">
+                <li>Konuları</li>
+                <li>@Model.topics.Where(x => x.IsApproval == true).Count()</li>
+            </ul>
+            <ul id="comments" onclick="$.OK.OpenNewPage('@Url.Action("comments", "account", new { username = Model.UserName, page = 1 })');">
+                <li>Cevapları</li>
+                <li>@Model.comments.Where(x => x.IsApproval == true).Count()</li>
+            </ul>
+            <ul id="ratings" onclick="$.OK.OpenNewPage('@Url.Action("ratings", "account", new { username = Model.UserName, page = 1 })');">
+                <li>Oylamaları</li>
+                <li>@Model.ratings.Count()</li>
+            </ul>
+        </div>
+    </div>
+</div>

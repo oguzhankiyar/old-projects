@@ -1,0 +1,18 @@
+﻿@model club_notice
+
+@section Map {
+    <div class="map">
+        <span>@Html.ActionLink(OK.ClubConfig("site-name"), "Index", "Home")</span>
+        <span>@Html.ActionLink("Duyurular", "Index", "Home")</span>
+        <span class="active">@Model.Title</span>
+    </div>
+}
+
+<div class="table">
+    <div class="title">@Model.Title</div>
+    <div class="content">
+        <img src="@Model.Image" style="width: 100%;" />
+        @Html.Raw(Model.Content)
+        <div style="display: table; width: 100%; text-align: right;">@(((DateTime)Model.WritingDate).ToString("dd MMMMMMMM yyyy ddddddddd"))</div>
+    </div>
+</div>

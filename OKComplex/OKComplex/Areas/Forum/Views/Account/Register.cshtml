@@ -1,0 +1,77 @@
+﻿@model RegisterModel
+@{int step = Convert.ToInt32(Request.QueryString["step"]);}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@if (step == 1)
+{
+    <div class="title">Üye Kaydı - 1. Adım</div>
+    <div class="content">
+        @Html.Raw(OK.Config("membership-agreement"))
+        <span class="buttons">
+            @Html.Button("Kabul Ediyorum", new { onclick = "$.OK.FormModal('" + Url.Action("Register", "Account", new { step = 2 }) + "', 'Devam', 'Vazgeç');" })
+            @Html.Button("Vazgeç", new { onclick = "$.OK.ModalClose();" })
+        </span>
+    </div>
+}
+else if (step == 2)
+{
+    <div class="title">Üye Kaydı - 2. Adım</div>
+    <div class="content">
+        @using (Html.BeginForm("RegisterStep1", "Account", FormMethod.Post))
+        {
+            <div class="form">
+                <ul>
+                    <li>@Html.LabelFor(model => model.Email)</li>
+                    <li>@Html.EditorFor(model => model.Email)<small>@Html.ValidationMessageFor(model => model.Email)</small></li>
+                </ul>
+            </div>
+        }
+    </div>
+}
+else if (step == 3)
+{
+    <div class="title">Üye Kaydı - 3. Adım</div>
+    <div class="content">
+        @using (Html.BeginForm("RegisterStep2", "Account", FormMethod.Post))
+        {
+            <div class="form">
+                <ul>
+                    <li>İşleme devam edebilmeniz için email adresinize gönderdiğimiz onay kodunu girmeniz gerekiyor..</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.ConfirmationCode)</li>
+                    <li>@Html.EditorFor(model => model.ConfirmationCode)<small>@Html.ValidationMessageFor(model => model.ConfirmationCode)</small></li>
+                </ul>
+            </div>
+        }
+    </div>
+}
+else if (step == 4)
+{
+    <div class="title">Üye Kaydı - 4. Adım</div>
+    <div class="content">
+        @using (Html.BeginForm("RegisterStep3", "Account", FormMethod.Post))
+        {
+            <div class="form">
+                <ul>
+                    <li>@Html.LabelFor(model => model.UserName)</li>
+                    <li>@Html.EditorFor(model => model.UserName)<small>@Html.ValidationMessageFor(model => model.UserName)</small></li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Name)</li>
+                    <li>@Html.EditorFor(model => model.Name)<small>@Html.ValidationMessageFor(model => model.Name)</small></li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Password)</li>
+                    <li>@Html.EditorFor(model => model.Password)<small>@Html.ValidationMessageFor(model => model.Password)</small></li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.ConfirmPassword)</li>
+                    <li>@Html.EditorFor(model => model.ConfirmPassword)<small>@Html.ValidationMessageFor(model => model.ConfirmPassword)</small></li>
+                </ul>
+            </div>
+        }
+    </div>
+}

@@ -1,0 +1,152 @@
+﻿@model bgk_yetki
+@{
+    var members = Model.GetMembers();
+    int i = 0;  
+}
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a href="@Url.Action("index", "group")" style="width: 25%;">Gruplar</a>
+            <a href="@Url.Action("index", "member")" style="width: 24%;">Üyeler</a>
+            <a class="active" href="@Url.Action("index", "role")" style="width: 25%;">Yetkiler</a>
+            <a href="@Url.Action("index", "grade")" style="width: 25%;">Seviyeler</a>
+        </div>
+    </div>
+</div>
+
+<div class="table-group-1">
+    <div class="first">
+        <div class="table">
+            <div class="title">@Model.Adi</div>
+            <div class="content details">
+                @Html.Raw(Model.Aciklama)
+            </div>
+        </div>
+        <div class="buttons">
+            @Html.Button("Düzenle", new { onclick = "window.location.href='" + Url.Action("edit", new { num = Model.Id }) + "';" })
+            @Html.Button("Yetkiyi Sil", new { onclick = "$.BGK.FormModal('" + Url.Action("delete", new { num = Model.Id }) + "', 'Eminim, sil', 'Vazgeç');" })
+        </div>
+        <div class="table">
+            <div class="title">Yetkili Üyeler (@members.Count())</div>
+            @if (members.Count() == 0)
+            {
+                <div class="warning">
+                    Bu yetkiye sahip üye yok :(
+                </div>
+            }
+            <div class="content normal-list">
+                @foreach (var member in members)
+                {
+                    i++;
+                    <ul class="@(i % 2 == 0 ? "second" : "first")">
+                        <li>@member.AdSoyad</li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="second">
+        <div class="table">
+            <div class="title">Yetkileri</div>
+            <div class="content details">
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Ayar)</li>
+                            <li>@Html.DisplayFor(model => model.Ayar)</li>
+                                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Yazi)</li>
+                            <li>@Html.DisplayFor(model => model.Yazi)</li>
+                                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Yorum)</li>
+                            <li>@Html.DisplayFor(model => model.Yorum)</li>
+                                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Galeri)</li>
+                            <li>@Html.DisplayFor(model => model.Galeri)</li>
+                                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Link)</li>
+                            <li>@Html.DisplayFor(model => model.Link)</li>
+                                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Grup)</li>
+                            <li>@Html.DisplayFor(model => model.Grup)</li>
+                                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Gorev)</li>
+                            <li>@Html.DisplayFor(model => model.Gorev)</li>
+                                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Not)</li>
+                            <li>@Html.DisplayFor(model => model.Not)</li>
+                                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Sayfa)</li>
+                            <li>@Html.DisplayFor(model => model.Sayfa)</li>
+                                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Seviye)</li>
+                            <li>@Html.DisplayFor(model => model.Seviye)</li>
+                                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Uye)</li>
+                            <li>@Html.DisplayFor(model => model.Uye)</li>
+                                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.YaziOnay)</li>
+                            <li>@Html.DisplayFor(model => model.YaziOnay)</li>
+                                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.GorevVerme)</li>
+                            <li>@Html.DisplayFor(model => model.GorevVerme)</li>
+                                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Anket)</li>
+                            <li>@Html.DisplayFor(model => model.Anket)</li>
+                                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Etkinlik)</li>
+                            <li>@Html.DisplayFor(model => model.Etkinlik)</li>
+                                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Butce)</li>
+                            <li>@Html.DisplayFor(model => model.Butce)</li>
+                                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Dosya)</li>
+                            <li>@Html.DisplayFor(model => model.Dosya)</li>
+                                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Bildirim)</li>
+                            <li>@Html.DisplayFor(model => model.Bildirim)</li>
+                                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Firma)</li>
+                            <li>@Html.DisplayFor(model => model.Firma)</li>
+                                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Dokuman)</li>
+                            <li>@Html.DisplayFor(model => model.Dokuman)</li>
+                                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.BakimdaGiris)</li>
+                                <li>@Html.DisplayFor(model => model.BakimdaGiris)</li>
+                                        </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.YaziYazma)</li>
+                                <li>@Html.DisplayFor(model => model.YaziYazma)</li>
+                                        </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.YorumYazma)</li>
+                                <li>@Html.DisplayFor(model => model.YorumYazma)</li>
+                                        </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.OyKullanma)</li>
+                                <li>@Html.DisplayFor(model => model.OyKullanma)</li>
+                                        </ul>
+            </div>
+        </div>
+    </div>
+</div>

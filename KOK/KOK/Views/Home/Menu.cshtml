@@ -1,0 +1,25 @@
+﻿@model IEnumerable<link>
+
+<script type="text/javascript">
+    $(function () {
+        menuBG();
+        $(window).resize(function () {
+            menuBG();
+        });
+    });
+    function menuBG() {
+        $("div.menu-bg").css({
+            "width": $("body").width()
+        });
+    }
+</script>
+<div class="menu-bg">&nbsp;</div>
+<div class="menu">
+	<ul>
+		<li><a class="image" href="@Url.Action("Index", "Home")"><img src="@Url.Content("~/Theme/Images/home.png")" style="vertical-align: middle;" /></a></li>
+        @foreach (var link in Model)
+        {
+            <li><a href="@link.Adres">@link.Adi</a></li>
+        }
+	</ul>
+</div>

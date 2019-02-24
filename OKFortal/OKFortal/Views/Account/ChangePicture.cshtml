@@ -1,0 +1,35 @@
+﻿@model user
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/Uploads.js")" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $("#preview").hide();
+    $("#ImageUpload").change(function (evt) {
+        $("input[type=submit]").click(function () {
+            var f = evt.target.files[0];
+            if (!f.type.match('image.*')) {
+                $(".info").html("<font color=red>Seçtiğiniz öğe resim değil..</font>");
+                return;
+            }
+            else {
+                $("#ImageUpload").upload("@Url.Action("ChangePictureSave", "Account")", function (msg) {
+                    $(".info").html(msg);
+                });
+            }
+            reader.readAsDataURL(f);
+        });
+    });
+</script>
+
+<div class="title">Resim Yükle</div>
+<div class="content">
+    <div class="form">
+        <ul>
+            <li><b>@Html.LabelFor(model => model.ImageUpload)</b>@Html.DescriptionFor(model => model.ImageUpload)</li>
+            <li>@Html.TextBoxFor(model => model.ImageUpload, new { type = "file" })</li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,4 @@
+- Ayarlardan bildirim açma sorunu giderildi.
+- Yemek listesindeki programdan atma düzeltildi.
+- Ders detaylarindaki yanlis gösterim düzeltildi.
+- Farkli ögrenci girislerinde olusan hatalar giderildi.

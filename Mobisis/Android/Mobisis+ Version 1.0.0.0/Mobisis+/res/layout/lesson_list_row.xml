@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ 	android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/listview_background"
+    android:padding="10dp"
+    android:paddingLeft="5dp"
+    android:layout_marginBottom="15dp" >
+
+	    <TextView
+	        android:id="@+id/lessonName"
+	        style="@style/LargeTextStyle"
+	     	android:layout_width="wrap_content"  
+	     	android:layout_height="wrap_content"
+	    	android:textColor="@drawable/listview_color"
+	    	android:singleLine="true" />
+  
+	    <LinearLayout
+			android:layout_width="match_parent"
+			android:background="@drawable/listview_background"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:baselineAligned="false" >
+	
+		    <LinearLayout
+	            android:layout_width="0dp"
+   				android:background="@drawable/listview_background"
+	            android:layout_height="match_parent"
+	            android:layout_weight=".4"
+				android:orientation="vertical" >
+					
+			    <TextView
+			        android:id="@+id/lessonInfo1"
+			        style="@style/SmallTextStyle"
+			    	android:textColor="@drawable/listview_color"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content" />
+			    
+			</LinearLayout>
+   		
+		    <LinearLayout
+	            android:layout_width="0dp"
+   				android:background="@drawable/listview_background"
+	            android:layout_height="match_parent"
+	            android:layout_weight=".4"
+				android:orientation="vertical" >
+           
+			    <TextView
+			        android:id="@+id/lessonInfo2"
+			        style="@style/SmallTextStyle"
+			    	android:textColor="@drawable/listview_color"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content" />
+			
+			</LinearLayout>
+				
+		    <LinearLayout
+	            android:layout_width="0dp"
+   				android:background="@drawable/listview_background"
+	            android:layout_height="match_parent"
+	            android:layout_weight=".2"
+				android:orientation="vertical"
+				android:gravity="center" >
+    			        
+			    <TextView
+			        android:id="@+id/lessonInfo3"
+			        style="@style/SmallTextStyle"
+			    	android:textColor="@drawable/listview_color"
+			        android:layout_width="wrap_content"
+			        android:gravity="center" />
+			    
+			</LinearLayout>
+			
+		</LinearLayout>
+		
+    </LinearLayout>

@@ -1,0 +1,176 @@
+﻿@model bgk_yetki
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a href="@Url.Action("index", "group")" style="width: 25%;">Gruplar</a>
+            <a href="@Url.Action("index", "member")" style="width: 24%;">Üyeler</a>
+            <a class="active" href="@Url.Action("index", "role")" style="width: 25%;">Yetkiler</a>
+            <a href="@Url.Action("index", "grade")" style="width: 25%;">Seviyeler</a>
+        </div>
+    </div>
+</div>
+
+<div class="table">
+    <div class="title">Yetki Ekle</div>
+    <div class="content">
+        @using (Html.BeginForm())
+        {
+            <div class="form">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <ul>
+                    <li>@Html.LabelFor(model => model.Kod)</li>
+                    <li>@Html.EditorFor(model => model.Kod)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Kod)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Adi)</li>
+                    <li>@Html.EditorFor(model => model.Adi)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Adi)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Aciklama)</li>
+                    <li>@Html.TextAreaFor(model => model.Aciklama)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Aciklama)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Yazi)</li>
+                    <li>@Html.EditorFor(model => model.Yazi)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Yazi)</li>
+                    </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Yorum)</li>
+                    <li>@Html.EditorFor(model => model.Yorum)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Yorum)</li>
+                    </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Sayfa)</li>
+                    <li>@Html.EditorFor(model => model.Sayfa)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Sayfa)</li>
+                    </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Ayar)</li>
+                    <li>@Html.EditorFor(model => model.Ayar)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Ayar)</li>
+                    </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Etkinlik)</li>
+                    <li>@Html.EditorFor(model => model.Etkinlik)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Etkinlik)</li>
+                    </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Butce)</li>
+                    <li>@Html.EditorFor(model => model.Butce)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Butce)</li>
+                    </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Dosya)</li>
+                    <li>@Html.EditorFor(model => model.Dosya)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Dosya)</li>
+                    </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Grup)</li>
+                    <li>@Html.EditorFor(model => model.Grup)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Grup)</li>
+                    </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Gorev)</li>
+                    <li>@Html.EditorFor(model => model.Gorev)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Gorev)</li>
+                    </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Bildirim)</li>
+                    <li>@Html.EditorFor(model => model.Bildirim)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Bildirim)</li>
+                    </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Firma)</li>
+                    <li>@Html.EditorFor(model => model.Firma)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Firma)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Link)</li>
+                    <li>@Html.EditorFor(model => model.Link)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Link)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Uye)</li>
+                    <li>@Html.EditorFor(model => model.Uye)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Uye)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Seviye)</li>
+                    <li>@Html.EditorFor(model => model.Seviye)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Seviye)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Dokuman)</li>
+                    <li>@Html.EditorFor(model => model.Dokuman)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Dokuman)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Not)</li>
+                    <li>@Html.EditorFor(model => model.Not)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Not)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Galeri)</li>
+                    <li>@Html.EditorFor(model => model.Galeri)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Galeri)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Anket)</li>
+                    <li>@Html.EditorFor(model => model.Anket)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Anket)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.YaziOnay)</li>
+                    <li>@Html.EditorFor(model => model.YaziOnay)</li>
+                    <li>@Html.ValidationMessageFor(model => model.YaziOnay)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.YorumOnay)</li>
+                    <li>@Html.EditorFor(model => model.YorumOnay)</li>
+                    <li>@Html.ValidationMessageFor(model => model.YorumOnay)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.GorevVerme)</li>
+                    <li>@Html.EditorFor(model => model.GorevVerme)</li>
+                    <li>@Html.ValidationMessageFor(model => model.GorevVerme)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.BakimdaGiris)</li>
+                                <li>@Html.EditorFor(model => model.BakimdaGiris)</li>
+                                            <li>@Html.ValidationMessageFor(model => model.BakimdaGiris)</li>
+                                                    </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.YaziYazma)</li>
+                                <li>@Html.EditorFor(model => model.YaziYazma)</li>
+                                            <li>@Html.ValidationMessageFor(model => model.YaziYazma)</li>
+                                                    </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.YorumYazma)</li>
+                                <li>@Html.EditorFor(model => model.YorumYazma)</li>
+                                            <li>@Html.ValidationMessageFor(model => model.YorumYazma)</li>
+                                                    </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.OyKullanma)</li>
+                                <li>@Html.EditorFor(model => model.OyKullanma)</li>
+                                            <li>@Html.ValidationMessageFor(model => model.OyKullanma)</li>
+                                                    </ul>
+                <ul>
+                    <li>Kaydet</li>
+                    <li>
+                        @Html.Button("Kaydet", new { type = "submit" })
+                        @Html.Button("Vazgeç", new { onclick = "window.location.href='" + Url.Action("index") + "';" })
+                    </li>
+                </ul>
+                @Html.MyEditor("Aciklama", "Standard")
+            </div>
+        }
+    </div>
+</div>

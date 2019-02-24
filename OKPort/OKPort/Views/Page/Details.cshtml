@@ -1,0 +1,17 @@
+﻿@model OKPort.Models.Page
+@{
+    ViewBag.Title = Model.Name;
+}
+
+@*
+
+    <div style="display: table; width: 1000px;">
+        <div style="width: 19%; float: left; margin-right: 30px;">
+            @Html.Raw(OKPort.Functions.OKParser.GetHtml("<widgets section=\"home\" region=\"index\" position=\"1\">{Widget}</widgets>"))
+        </div>
+        <div style="width: 75%; float: left;">
+            @Html.Raw(OKPort.Functions.OKParser.GetHtml("<widgets section=\"home\" region=\"index\" position=\"2\">{Widget}</widgets>"))
+        </div>
+    </div>*@
+
+@Html.Raw(OKPort.Functions.OKParser.GetHtml(Model.IndexTemplate))

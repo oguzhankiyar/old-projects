@@ -1,0 +1,82 @@
+﻿@model OKPort.Models.Post
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Post</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Content)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Content)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ShortURL)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ShortURL)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CreationDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CreationDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ModifyDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ModifyDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.IsApproval)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.IsApproval)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Category.Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Category.Name)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

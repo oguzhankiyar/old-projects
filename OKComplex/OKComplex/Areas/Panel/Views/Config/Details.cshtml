@@ -1,0 +1,23 @@
+﻿@model club_config
+@{
+    ViewBag.Title = "Ayar Detayları";
+}
+
+<div class="detail">
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Key)</li>
+        <li>@Html.DisplayFor(model => model.Key)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Value)</li>
+        <li>@Html.DisplayFor(model => model.Value)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Description)</li>
+        <li>@Html.DisplayFor(model => model.Description)</li>
+    </ul>
+</div>
+<p>
+    @Html.Button("Düzenle", new { onclick = "OpenNewPage('" + Url.Action("edit", new { num = Model.Id }) + "');" })
+    @Html.Button("Sil", new { onclick = "OpenNewPage('" + Url.Action("delete", new { num = Model.Id }) + "');" })
+</p>

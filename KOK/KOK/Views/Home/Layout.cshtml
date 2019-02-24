@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>@(string.IsNullOrEmpty(ViewBag.Title) ? "5. Ulusal Kimya Kongresi" : ViewBag.Title + " - 5. Ulusal Kimya Kongresi")</title>
+        <link rel="stylesheet" href="@Url.Content("~/Theme/StyleSheet.css")" />
+        <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")"></script>
+    </head>
+    <body>
+        <div class="page">
+            <div class="header">
+                <div class="iu"><a href="http://www.istanbul.edu.tr"><img src="http://www.istanbul.edu.tr/eng/insaat/logo/Istanbul_Universitesi_R.png" /></a></div>
+                <div class="title"><a href="@Url.Action("Index", "Home")">5. ULUSAL KİMYA ÖĞRENCİ KONGRESİ</a></div>
+                <div class="kim"><a href="http://www.kimyager.org"><img src="http://marmara.kimyager.org/media/Kimder%20logo.jpg" /></a></div>
+            </div>
+            @{
+                Html.RenderAction("Menu", "Home");
+            }
+            <div class="container">
+                <div class="table-group">
+                    <div class="first">
+                        @{
+                            Html.RenderAction("LeftMenu", "Home");
+                            Html.RenderAction("MiniNotices", "Home");    
+                        }
+                    </div>
+                    <div class="second">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+            <div class="footer" style="text-align: center;">
+                <div style="font-size: 12px;">
+                    Bu sitenin yazılım ve tasarımı <a href="http://www.ogzkyr.net" target="_blank">Oğuzhan Kiyar</a> tarafından kodlanmıştır. İzin alınmadan hiçbir içerik kopyalanamaz.
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,129 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Activity"
+    style="@style/ActivityStyle"
+    tools:context=".SettingsActivity" >
+
+    <TextView
+        android:id="@+id/Title"
+        style="@style/TitleStyle"
+        android:text="@string/title_activity_settings" />
+    
+    <TextView
+      	android:id="@+id/MenuLink"
+        style="@style/MenuLinkStyle" />
+
+	<ScrollView 
+        android:id="@+id/Container"
+    	style="@style/ContainerStyle" >
+
+	    <TableLayout
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+    		android:orientation="vertical" >
+        	
+	        <TableRow
+				style="@style/TableRowStyle" >
+				
+	            <CheckBox
+	                android:id="@+id/cbServiceState"
+	                android:text="@string/settings_service_state"
+	                style="@style/CheckBoxStyle" />
+	            
+            </TableRow>
+            
+		    <TableLayout
+		        android:id="@+id/tlServiceSettings"	
+	        	android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	    		android:orientation="vertical" >
+	            
+		        <TableRow
+					style="@style/TableRowStyle" >
+		            
+		            <EditText
+		                android:id="@+id/tbStudentID"
+		                style="@style/EditTextStyle"
+		                android:inputType="number"
+						android:maxLength="10"
+		                android:hint="@string/studentID" />
+	            
+		        </TableRow>
+		        
+		        <TableRow
+					style="@style/TableRowStyle" >
+	            
+		            <EditText
+		                android:id="@+id/tbPassword"
+		                style="@style/EditTextStyle"
+		                android:inputType="textPassword"
+		                android:hint="@string/password" />
+	            
+	            </TableRow>
+	            
+		        <TableRow
+		            style="@style/TableRowStyle"
+		            android:orientation="horizontal"
+		            android:weightSum="1" >
+	
+		            <TextView
+		                android:layout_weight="1"
+		                android:text="@string/settings_service_delay" />
+	
+		            <TextView
+		                android:id="@+id/tvDelay" />
+		        </TableRow>
+	            
+		        <TableRow
+					style="@style/TableRowStyle"
+					android:weightSum="1" >
+		            
+			       	<SeekBar
+			           	android:id="@+id/sbServiceDelay"
+			           	android:layout_width="match_parent"
+			           	android:layout_height="wrap_content"
+				        android:max="60"
+				        android:layout_weight="1" />
+		       	
+		       	</TableRow>
+		       		        	
+		        <TableRow
+					style="@style/TableRowStyle" >
+			       	
+			       	<TextView
+			       	    android:text="@string/settings_service_control" />
+			       	
+	            </TableRow>
+	            
+		        <TableRow
+					style="@style/TableRowStyle" >
+		       	
+		            <CheckBox
+		                android:id="@+id/cbNotificationSound"
+		                android:text="@string/settings_service_sound"
+		                style="@style/CheckBoxStyle" />
+	            
+	            </TableRow>
+		        
+		        <TableRow
+					style="@style/TableRowStyle" >
+					
+		            <CheckBox
+		                android:id="@+id/cbNotificationVibrate"
+		                android:text="@string/settings_service_vibrate"
+		                style="@style/CheckBoxStyle" />
+	            
+	            </TableRow>
+
+			</TableLayout>
+            
+            <Button
+                android:id="@+id/btnSave"
+                android:text="@string/settings_save"
+                style="@style/ButtonStyle" />
+            
+	    </TableLayout>    
+	    
+	</ScrollView>
+
+</RelativeLayout>

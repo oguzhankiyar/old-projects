@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="TicketApp.UserControls.FlightPriceRow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480"
+    x:Name="MyFlightPriceRow">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="PassengerText">
+            <Run Text="{Binding Path=Price.PassengerCount, ElementName=MyFlightPriceRow}" />
+            <Run Text="{Binding Path=Label, ElementName=MyFlightPriceRow}" />
+        </TextBlock>
+        <TextBlock x:Name="NetPriceText" Grid.Column="1" HorizontalAlignment="Center" />
+        <TextBlock x:Name="TaxText" Grid.Column="2" HorizontalAlignment="Center" />
+        <TextBlock x:Name="ServiceText" Grid.Column="3" HorizontalAlignment="Center" />
+        <TextBlock x:Name="TotalText" Grid.Column="4" HorizontalAlignment="Center" />
+    </Grid>
+</UserControl>

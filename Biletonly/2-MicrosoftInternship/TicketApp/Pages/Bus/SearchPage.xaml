@@ -1,0 +1,28 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TicketApp.Pages.Bus.SearchPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:TicketApp.UserControls"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    Orientation="Portrait"
+    mc:Ignorable="d">
+    
+    <Grid x:Name="LayoutRoot" Style="{StaticResource PageStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <control:Header />
+        <StackPanel x:Name="SearchForm" Grid.Row="1" VerticalAlignment="Center" Margin="5">
+            <control:CompleteBox x:Name="txtFromStation" Label="Nereden?" Value="{Binding Path=From, Mode=TwoWay}" MemberPath="Name" />
+            <control:CompleteBox x:Name="txtToStation" Label="Nereye?" Value="{Binding Path=To, Mode=TwoWay}" MemberPath="Name" />
+            <control:DateBox x:Name="dpDepartureDate" Label="Ne zaman?" Value="{Binding Path=DepartureDate, Mode=TwoWay}" />
+            <control:Button x:Name="btnSearch" Value="Seferleri listele" Clicked="btnSearch_Click" />
+        </StackPanel>
+    </Grid>
+
+</phone:PhoneApplicationPage>

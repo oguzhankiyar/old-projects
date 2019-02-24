@@ -1,0 +1,227 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="OK.CargoTracking.WindowsPhone.TrackingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converter="clr-namespace:OK.CargoTracking.WindowsPhone.Converters"
+    mc:Ignorable="d"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <phone:PhoneApplicationPage.Resources>
+        <converter:DateTimeToStringConverter x:Key="dateTimeToStringConverter" />
+        <converter:BoolToStringConverter x:Key="boolToStringConverter" TrueValue="Green" FalseValue="Red" />
+        <converter:ObjectToVisibilityConverter x:Key="objectToVisibilityConverter" />
+        <converter:ImageSourceConverter x:Key="imageSourceConverter" />
+    </phone:PhoneApplicationPage.Resources>
+    
+    <Grid x:Name="LayoutRoot" Background="Orange">
+        <phone:Pivot x:Name="TrackingPivot">
+            <phone:PivotItem Margin="5,0">
+                <phone:PivotItem.Header>
+                    <TextBlock Text="Kargo Takip" FontSize="50" Margin="0,20" />
+                </phone:PivotItem.Header>
+                <Grid Margin="0,10,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid x:Name="pnlTrackingSearch" Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="White" Opacity=".3" Grid.ColumnSpan="3" />
+                        <Image x:Name="imgFactory" Source="/Assets/ApplicationIcon.png" Height="50" Margin="12,0,0,0" VerticalAlignment="Center" Tap="imgFactory_Tap" />
+                        <TextBox x:Name="txtCode" TextChanged="txtCode_TextChanged" Background="Transparent" FontSize="30" TextAlignment="Center" BorderThickness="0" Margin="-12,0,-12,0" Grid.Column="1" />
+                        <Image Source="/Assets/search.png" Width="50" Margin="12,0" VerticalAlignment="Center" Tap="btnSearch_Tap" Grid.Column="2" />
+                    </Grid>
+                    <TextBlock x:Name="txtInfo" TextWrapping="Wrap" Margin="25,0" FontSize="30" Opacity=".7" VerticalAlignment="Center" Grid.RowSpan="2" />
+                    <ScrollViewer x:Name="pnlTrackingDetails" Background="Orange" Visibility="Collapsed" Grid.Row="1">
+                        <StackPanel Margin="5,10">
+                            <TextBlock Text="DETAYLAR" FontSize="30" Margin="0,10,0,0" />
+                            <Grid Margin="0,5,0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Border Background="White" Height="1" />
+                            </Grid>
+                            <TextBlock Text="Çıkış Birimi:" Visibility="{Binding Path=ShippedUnit, Converter={StaticResource objectToVisibilityConverter}}" FontSize="25" Opacity=".7" Margin="5,0" />
+                            <TextBlock Text="{Binding Path=ShippedUnit}" Visibility="{Binding Path=ShippedUnit, Converter={StaticResource objectToVisibilityConverter}}" FontSize="30" TextWrapping="Wrap" Margin="5,0,5,20" />
+
+                            <TextBlock Text="Çıkış Tarihi:" Visibility="{Binding Path=ShippedAt, Converter={StaticResource objectToVisibilityConverter}}" FontSize="25" Opacity=".7" Margin="5,0" />
+                            <TextBlock Text="{Binding Path=ShippedAt, Converter={StaticResource dateTimeToStringConverter}}" Visibility="{Binding Path=ShippedAt, Converter={StaticResource objectToVisibilityConverter}}" FontSize="30" TextWrapping="Wrap" Margin="5,0,5,20" />
+
+                            <TextBlock Text="Varış Birimi:" Visibility="{Binding Path=ArrivalUnit, Converter={StaticResource objectToVisibilityConverter}}" FontSize="25" Opacity=".7" Margin="5,0" />
+                            <TextBlock Text="{Binding Path=ArrivalUnit}" Visibility="{Binding Path=ArrivalUnit, Converter={StaticResource objectToVisibilityConverter}}" FontSize="30" TextWrapping="Wrap" Margin="5,0,5,20" />
+
+                            <TextBlock Text="Teslim Alan:" Visibility="{Binding Path=DeliveredBy, Converter={StaticResource objectToVisibilityConverter}}" FontSize="25" Opacity=".7" Margin="5,0" />
+                            <TextBlock Text="{Binding Path=DeliveredBy}" Visibility="{Binding Path=DeliveredBy, Converter={StaticResource objectToVisibilityConverter}}" FontSize="30" TextWrapping="Wrap" Margin="5,0,5,20" />
+
+                            <TextBlock Text="Teslim Tarihi:" Visibility="{Binding Path=DeliveredAt, Converter={StaticResource objectToVisibilityConverter}}" FontSize="25" Opacity=".7" Margin="5,0" />
+                            <TextBlock Text="{Binding Path=DeliveredAt, Converter={StaticResource dateTimeToStringConverter}}" Visibility="{Binding Path=DeliveredAt, Converter={StaticResource objectToVisibilityConverter}}" FontSize="30" TextWrapping="Wrap" Margin="5,0,5,20" />
+
+                            <TextBlock Text="Son Durum:" Visibility="{Binding Path=LastState, Converter={StaticResource objectToVisibilityConverter}}" FontSize="25" Opacity=".7" Margin="5,0" />
+                            <TextBlock Text="{Binding Path=LastState}" Visibility="{Binding Path=LastState, Converter={StaticResource objectToVisibilityConverter}}" FontSize="30" TextWrapping="Wrap" Margin="5,0,5,20" />
+
+                            <TextBlock Text="SON HAREKETLER" FontSize="30" Margin="0,10,0,0" />
+                            <Grid Margin="0,5,0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Border Background="White" Height="1" />
+                            </Grid>
+                            <ItemsControl ItemsSource="{Binding Path=Movements}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Margin="0,0,0,10">
+                                            <TextBlock Text="{Binding Path=State}" FontSize="30" TextWrapping="Wrap" Margin="5,0" Style="{StaticResource TextBlockStyle}" />
+                                            <TextBlock Text="{Binding Path=Location}" Visibility="{Binding Path=Location, Converter={StaticResource objectToVisibilityConverter}}" FontSize="25" TextWrapping="Wrap" Opacity=".7" Margin="5,0" Style="{StaticResource TextBlockStyle}" />
+                                            <TextBlock Text="{Binding Path=Date, Converter={StaticResource dateTimeToStringConverter}}" Visibility="{Binding Path=Date, Converter={StaticResource objectToVisibilityConverter}}" FontSize="25" TextWrapping="Wrap" Opacity=".7" Margin="5,0" Style="{StaticResource TextBlockStyle}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <phone:LongListSelector x:Name="lsFactories" Background="Orange" Visibility="Collapsed" SelectionChanged="lsFactories_SelectionChanged" Margin="0,0,0,5" Grid.Row="1">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="75" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Rectangle Fill="White" Opacity=".3" Grid.ColumnSpan="2" />
+                                    <Image Source="{Binding Path=., Converter={StaticResource imageSourceConverter}}" Margin="10" />
+                                    <TextBlock Text="{Binding Path=Name}" FontSize="30" VerticalAlignment="Center" Padding="10" Style="{StaticResource TextBlockStyle}" Grid.Column="1" />
+                                </Grid>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                </Grid>
+            </phone:PivotItem>
+            <phone:PivotItem Margin="5">
+                <phone:PivotItem.Header>
+                    <TextBlock Text="Geçmiş" FontSize="50" Margin="0,20" />
+                </phone:PivotItem.Header>
+                <Grid Margin="0,5,0,0">
+                    <phone:LongListSelector x:Name="lsHistory" SelectionChanged="lsHistory_SelectionChanged">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="7.5" />
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="50" />
+                                    </Grid.ColumnDefinitions>
+                                    <Rectangle Fill="White" Opacity=".3" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" />
+                                    <Rectangle Fill="{Binding Path=IsDelivered, Converter={StaticResource boolToStringConverter}}" Opacity=".5" Grid.RowSpan="2" />
+                                    <Image Source="{Binding Path=Factory, Converter={StaticResource imageSourceConverter}}" Margin="10,10,25,10" Grid.RowSpan="2" Grid.Column="1" />
+                                    <TextBlock Text="{Binding Path=Factory.Name}" FontSize="25" VerticalAlignment="Bottom" Style="{StaticResource TextBlockStyle}" Grid.Column="2" />
+                                    <TextBlock Text="{Binding Path=Code}" FontSize="25" VerticalAlignment="Top" Style="{StaticResource TextBlockStyle}" Grid.Row="1" Grid.Column="2" />
+                                    <Image Source="/Assets/delete.png" Tag="{Binding}" VerticalAlignment="Center" Tap="imgDelete_Tap" Grid.RowSpan="2" Grid.Column="3" />
+                                </Grid>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+
+                    <TextBlock x:Name="txtHistoryEmpty" TextWrapping="Wrap" Margin="25,0" FontSize="30" Opacity=".7" VerticalAlignment="Center" Visibility="Collapsed">
+                        burası henüz boş..
+                        <LineBreak />
+                        <LineBreak />arama yaptıkça takipleriniz kolayca erişebilmeniz için burada listelenecek.
+                    </TextBlock>
+                </Grid>
+            </phone:PivotItem>
+            <phone:PivotItem Margin="5">
+                <phone:PivotItem.Header>
+                    <TextBlock Text="Hakkında" FontSize="50" Margin="0,20" />
+                </phone:PivotItem.Header>
+                <StackPanel Margin="0,5,0,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image x:Name="imgg" Source="/Assets/ApplicationIcon.png" Width="200" />
+                        <StackPanel VerticalAlignment="Center" Margin="25,-5,0,0" Grid.Column="1">
+                            <TextBlock Text="Kargo Takip" FontSize="35" />
+                            <TextBlock Text="Sürüm 1.3.0.0" FontSize="30" Opacity=".7" />
+                            <TextBlock Text="Oğuzhan Kiyar" FontSize="25" Opacity=".7" />
+                        </StackPanel>
+                        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2">
+                            <StackPanel>
+                                <Grid Margin="5" Tap="btnClearHistory_Tap">
+                                    <Rectangle Fill="White" Opacity=".3" />
+                                    <TextBlock Text="geçmişi temizle" FontSize="30" Padding="25,15" />
+                                </Grid>
+
+                                <Grid Margin="5" Tap="btnUpdateFactories_Tap">
+                                    <Rectangle Fill="White" Opacity=".3" />
+                                    <TextBlock Text="şirketleri güncelle" FontSize="30" Padding="25,15" />
+                                </Grid>
+
+                                <Grid Margin="5" Tap="btnRateAndReview_Tap">
+                                    <Rectangle Fill="White" Opacity=".3" />
+                                    <TextBlock Text="oyla &amp; yorumla" FontSize="30" Padding="25,15" />
+                                </Grid>
+
+                                <Grid Margin="5" Tap="btnDeveloperApps_Tap">
+                                    <Rectangle Fill="White" Opacity=".3" />
+                                    <TextBlock Text="geliştiricinin diğer uygulamaları" FontSize="30" Padding="25,15" />
+                                </Grid>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </StackPanel>
+            </phone:PivotItem>
+        </phone:Pivot>
+        <Grid x:Name="pnlBack" Visibility="Collapsed">
+            <Rectangle Fill="Orange" Opacity="1" />
+            <Rectangle Fill="Black" Opacity=".3" />
+        </Grid>
+        <Grid x:Name="pnlMessage" VerticalAlignment="Top">
+            <Grid.RenderTransform>
+                <CompositeTransform x:Name="pnlMessageTranslate" TranslateY="-500" />
+            </Grid.RenderTransform>
+            <Grid MinHeight="350" MaxHeight="600">
+                <Rectangle Fill="Red" />
+                <Rectangle Fill="Black" Opacity=".5" />
+                <Grid Margin="15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="{Binding Path=Title}" Visibility="{Binding Path=Title, Converter={StaticResource objectToVisibilityConverter}}" FontSize="35" TextWrapping="Wrap" />
+
+                    <ScrollViewer Grid.Row="1">
+                        <Grid>
+                            <TextBlock Text="{Binding Path=Content}" Visibility="{Binding Path=Content, Converter={StaticResource objectToVisibilityConverter}}" FontSize="25" VerticalAlignment="Center" TextWrapping="Wrap" Opacity=".75" Margin="5,10" />
+                            <Grid x:Name="pnlMessageContent" />
+                        </Grid>
+                    </ScrollViewer>
+                    <Grid x:Name="pnlButtons" Margin="0,0,-15,0" Grid.Row="2" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

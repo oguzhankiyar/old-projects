@@ -1,0 +1,21 @@
+﻿@model IEnumerable<club_group>
+
+@section Map {
+    <div class="map">
+        <span>@Html.ActionLink(OK.ClubConfig("site-name"), "Index", "Home")</span>
+        <span class="active">Komiteler</span>
+    </div>
+}
+<div class="table">
+    <div class="title">Komiteler</div>
+    <div class="content">
+        <div class="groups">
+            @foreach (var group in Model)
+            {
+                <ul>
+                    <li><a href="@Url.Action("Detail", "Group", new { seo = group.Seo })">@group.Name</a></li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>

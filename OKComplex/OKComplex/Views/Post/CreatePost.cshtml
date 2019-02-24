@@ -1,0 +1,93 @@
+﻿@model club_post
+@{
+    ViewBag.Title = "Yazı Gönder";
+    InfosecEntities Db = new InfosecEntities();
+    int categoryid = 0, groupid = 0;
+    if (Request.QueryString["category"] != null)
+    {
+        categoryid = Convert.ToInt32(Request.QueryString["category"]);
+        if (Db.club_category.Find(categoryid) == null)
+        {
+            categoryid = 0;
+        }
+    }
+    List<SelectListItem> categories = new List<SelectListItem>();
+    categories.Add(new SelectListItem { Text = null, Value = null, Selected = true });
+    foreach (var category in Db.club_category.Where(x => x.IsApproval == true).ToList())
+	{
+        categories.Add(new SelectListItem { Text = category.Name, Value = "" + category.Id }); 
+	}
+    if (Request.QueryString["group"] != null)
+    {
+        groupid = Convert.ToInt32(Request.QueryString["group"]);
+        if (Db.club_group.Find(groupid) == null)
+        {
+            groupid = 0;
+        }
+    }
+}
+@section Map {
+    <div class="map">
+        <span>@Html.ActionLink(OK.ClubConfig("site-name"), "Index", "Home")</span>
+        <span class="active">Yazı Ekle</span>
+    </div>
+}
+<div class="table">
+    <div class="title">Yazı Gönder</div>
+    <div class="content">
+        @using (Html.BeginForm("CreatePost", "Post", FormMethod.Post))
+        {
+            <div class="form">
+                <ul class="errors">
+                    <li>@Html.ValidationMessageFor(model => model.Title)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Content)</li>
+                    <li>@Html.ValidationMessageFor(model => model.CategoryId)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Title)</li>
+                    <li>@Html.EditorFor(model => model.Title)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Content)</li>
+                    <li>@Html.TextAreaFor(model => model.Content)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Image)</li>
+                    <li>@Html.EditorFor(model => model.Image)</li>
+                </ul>
+                @if (!(groupid != 0 && categoryid == 0))
+                {
+                    <ul>
+                        <li>@Html.LabelFor(model => model.CategoryId)</li>
+                        <li>
+                            @if (categoryid == 0)
+                            {
+                                @Html.DropDownListFor(model => model.CategoryId, categories)
+                            }
+                            else
+                            {
+                                @Db.club_category.Find(categoryid).Name
+                                @Html.Hidden("CategoryId", categoryid)
+                            }
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <ul>
+                        <li>@Html.LabelFor(model => model.GroupId)</li>
+                        <li>
+                            @Db.club_group.Find(groupid).Name
+                            @Html.Hidden("GroupId", groupid)
+                        </li>
+                    </ul>
+                }
+                <ul>
+                    <li class="info" style="width: auto;">@Html.Raw(ViewBag.message)</li>
+                    <li style="width: auto; float: right;">@Html.Button("Kaydet", new { type = "submit" })</li>
+                </ul>
+                @Html.MyEditor("Content", "Standard")
+            </div>
+        }
+    </div>
+</div>

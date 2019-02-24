@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7b8591b3448047f09c3ca7abdc110250" Name="Diagram1">
+        <EntityTypeShape EntityType="OKDbModel.Category" Width="1.5" PointX="9.75" PointY="13.25" />
+        <EntityTypeShape EntityType="OKDbModel.Comment" Width="1.5" PointX="3" PointY="14.125" />
+        <EntityTypeShape EntityType="OKDbModel.Config" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="OKDbModel.Link" Width="1.5" PointX="7.5" PointY="16.75" />
+        <EntityTypeShape EntityType="OKDbModel.Page" Width="1.5" PointX="5.25" PointY="11" />
+        <EntityTypeShape EntityType="OKDbModel.PageWidget" Width="1.5" PointX="9.75" PointY="17.375" />
+        <EntityTypeShape EntityType="OKDbModel.Post" Width="1.5" PointX="12" PointY="11.875" />
+        <EntityTypeShape EntityType="OKDbModel.Rating" Width="1.5" PointX="14.25" PointY="12.125" />
+        <EntityTypeShape EntityType="OKDbModel.Section" Width="1.5" PointX="7.5" PointY="9.625" />
+        <EntityTypeShape EntityType="OKDbModel.Subscription" Width="1.5" PointX="10.5" PointY="8.25" />
+        <EntityTypeShape EntityType="OKDbModel.Theme" Width="1.5" PointX="3" PointY="10.5" />
+        <EntityTypeShape EntityType="OKDbModel.User" Width="1.5" PointX="0.75" PointY="11.25" />
+        <EntityTypeShape EntityType="OKDbModel.Widget" Width="1.5" PointX="3" PointY="21.25" />
+        <AssociationConnector Association="OKDbModel.FK_Category_Section" />
+        <AssociationConnector Association="OKDbModel.FK_Post_Category" />
+        <AssociationConnector Association="OKDbModel.FK_Comment_Post" />
+        <AssociationConnector Association="OKDbModel.FK_Comment_User" />
+        <AssociationConnector Association="OKDbModel.FK_Link_Page" />
+        <AssociationConnector Association="OKDbModel.FK_Page_Theme" />
+        <AssociationConnector Association="OKDbModel.FK_Page_User" />
+        <AssociationConnector Association="OKDbModel.FK_Section_Page" />
+        <AssociationConnector Association="OKDbModel.FK_Subscription_Page" />
+        <AssociationConnector Association="OKDbModel.FK_PageWidget_Section" />
+        <AssociationConnector Association="OKDbModel.FK_PageWidget_Widget" />
+        <AssociationConnector Association="OKDbModel.FK_Post_User" />
+        <AssociationConnector Association="OKDbModel.FK_Rating_Post" />
+        <AssociationConnector Association="OKDbModel.FK_Rating_User" />
+        <AssociationConnector Association="OKDbModel.FK_Subscription_User" />
+        <AssociationConnector Association="OKDbModel.FK_Theme_User" />
+        <AssociationConnector Association="OKDbModel.FK_Widget_User" />
+        <AssociationConnector Association="OKDbModel.FK_PageWidget_Page" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

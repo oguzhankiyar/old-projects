@@ -1,0 +1,823 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OKDbModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="OKDbModelStoreContainer">
+          <EntitySet Name="category" EntityType="OKDbModel.Store.category" store:Type="Tables" Schema="database" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="comment" EntityType="OKDbModel.Store.comment" store:Type="Tables" Schema="database" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="config" EntityType="OKDbModel.Store.config" store:Type="Tables" Schema="database" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="forum" EntityType="OKDbModel.Store.forum" store:Type="Tables" Schema="database" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="menulink" EntityType="OKDbModel.Store.menulink" store:Type="Tables" Schema="database" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="message" EntityType="OKDbModel.Store.message" store:Type="Tables" Schema="database" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="notice" EntityType="OKDbModel.Store.notice" store:Type="Tables" Schema="database" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="post" EntityType="OKDbModel.Store.post" store:Type="Tables" Schema="database" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="rating" EntityType="OKDbModel.Store.rating" store:Type="Tables" Schema="database" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="topic" EntityType="OKDbModel.Store.topic" store:Type="Tables" Schema="database" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="user" EntityType="OKDbModel.Store.user" store:Type="Tables" Schema="database" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="usertype" EntityType="OKDbModel.Store.usertype" store:Type="Tables" Schema="database" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <AssociationSet Name="comment_ibfk_1" Association="OKDbModel.Store.comment_ibfk_1">
+            <End Role="topic" EntitySet="topic" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="comment_ibfk_2" Association="OKDbModel.Store.comment_ibfk_2">
+            <End Role="user" EntitySet="user" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="forum_ibfk_1" Association="OKDbModel.Store.forum_ibfk_1">
+            <End Role="category" EntitySet="category" />
+            <End Role="forum" EntitySet="forum" />
+          </AssociationSet>
+          <AssociationSet Name="post_ibfk_1" Association="OKDbModel.Store.post_ibfk_1">
+            <End Role="user" EntitySet="user" />
+            <End Role="post" EntitySet="post" />
+          </AssociationSet>
+          <AssociationSet Name="rating_ibfk_1" Association="OKDbModel.Store.rating_ibfk_1">
+            <End Role="user" EntitySet="user" />
+            <End Role="rating" EntitySet="rating" />
+          </AssociationSet>
+          <AssociationSet Name="topic_ibfk_1" Association="OKDbModel.Store.topic_ibfk_1">
+            <End Role="forum" EntitySet="forum" />
+            <End Role="topic" EntitySet="topic" />
+          </AssociationSet>
+          <AssociationSet Name="topic_ibfk_2" Association="OKDbModel.Store.topic_ibfk_2">
+            <End Role="user" EntitySet="user" />
+            <End Role="topic" EntitySet="topic" />
+          </AssociationSet>
+          <AssociationSet Name="user_ibfk_1" Association="OKDbModel.Store.user_ibfk_1">
+            <End Role="usertype" EntitySet="usertype" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Seo" Type="varchar" MaxLength="255" />
+          <Property Name="Sort" Type="int" />
+          <Property Name="IsApproval" Type="bool" />
+        </EntityType>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="text" />
+          <Property Name="TopicId" Type="int" />
+          <Property Name="WriterId" Type="int" />
+          <Property Name="Rating" Type="varchar" MaxLength="255" />
+          <Property Name="QuoteId" Type="varchar" MaxLength="255" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="IsApproval" Type="bool" />
+        </EntityType>
+        <EntityType Name="config">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="varchar" MaxLength="255" />
+          <Property Name="Value" Type="text" />
+          <Property Name="Description" Type="text" />
+        </EntityType>
+        <EntityType Name="forum">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="Description" Type="text" />
+          <Property Name="ImageFile" Type="varchar" MaxLength="255" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="ParentForumId" Type="int" />
+          <Property Name="IsSubForum" Type="bool" />
+          <Property Name="IsApproval" Type="bool" />
+          <Property Name="Seo" Type="varchar" MaxLength="255" />
+          <Property Name="Sort" Type="int" />
+          <Property Name="ViewsCount" Type="int" />
+        </EntityType>
+        <EntityType Name="menulink">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="OnClick" Type="text" />
+          <Property Name="Sort" Type="int" />
+          <Property Name="IsApproval" Type="bool" />
+        </EntityType>
+        <EntityType Name="message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="text" />
+          <Property Name="SenderId" Type="int" />
+          <Property Name="ReceiverId" Type="int" />
+          <Property Name="SendingDate" Type="datetime" />
+          <Property Name="IsRead" Type="bool" />
+        </EntityType>
+        <EntityType Name="notice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="varchar" MaxLength="255" />
+          <Property Name="Content" Type="text" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="Sort" Type="int" />
+          <Property Name="IsApproval" Type="bool" />
+        </EntityType>
+        <EntityType Name="post">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="ItemId" Type="varchar" MaxLength="255" />
+          <Property Name="Type" Type="varchar" MaxLength="255" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="IsApproval" Type="bool" />
+        </EntityType>
+        <EntityType Name="rating">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="ItemId" Type="int" />
+          <Property Name="Score" Type="varchar" MaxLength="255" />
+          <Property Name="Type" Type="varchar" MaxLength="255" />
+          <Property Name="ActionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="topic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="varchar" MaxLength="255" />
+          <Property Name="Content" Type="text" />
+          <Property Name="ImageFile" Type="varchar" MaxLength="255" />
+          <Property Name="ForumId" Type="int" />
+          <Property Name="WriterId" Type="int" />
+          <Property Name="Seo" Type="varchar" MaxLength="255" />
+          <Property Name="Rating" Type="varchar" MaxLength="255" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="IsSticky" Type="bool" />
+          <Property Name="IsClosed" Type="bool" />
+          <Property Name="IsApproval" Type="bool" />
+          <Property Name="ViewsCount" Type="int" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="varchar" MaxLength="255" />
+          <Property Name="Password" Type="varchar" MaxLength="255" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="ImageFile" Type="varchar" MaxLength="255" />
+          <Property Name="Gender" Type="varchar" MaxLength="255" />
+          <Property Name="Job" Type="varchar" MaxLength="255" />
+          <Property Name="Birthday" Type="datetime" />
+          <Property Name="City" Type="varchar" MaxLength="255" />
+          <Property Name="SocialSites" Type="text" />
+          <Property Name="About" Type="text" />
+          <Property Name="RegistrationDate" Type="datetime" />
+          <Property Name="LastLoginDate" Type="datetime" />
+          <Property Name="LoginCount" Type="int" />
+          <Property Name="Rating" Type="int" />
+          <Property Name="TypeId" Type="int" />
+          <Property Name="DisplayType" Type="int" />
+          <Property Name="IsBanned" Type="bool" />
+          <Property Name="IsApproval" Type="bool" />
+          <Property Name="ConfirmationCode" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="usertype">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="Description" Type="text" />
+        </EntityType>
+        <Association Name="comment_ibfk_1">
+          <End Role="topic" Type="OKDbModel.Store.topic" Multiplicity="0..1" />
+          <End Role="comment" Type="OKDbModel.Store.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="topic">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="comment_ibfk_2">
+          <End Role="user" Type="OKDbModel.Store.user" Multiplicity="0..1" />
+          <End Role="comment" Type="OKDbModel.Store.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="WriterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="forum_ibfk_1">
+          <End Role="category" Type="OKDbModel.Store.category" Multiplicity="0..1" />
+          <End Role="forum" Type="OKDbModel.Store.forum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="forum">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="post_ibfk_1">
+          <End Role="user" Type="OKDbModel.Store.user" Multiplicity="0..1" />
+          <End Role="post" Type="OKDbModel.Store.post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="post">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="rating_ibfk_1">
+          <End Role="user" Type="OKDbModel.Store.user" Multiplicity="0..1" />
+          <End Role="rating" Type="OKDbModel.Store.rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="rating">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="topic_ibfk_1">
+          <End Role="forum" Type="OKDbModel.Store.forum" Multiplicity="0..1" />
+          <End Role="topic" Type="OKDbModel.Store.topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forum">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="topic">
+              <PropertyRef Name="ForumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="topic_ibfk_2">
+          <End Role="user" Type="OKDbModel.Store.user" Multiplicity="0..1" />
+          <End Role="topic" Type="OKDbModel.Store.topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="topic">
+              <PropertyRef Name="WriterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_ibfk_1">
+          <End Role="usertype" Type="OKDbModel.Store.usertype" Multiplicity="0..1" />
+          <End Role="user" Type="OKDbModel.Store.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usertype">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OKDbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="OKDbEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="category" EntityType="OKDbModel.category" />
+          <EntitySet Name="comment" EntityType="OKDbModel.comment" />
+          <EntitySet Name="config" EntityType="OKDbModel.config" />
+          <EntitySet Name="forum" EntityType="OKDbModel.forum" />
+          <EntitySet Name="menulink" EntityType="OKDbModel.menulink" />
+          <EntitySet Name="message" EntityType="OKDbModel.message" />
+          <EntitySet Name="notice" EntityType="OKDbModel.notice" />
+          <EntitySet Name="post" EntityType="OKDbModel.post" />
+          <EntitySet Name="rating" EntityType="OKDbModel.rating" />
+          <EntitySet Name="topic" EntityType="OKDbModel.topic" />
+          <EntitySet Name="user" EntityType="OKDbModel.user" />
+          <EntitySet Name="usertype" EntityType="OKDbModel.usertype" />
+          <AssociationSet Name="forum_ibfk_1" Association="OKDbModel.forum_ibfk_1">
+            <End Role="category" EntitySet="category" />
+            <End Role="forum" EntitySet="forum" />
+          </AssociationSet>
+          <AssociationSet Name="comment_ibfk_1" Association="OKDbModel.comment_ibfk_1">
+            <End Role="topic" EntitySet="topic" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="comment_ibfk_2" Association="OKDbModel.comment_ibfk_2">
+            <End Role="user" EntitySet="user" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="topic_ibfk_1" Association="OKDbModel.topic_ibfk_1">
+            <End Role="forum" EntitySet="forum" />
+            <End Role="topic" EntitySet="topic" />
+          </AssociationSet>
+          <AssociationSet Name="post_ibfk_1" Association="OKDbModel.post_ibfk_1">
+            <End Role="user" EntitySet="user" />
+            <End Role="post" EntitySet="post" />
+          </AssociationSet>
+          <AssociationSet Name="rating_ibfk_1" Association="OKDbModel.rating_ibfk_1">
+            <End Role="user" EntitySet="user" />
+            <End Role="rating" EntitySet="rating" />
+          </AssociationSet>
+          <AssociationSet Name="topic_ibfk_2" Association="OKDbModel.topic_ibfk_2">
+            <End Role="user" EntitySet="user" />
+            <End Role="topic" EntitySet="topic" />
+          </AssociationSet>
+          <AssociationSet Name="user_ibfk_1" Association="OKDbModel.user_ibfk_1">
+            <End Role="usertype" EntitySet="usertype" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Seo" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Sort" />
+          <Property Type="Boolean" Name="IsApproval" />
+          <NavigationProperty Name="forums" Relationship="OKDbModel.forum_ibfk_1" FromRole="category" ToRole="forum" />
+        </EntityType>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Content" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="TopicId" />
+          <Property Type="Int32" Name="WriterId" />
+          <Property Type="String" Name="Rating" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="QuoteId" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreationDate" />
+          <Property Type="DateTime" Name="ModifyDate" />
+          <Property Type="Boolean" Name="IsApproval" />
+          <NavigationProperty Name="topic" Relationship="OKDbModel.comment_ibfk_1" FromRole="comment" ToRole="topic" />
+          <NavigationProperty Name="user" Relationship="OKDbModel.comment_ibfk_2" FromRole="comment" ToRole="user" />
+        </EntityType>
+        <EntityType Name="config">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Key" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Value" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="65535" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="forum">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ImageFile" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CategoryId" />
+          <Property Type="Int32" Name="ParentForumId" />
+          <Property Type="Boolean" Name="IsSubForum" />
+          <Property Type="Boolean" Name="IsApproval" />
+          <Property Type="String" Name="Seo" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Sort" />
+          <Property Type="Int32" Name="ViewsCount" />
+          <NavigationProperty Name="category" Relationship="OKDbModel.forum_ibfk_1" FromRole="forum" ToRole="category" />
+          <NavigationProperty Name="topics" Relationship="OKDbModel.topic_ibfk_1" FromRole="forum" ToRole="topic" />
+        </EntityType>
+        <EntityType Name="menulink">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OnClick" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Sort" />
+          <Property Type="Boolean" Name="IsApproval" />
+        </EntityType>
+        <EntityType Name="message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Content" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="SenderId" />
+          <Property Type="Int32" Name="ReceiverId" />
+          <Property Type="DateTime" Name="SendingDate" />
+          <Property Type="Boolean" Name="IsRead" />
+        </EntityType>
+        <EntityType Name="notice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Title" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Content" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreationDate" />
+          <Property Type="Int32" Name="Sort" />
+          <Property Type="Boolean" Name="IsApproval" />
+        </EntityType>
+        <EntityType Name="post">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="UserId" />
+          <Property Type="String" Name="ItemId" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Type" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreationDate" />
+          <Property Type="Boolean" Name="IsApproval" />
+          <NavigationProperty Name="user" Relationship="OKDbModel.post_ibfk_1" FromRole="post" ToRole="user" />
+        </EntityType>
+        <EntityType Name="rating">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="UserId" />
+          <Property Type="Int32" Name="ItemId" />
+          <Property Type="String" Name="Score" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Type" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="ActionDate" />
+          <NavigationProperty Name="user" Relationship="OKDbModel.rating_ibfk_1" FromRole="rating" ToRole="user" />
+        </EntityType>
+        <EntityType Name="topic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Title" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Content" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ImageFile" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ForumId" />
+          <Property Type="Int32" Name="WriterId" />
+          <Property Type="String" Name="Seo" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Rating" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreationDate" />
+          <Property Type="DateTime" Name="ModifyDate" />
+          <Property Type="Boolean" Name="IsSticky" />
+          <Property Type="Boolean" Name="IsClosed" />
+          <Property Type="Boolean" Name="IsApproval" />
+          <Property Type="Int32" Name="ViewsCount" />
+          <NavigationProperty Name="comments" Relationship="OKDbModel.comment_ibfk_1" FromRole="topic" ToRole="comment" />
+          <NavigationProperty Name="forum" Relationship="OKDbModel.topic_ibfk_1" FromRole="topic" ToRole="forum" />
+          <NavigationProperty Name="user" Relationship="OKDbModel.topic_ibfk_2" FromRole="topic" ToRole="user" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="UserName" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Email" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ImageFile" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Gender" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Job" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Birthday" />
+          <Property Type="String" Name="City" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SocialSites" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="About" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="RegistrationDate" />
+          <Property Type="DateTime" Name="LastLoginDate" />
+          <Property Type="Int32" Name="LoginCount" />
+          <Property Type="Int32" Name="Rating" />
+          <Property Type="Int32" Name="TypeId" />
+          <Property Type="Int32" Name="DisplayType" />
+          <Property Type="Boolean" Name="IsBanned" />
+          <Property Type="Boolean" Name="IsApproval" />
+          <Property Type="String" Name="ConfirmationCode" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="comments" Relationship="OKDbModel.comment_ibfk_2" FromRole="user" ToRole="comment" />
+          <NavigationProperty Name="posts" Relationship="OKDbModel.post_ibfk_1" FromRole="user" ToRole="post" />
+          <NavigationProperty Name="ratings" Relationship="OKDbModel.rating_ibfk_1" FromRole="user" ToRole="rating" />
+          <NavigationProperty Name="topics" Relationship="OKDbModel.topic_ibfk_2" FromRole="user" ToRole="topic" />
+          <NavigationProperty Name="type" Relationship="OKDbModel.user_ibfk_1" FromRole="user" ToRole="usertype" />
+        </EntityType>
+        <EntityType Name="usertype">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="users" Relationship="OKDbModel.user_ibfk_1" FromRole="usertype" ToRole="user" />
+        </EntityType>
+        <Association Name="forum_ibfk_1">
+          <End Type="OKDbModel.category" Role="category" Multiplicity="0..1" />
+          <End Type="OKDbModel.forum" Role="forum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="forum">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="comment_ibfk_1">
+          <End Type="OKDbModel.topic" Role="topic" Multiplicity="0..1" />
+          <End Type="OKDbModel.comment" Role="comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="topic">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="comment_ibfk_2">
+          <End Type="OKDbModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="OKDbModel.comment" Role="comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="WriterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="topic_ibfk_1">
+          <End Type="OKDbModel.forum" Role="forum" Multiplicity="0..1" />
+          <End Type="OKDbModel.topic" Role="topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forum">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="topic">
+              <PropertyRef Name="ForumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="post_ibfk_1">
+          <End Type="OKDbModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="OKDbModel.post" Role="post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="post">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="rating_ibfk_1">
+          <End Type="OKDbModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="OKDbModel.rating" Role="rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="rating">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="topic_ibfk_2">
+          <End Type="OKDbModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="OKDbModel.topic" Role="topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="topic">
+              <PropertyRef Name="WriterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_ibfk_1">
+          <End Type="OKDbModel.usertype" Role="usertype" Multiplicity="0..1" />
+          <End Type="OKDbModel.user" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usertype">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OKDbModelStoreContainer" CdmEntityContainer="OKDbEntities">
+          <EntitySetMapping Name="category">
+            <EntityTypeMapping TypeName="OKDbModel.category">
+              <MappingFragment StoreEntitySet="category">
+                <ScalarProperty Name="IsApproval" ColumnName="IsApproval" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Seo" ColumnName="Seo" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comment">
+            <EntityTypeMapping TypeName="OKDbModel.comment">
+              <MappingFragment StoreEntitySet="comment">
+                <ScalarProperty Name="IsApproval" ColumnName="IsApproval" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="QuoteId" ColumnName="QuoteId" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="WriterId" ColumnName="WriterId" />
+                <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="config">
+            <EntityTypeMapping TypeName="OKDbModel.config">
+              <MappingFragment StoreEntitySet="config">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="forum">
+            <EntityTypeMapping TypeName="OKDbModel.forum">
+              <MappingFragment StoreEntitySet="forum">
+                <ScalarProperty Name="ViewsCount" ColumnName="ViewsCount" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Seo" ColumnName="Seo" />
+                <ScalarProperty Name="IsApproval" ColumnName="IsApproval" />
+                <ScalarProperty Name="IsSubForum" ColumnName="IsSubForum" />
+                <ScalarProperty Name="ParentForumId" ColumnName="ParentForumId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="ImageFile" ColumnName="ImageFile" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menulink">
+            <EntityTypeMapping TypeName="OKDbModel.menulink">
+              <MappingFragment StoreEntitySet="menulink">
+                <ScalarProperty Name="IsApproval" ColumnName="IsApproval" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="OnClick" ColumnName="OnClick" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="message">
+            <EntityTypeMapping TypeName="OKDbModel.message">
+              <MappingFragment StoreEntitySet="message">
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="SendingDate" ColumnName="SendingDate" />
+                <ScalarProperty Name="ReceiverId" ColumnName="ReceiverId" />
+                <ScalarProperty Name="SenderId" ColumnName="SenderId" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="notice">
+            <EntityTypeMapping TypeName="OKDbModel.notice">
+              <MappingFragment StoreEntitySet="notice">
+                <ScalarProperty Name="IsApproval" ColumnName="IsApproval" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="post">
+            <EntityTypeMapping TypeName="OKDbModel.post">
+              <MappingFragment StoreEntitySet="post">
+                <ScalarProperty Name="IsApproval" ColumnName="IsApproval" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rating">
+            <EntityTypeMapping TypeName="OKDbModel.rating">
+              <MappingFragment StoreEntitySet="rating">
+                <ScalarProperty Name="ActionDate" ColumnName="ActionDate" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="topic">
+            <EntityTypeMapping TypeName="OKDbModel.topic">
+              <MappingFragment StoreEntitySet="topic">
+                <ScalarProperty Name="ViewsCount" ColumnName="ViewsCount" />
+                <ScalarProperty Name="IsApproval" ColumnName="IsApproval" />
+                <ScalarProperty Name="IsClosed" ColumnName="IsClosed" />
+                <ScalarProperty Name="IsSticky" ColumnName="IsSticky" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Seo" ColumnName="Seo" />
+                <ScalarProperty Name="WriterId" ColumnName="WriterId" />
+                <ScalarProperty Name="ForumId" ColumnName="ForumId" />
+                <ScalarProperty Name="ImageFile" ColumnName="ImageFile" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="OKDbModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="ConfirmationCode" ColumnName="ConfirmationCode" />
+                <ScalarProperty Name="IsApproval" ColumnName="IsApproval" />
+                <ScalarProperty Name="IsBanned" ColumnName="IsBanned" />
+                <ScalarProperty Name="DisplayType" ColumnName="DisplayType" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="LoginCount" ColumnName="LoginCount" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="SocialSites" ColumnName="SocialSites" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Job" ColumnName="Job" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="ImageFile" ColumnName="ImageFile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usertype">
+            <EntityTypeMapping TypeName="OKDbModel.usertype">
+              <MappingFragment StoreEntitySet="usertype">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams />
+  </Designer>
+</edmx:Edmx>

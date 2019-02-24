@@ -1,0 +1,48 @@
+﻿@model IEnumerable<bgk_grup>
+@{
+    int i = 0;
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);    
+}
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a class="active" href="@Url.Action("index", "group")" style="width: 25%;">Gruplar</a>
+            <a href="@Url.Action("index", "member")" style="width: 24%;">Üyeler</a>
+            <a href="@Url.Action("index", "role")" style="width: 25%;">Yetkiler</a>
+            <a href="@Url.Action("index", "grade")" style="width: 25%;">Seviyeler</a>
+        </div>
+    </div>
+</div>
+<div class="table">
+    <div class="title">Gruplar
+        <span>@Html.ActionLink("Yeni Grup", "create")</span>
+    </div>
+    <div class="content">
+        <div class="list">
+            <ul>
+                <li style="width: 33%;">@Html.Label("Adı")</li>
+                <li style="width: 42%;">@Html.Label("Açıklama")</li>
+                <li style="width: 10%; text-align: center;">@Html.Label("Grup Tipi")</li>
+                <li style="width: 13%;">@Html.Label("Araçlar")</li>
+            </ul>
+            @foreach (var group in Model)
+            {
+                i++;
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li style="width: 33%;">@Html.DisplayFor(modelItem => group.Adi)</li>
+                    <li style="width: 42%;">@group.Aciklama.GetSummary(75)</li>
+                    <li style="width: 10%; text-align: center;">@(group.Tip == 1 ? "Komite" : "Diğer")</li>
+                    <li style="width: 13%;">
+                        @Html.ActionLink(" ", "addmember", new { num = group.Id }, new { @class = "add", title = "Üye Ekle" })
+                        @Html.ActionLink(" ", "edit", new { num = group.Id }, new { @class = "edit", title = "Düzenle" })
+                        @Html.ActionLink(" ", "details", new { num = group.Id }, new { @class = "details", title = "Detay" })
+                        @Html.ActionLink(" ", "delete", new { num = group.Id }, new { @class = "delete", title = "Sil" })
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>
+@Html.Paging()

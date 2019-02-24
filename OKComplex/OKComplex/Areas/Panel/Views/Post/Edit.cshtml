@@ -1,0 +1,43 @@
+﻿@model club_post
+@{
+    ViewBag.Title = "Yazı Düzenle";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="form">
+        <ul>
+            <li>@Html.LabelFor(model => model.Title)</li>
+            <li>@Html.EditorFor(model => model.Title)<small>@Html.ValidationMessageFor(model => model.Title)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.Content)</li>
+            <li>@Html.TextAreaFor(model => model.Content)<small>@Html.ValidationMessageFor(model => model.Content)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.Image)</li>
+            <li>@Html.EditorFor(model => model.Image)<small>@Html.ValidationMessageFor(model => model.Image)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.CategoryId, "forum")</li>
+            <li>@Html.DropDownList("CategoryId")<small>@Html.ValidationMessageFor(model => model.CategoryId)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.IsApproval)</li>
+            <li>@Html.EditorFor(model => model.IsApproval)<small>@Html.ValidationMessageFor(model => model.IsApproval)</small></li>
+        </ul>
+        <ul>
+            <li>Kaydet</li>
+            <li>
+                @Html.Button("Kaydet", new { type = "submit" })
+                @Html.Button("Vazgeç", new { onclick = "OpenNewPage('" + Url.Action("index") + "');" })
+            </li>
+        </ul>
+        @Html.MyEditor("Content", "Standard")
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.MemberId)
+        @Html.HiddenFor(model => model.GroupId)
+        @Html.HiddenFor(model => model.WritingDate)
+        @Html.HiddenFor(model => model.ModifyDate)
+    </div>
+}

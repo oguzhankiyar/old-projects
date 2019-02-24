@@ -1,0 +1,74 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TicketApp.Pages.Help.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    Orientation="Portrait"
+    mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource PageStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <control:Header />
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="0,10">
+                <StackPanel Tag="About" Tap="Item_Tap">
+                    <TextBlock Text="biletonly hakkında" FontFamily="Segoe WP Light" FontSize="30" Padding="25,10,0,0" />
+                    <TextBlock Text="uygulama detayları ve güvenirlik" FontFamily="Segoe WP Light" Opacity=".75" FontSize="20" Padding="25,0,0,10" />
+                </StackPanel>
+                <StackPanel Tag="Search" Tap="Item_Tap">
+                    <TextBlock Text="sefer arama" FontFamily="Segoe WP Light" FontSize="30" Padding="25,10,0,0" />
+                    <TextBlock Text="sefer arama aşaması" FontFamily="Segoe WP Light" Opacity=".75" FontSize="20" Padding="25,0,0,10" />
+                </StackPanel>
+                <StackPanel Tag="List" Tap="Item_Tap">
+                    <TextBlock Text="seferleri listeleme" FontFamily="Segoe WP Light" FontSize="30" Padding="25,10,0,0" />
+                    <TextBlock Text="seferleri listeleme aşaması" FontFamily="Segoe WP Light" Opacity=".75" FontSize="20" Padding="25,0,0,10" />
+                </StackPanel>
+                <StackPanel Tag="Details" Tap="Item_Tap">
+                    <TextBlock Text="sefer detay" FontFamily="Segoe WP Light" FontSize="30" Padding="25,10,0,0" />
+                    <TextBlock Text="sefer detay aşaması" FontFamily="Segoe WP Light" Opacity=".75" FontSize="20" Padding="25,0,0,10" />
+                </StackPanel>
+                <StackPanel Tag="Select" Tap="Item_Tap">
+                    <TextBlock Text="koltuk seçme" FontFamily="Segoe WP Light" FontSize="30" Padding="25,10,0,0" />
+                    <TextBlock Text="koltuk seçme aşaması" FontFamily="Segoe WP Light" Opacity=".75" FontSize="20" Padding="25,0,0,10" />
+                </StackPanel>
+                <StackPanel Tag="Passengers" Tap="Item_Tap">
+                    <TextBlock Text="yolcu işlemleri" FontFamily="Segoe WP Light" FontSize="30" Padding="25,10,0,0" />
+                    <TextBlock Text="yolcu işlemleri" FontFamily="Segoe WP Light" Opacity=".75" FontSize="20" Padding="25,0,0,10" />
+                </StackPanel>
+                <StackPanel Tag="Reservation" Tap="Item_Tap">
+                    <TextBlock Text="rezervasyon işlemi" FontFamily="Segoe WP Light" FontSize="30" Padding="25,10,0,0" />
+                    <TextBlock Text="rezervasyon işlemi aşaması" FontFamily="Segoe WP Light" Opacity=".75" FontSize="20" Padding="25,0,0,10" />
+                </StackPanel>
+                <StackPanel Tag="Buying" Tap="Item_Tap">
+                    <TextBlock Text="satış işlemi" FontFamily="Segoe WP Light" FontSize="30" Padding="25,10,0,0" />
+                    <TextBlock Text="satış işlemi aşaması" FontFamily="Segoe WP Light" Opacity=".75" FontSize="20" Padding="25,0,0,10" />
+                </StackPanel>
+                <StackPanel Tag="AfterBuying" Tap="Item_Tap">
+                    <TextBlock Text="satış sonrası" FontFamily="Segoe WP Light" FontSize="30" Padding="25,10,0,0" />
+                    <TextBlock Text="satış sonrası işlemler" FontFamily="Segoe WP Light" Opacity=".75" FontSize="20" Padding="25,0,0,10" />
+                </StackPanel>
+                <StackPanel Tag="Laws" Tap="Item_Tap">
+                    <TextBlock Text="kullanım koşulları" FontFamily="Segoe WP Light" FontSize="30" Padding="25,10,0,0" />
+                    <TextBlock Text="uygulama kullanım koşulları" FontFamily="Segoe WP Light" Opacity=".75" FontSize="20" Padding="25,0,0,10" />
+                </StackPanel>
+                <StackPanel Tag="Feedback" Tap="Item_Tap">
+                    <TextBlock Text="geri bildirim" FontFamily="Segoe WP Light" FontSize="30" Padding="25,10,0,0" />
+                    <TextBlock Text="bir sorunu veya öneriyi bildirin" FontFamily="Segoe WP Light" Opacity=".75" FontSize="20" Padding="25,0,0,10" />
+                </StackPanel>
+                <StackPanel Tag="Contact" Tap="Item_Tap">
+                    <TextBlock Text="iletişim" FontFamily="Segoe WP Light" FontSize="30" Padding="25,10,0,0" />
+                    <TextBlock Text="iletişime geçmek için" FontFamily="Segoe WP Light" Opacity=".75" FontSize="20" Padding="25,0,0,10" />
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</phone:PhoneApplicationPage>

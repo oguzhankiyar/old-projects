@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OK.Transport.API", "OK.Transport.API\OK.Transport.API.csproj", "{77A643AF-F3E2-4E45-BEB7-C5E791CAFB00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OK.Transport.Web", "OK.Transport.Web\OK.Transport.Web.csproj", "{12CE31E9-2800-4434-A8E6-BC3729128491}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OK.Transport.Models", "OK.Transport.Models\OK.Transport.Models.csproj", "{69EF2FF2-03BA-46E5-8910-C1D949C14975}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OK.Transport.API.Helper", "OK.Transport.API.Helper\OK.Transport.API.Helper.csproj", "{07B5847D-1B3D-490C-9C3D-6B67621C4A80}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{77A643AF-F3E2-4E45-BEB7-C5E791CAFB00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77A643AF-F3E2-4E45-BEB7-C5E791CAFB00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77A643AF-F3E2-4E45-BEB7-C5E791CAFB00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77A643AF-F3E2-4E45-BEB7-C5E791CAFB00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12CE31E9-2800-4434-A8E6-BC3729128491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12CE31E9-2800-4434-A8E6-BC3729128491}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12CE31E9-2800-4434-A8E6-BC3729128491}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12CE31E9-2800-4434-A8E6-BC3729128491}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69EF2FF2-03BA-46E5-8910-C1D949C14975}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69EF2FF2-03BA-46E5-8910-C1D949C14975}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69EF2FF2-03BA-46E5-8910-C1D949C14975}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69EF2FF2-03BA-46E5-8910-C1D949C14975}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07B5847D-1B3D-490C-9C3D-6B67621C4A80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07B5847D-1B3D-490C-9C3D-6B67621C4A80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07B5847D-1B3D-490C-9C3D-6B67621C4A80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07B5847D-1B3D-490C-9C3D-6B67621C4A80}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://ogzkyr.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = OK.Transport.API.Helper\\OK.Transport.API.Helper.csproj
+		SccProjectName1 = OK.Transport.API.Helper
+		SccLocalPath1 = OK.Transport.API.Helper
+		SccProjectUniqueName2 = OK.Transport.API\\OK.Transport.API.csproj
+		SccProjectName2 = OK.Transport.API
+		SccLocalPath2 = OK.Transport.API
+		SccProjectUniqueName3 = OK.Transport.Models\\OK.Transport.Models.csproj
+		SccProjectName3 = OK.Transport.Models
+		SccLocalPath3 = OK.Transport.Models
+		SccProjectUniqueName4 = OK.Transport.Web\\OK.Transport.Web.csproj
+		SccProjectName4 = OK.Transport.Web
+		SccLocalPath4 = OK.Transport.Web
+	EndGlobalSection
+EndGlobal

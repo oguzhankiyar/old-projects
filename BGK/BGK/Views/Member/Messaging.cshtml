@@ -1,0 +1,139 @@
+﻿@model IEnumerable<bgk_mesaj>
+@{
+    int memberID = Convert.ToInt32(ViewBag.memberID);
+    var messages = Model.Where(x => x.GonderenID == memberID);
+    int lastID = messages.Count() == 0 ? 0 : messages.First().Id;
+    var member = BGKFunction.GetMember(memberID);
+    ViewBag.Title = member.AdSoyad;
+}
+
+<script type="text/javascript">
+    $(function () {
+        function GetNewMessages() {
+            var id = $("div.lastMessages").attr("id");
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("GetMessage")",
+                data: { lastID: id, memberID: "@memberID" },
+                cache: false,
+                success: function (data) {
+                    if (data.lastID != -1) {
+                        $.each(data.m, function (i, item) {
+                            var milli = item.YazimTarihi.replace(/\/Date\((-?\d+)\)\//, '$1');
+                            var datetime = new Date(parseInt(milli));
+                            var datetime2 = datetime.getDate() + "." + parseInt(parseInt(datetime.getMonth()) + 1) + "." + datetime.getFullYear() + " " + datetime.getHours() + ":" + datetime.getMinutes() +":"+ datetime.getSeconds();
+                            $.post("@Url.Action("ShortDateTime")", { datetime: datetime2 }, function (msg) {
+                                $(".lastMessages").prepend($("<div class=\"message incoming\"><span class=\"writer\">@member.AdSoyad</span><span class=\"date\">" + msg + "</span><span class=\"message\">" + item.Mesaj + "</span></div>").fadeIn(500));
+                            });
+                        });
+                        $(".lastMessages").attr("id", data.lastID);
+                    }
+                }
+            });
+            return false;
+        }
+        function GetMemberState() {
+            $.post("@Url.Action("MemberState")", { id: "@member.Id" }, function (msg) {
+                $(".memberstate").html(msg);
+            });
+        }
+        setInterval(function () {
+            GetNewMessages();
+            GetMemberState();
+        }, 1000);
+        $("form").keypress(function (e) {
+            if (e.keyCode == 13)
+                return false;
+        });
+        $(window).keyup(function (e) {
+            if (e.keyCode == 13 && $("div.sendmessage input[type='text']").is(":focus")) {
+                SendMessage();
+            }
+        });
+        $("div.message").live({
+            mouseenter:
+               function() {
+                   $(this).children("span.date").show();
+               },
+            mouseleave:
+               function(){
+                   $(this).children("span.date").hide();
+               }
+        });
+    });
+    function SendMessage() {
+        $.post($("div.sendmessage form").attr("action"), $("div.sendmessage form").serialize(), function (msg) {
+            $("div.sendmessage input[type='text']").val("");
+            $(".lastMessages").prepend($(msg).fadeIn(500));
+        });
+    }
+</script>
+<style type="text/css">
+    div.message {
+        padding: 4px;
+        margin-right: 5px;
+        border-top: 2px solid #f5f5f5;
+    }
+        div.message span.writer {
+            float: left;
+            color: gray;
+        }
+        div.message span.date {
+            float: right;
+            display: none;
+            color: gray;
+        }
+    div.message span.message {
+        display: table;
+        width: 100%;
+    }
+    .incoming {
+        color: #ff0000;
+    }
+    .outgoing {
+        color: #4169e1;
+    }
+    #Mesaj {
+        margin-bottom: 3px;
+    }
+</style>
+<div class="table">
+    <div class="title">@member.AdSoyad <label class="memberstate">@Html.GetMemberState(member.Id)</label></div>
+    <div class="content">
+        <div class="sendmessage">
+            @using (Html.BeginForm("SendMessage", "Member", FormMethod.Post))
+            {
+                if (member.Id.ToString() == BGKFunction.GetConfig("adminID"))
+                {
+                    @Html.TextBox("Mesaj", null, new { placeholder = "Bu mesajı cevaplayamazsınız!", disabled = true })
+                }
+                else
+                {
+                    @Html.TextBox("Mesaj", null, new { placeholder = "Mesajınızı yazın ve Enter'layın..", autocomplete = "off" })
+                }
+                @Html.Hidden("GonderenID", Session["memberID"])
+                @Html.Hidden("AliciID", memberID)
+            }
+        </div>
+        <div style="max-height: 575px; overflow-y: auto;">
+            <div id="@lastID" class="lastMessages">
+            @foreach (var message in Model)
+            {
+                <div class="message @(message.GonderenID == member.Id ? "incoming" : "outgoing")">
+                    <span class="writer">@BGKFunction.GetMember(message.GonderenID).AdSoyad.Split(' ')[0]</span>
+                    <span class="date">@Html.ShortDateTime(message.YazimTarihi, true)</span>
+                    <span class="message">
+                        @if (member.Id.ToString() == BGKFunction.GetConfig("adminID"))
+                        {
+                            @Html.Raw(message.Mesaj)
+                        }
+                        else
+                        {
+                            @message.Mesaj
+                        }
+                    </span>
+                </div>
+            }</div>
+        </div>
+    </div>
+</div>

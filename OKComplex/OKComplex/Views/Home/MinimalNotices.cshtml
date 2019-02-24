@@ -1,0 +1,14 @@
+﻿@model IEnumerable<club_notice>
+<div class="table">
+    <div class="title">Duyurular</div>
+    <div class="content">
+        <div class="itemlist">
+            @foreach (var notice in Model)
+            {
+                <ul>
+                    <li><a href="@Url.Action("NoticeDetail", "Home", new { id = notice.Id, seo = notice.Seo })">@notice.Title</a></li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>

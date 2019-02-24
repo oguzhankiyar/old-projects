@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+encoding//src/com/ogzkyr/mobisis/activities/BaseActivity.java=UTF-8
+encoding//src/com/ogzkyr/mobisis/activities/FoodActivity.java=UTF-8
+encoding//src/com/ogzkyr/mobisis/activities/InfoActivity.java=UTF-8
+encoding//src/com/ogzkyr/mobisis/activities/LessonDetailsActivity.java=UTF-8
+encoding//src/com/ogzkyr/mobisis/activities/LoginActivity.java=UTF-8
+encoding//src/com/ogzkyr/mobisis/activities/SettingsActivity.java=UTF-8
+encoding//src/com/ogzkyr/mobisis/activities/StartActivity.java=UTF-8
+encoding//src/com/ogzkyr/mobisis/adapters/FoodAdapter.java=UTF-8
+encoding//src/com/ogzkyr/mobisis/extras/Function.java=UTF-8
+encoding//src/com/ogzkyr/mobisis/service/ObisisService.java=UTF-8
+encoding//src/com/ogzkyr/mobisis/tasks/FoodAsync.java=UTF-8
+encoding//src/com/ogzkyr/mobisis/tasks/LoginAsync.java=UTF-8

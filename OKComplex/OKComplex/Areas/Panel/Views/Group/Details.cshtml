@@ -1,0 +1,41 @@
+﻿@model club_group
+@{
+    ViewBag.Title = "Grup Detayları";
+}
+
+<div class="detail">
+    <ul>
+        <li>@Html.LabelFor(model => model.Name)</li>
+        <li>@Html.DisplayFor(model => model.Name)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.Seo)</li>
+        <li>@Html.DisplayFor(model => model.Seo)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.Sort)</li>
+        <li>@Html.DisplayFor(model => model.Sort)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.IsSubGroup)</li>
+        <li>@Html.EditorFor(model => model.IsSubGroup)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.ParentGroupId)</li>
+        <li>@Html.EditorFor(model => model.ParentGroupId)</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Üye Sayısı")</li>
+        <li>@Model.club_members.Count()</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Yazı Sayısı")</li>
+        <li>@Model.club_posts.Count()</li>
+    </ul>
+</div>
+<p>
+    @Html.Button("Üye Ekle", new { onclick = "OpenNewPage('" + Url.Action("addmember", new { num = Model.Id }) + "');" })
+    @Html.Button("Üye Listesi", new { onclick = "OpenNewPage('" + Url.Action("memberlist", new { num = Model.Id }) + "');" })
+    @Html.Button("Düzenle", new { onclick = "OpenNewPage('" + Url.Action("edit", new { num = Model.Id }) + "');" })
+    @Html.Button("Sil", new { onclick = "OpenNewPage('" + Url.Action("delete", new { num = Model.Id }) + "');" })
+</p>

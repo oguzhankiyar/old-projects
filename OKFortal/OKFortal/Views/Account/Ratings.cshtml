@@ -1,0 +1,42 @@
+﻿@model IEnumerable<rating>
+@{
+    OKDbEntities Db = new OKDbEntities();   
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#ratings").css("font-weight", "bold");
+    });
+</script>
+<div class="profile">
+    @{
+        string username = ViewContext.RouteData.Values["username"].ToString();
+        int count = Convert.ToInt32(ViewBag.count);
+        Html.RenderAction("UserMenu", "Account", new { username = username });
+    }
+    <div class="right">
+        <div class="table">
+            <div class="title">Oylamaları</div>
+            <div class="content">
+                @if (Model.Count() == 0)
+                {
+                    <div class="noitem">Henüz oyladığı konu/cevap yok</div>
+                }
+                @foreach (var rating in Model)
+                {
+                    if (rating.Type == "topic")
+                    {
+                        var topic = Db.topic.Find(rating.ItemId);
+                        <text><b>Konu: </b>@topic.Title</text><b>@rating.Score</b><br />
+                    }
+                    else
+                    {
+                        var comment = Db.comment.Find(rating.ItemId);
+                        <text><b>Cevap: </b>@OK.Summary(comment.Content, 100)</text><b>@rating.Score</b><br />
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Paging("window.location.href='" + Url.Action("ratings", "account", new { username = username, page = "{page}" }) + "'", count, 10)

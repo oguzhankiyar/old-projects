@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/listview_background"
+    android:padding="10dp"
+    android:paddingLeft="5dp"
+    android:layout_marginBottom="15dp" >
+
+    <TextView
+        android:id="@+id/periodName"
+        style="@style/LargeTextStyle"
+     	android:layout_width="wrap_content"  
+     	android:layout_height="wrap_content"  
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+    	android:textColor="@drawable/listview_color" />
+    
+    <TextView
+        android:id="@+id/periodInfo"
+        style="@style/SmallTextStyle"
+     	android:layout_width="wrap_content"
+     	android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/periodName"
+    	android:textColor="@drawable/listview_color" />
+    
+</RelativeLayout>

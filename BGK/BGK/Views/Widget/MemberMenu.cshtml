@@ -1,0 +1,71 @@
+﻿@{
+    int memberID = Convert.ToInt32(Session["memberID"]);
+    var member = BGKFunction.GetMyAccount();
+    int missionCount = member.bgk_gorev_uye.Where(x => x.Onay == null).Count();
+    int notificationCount = member.bgk_bildirim.Where(x => x.Okundu == false).Count();
+}
+<script type="text/javascript">
+    var title = document.title;
+    $(function () {
+        $("div#notifications").css({
+            "left": $("div#membership div.content").position().left,
+            "width": $("div#membership").width(),
+            "height": $("div#membership").height() - 53
+        });
+        setInterval(function () {
+            $.post("@Url.Action("LastLoginDate", "Member")", {}, function () { });
+            var count = 0;
+            $.post("@Url.Action("MemberMessageCount", "Member")", { id: "@memberID" }, function (msg) {
+                $("label.messagecount").html(msg == "0" ? "" : "<b>(" + msg + ")</b>");
+                count += parseInt(msg);
+            });
+            $.post("@Url.Action("MyNotificationCount", "Member")", { }, function (msg) {
+                $("label.notificationcount").html(msg == "0" ? "" : "<b>(" + msg + ")</b>");
+                count += parseInt(msg);
+            });
+            document.title = (count == 0 ? "" : "(" + count + ") ") + title;
+        }, 1000);
+    });
+    function ShowNotifications() {
+        $.post("@Url.Action("MyNotifications", "Member")", {}, function (msg) {
+            $("div#notifications").html(msg).stop().slideToggle();
+        });
+    }
+</script>
+<div id="membership" class="table">
+    <div class="content" style="text-align: center;">
+        Merhaba <b><a href="@Url.Action("Details", "Member", new { id = Session["memberID"] })">@member.AdSoyad (@Html.Raw(member.GetMemberRole().Adi))</a></b><br />
+        <a href="@Url.Action("Messages", "Member")">Mesajlarım <label class="messagecount"></label></a> -
+        <a href="javascript:void(0);" onclick="ShowNotifications();">Bildirimler <label class="notificationcount"></label></a> -
+        @if (member.Yetki == 100)
+        {
+            <a href="@Url.Action("", "", new { area = "Admin" })" target="_blank">Yönetim</a><text> -</text>
+        }
+        <a href="javascript:void(0);" onclick="$.BGK.Modal('@Url.Action("Logout", "Member")');">Çıkış</a>
+        <div id="notifications" style="position: absolute; display: none; background-color: #fff; border-top: 2px solid #ddd;">bildirimler</div>
+    </div>
+
+    <div class="title">Gruplar
+        <span>@Html.ActionLink("Tümü", "Index", "Group")</span>
+    </div>
+    <div class="content">
+        @foreach (var group in member.bgk_grup_uye.ToList())
+        {
+            <a href="@Url.Action("details", "group", new { id = group.GrupID, seo = group.bgk_grup.Adi.ConvertSeo() })">@group.bgk_grup.Adi</a><br />
+        }
+    </div>
+    
+    <div class="title">Görev Kategorileri</div>
+    <div class="content">
+        @Html.ActionLink("Tüm Kategoriler", "categories", "mission")<br />
+        @Html.ActionLink("Aboneliklerim", "subscribedcategories", "mission")<br />
+        @Html.ActionLink("Oluşturduğum Kategoriler", "mycategories", "mission")
+    </div>
+
+    <div class="title">Görevler</div>
+    <div class="content">
+        <a href="@Url.Action("MyMissions", "Mission")">@Html.Raw(missionCount == 0 ? "Görevlerim" : "<b>Görevlerim (" + missionCount + ")</b>")</a><br />
+        @Html.ActionLink("Sıradaki Görevler", "list", "mission")<br />
+        @Html.ActionLink("Oluşturduğum Görevler", "createdmissions", "mission")
+    </div>
+</div>

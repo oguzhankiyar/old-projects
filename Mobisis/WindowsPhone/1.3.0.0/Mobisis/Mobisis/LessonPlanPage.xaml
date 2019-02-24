@@ -1,0 +1,266 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Mobisis.LessonPlanPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" Mode="Minimized" IsMenuEnabled="True">
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Click="AddLesson_Click" Text="ders ekle" />
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+    
+    <Canvas x:Name="PageCanvas" Style="{StaticResource AppPageStyle}">
+        <Canvas.Resources>
+            <Storyboard x:Name="MoveAnimation">
+                <DoubleAnimation Duration="0:0:0.2" To="0" Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="LayoutRoot" d:IsOptimized="True" />
+            </Storyboard>
+        </Canvas.Resources>
+
+        <Canvas x:Name="LayoutRoot" Background="Transparent" Canvas.Left="-350" CacheMode="BitmapCache">
+            <StackPanel Orientation="Horizontal">
+                <Grid x:Name="LeftMenu" CacheMode="BitmapCache" Style="{StaticResource LefMenuStyle}" />
+                <Grid x:Name="Container" CacheMode="BitmapCache" Style="{StaticResource ContainerStyle}" Width="{Binding ActualWidth, ElementName=PageCanvas}" Height="{Binding ActualHeight, ElementName=PageCanvas}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="ders programı" Grid.Row="0" Margin="20,12,12,36" FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}" />
+                    <Grid Grid.Row="1" Margin="20,0,0,0">
+                        <phone:Pivot x:Name="LessonPlan" Padding="-12,0,0,0">
+                            <phone:PivotItem>
+                                <phone:PivotItem.Header>
+                                    <TextBlock Text="Pazartesi" Margin="-12,0,24,0" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                </phone:PivotItem.Header>
+                                <ScrollViewer Margin="0,0,0,20">
+                                    <Grid>
+                                        <TextBlock x:Name="MondayEmptyMessage" FontSize="{StaticResource PhoneFontSizeLarge}" TextWrapping="Wrap" Foreground="#ccc" Margin="0,50,0,0" Visibility="Collapsed" Text="Burası boş!&#10;Aşağıdan ders ekle seçeneğine dokunarak doldurabilirsiniz.." />
+                                        <phone:LongListSelector x:Name="MondayPlan">
+                                            <phone:LongListSelector.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid Margin="0,0,0,10">
+                                                        <Rectangle Fill="Black" Opacity=".4" />
+                                                        <Grid Margin="5,5,5,10">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="Auto" />
+                                                                <RowDefinition Height="Auto" />
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="*" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Lesson.Name}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                                            <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
+                                                                <Run Text="Başlangıç:" Foreground="#ccc" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                                                                <Run Text="{Binding BeginDateTime, StringFormat=hh:mm}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                                            </TextBlock>
+                                                            <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
+                                                                <Run Text="Bitiş:" Foreground="#ccc" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                                                                <Run Text="{Binding EndDateTime, StringFormat=hh:mm}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                                            </TextBlock>
+                                                            <toolkit:ContextMenuService.ContextMenu>
+                                                                <toolkit:ContextMenu>
+                                                                    <toolkit:MenuItem Header="dersi sil" Click="DeleteLesson_Click" />
+                                                                </toolkit:ContextMenu>
+                                                            </toolkit:ContextMenuService.ContextMenu>
+                                                        </Grid>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </phone:LongListSelector.ItemTemplate>
+                                        </phone:LongListSelector>
+                                    </Grid>
+                                </ScrollViewer>
+                            </phone:PivotItem>
+                            <phone:PivotItem>
+                                <phone:PivotItem.Header>
+                                    <TextBlock Text="Salı" Margin="-12,0,24,0" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                </phone:PivotItem.Header>
+                                <ScrollViewer Margin="0,0,0,20">
+                                    <Grid>
+                                        <TextBlock x:Name="TuesdayEmptyMessage" FontSize="{StaticResource PhoneFontSizeLarge}" TextWrapping="Wrap" Foreground="#ccc" Margin="0,50,0,0" Visibility="Collapsed" Text="Burası boş!&#10;Aşağıdan ders ekle seçeneğine dokunarak doldurabilirsiniz.." />
+                                        <phone:LongListSelector x:Name="TuesdayPlan">
+                                            <phone:LongListSelector.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid Margin="0,0,0,10">
+                                                        <Rectangle Fill="Black" Opacity=".4" />
+                                                        <Grid Margin="5,5,5,10">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="Auto" />
+                                                                <RowDefinition Height="Auto" />
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="*" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Lesson.Name}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                                            <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
+                                                                <Run Text="Başlangıç:" Foreground="#ccc" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                                                                <Run Text="{Binding BeginDateTime, StringFormat=hh:mm}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                                            </TextBlock>
+                                                            <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
+                                                                <Run Text="Bitiş:" Foreground="#ccc" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                                                                <Run Text="{Binding EndDateTime, StringFormat=hh:mm}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                                            </TextBlock>
+                                                            <toolkit:ContextMenuService.ContextMenu>
+                                                                <toolkit:ContextMenu>
+                                                                    <toolkit:MenuItem Header="dersi sil" Click="DeleteLesson_Click" />
+                                                                </toolkit:ContextMenu>
+                                                            </toolkit:ContextMenuService.ContextMenu>
+                                                        </Grid>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </phone:LongListSelector.ItemTemplate>
+                                        </phone:LongListSelector>
+                                    </Grid>
+                                </ScrollViewer>
+                            </phone:PivotItem>
+                            <phone:PivotItem>
+                                <phone:PivotItem.Header>
+                                    <TextBlock Text="Çarşamba" Margin="-12,0,24,0" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                </phone:PivotItem.Header>
+                                <ScrollViewer Margin="0,0,0,20">
+                                    <Grid>
+                                        <TextBlock x:Name="WednesdayEmptyMessage" FontSize="{StaticResource PhoneFontSizeLarge}" TextWrapping="Wrap" Foreground="#ccc" Margin="0,50,0,0" Visibility="Collapsed" Text="Burası boş!&#10;Aşağıdan ders ekle seçeneğine dokunarak doldurabilirsiniz.." />
+                                        <phone:LongListSelector x:Name="WednesdayPlan">
+                                            <phone:LongListSelector.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid Margin="0,0,0,10">
+                                                        <Rectangle Fill="Black" Opacity=".4" />
+                                                        <Grid Margin="5,5,5,10">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="Auto" />
+                                                                <RowDefinition Height="Auto" />
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="*" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Lesson.Name}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                                            <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
+                                                                <Run Text="Başlangıç:" Foreground="#ccc" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                                                                <Run Text="{Binding BeginDateTime, StringFormat=hh:mm}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                                            </TextBlock>
+                                                            <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
+                                                                <Run Text="Bitiş:" Foreground="#ccc" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                                                                <Run Text="{Binding EndDateTime, StringFormat=hh:mm}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                                            </TextBlock>
+                                                            <toolkit:ContextMenuService.ContextMenu>
+                                                                <toolkit:ContextMenu>
+                                                                    <toolkit:MenuItem Header="dersi sil" Click="DeleteLesson_Click" />
+                                                                </toolkit:ContextMenu>
+                                                            </toolkit:ContextMenuService.ContextMenu>
+                                                        </Grid>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </phone:LongListSelector.ItemTemplate>
+                                        </phone:LongListSelector>
+                                    </Grid>
+                                </ScrollViewer>
+                            </phone:PivotItem>
+                            <phone:PivotItem>
+                                <phone:PivotItem.Header>
+                                    <TextBlock Text="Perşembe" Margin="-12,0,24,0" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                </phone:PivotItem.Header>
+                                <ScrollViewer Margin="0,0,0,20">
+                                    <Grid>
+                                        <TextBlock x:Name="ThursdayEmptyMessage" FontSize="{StaticResource PhoneFontSizeLarge}" TextWrapping="Wrap" Foreground="#ccc" Margin="0,50,0,0" Visibility="Collapsed" Text="Burası boş!&#10;Aşağıdan ders ekle seçeneğine dokunarak doldurabilirsiniz.." />
+                                        <phone:LongListSelector x:Name="ThursdayPlan">
+                                            <phone:LongListSelector.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid Margin="0,0,0,10">
+                                                        <Rectangle Fill="Black" Opacity=".4" />
+                                                        <Grid Margin="5,5,5,10">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="Auto" />
+                                                                <RowDefinition Height="Auto" />
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="*" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Lesson.Name}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                                            <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
+                                                                <Run Text="Başlangıç:" Foreground="#ccc" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                                                                <Run Text="{Binding BeginDateTime, StringFormat=hh:mm}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                                            </TextBlock>
+                                                            <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
+                                                                <Run Text="Bitiş:" Foreground="#ccc" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                                                                <Run Text="{Binding EndDateTime, StringFormat=hh:mm}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                                            </TextBlock>
+                                                            <toolkit:ContextMenuService.ContextMenu>
+                                                                <toolkit:ContextMenu>
+                                                                    <toolkit:MenuItem Header="dersi sil" Click="DeleteLesson_Click" />
+                                                                </toolkit:ContextMenu>
+                                                            </toolkit:ContextMenuService.ContextMenu>
+                                                        </Grid>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </phone:LongListSelector.ItemTemplate>
+                                        </phone:LongListSelector>
+                                    </Grid>
+                                </ScrollViewer>
+                            </phone:PivotItem>
+                            <phone:PivotItem>
+                                <phone:PivotItem.Header>
+                                    <TextBlock Text="Cuma" Margin="-12,0,24,0" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                </phone:PivotItem.Header>
+                                <ScrollViewer Margin="0,0,0,20">
+                                    <Grid>
+                                        <TextBlock x:Name="FridayEmptyMessage" FontSize="{StaticResource PhoneFontSizeLarge}" TextWrapping="Wrap" Foreground="#ccc" Margin="0,50,0,0" Visibility="Collapsed" Text="Burası boş!&#10;Aşağıdan ders ekle seçeneğine dokunarak doldurabilirsiniz.." />
+                                        <phone:LongListSelector x:Name="FridayPlan">
+                                            <phone:LongListSelector.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid Margin="0,0,0,10">
+                                                        <Rectangle Fill="Black" Opacity=".4" />
+                                                        <Grid Margin="5,5,5,10">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="Auto" />
+                                                                <RowDefinition Height="Auto" />
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="*" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Lesson.Name}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                                            <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
+                                                                <Run Text="Başlangıç:" Foreground="#ccc" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                                                                <Run Text="{Binding BeginDateTime, StringFormat=hh:mm}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                                            </TextBlock>
+                                                            <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
+                                                                <Run Text="Bitiş:" Foreground="#ccc" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                                                                <Run Text="{Binding EndDateTime, StringFormat=hh:mm}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                                            </TextBlock>
+                                                            <toolkit:ContextMenuService.ContextMenu>
+                                                                <toolkit:ContextMenu>
+                                                                    <toolkit:MenuItem Header="dersi sil" Click="DeleteLesson_Click" />
+                                                                </toolkit:ContextMenu>
+                                                            </toolkit:ContextMenuService.ContextMenu>
+                                                        </Grid>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </phone:LongListSelector.ItemTemplate>
+                                        </phone:LongListSelector>
+                                    </Grid>
+                                </ScrollViewer>
+                            </phone:PivotItem>
+                        </phone:Pivot>
+                    </Grid>
+                </Grid>
+            </StackPanel>
+        </Canvas>
+    </Canvas>
+
+</phone:PhoneApplicationPage>

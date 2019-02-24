@@ -1,0 +1,11 @@
+﻿@model bgk_etkinlik_gorevli
+@{
+    ViewBag.Title = Model.bgk_etkinlik.Adi + " Görevlisi";
+}
+<div class="table">
+    <div class="title">@ViewBag.Title</div>
+    <div class="content">
+            @Model.bgk_uye.AdSoyad<br />
+            @("Görev tablosuyla ilişkili")
+    </div>
+</div>

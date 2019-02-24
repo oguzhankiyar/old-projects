@@ -1,0 +1,17 @@
+﻿@model IEnumerable<user>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+}
+
+@section Map {
+    <div class="map">
+        <span>@Html.ActionLink(OK.Config("site-name"), "Index", "Home")</span>
+        <span class="active">Üyeler</span>
+    </div>
+}
+
+@foreach (var user in Model)
+{
+    @user.Name<br />
+}
+@Html.Paging("window.location.href='" + Url.Action("topics", "account", new { type = "all", page = "{page}" }) + "'", count, 10)

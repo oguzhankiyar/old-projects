@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="28d07149d3704724abffb77359e390ac" Name="Diagram1" ZoomLevel="112">
+        <EntityTypeShape EntityType="OKDbModel.category" Width="1.5" PointX="15.75" PointY="2.25" />
+        <EntityTypeShape EntityType="OKDbModel.comment" Width="1.5" PointX="18.75" PointY="3.75" />
+        <EntityTypeShape EntityType="OKDbModel.config" Width="1.5" PointX="21.75" PointY="5.25" />
+        <EntityTypeShape EntityType="OKDbModel.forum" Width="1.5" PointX="4.25" PointY="6.75" />
+        <EntityTypeShape EntityType="OKDbModel.menulink" Width="1.5" PointX="6.75" PointY="8.25" />
+        <EntityTypeShape EntityType="OKDbModel.message" Width="1.5" PointX="9.75" PointY="9.75" />
+        <EntityTypeShape EntityType="OKDbModel.notice" Width="1.5" PointX="12.375" PointY="11.5" />
+        <EntityTypeShape EntityType="OKDbModel.post" Width="1.5" PointX="15.75" PointY="12.75" />
+        <EntityTypeShape EntityType="OKDbModel.rating" Width="1.5" PointX="18.75" PointY="14.25" />
+        <EntityTypeShape EntityType="OKDbModel.topic" Width="1.5" PointX="21.75" PointY="15.75" />
+        <EntityTypeShape EntityType="OKDbModel.user" Width="1.5" PointX="4.25" PointY="17.25" />
+        <EntityTypeShape EntityType="OKDbModel.usertype" Width="1.5" PointX="6.75" PointY="18.75" />
+        <AssociationConnector Association="OKDbModel.forum_ibfk_1" />
+        <AssociationConnector Association="OKDbModel.comment_ibfk_1" />
+        <AssociationConnector Association="OKDbModel.comment_ibfk_2" />
+        <AssociationConnector Association="OKDbModel.topic_ibfk_1" />
+        <AssociationConnector Association="OKDbModel.post_ibfk_1" />
+        <AssociationConnector Association="OKDbModel.rating_ibfk_1" />
+        <AssociationConnector Association="OKDbModel.topic_ibfk_2" />
+        <AssociationConnector Association="OKDbModel.user_ibfk_1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

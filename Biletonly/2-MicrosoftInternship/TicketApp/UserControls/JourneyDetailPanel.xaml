@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="TicketApp.UserControls.JourneyDetailPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:TicketApp.UserControls"
+    xmlns:converter="clr-namespace:TicketApp.Converters"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <UserControl.Resources>
+        <converter:StringListToVisibilityConverter x:Name="visibilityConverter" />
+    </UserControl.Resources>
+    
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <control:DetailBox Label="Taşıyıcı firma:" Value="{Binding Path=Factory.Name}" Grid.ColumnSpan="2" />
+        <control:DetailBox Label="Kalkış istasyonu:" Value="{Binding Path=From.Name}" Grid.Row="1" />
+        <control:DetailBox Label="Varış istasyonu:" Value="{Binding Path=To.Name}" Grid.Row="1" Grid.Column="1" />
+        <control:DetailBox Label="Yolculuk tarihi:" Value="{Binding Path=DepartureDate, StringFormat='d MMMMMMM yyyy, ddd HH:mm'}" Grid.Row="2" Grid.ColumnSpan="2" />
+        <control:DetailBox Label="Güzergah:" Visibility="{Binding Path=Route, Converter={StaticResource visibilityConverter}}" Grid.Row="3" Grid.ColumnSpan="2">
+            <control:DetailBox.Content>
+                <ItemsControl ItemsSource="{Binding Path=Route}" Width="{Binding ActualWidth, ElementName=LayoutRoot}" Grid.Row="1">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,0,5,0">
+                                <Rectangle Fill="Black" Opacity=".1" />
+                                <Grid Margin="5">
+                                    <TextBlock Text="{Binding}" />
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </control:DetailBox.Content>
+        </control:DetailBox>
+        <control:DetailBox Label="Tahmini varış tarihi:" Value="{Binding Path=ArrivalDate, StringFormat='d MMMMMMM yyyy, ddd HH:mm'}" Grid.Row="4" Grid.ColumnSpan="2" />
+        <control:DetailBox Label="Yolculuk süresi:" Value="{Binding Path=Duration, StringFormat=HH:mm}" Grid.Row="5" />
+        <control:DetailBox Label="Birim fiyatı:" Value="{Binding Path=UnitPrice.TotalPrice, StringFormat='{}₺{0:0.##}'}" Grid.Row="5" Grid.Column="1" />
+        <control:DetailBox x:Name="BusProperties" Label="Otobüs özellikleri:" Grid.Row="6" Grid.ColumnSpan="2">
+            <control:DetailBox.Content>
+                <ItemsControl Grid.Row="1" ItemsSource="{Binding Path=Bus.Properties}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="0,2.5">
+                                <TextBlock FontSize="22" FontWeight="Bold" TextWrapping="Wrap" Text="{Binding Path=Name}" />
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Path=Description}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </control:DetailBox.Content>
+        </control:DetailBox>
+    </Grid>
+</UserControl>

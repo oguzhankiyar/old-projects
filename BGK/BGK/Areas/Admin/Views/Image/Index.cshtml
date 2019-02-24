@@ -1,0 +1,54 @@
+﻿@model IEnumerable<bgk_galeri_resim>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);
+    var gallery = (bgk_galeri)ViewBag.Gallery;    
+}
+
+<script type="text/javascript">
+    function ChangeApproval(id) {
+        $.post("@Url.Action("changeapproval")/" + id, { id: id }, function (msg) { $("a#" + id + "_approval").fadeOut(500).fadeIn(500, function () { $("a#" + id + "_approval").attr("class", $("a#" + id + "_approval").attr("class") == "approved" ? "deprecated" : "approved").attr("title", $("a#" + id + "_approval").attr("class") == "approved" ? "Onayı Kaldır" : "Onayla"); }); $("body").append(msg); });
+    }
+</script>
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a href="@Url.Action("index", "gallery")" style="width: 50%;">Galeriler</a>
+            <a class="active" href="@Url.Action("index", "image", new { num = 0 })" style="width: 49.9%;">Resimler</a>
+        </div>
+    </div>
+</div>
+<div class="table">
+    @if (gallery == null)
+    {
+        <div class="title">Resimler
+            <span>@Html.ActionLink("Yeni Resim", "create")</span>
+        </div>
+    }
+    else
+    {
+        <div class="title">@gallery.Adi Galerisindeki Resimler
+            <span>@Html.ActionLink("Yeni Resim", "create", new { galleryID = gallery.Id })</span>
+        </div>
+    }
+    @if (count == 0)
+    {
+        <div class="warning">
+            Gösterilebilecek resim yok :(
+        </div>
+    }
+    <div class="content">
+        <div class="gallery">
+            @foreach (var image in Model) {
+                <div style="display: inline-table; width: 10px; margin: 5px 0 5px 5px; padding: 10px 10px 0; background-color: #f9f9f9; text-align: center;">
+                    <img src="@image.bgk_dosya.DosyaAdi" style="width: 124px;" />
+                    <a id="@(image.Id + "_approval")" class="@(image.Onay == true ? "approved" : "deprecated")" title="@(image.Onay == true ? "Onayı Kaldır" : "Onayla")" href="javascript:void(0)" onclick="ChangeApproval('@image.Id')"></a>
+                    @Html.ActionLink(" ", "edit", new { num = image.Id }, new { @class = "edit", title = "Düzenle" })
+                    @Html.ActionLink(" ", "details", new { num = image.Id }, new { @class = "details", title = "Detay" })
+                    <a class="delete" title="Sil" href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("delete", new { num = image.Id })', 'Eminim, sil', 'Vazgeç');"> </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@Html.Paging()

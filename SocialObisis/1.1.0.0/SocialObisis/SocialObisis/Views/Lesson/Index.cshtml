@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Obisis.Ders>
+@{
+    if (Request.QueryString["type"] == "partial")
+    {
+        Layout = "";
+    }
+    ViewBag.menuID = "obisis_lessons";
+}
+
+<div class="list">
+    @foreach (Obisis.Ders ders in Model)
+    {
+        <ul>
+            <li>
+                <a href="javascript:void(0);" onclick="ChangePage('@Url.Action("Details", "Lesson", new { id = ders.Kod })', 'obisis_lessons');">@ders.Kod @ders.DersAdi</a>
+            </li>
+            <li>@ders.Kredi kredi - ganoya etki @ders.OrtalamayaEtki - @ders.Sinif. sinif - @ders.BasariKatsayisi katsayı</li>
+        </ul>
+    }
+</div>

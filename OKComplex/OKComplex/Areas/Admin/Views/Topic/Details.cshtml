@@ -1,0 +1,67 @@
+﻿@model topic
+@{
+    ViewBag.Title = "Konu Detayları";
+}
+<div class="detail">
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Title)</li>
+        <li>@Html.DisplayFor(model => model.Title)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Content)</li>
+        <li>@Html.DisplayFor(model => model.Content)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.ImageFile)</li>
+        <li>@Html.DisplayFor(model => model.ImageFile)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.forum.Name)</li>
+        <li>@Html.DisplayFor(model => model.forum.Name)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.WriterId)</li>
+        <li>@OK.UserName(Model.user)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Seo)</li>
+        <li>@Html.DisplayFor(model => model.Seo)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Rating)</li>
+        <li>@Html.DisplayFor(model => model.Rating)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.CreationDate)</li>
+        <li>@Html.DisplayFor(model => model.CreationDate)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.ModifyDate)</li>
+        <li>@Html.DisplayFor(model => model.ModifyDate)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.IsSticky)</li>
+        <li>@Html.DisplayFor(model => model.IsSticky)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.IsClosed)</li>
+        <li>@Html.DisplayFor(model => model.IsClosed)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.IsApproval)</li>
+        <li>@Html.DisplayFor(model => model.IsApproval)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.ViewsCount)</li>
+        <li>@Html.DisplayFor(model => model.ViewsCount)</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Cevap Sayısı")</li>
+        <li>@Model.comments.Count()</li>
+    </ul>
+</div>
+<p>
+    @Html.Button("Cevap Ekle", new { onclick = "OpenNewPage('" + Url.Action("create", "comment") + "');" })
+    @Html.Button("Düzenle", new { onclick = "OpenNewPage('" + Url.Action("edit", new { num = Model.Id }) + "');" })
+    @Html.Button("Sil", new { onclick = "OpenNewPage('" + Url.Action("delete", new { num = Model.Id }) + "');" })
+</p>

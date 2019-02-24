@@ -1,0 +1,1 @@
+- Ders programindaki saat gösterimi degistirildi.

@@ -1,0 +1,31 @@
+﻿@model topic
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div class="title">Yeni Konu</div>
+<div class="content">
+    @using (Html.BeginForm("EditTopicSave", "Forum", FormMethod.Post))
+    {    
+        <div class="form">
+            <ul>
+                <li><b>@Html.LabelFor(model => model.Title)</b>@Html.DescriptionFor(model => model.Title)</li>
+                <li>@Html.EditorFor(model => model.Title)</li>
+            </ul>
+            <ul>
+                <li><b>@Html.LabelFor(model => model.Content)</b>@Html.DescriptionFor(model => model.Content)</li>
+                <li>@Html.TextAreaFor(model => model.Content)</li>
+            </ul>
+            @Html.MyEditor("Content", "Standard")
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.ForumId)
+            @Html.HiddenFor(model => model.WriterId)
+            @Html.HiddenFor(model => model.ImageFile)
+            @Html.HiddenFor(model => model.Rating)
+            @Html.HiddenFor(model => model.CreationDate)
+            @Html.HiddenFor(model => model.IsSticky)
+            @Html.HiddenFor(model => model.IsClosed)
+            @Html.HiddenFor(model => model.ViewsCount)
+        </div>
+    }
+</div>

@@ -1,0 +1,60 @@
+﻿@model bgk_etkinlik
+@{
+    ViewBag.Title = Model.Adi;
+    var speakers = Model.bgk_etkinlik_konusmaci;
+    var officers = Model.bgk_etkinlik_gorevli;
+    int i = 0, j = 0;
+}
+<div class="table">
+    <div class="title">@Model.Adi</div>
+    <div class="content">
+        @(Model.bgk_dosya == null ? "" : "<img src=\"" + Model.bgk_dosya.DosyaAdi + "\" style=\"width: 100%;\" />")
+        @Html.Raw(Model.Aciklama)
+        @Html.Raw(Model.BitisTarihi < DateTime.Now ? "<br /><br /><i><b>Not: </b>Bu etkinlik " + Model.BitisTarihi + " tarihinde tamamlanmıştır." : "")
+    </div>
+</div>
+<div class="table">
+    <div class="title">Konuşmacılar (@speakers.Count())</div>
+    <div class="content list members" style="padding: 0;">
+        @if (speakers.Count() == 0)
+        {
+            <div class="warning">
+                Bu etkinlikte konuşmacı bulunmamaktadır.
+            </div>
+        }
+        @foreach (var speaker in speakers)
+        {
+            i++;
+            <a href="@Url.Action("Speaker", new { id = speaker.Id, seo = speaker.AdSoyad.ConvertSeo() })">
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li class="name">@speaker.AdSoyad<br />
+                        <span>@speaker.Konu.GetSummary(100)</span>
+                    </li>
+                </ul>
+            </a>
+        }
+    </div>
+</div>
+<div class="table">
+    <div class="title">Görevliler (@officers.Count())</div>
+    <div class="content list members" style="padding: 0;">
+        @if (officers.Count() == 0)
+        {
+            <div class="warning">
+                Bu etkinlikte görevli bulunmamaktadır.
+            </div>
+        }
+        @foreach (var officer in officers)
+        {
+            j++;
+            <a href="@Url.Action("Officer", new { id = officer.Id, seo = officer.bgk_uye.AdSoyad.ConvertSeo() })">
+                <ul class="@(j % 2 == 0 ? "second" : "first")">
+                    <li class="name">
+                        @officer.bgk_uye.AdSoyad<br />
+                        <span>@officer.bgk_gorev.Adi.GetSummary(100)</span>
+                    </li>
+                </ul>
+            </a>
+        }
+    </div>
+</div>

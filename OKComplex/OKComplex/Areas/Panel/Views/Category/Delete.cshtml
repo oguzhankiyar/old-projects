@@ -1,0 +1,33 @@
+﻿@model club_category
+@{
+    ViewBag.Title = "Kategori Sil";
+    int commentcount = 0;
+    foreach (var post in Model.club_posts.ToList())
+    {
+        commentcount += post.club_comments.Count();
+    }
+}
+
+<h3>Aşağıdaki kategoriyi ve bu kategoriye ait tüm yazıları, yorumları silmek istediğinizden emin misiniz?</h3>
+
+<div class="detail">
+    <ul>
+        <li>@Html.LabelFor(model => model.Name)</li>
+        <li>@Html.DisplayFor(model => model.Name)</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Yazı Sayısı")</li>
+        <li>@Model.club_posts.Count()</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Yorum Sayısı")</li>
+        <li>@commentcount</li>
+    </ul>
+</div>
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.Button("Eminim, sil", new { type = "submit" })
+        @Html.Button("Vazgeç", new { onclick = "OpenNewPage('" + Url.Action("index") + "');" })
+    </p>
+}

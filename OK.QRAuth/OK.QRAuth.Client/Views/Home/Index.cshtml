@@ -1,0 +1,33 @@
+﻿@{ 
+    Layout = null;
+}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="~/scripts/jquery.qrcode-0.11.0.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        if ("WebSocket" in window) {
+            var ws = new WebSocket("ws://auth.ogzkyr.net/api/auth");
+
+            $('#qrcode').html('yükleniyor..');
+            ws.onmessage = function (evt) {
+                var received_msg = evt.data;
+                var obj = JSON.parse(evt.data);
+
+                $('#qrcode').html('');
+
+                if (obj.message == 'hello') {
+                    $('#qrcode').qrcode({
+                        'width': 100,
+                        'height': 100,
+                        'text': obj.token
+                    });
+                } else if (obj.message == 'completed') {
+                    $('#qrcode').html('completed!, token: ' + obj.token);
+                }
+            };
+        }
+    });
+</script>
+
+<div id="qrcode" style="margin: 5% 41%;"></div>

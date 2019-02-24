@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+       android:id="@+id/Container"
+   	style="@style/ContainerStyle" >
+
+    <LinearLayout
+       	android:id="@+id/ContainerLayout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical" >
+
+        <TextView android:id="@+id/tvDate"
+			style="@style/SmallTextStyle"
+			android:layout_width="match_parent"
+			android:gravity="center"
+			android:paddingBottom="15dp" />
+        
+        <TextView android:id="@+id/tvFirstFood"
+			style="@style/MediumTextStyle" />
+        
+        <TextView android:id="@+id/tvFirstCal"
+			style="@style/SmallTextStyle"
+			android:paddingBottom="15dp" />
+        
+        <TextView android:id="@+id/tvSecondFood"
+			style="@style/MediumTextStyle" />
+        
+        <TextView android:id="@+id/tvSecondCal"
+			style="@style/SmallTextStyle"
+			android:paddingBottom="15dp" />
+        
+        <TextView android:id="@+id/tvThirdFood"
+			style="@style/MediumTextStyle" />
+        
+        <TextView android:id="@+id/tvThirdCal"
+			style="@style/SmallTextStyle"
+			android:paddingBottom="15dp" />
+        
+	</LinearLayout>
+
+</ScrollView>

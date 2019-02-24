@@ -1,0 +1,54 @@
+﻿<div class="membership">
+    @if (Session["userinfo"] == null)
+    {
+        <ul>
+            <img src="@Url.Content("~/Themes/Metro/Images/nouser.png")" />
+        </ul>
+        <ul>
+            <li onclick="$.OK.FormModal('@Url.Action("LoginForm", "Account")', 'Giriş', 'Vazgeç');">Giriş</li>
+            <li onclick="$.OK.FormModal('@Url.Action("MyPassword", "Account", new { step = 1 })', 'Devam', 'Vazgeç');">Şifremi Unuttum</li>
+            <li onclick="$.OK.Modal('@Url.Action("Register", "Account", new { step = 1 })');">Üye Ol</li>
+        </ul>
+    }
+    else
+    {
+        OKDbEntities Db = new OKDbEntities();
+        var user = Db.user.Find((int)Session["userid"]);
+        if (user.IsApproval == false)
+        {
+            <script type="text/javascript">$.post("@Url.Action("Logout", "Account")", {}, function () { $.OK.ErrorModal('Hesabınızın onayı kaldırılmış, daha sonra tekrar deneyiniz..'); setTimeout(function () { window.location.reload(); }, 2000); });</script>
+            <ul>
+                <img src="@Url.Content("~/Themes/Metro/Images/nouser.png")" />
+            </ul>
+            <ul>
+                <li onclick="$.OK.FormModal('@Url.Action("LoginForm", "Account")', 'Giriş', 'Vazgeç');">Giriş</li>
+                <li onclick="$.OK.FormModal('@Url.Action("MyPassword", "Account", new { step = 1 })', 'Devam', 'Vazgeç');">Şifremi Unuttum</li>
+                <li onclick="$.OK.Modal('@Url.Action("Register", "Account", new { step = 1 })');">Üye Ol</li>
+            </ul>
+        }
+        else if (user.IsBanned == true)
+        {
+            <script type="text/javascript">$.post("@Url.Action("Logout", "Account")", {}, function () { $.OK.ErrorModal('Hesabınızın sitemize girişi yasaklanmıştır..'); setTimeout(function () { window.location.reload(); }, 2000); });</script>
+            <ul>
+                <img src="@Url.Content("~/Themes/Metro/Images/nouser.png")" />
+            </ul>
+            <ul>
+                <li onclick="$.OK.FormModal('@Url.Action("LoginForm", "Account")', 'Giriş', 'Vazgeç');">Giriş</li>
+                <li onclick="$.OK.FormModal('@Url.Action("MyPassword", "Account", new { step = 1 })', 'Devam', 'Vazgeç');">Şifremi Unuttum</li>
+                <li onclick="$.OK.Modal('@Url.Action("Register", "Account", new { step = 1 })');">Üye Ol</li>
+            </ul>
+        }
+        else
+        {
+            <ul>
+                <img src="@user.ImageFile" />
+            </ul>
+            <ul>
+                <li onclick="$.OK.OpenNewPage('@Url.Action("info", "account", new { username = user.UserName })');"><b>@OK.UserName(user)</b></li>
+                <li class="messages" title="Mesajlarım" onclick="$.OK.OpenNewPage('@Url.Action("messagebox", "account")');">&nbsp;</li>
+                <li class="settings" title="Ayarlarım" onclick="$.OK.OpenNewPage('@Url.Action("settings", "account")');">&nbsp;</li>
+                <li class="logout" title="Çıkış" onclick="$.OK.Modal('@Url.Action("Logout", "Account")');">&nbsp;</li>
+            </ul>
+        }
+    }
+</div>

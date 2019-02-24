@@ -1,0 +1,4 @@
+﻿# Sorunlar
+- Internet bağlantısı olmadığında uygulamanın bunu algılayamayıp hata vermesi,
+- Yemek listesinde o güne ait yemek bulunamadığında uyarı yerine hata vermesi,
+- Sunucuya bağlanamadığında hala giriş yapılıyor uyarısı ve düğmenin disable ayarı

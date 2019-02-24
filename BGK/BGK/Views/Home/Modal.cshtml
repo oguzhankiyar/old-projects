@@ -1,0 +1,12 @@
+﻿
+<div class="title">Size bir mesajımız var!</div>
+<div class="content">
+    @if (Session["memberID"].ToString() != "0")
+    {
+        @Html.Raw(BGKFunction.GetConfig("member-message"))
+    }
+    else
+    {
+        @Html.Raw(BGKFunction.GetConfig("visitor-message"))
+    }
+</div>

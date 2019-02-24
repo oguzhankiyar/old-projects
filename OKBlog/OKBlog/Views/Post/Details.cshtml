@@ -1,0 +1,35 @@
+﻿@model OKBlog.Models.Post
+@{
+    ViewBag.Title = Model.Title;
+    var comments = Model.Comments.Where(x => x.Approval).ToList();
+}
+
+<div class="section">
+    <h2>@Model.Title</h2>
+    @Html.Raw(Model.Content)
+</div>
+<div class="section">
+    <h2>Details</h2>
+    Categories:<br />
+    @foreach (var postcat in Model.Categories)
+    {
+        var category = postcat.Category;
+        <a href="#" onclick="openPage('@Url.Action("Details", "Category", new { url = category.ShortURL })');">@category.Name</a><br />
+    }
+</div>
+<div class="section">
+    <h2>Comments</h2>
+    @if (!comments.Any())
+    {
+        <div>
+            Henüz yorum yapılmamış
+        </div>
+    }
+    @foreach (var comment in comments)
+    {
+        <div>@comment.Content</div>
+    }
+</div>
+<div class="section">
+    <h2>Vote this post</h2>
+</div>

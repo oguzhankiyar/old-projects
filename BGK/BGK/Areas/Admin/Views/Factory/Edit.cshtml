@@ -1,0 +1,47 @@
+﻿@model bgk_firma
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a href="@Url.Action("index", "activity")" style="width: 50%;">Etkinlikler</a>
+            <a class="active" href="@Url.Action("index", "factory")" style="width: 49%;">Firmalar</a>
+        </div>
+    </div>
+</div>
+<div class="table">
+    <div class="title">Firma Ekle</div>
+    <div class="content">
+        <div class="form">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <ul>
+                    <li>@Html.LabelFor(model => model.Adi)</li>
+                    <li>@Html.EditorFor(model => model.Adi)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Adi)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Aciklama)</li>
+                    <li>@Html.TextAreaFor(model => model.Aciklama)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Aciklama)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.UyeID)</li>
+                    <li>@Html.DropDownList("UyeID", string.Empty)</li>
+                    <li>@Html.ValidationMessageFor(model => model.UyeID)</li>
+                </ul>
+                <ul>
+                    <li>Kaydet</li>
+                    <li>
+                        @Html.Button("Kaydet", new { type = "submit" })
+                        @Html.Button("Vazgeç", new { onclick = "window.location.href='" + Url.Action("index") + "';" })
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.ResimID)
+                @Html.MyEditor("Aciklama", "Full")
+            }
+        </div>
+    </div>
+</div>

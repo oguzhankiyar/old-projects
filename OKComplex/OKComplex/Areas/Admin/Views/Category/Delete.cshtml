@@ -1,0 +1,49 @@
+﻿@model category
+@{
+    ViewBag.Title = "Kategori Sil";
+    int topiccount = 0, commentcount = 0;
+    foreach (var forum in Model.forums)
+    {
+        topiccount += forum.topics.Count();
+        foreach (var topic in forum.topics)
+        {
+            commentcount += topic.comments.Count();
+        }
+    }
+}
+
+<h3>Aşağıdaki kategoriyi ve bu kategoriye ait tüm forumları, konuları, cevapları silmek istediğinizden emin misiniz?</h3>
+
+<div class="detail">
+    <ul>
+        <li>@Html.LabelFor(model => model.Name)</li>
+        <li>@Html.DisplayFor(model => model.Name)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.Description)</li>
+        <li>@Html.DisplayFor(model => model.Description)</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Forum Sayısı")</li>
+        <li>@Model.forums.Where(x => x.IsSubForum == false).Count()</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Alt Forum Sayısı")</li>
+        <li>@Model.forums.Where(x => x.IsSubForum == true).Count()</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Konu Sayısı")</li>
+        <li>@topiccount</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Cevap Sayısı")</li>
+        <li>@commentcount</li>
+    </ul>
+</div>
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.Button("Eminim, sil", new { type = "submit" })
+        @Html.Button("Vazgeç", new { onclick = "OpenNewPage('" + Url.Action("index") + "');" })
+    </p>
+}

@@ -1,0 +1,14 @@
+﻿@model IEnumerable<OKBlog.Models.Tag>
+@{
+    ViewBag.Title = "Tags";
+}
+
+<div class="section">
+    <h2>Tags</h2>
+    @foreach (var tag in Model)
+    {
+        <div>
+            @tag.Name
+        </div>
+    }
+</div>

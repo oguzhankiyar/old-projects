@@ -1,0 +1,77 @@
+﻿@model bgk_gorev_uye
+@{
+    ViewBag.Title = "Görev Detayları";
+}
+
+<div class="table">
+    <div class="title">Görev Detayları</div>
+    <div class="content">
+        Görev Adı: @Model.bgk_gorev.Adi<br />
+        Üye Adi: @Model.bgk_uye.AdSoyad<br />
+        Açıklama: @Html.Raw(Model.Aciklama)<br />
+        Rapor: @Html.Raw(Model.Rapor)<br />
+        Dosya: @Model.DosyaID
+        @if (Model.Kabul == true)
+        {
+            <h3>Görev Kabul Edildi</h3>
+        }
+        else if (Model.Kabul == false)
+        {
+            <h3>Görev Reddedildi</h3>
+        }
+        else if (Model.Tamamlandi)
+        {
+            <h3>Teslim Edildi</h3>
+        }
+        else if (Model.Onay == true)
+        {
+            <h3>Henüz Teslim Edilmedi</h3>
+        }
+        else if (Model.Onay == false)
+        {
+            <h3>Görevi Onaylamadı</h3>
+        }
+        else if (Model.Onay == null)
+        {
+            <h3>Onay Bekliyor</h3>
+        }
+    </div>
+</div>
+<div class="buttons">
+    @if (Model.bgk_gorev.OlusturanID == (int)Session["memberID"])
+    {
+        if (Model.Tamamlandi && Model.Kabul == null)
+        {
+            @Html.Button("Görevi Kabul Et", new { onclick = "$.BGK.FormModal('" + Url.Action("AcceptMission", new { id = Model.Id }) + "', 'Kabul Et', 'Vazgeç');" })
+            @Html.Button("Görevi Reddet", new { onclick = "$.BGK.FormModal('" + Url.Action("RevertMission", new { id = Model.Id }) + "', 'Reddet', 'Vazgeç');" })
+        }
+        if (Model.Kabul != true)
+        {
+            @Html.Button("Görevi İptal Et", new { onclick = "$.BGK.FormModal('" + Url.Action("CancelMission", new { id = Model.Id }) + "', 'İptal Et', 'Vazgeç');" })
+        }
+    }
+    else if (Model.UyeID == (int)Session["memberID"] && Model.BitisTarihi < DateTime.Now)
+    {
+        if (Model.Onay == null)
+        {
+            @Html.Button("Görevi Onayla", new { onclick = "$.BGK.FormModal('" + Url.Action("ApproveMission", new { id = Model.GorevID }) + "', 'Onayla', 'Vazgeç');" })
+            @Html.Button("Görevi Geri Çevir", new { onclick = "$.BGK.FormModal('" + Url.Action("UnapproveMission", new { id = Model.GorevID }) + "', 'Geri Çevir', 'Vazgeç');" })
+        }
+        else if (Model.Kabul == false)
+        {
+            @Html.Button("Görevi Tekrar Al", new { onclick = "$.BGK.FormModal('" + Url.Action("TakeMissionAgain", new { id = Model.GorevID }) + "', 'Görevi Al', 'Vazgeç');" })
+        }
+        else if (Model.Tamamlandi == false)
+        {
+            @Html.Button("Teslim Et", new { onclick = "window.location.href='" + Url.Action("CompleteMission", new { id = Model.GorevID }) + "';" })
+        }
+        else if (Model.Tamamlandi && Model.Kabul == false)
+        {
+            @Html.Button("Güncelle", new { onclick = "window.location.href='" + Url.Action("CompleteMission", new { id = Model.GorevID }) + "';" })
+        }
+        if (Model.Kabul != true && Model.Onay != false)
+        {
+            @Html.Button("İptal Et", new { onclick = "$.BGK.FormModal('" + Url.Action("CancelMission", new { id = Model.Id }) + "', 'İptal Et', 'Vazgeç');" })
+        }
+    }
+</div>

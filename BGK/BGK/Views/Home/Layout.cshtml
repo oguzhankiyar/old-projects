@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <meta http-equiv="content-type" content="text/html; charset=iso-8859-9">
+        <title>@Html.Raw(string.IsNullOrEmpty(ViewBag.Title) ? BGKFunction.GetConfig("site-name") : ViewBag.Title + " - " + BGKFunction.GetConfig("site-name"))</title>
+        <link href="@Url.Content("~/Themes/" + BGKFunction.GetConfig("site-theme") + "/Images/favicon.ico")" rel="icon" />
+        <link href="@Url.Content("~/Themes/" + BGKFunction.GetConfig("site-theme") + "/StyleSheet.css")" rel="stylesheet" />
+        <script src="@Url.Content("~/Scripts/jquery-1.7.2.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/BGK.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Tools/CKEditor/ckeditor.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Tools/SyntaxHighlighter/scripts/shCore.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Tools/SyntaxHighlighter/scripts/sh.js")" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(function () {
+                $("div.poll input[type='submit']").click(function () {
+                    var pollID = $(this).attr("id");
+                    var id = "poll_" + pollID;
+                    if ($("div#" + id + " input[name='" + id + "']:checked").length == 0)
+                        $("div#" + id + " div.warning").html("Seçim yapmadınız!");
+                    else {
+                        var selection = "";
+                        for (var i = 0; i < $("div#" + id + " input[name='" + id + "']").length; i++) {
+                            if ($("div#" + id + " input[name='" + id + "']:eq(" + i + ")").is(":checked"))
+                                selection += $("div#" + id + " input[name='" + id + "']:eq(" + i + ")").val() + ",";
+                        }
+                        selection = selection.substr(0, selection.length - 1);
+                        $.post("@Url.Action("Vote", "Poll")", { id: pollID, optionID: selection }, function (msg) {
+                            $("div#" + id + "").html(msg);
+                        });
+                        setTimeout(function () {
+                            $.post("@Url.Action("Results", "Poll")", { id: pollID }, function (msg) {
+                                $("div#" + id + "").html(msg);
+                            });
+                        }, 2000);
+                    }
+                });
+            });
+        </script>
+    </head>
+@{
+    string onload = null;
+    if (BGKFunction.GetConfig("site-on/off") != "0")
+    {
+        if (!string.IsNullOrEmpty(BGKFunction.GetConfig("member-message")) && BGKFunction.GetConfig("member-message") != "0" && Session["memberID"].ToString() != "0" && (Request.Cookies["BGK_member-message"] == null || Request.Cookies["BGK_member-message"].Value != BGKFunction.GetConfig("member-message").ConvertSeo()))
+        {
+            onload = "$.BGK.Modal('" + Url.Action("Modal", "Home") + "');";
+        }
+        else if (!string.IsNullOrEmpty(BGKFunction.GetConfig("visitor-message")) && BGKFunction.GetConfig("visitor-message") != "0" && Session["memberID"].ToString() == "0" && (Request.Cookies["BGK_visitor-message"] == null || Request.Cookies["BGK_visitor-message"].Value != BGKFunction.GetConfig("visitor-message").ConvertSeo()))
+        {
+            onload = "$.BGK.Modal('" + Url.Action("Modal", "Home") + "');";
+        }
+    }
+}
+<body onload="@onload">
+    @if (BGKFunction.GetConfig("site-on/off") == "0" && BGKFunction.GetMyRole().BakimdaGiris)
+    {
+        <div style="position: fixed; display: table; width: 100%; height: 30px; line-height: 30px; background-color: rgba(0, 0, 0, 0.7); color: #fff; text-align: center;">
+            Sitemiz şuan bakımda ve sadece yöneticilere görüntülenmektedir.
+        </div>
+        <div style="display: table; height: 30px;"></div>
+    }
+    <div id="loading"></div>
+    <div id="top"></div> 
+    <div class="header">
+        <div class="logo">
+            <div class="image" onclick="window.location.href='@Url.Action("Index", "Home")'">
+            </div>
+            <div class="social">
+                Takipte kalın<br />
+                <a class="facebook" href="https://www.facebook.com/eruinfosec" target="_blank"></a>
+                <a class="twitter" href="https://twitter.com/ERU_BGK" target="_blank"></a>
+            </div>
+        </div>
+    </div>
+    @{
+        Html.RenderAction("Menu", "Home");
+    }
+    <div class="page">
+        <div class="container">
+            @RenderSection("Map", required: false)
+            <div class="table-group-1">
+                @if (ViewContext.RouteData.Values["controller"].ToString() == "Post")
+                {
+                    Html.RenderAction("PinnedPosts", "Widget");
+                }
+                @if (BGKFunction.GetConfig("site-on/off") == "1" || BGKFunction.GetMyRole().BakimdaGiris)
+                {
+                    <div class="first">
+                        @RenderBody()
+                    </div>
+                    <div class="second">
+                        @{
+                            string controller = ViewContext.RouteData.Values["controller"].ToString(); 
+                        }
+                        @if (controller == "Post" || controller == "Page" || controller == "Poll" || controller == "Gallery")
+                        {
+                            if (Session["memberID"].ToString() == "0")
+                            {
+                                Html.RenderAction("AboutBGK", "Widget");
+                            }
+                            else
+                            {
+                                Html.RenderAction("MemberMenu", "Widget");
+                            }
+                            Html.RenderAction("Search", "Widget");
+                            Html.RenderAction("Posts", "Widget");
+                            Html.RenderAction("Gallery", "Widget");
+                            if (ViewContext.RouteData.Values["controller"].ToString() != "Poll")
+                            {
+                                Html.RenderAction("Poll", "Widget");
+                            }
+                        }
+                        else if (Session["memberID"].ToString() != "0")
+                        {
+                            Html.RenderAction("MemberMenu", "Widget");
+                        }
+                        @RenderSection("Widgets", required: false)
+                    </div>
+                }
+                else
+                {
+                    @RenderBody()
+                }
+            </div>
+        </div>
+        <div class="footer">
+            @Html.Raw(BGKFunction.GetConfig("copyright"))
+            <div style="float: right;">
+                @{
+                    Html.RenderAction("Membership", "Home");
+                }
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

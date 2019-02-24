@@ -1,0 +1,68 @@
+﻿@model KOK.Models.link
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>link</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Adi)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Adi)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Adres)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Adres)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Sira)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sira)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Onay)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Onay)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AltLink)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AltLink)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UstLinkID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UstLinkID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AnaMenu)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AnaMenu)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

@@ -1,0 +1,118 @@
+﻿@model bgk_gorev_kategori
+@{
+    var missions = Model.bgk_gorev;
+    var subscribtions = Model.bgk_gorev_kategori_uye;
+    int i = 0, j = 0;
+}
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a class="active" href="@Url.Action("index", "missioncategory")" style="width: 50%;">Kategoriler</a>
+            <a href="@Url.Action("index", "mission")" style="width: 49.9%;">Görevler</a>
+        </div>
+    </div>
+</div>
+
+<div class="table-group-1">
+    <div class="first">
+        <div class="table">
+            <div class="title">@Model.Adi</div>
+            <div class="content details">
+                @Html.Raw(Model.Aciklama)
+            </div>
+        </div>
+        <div class="buttons">
+            @Html.Button("Görev Ekle", new { onclick = "window.location.href='" + Url.Action("create", "mission", new { categoryID = Model.Id }) + "';" })
+            @Html.Button("Düzenle", new { onclick = "window.location.href='" + Url.Action("edit", new { num = Model.Id }) + "';" })
+            @Html.Button("Kategoriyi Sil", new { onclick = "$.BGK.FormModal('" + Url.Action("delete", new { num = Model.Id }) + "', 'Eminim, sil', 'Vazgeç');" })
+        </div>
+        <div class="table">
+            <div class="title">Görevler (@missions.Count())</div>
+            <div class="content list missions" style="padding: 0;">
+                @if (missions.Count == 0)
+                {
+                    <div class="warning">
+                        Bu kategoriye henüz görev eklenmemiş :(
+                    </div>
+                }
+                else
+                {
+                    <ul>
+                        <li style="width: 45%;">@Html.Label("Adı")</li>
+                        <li style="width: 28%;">@Html.Label("Oluşturan")</li>
+                        <li style="width: 10%;">@Html.Label("Puan")</li>
+                        <li style="width: 15%;">@Html.Label("Araçlar")</li>
+                    </ul>
+                    foreach (var mission in missions)
+                    {
+                        i++;
+                        <ul class="@(i % 2 == 0 ? "second" : "first")">
+                            <li style="width: 45%;">@mission.Adi</li>
+                            <li style="width: 28%;">@mission.bgk_uye.AdSoyad</li>
+                            <li style="width: 10%;">@mission.Puan</li>
+                            <li style="width: 15%;">
+                                @Html.ActionLink(" ", "edit", "mission", new { num = mission.Id }, new { @class = "edit", title = "Düzenle" })
+                                @Html.ActionLink(" ", "details", "mission", new { num = mission.Id }, new { @class = "details", title = "Detay" })
+                                <a class="delete" title="Sil" href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("delete", "mission", new { num = mission.Id })', 'Eminim, sil', 'Vazgeç');"> </a>
+                            </li>
+                        </ul>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <div class="second">
+        <div class="table">
+            <div class="title">Detaylar</div>
+            <div class="content details">
+                <ul>
+                    <li><img src="@BGKFunction.GetFile(Model.bgk_dosya)" height="50" /></li>
+                    <li style="line-height: 50px; font-weight: bold;">@Model.Adi</li>
+                </ul>
+                <ul>
+                    <li>Kategori Sahibi</li>
+                    <li>@Html.ActionLink(Model.bgk_uye.AdSoyad, "details", "member", new { num = Model.OlusturanID })</li>
+                </ul>
+                @if (Model.PuanSiniri != null)
+                {
+                    <ul>
+                        <li>Puan Sınırı</li>
+                        <li>@Model.PuanSiniri</li>
+                    </ul>
+                }
+                <ul>
+                    <li>Sıra</li>
+                    <li>@Model.Sira</li>
+                </ul>
+                <ul>
+                    <li>Onay</li>
+                    <li>@Html.DisplayFor(model => model.Onay)</li>
+                </ul>
+                <ul>
+                    <li>Abone Sayısı</li>
+                    <li>@subscribtions.Count()</li>
+                </ul>
+                <ul>
+                    <li>Görev Sayısı</li>
+                    <li>@missions.Count()</li>
+                </ul>
+            </div>
+        </div>
+        <div class="table">
+            <div class="title">Aboneler (@subscribtions.Count())</div>
+            <div class="content normal-list">
+                @foreach (var member in subscribtions)
+                {
+                    j++;
+                    <a href="@Url.Action("SubscribtionDetails", new { num = member.Id })">
+                        <ul class="@(j % 2 == 0 ? "second" : "first")">
+                            <li>@member.bgk_uye.AdSoyad</li>
+                            <li style="float: right;">@Html.ShortDateTime(member.BaslamaTarihi)</li>
+                        </ul>
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</div>

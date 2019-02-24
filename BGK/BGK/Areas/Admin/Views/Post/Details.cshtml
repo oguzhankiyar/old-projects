@@ -1,0 +1,41 @@
+﻿@model bgk_yazi
+
+<div class="title">@Model.Baslik</div>
+<div class="content">
+    <div class="details">
+        <ul>
+            <li>@Html.DisplayNameFor(model => model.KategoriID)</li>
+            <li>@Html.DisplayFor(model => model.bgk_kategori.Adi)</li>
+        </ul>
+        <ul>
+            <li>@Html.DisplayNameFor(model => model.UyeID)</li>
+            <li>@Model.bgk_uye.AdSoyad</li>
+        </ul>
+        <ul>
+            <li>@Html.DisplayNameFor(model => model.Seo)</li>
+            <li>@Html.DisplayFor(model => model.Seo)</li>
+        </ul>
+        <ul>
+            <li>@Html.DisplayNameFor(model => model.bgk_oylama)</li>
+            <li>@BGKFunction.GetPostPoint(Model.Id)</li>
+        </ul>
+        <ul>
+            <li>@Html.DisplayNameFor(model => model.YazimTarihi)</li>
+            <li>@Html.DisplayFor(model => model.YazimTarihi)</li>
+        </ul>
+        <ul>
+            <li>@Html.DisplayNameFor(model => model.Onay)</li>
+            <li>@Html.DisplayFor(model => model.Onay)</li>
+        </ul>
+        <ul>
+            <li>@Html.Label("Yorum Sayısı")</li>
+            <li>@Model.bgk_yorum.Count()</li>
+        </ul>
+    </div>
+</div>
+<div class="buttons">
+    @Html.Button("Yorumları", new { onclick = "window.location.href='" + Url.Action("index", "comment", new { postID = Model.Id }) + "';" })
+    @Html.Button("Sitede Gör", new { onclick = "window.open('" + Url.Action("details", "post", new { area = "", id = Model.Id, seo = Model.Seo }) + "');" })
+    @Html.Button("Düzenle", new { onclick = "window.location.href='" + Url.Action("edit", new { num = Model.Id }) + "';" })
+    @Html.Button("Sil", new { onclick = "window.location.href='" + Url.Action("delete", new { num = Model.Id }) + "';" })
+</div>

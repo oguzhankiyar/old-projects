@@ -1,0 +1,90 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Mobisis.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <Canvas x:Name="PageCanvas" Style="{StaticResource AppPageStyle}">
+        <Canvas.Resources>
+            <Storyboard x:Name="MoveAnimation">
+                <DoubleAnimation Duration="0:0:0.2" To="0" Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="LayoutRoot" d:IsOptimized="True" />
+            </Storyboard>
+        </Canvas.Resources>
+
+        <Canvas x:Name="LayoutRoot" Background="Transparent" Canvas.Left="-350" CacheMode="BitmapCache">
+            <StackPanel Orientation="Horizontal">
+                <Grid x:Name="LeftMenu" CacheMode="BitmapCache" Style="{StaticResource LefMenuStyle}" />
+                <Grid x:Name="Container" CacheMode="BitmapCache" Style="{StaticResource ContainerStyle}" Width="{Binding ActualWidth, ElementName=PageCanvas}" Height="{Binding ActualHeight, ElementName=PageCanvas}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="ayarlar" Grid.Row="0" Margin="12,12,12,36" FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}" />
+                    <ScrollViewer Grid.Row="1" Margin="0,0,0,35">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <toolkit:ToggleSwitch x:Name="NotificationState" Grid.Row="0" Grid.ColumnSpan="2" Checked="NotificationState_CheckedChange" Unchecked="NotificationState_CheckedChange" Header="Yeni not açıklandığında haberdar et" />
+
+                            <TextBlock Text="Vize notunun ortalamaya etkisi&#10;Değeri 100 üzerinden girin." Grid.Row="1" Grid.Column="0" Style="{StaticResource PhoneTextSubtleStyle}" VerticalAlignment="Center" />
+                            <TextBox x:Name="MidtermFactor" Grid.Row="1" Grid.Column="1" Width="100" TextChanged="MidtermFactor_TextChanged" InputScope="Number" TextAlignment="Center" />
+
+                            <TextBlock Text="Final notunun ortalamaya etkisi&#10;Değeri 100 üzerinden girin." Grid.Row="2" Grid.Column="0" Style="{StaticResource PhoneTextSubtleStyle}" VerticalAlignment="Center" />
+                            <TextBox x:Name="FinalFactor" Grid.Row="2" Grid.Column="1" Width="100" TextChanged="FinalFactor_TextChanged" InputScope="Number" TextAlignment="Center" />
+
+                            <TextBlock Text="FD alt sınırı" Grid.Row="3" Grid.Column="0" Style="{StaticResource PhoneTextSubtleStyle}" VerticalAlignment="Center" />
+                            <TextBox x:Name="FD_Limit" Grid.Row="3" Grid.Column="1" Width="100" TextChanged="FD_Limit_TextChanged" InputScope="Number" TextAlignment="Center" />
+
+                            <TextBlock Text="DD alt sınırı" Grid.Row="4" Grid.Column="0" Style="{StaticResource PhoneTextSubtleStyle}" VerticalAlignment="Center" />
+                            <TextBox x:Name="DD_Limit" Grid.Row="4" Grid.Column="1" Width="100" TextChanged="DD_Limit_TextChanged" InputScope="Number" TextAlignment="Center" />
+
+                            <TextBlock Text="DC alt sınırı" Grid.Row="5" Grid.Column="0" Style="{StaticResource PhoneTextSubtleStyle}" VerticalAlignment="Center" />
+                            <TextBox x:Name="DC_Limit" Grid.Row="5" Grid.Column="1" Width="100" TextChanged="DC_Limit_TextChanged" InputScope="Number" TextAlignment="Center" />
+
+                            <TextBlock Text="CC alt sınırı" Grid.Row="6" Grid.Column="0" Style="{StaticResource PhoneTextSubtleStyle}" VerticalAlignment="Center" />
+                            <TextBox x:Name="CC_Limit" Grid.Row="6" Grid.Column="1" Width="100" TextChanged="CC_Limit_TextChanged" InputScope="Number" TextAlignment="Center" />
+
+                            <TextBlock Text="CB alt sınırı" Grid.Row="7" Grid.Column="0" Style="{StaticResource PhoneTextSubtleStyle}" VerticalAlignment="Center" />
+                            <TextBox x:Name="CB_Limit" Grid.Row="7" Grid.Column="1" Width="100" TextChanged="CB_Limit_TextChanged" InputScope="Number" TextAlignment="Center" />
+
+                            <TextBlock Text="BB alt sınırı" Grid.Row="8" Grid.Column="0" Style="{StaticResource PhoneTextSubtleStyle}" VerticalAlignment="Center" />
+                            <TextBox x:Name="BB_Limit" Grid.Row="8" Grid.Column="1" Width="100" TextChanged="BB_Limit_TextChanged" InputScope="Number" TextAlignment="Center" />
+
+                            <TextBlock Text="BA alt sınırı" Grid.Row="9" Grid.Column="0" Style="{StaticResource PhoneTextSubtleStyle}" VerticalAlignment="Center" />
+                            <TextBox x:Name="BA_Limit" Grid.Row="9" Grid.Column="1" Width="100" TextChanged="BA_Limit_TextChanged" InputScope="Number" TextAlignment="Center" />
+
+                            <TextBlock Text="AA alt sınırı" Grid.Row="10" Grid.Column="0" Style="{StaticResource PhoneTextSubtleStyle}" VerticalAlignment="Center" />
+                            <TextBox x:Name="AA_Limit" Grid.Row="10" Grid.Column="1" Width="100" TextChanged="AA_Limit_TextChanged" InputScope="Number" TextAlignment="Center" />
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
+            </StackPanel>
+        </Canvas>
+    </Canvas>
+</phone:PhoneApplicationPage>

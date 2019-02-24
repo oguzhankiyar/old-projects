@@ -1,0 +1,88 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Mobisis.FoodListsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <Canvas x:Name="PageCanvas" Style="{StaticResource AppPageStyle}">
+        <Canvas.Resources>
+            <Storyboard x:Name="MoveAnimation">
+                <DoubleAnimation Duration="0:0:0.2" To="0" Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="LayoutRoot" d:IsOptimized="True" />
+            </Storyboard>
+        </Canvas.Resources>
+
+        <Canvas x:Name="LayoutRoot" Background="Transparent" Canvas.Left="-350" CacheMode="BitmapCache">
+            <StackPanel Orientation="Horizontal">
+                <Grid x:Name="LeftMenu" CacheMode="BitmapCache" Style="{StaticResource LefMenuStyle}" />
+                <Grid x:Name="Container" CacheMode="BitmapCache" Style="{StaticResource ContainerStyle}" Width="{Binding ActualWidth, ElementName=PageCanvas}" Height="{Binding ActualHeight, ElementName=PageCanvas}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="yemek listesi" Grid.Row="0" Margin="20,12,12,36" FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}" />
+                    <Grid Grid.Row="1" Margin="20,0,0,0">
+                        <phone:Pivot x:Name="FoodLists" Padding="-12,0,0,0">
+                            <phone:Pivot.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Date, StringFormat=d MMMM ddddddd}" Margin="-12,0,24,0" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                </DataTemplate>
+                            </phone:Pivot.HeaderTemplate>
+                            <phone:Pivot.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid Grid.Row="0"  Margin="0,0,0,10">
+                                            <Rectangle Fill="Black" Opacity=".4" />
+                                            <Grid Margin="5,5,5,10">
+                                                <TextBlock Text="{Binding Foods[0].Name}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                                <TextBlock Margin="10,45,0,0" FontSize="{StaticResource PhoneFontSizeNormal}">
+                                                    <Run Text="{Binding Foods[0].Calorie}"/>
+                                                    <Run Text=" kcal"/>
+                                                </TextBlock>
+                                            </Grid>
+                                        </Grid>
+                                        <Grid Grid.Row="1"  Margin="0,0,0,10">
+                                            <Rectangle Fill="Black" Opacity=".4" />
+                                            <Grid Margin="5,5,5,10">
+                                                <TextBlock Text="{Binding Foods[1].Name}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                                <TextBlock Margin="10,45,0,0" FontSize="{StaticResource PhoneFontSizeNormal}">
+                                                    <Run Text="{Binding Foods[1].Calorie}"/>
+                                                    <Run Text=" kcal"/>
+                                                </TextBlock>
+                                            </Grid>
+                                        </Grid>
+                                        <Grid Grid.Row="2"  Margin="0,0,0,10">
+                                            <Rectangle Fill="Black" Opacity=".4" />
+                                            <Grid Margin="5,5,5,10">
+                                                <TextBlock Text="{Binding Foods[2].Name}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                                                <TextBlock Margin="10,45,0,0" FontSize="{StaticResource PhoneFontSizeNormal}">
+                                                    <Run Text="{Binding Foods[2].Calorie}"/>
+                                                    <Run Text=" kcal"/>
+                                                </TextBlock>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>
+                            </phone:Pivot.ItemTemplate>
+                        </phone:Pivot>
+                    </Grid>
+                </Grid>
+            </StackPanel>
+        </Canvas>
+    </Canvas>
+
+</phone:PhoneApplicationPage>

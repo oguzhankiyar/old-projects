@@ -1,0 +1,56 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TicketApp.Pages.Help.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    Orientation="Portrait"
+    mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource PageStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <control:Header />
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="5">
+                <control:Title Value="Biletonly hakkında" />
+                <TextBlock TextWrapping="Wrap" LineHeight="30" FontWeight="Light" Padding="5">
+                    Biletonly, otobüs ve uçak firmalarını tercihinize sunarak daha hızlı ve kolay bir şekilde seyehat etmenize yardımcı olmak amacıyla geliştirilmiştir.
+                </TextBlock>
+                
+                <control:Title Value="Neler yapılabilir?" />
+                <TextBlock TextWrapping="Wrap" LineHeight="30" FontWeight="Light" Padding="5">
+                    Biletonly uygulamasıyla;<LineBreak />
+                    - Belirli bir tarihe göre sefer aranabilir.<LineBreak />
+                    - Uygun seferleri listelenebilir.<LineBreak />
+                    - Seferler arasında filtreleme yaparak kendinize en uygun seferleri bulanabilir.<LineBreak />
+                    - Sefer detaylarını inceleyebilir.<LineBreak />
+                    - Koltuk seçimi(otobüs biletleri için) yapabilir.<LineBreak />
+                    - Yolcuları kolayca eklenebilir veya favorilerden seçilebilir.<LineBreak />
+                    - Seçilen sefer için rezervasyon yapılabilir veya satın alınabilir.<LineBreak />
+                    - Daha önceden yapılan bilet işlemleri aranabilir.<LineBreak />
+                    - Rezervasyonlar satışa çevrilebilir veya iptal edilebilir.<LineBreak />
+                    - Satın alınan biletler *iptal edilebilir.<LineBreak />
+                    <LineBreak />
+                    (*) Satın aldığınız biletlerini her durumda iptal edemeyebilirsiniz. Daha detaylı bilgi için 'satış sonrası' bölümünü inceleyiniz.<LineBreak /><LineBreak />
+                    Biletonly bu işlemlerde 'ipektr' servislerini kullanır.               
+                </TextBlock>
+                
+                <control:Title Value="Kim geliştiriyor?" />
+                <TextBlock TextWrapping="Wrap" LineHeight="30" FontWeight="Light" Padding="5">
+                    Biletonly uygulaması Oğuzhan Kiyar tarafından geliştirilmektedir.
+                </TextBlock>
+
+                <HyperlinkButton Content="www.ogzkyr.net" Foreground="Orange" Click="HyperlinkButton_Click" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</phone:PhoneApplicationPage>

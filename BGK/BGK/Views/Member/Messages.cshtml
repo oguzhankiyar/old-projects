@@ -1,0 +1,70 @@
+﻿@model IEnumerable<bgk_mesaj>
+@{
+    int memberID = (int)Session["memberID"];
+    var messages = Model.OrderByDescending(x => x.YazimTarihi).GroupBy(x => x.GonderenID == memberID ? x.AliciID : x.GonderenID);
+    int count = messages.Count();
+    int skip = Convert.ToInt32(ViewBag.skip);
+    int take = Convert.ToInt32(ViewBag.take);
+    BGKEntities Db = new BGKEntities();
+    List<SelectListItem> members = new List<SelectListItem>();
+    members.Add(new SelectListItem { Text = "Yeni bir konuşma başlat" });
+    foreach (var member in Db.bgk_uye.Where(x => x.Onay == true).OrderBy(x => x.AdSoyad))
+    {
+        if (member.Id.ToString() != BGKFunction.GetConfig("memberID") && member.IsOnline() && Db.bgk_mesaj.Where(x => (x.GonderenID == memberID && x.AliciID == member.Id) || (x.GonderenID == member.Id && x.AliciID == memberID)).Count() == 0 && memberID != member.Id)
+        {
+            members.Add(new SelectListItem { Text = member.AdSoyad + (member.IsOnline() ? " (Online)" : "") , Value = member.Id.ToString() });
+        }
+    }
+    foreach (var member in Db.bgk_uye.Where(x => x.Onay == true).OrderBy(x => x.AdSoyad))
+    {
+        if (member.Id.ToString() != BGKFunction.GetConfig("memberID") && !member.IsOnline() && Db.bgk_mesaj.Where(x => (x.GonderenID == memberID && x.AliciID == member.Id) || (x.GonderenID == member.Id && x.AliciID == memberID)).Count() == 0 && memberID != member.Id)
+        {
+            members.Add(new SelectListItem { Text = member.AdSoyad + (member.IsOnline() ? " (Online)" : ""), Value = member.Id.ToString() });
+        }
+    }
+}
+<script type="text/javascript">
+    function GetMessageInfo(memberID) {
+        setInterval(function () {
+            $.post("@Url.Action("MemberState")", { id: memberID }, function (msg) {
+                $("#memberstate_" + memberID).html(msg);
+            });
+            $.post("@Url.Action("MemberMessageCount")", { id: "@memberID", memberID: memberID }, function (msg) {
+                $("#messagecount_" + memberID).html(msg == "0" ? "" : "<b>" + msg + " mesaj</b>");
+                $("#messagecount_" + memberID).parent("div").css("background-color", msg == "0" ? "#ffffff" : "#f5f5f5");
+            });
+        }, 100);
+    }
+    $(function () {
+        $("#NewMember").change(function () {
+            window.location.href = "@Url.Action("Messaging")/" + $(this).val();
+        });
+    });
+</script>
+<div class="table">
+    <div class="title">Mesaj Kutum</div>
+    <div class="content">
+        @Html.DropDownList("NewMember", members)
+        @if (count == 0)
+        {
+            <div class="warning">
+                Henüz mesajınız yok.
+            </div>
+        }
+        @foreach (var message in messages.Skip(skip).Take(take))
+        {
+            var msg = message.First();
+            var member = BGKFunction.GetMember(msg.GonderenID == memberID ? msg.AliciID : msg.GonderenID);
+            <a href="@Url.Action("Messaging", new { id = member.Id })">
+                <div style="margin: 2px; padding: 5px;">
+                    @member.AdSoyad <span id="@("memberstate_" + member.Id)">@Html.GetMemberState(member.Id)</span> <span id="@("messagecount_" + member.Id)"></span>
+                    <span style="float: right;">@Html.ShortDateTime(msg.YazimTarihi, true)</span>
+                </div>
+            </a>
+            <script type="text/javascript">
+                GetMessageInfo("@member.Id");
+            </script>
+        }
+    </div>
+</div>
+@Html.Paging()

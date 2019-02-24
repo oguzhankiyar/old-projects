@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://obisis.erciyes.edu.tr" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:i0="http://tempuri.org/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ObisisMobileService" targetNamespace="http://obisis.erciyes.edu.tr" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:import namespace="http://tempuri.org/" location="http://obisis.erciyes.edu.tr/mws/ObisisMobileService.svc?wsdl=wsdl0" />
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://obisis.erciyes.edu.tr/Imports">
+      <xsd:import schemaLocation="http://obisis.erciyes.edu.tr/mws/ObisisMobileService.svc?xsd=xsd0" namespace="http://obisis.erciyes.edu.tr" />
+      <xsd:import schemaLocation="http://obisis.erciyes.edu.tr/mws/ObisisMobileService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://obisis.erciyes.edu.tr/mws/ObisisMobileService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ObisisMobileWCF" />
+      <xsd:import schemaLocation="http://obisis.erciyes.edu.tr/mws/ObisisMobileService.svc?xsd=xsd3" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IObisisMobileService_OgrenciBilgiGetir_InputMessage">
+    <wsdl:part name="parameters" element="tns:OgrenciBilgiGetir" />
+  </wsdl:message>
+  <wsdl:message name="IObisisMobileService_OgrenciBilgiGetir_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OgrenciBilgiGetirResponse" />
+  </wsdl:message>
+  <wsdl:message name="IObisisMobileService_OgrenciDonemGetir_InputMessage">
+    <wsdl:part name="parameters" element="tns:OgrenciDonemGetir" />
+  </wsdl:message>
+  <wsdl:message name="IObisisMobileService_OgrenciDonemGetir_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OgrenciDonemGetirResponse" />
+  </wsdl:message>
+  <wsdl:message name="IObisisMobileService_GetDataUsingDataContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
+  </wsdl:message>
+  <wsdl:message name="IObisisMobileService_GetDataUsingDataContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IObisisMobileService">
+    <wsdl:operation name="OgrenciBilgiGetir">
+      <wsdl:input wsaw:Action="http://obisis.erciyes.edu.tr/IObisisMobileService/OgrenciBilgiGetir" message="tns:IObisisMobileService_OgrenciBilgiGetir_InputMessage" />
+      <wsdl:output wsaw:Action="http://obisis.erciyes.edu.tr/IObisisMobileService/OgrenciBilgiGetirResponse" message="tns:IObisisMobileService_OgrenciBilgiGetir_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OgrenciDonemGetir">
+      <wsdl:input wsaw:Action="http://obisis.erciyes.edu.tr/IObisisMobileService/OgrenciDonemGetir" message="tns:IObisisMobileService_OgrenciDonemGetir_InputMessage" />
+      <wsdl:output wsaw:Action="http://obisis.erciyes.edu.tr/IObisisMobileService/OgrenciDonemGetirResponse" message="tns:IObisisMobileService_OgrenciDonemGetir_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <wsdl:input wsaw:Action="http://obisis.erciyes.edu.tr/IObisisMobileService/GetDataUsingDataContract" message="tns:IObisisMobileService_GetDataUsingDataContract_InputMessage" />
+      <wsdl:output wsaw:Action="http://obisis.erciyes.edu.tr/IObisisMobileService/GetDataUsingDataContractResponse" message="tns:IObisisMobileService_GetDataUsingDataContract_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:service name="ObisisMobileService">
+    <wsdl:port name="BasicHttpBinding_IObisisMobileService" binding="i0:BasicHttpBinding_IObisisMobileService">
+      <soap:address location="http://obisis.erciyes.edu.tr/mws/ObisisMobileService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

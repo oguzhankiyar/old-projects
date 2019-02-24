@@ -1,0 +1,48 @@
+﻿@model club_group
+@{
+    ViewBag.Title = "Grup Düzenle";
+    InfosecEntities Db = new InfosecEntities();
+    List<SelectListItem> parentgroups = new List<SelectListItem>();
+    parentgroups.Add(new SelectListItem { Text = null, Value = null, Selected = true });
+    foreach (var group in Db.club_group.Where(x => x.IsSubGroup == false))
+    {
+        parentgroups.Add(new SelectListItem { Text = group.Name, Value = group.Id.ToString() });
+    }
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm())
+{
+    <div class="form">
+        <ul>
+            <li>@Html.LabelFor(model => model.Name)</li>
+            <li>@Html.EditorFor(model => model.Name)</li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.Description)</li>
+            <li>@Html.TextAreaFor(model => model.Description)</li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.IsSubGroup)</li>
+            <li>@Html.EditorFor(model => model.IsSubGroup)</li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.ParentGroupId)</li>
+            <li>@Html.DropDownListFor(model => model.ParentGroupId, parentgroups)</li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.Sort)</li>
+            <li>@Html.EditorFor(model => model.Sort)</li>
+        </ul>
+        <ul>
+            <li>Kaydet</li>
+            <li>
+                @Html.Button("Kaydet", new { type = "submit" })
+                @Html.Button("Vazgeç", new { onclick = "OpenNewPage('" + Url.Action("index") + "');" })
+            </li>
+        </ul>
+        @Html.HiddenFor(model => model.Id)
+    </div>
+}

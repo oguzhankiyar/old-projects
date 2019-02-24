@@ -1,0 +1,149 @@
+﻿@model IEnumerable<Obisis.Ders>
+@{
+    if (Request.QueryString["type"] == "partial")
+    {
+        Layout = "";
+    }
+    ViewBag.menuID = "obisis_lessons";
+}
+<style type="text/css">
+    table tr {
+        height: 40px;
+    }
+        table tr:first-child {
+            font-weight: bold;
+        }
+        table tr td:not(:first-child) {
+            text-align: center;
+        }
+    input[type=text] {
+        max-width: 50px;
+        text-align: center;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $("div.form input[type=button]").click(function () {
+            Calculate();
+        });
+        $(window).keypress(function (event) {
+            if (event.keyCode == 13)
+                Calculate();
+        });
+        function Calculate() {
+            $("#gano").html("Hesaplanıyor..");
+            $.post("@Url.Action("Deneme")", $("form").serialize(), function (msg) {
+                $("#gano").html(msg.gano);
+                var j = 1, k = 1;
+                $.each(msg.ort, function (i, data) {
+                    $("div.form table tr:eq(" + j++ + ") td:eq(6)").fadeOut(function () { $(this).text(data); }).fadeIn();
+                });
+                $.each(msg.harf, function (i, data) {
+                    $("div.form table tr:eq(" + k++ + ") td:eq(7)").fadeOut(function () { $(this).text(data); }).fadeIn();
+                });
+            });
+        }
+    });
+</script>
+@using (Html.BeginForm())
+{
+<div class="form">
+    <div style="float: left;">
+    <table>
+        <tr>
+            <td style="width: 300px;">Ders Adı</td>
+            <td style="width: 75px; ">Vize 1</td>
+            <td style="width: 75px; ">Vize 2</td>
+            <td style="width: 75px; ">Vize 3</td>
+            <td style="width: 75px; ">Final</td>
+            <td style="width: 75px;">Bütünleme</td>
+            <td style="width: 75px;">Ortalama</td>
+            <td style="width: 75px;">Harf</td>
+            <td style="width: 100px;">Ganoya etki</td>
+        </tr>
+        @foreach (Obisis.Ders ders in Model)
+        {
+            <tr>
+                <td>@ders.DersAdi</td>
+                <td>
+                    @if (ders.Vize1 == -1)
+                    {
+                        @Html.Editor(ders.Kod + "_Vize1")
+                    }
+                    else
+                    {
+                        @Html.Editor(ders.Kod + "_Vize1", new { value = ders.Vize1 })
+                        @ders.Vize1
+                    }
+                </td>
+                <td>
+                    @if (ders.Vize2 == -1 && ders.Final == -1)
+                    {
+                        @Html.Editor(ders.Kod + "_Vize2")
+                    }
+                    else if (ders.Vize2 != -1)
+                    {
+                        @ders.Vize2
+                        @Html.Hidden(ders.Kod + "_Vize2", ders.Vize2)
+                    }
+                </td>
+                <td>
+                    @if (ders.Vize3 == -1 && ders.Final == -1)
+                    {
+                        @Html.Editor(ders.Kod + "_Vize3")
+                    }
+                    else if (ders.Vize3 != -1)
+                    {
+                        @ders.Vize3
+                        @Html.Hidden(ders.Kod + "_Vize3", ders.Vize3)
+                    }
+                </td>
+                <td>
+                    @if (ders.Final == -1)
+                    {
+                        @Html.Editor(ders.Kod + "_Final")
+                    }
+                    else if (ders.Final != -1)
+                    {
+                        @ders.Final
+                        @Html.Hidden(ders.Kod + "_Final", ders.Final)
+                    }
+                </td>
+                <td>
+                    @if (ders.Butunleme == -1 && ders.Final != -1)
+                    {
+                        @Html.Editor(ders.Kod + "_Butunleme")
+                    }
+                    else if (ders.Butunleme != -1)
+                    {
+                        @ders.Butunleme
+                        @Html.Hidden(ders.Kod + "_Butunleme", ders.Butunleme)
+                    }
+                </td>
+                <td>
+                    @(Obisis.Ortalama(ders) == -1 ? null : Obisis.Ortalama(ders).ToString())
+                </td>
+                <td>
+                    @Obisis.CalculateMark(ders)
+                </td>
+                <td>
+                    @if (ders.OrtalamayaEtki)
+                    {
+                        <input type="checkbox" id="@(ders.Kod + "_OrtalamayaEtki")" name="@(ders.Kod + "_OrtalamayaEtki")" value="1" checked />
+                    }
+                    else
+                    {
+                        <input type="checkbox" id="@(ders.Kod + "_OrtalamayaEtki")" name="@(ders.Kod + "_OrtalamayaEtki")" value="1"  />
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+    </div>
+    <div style="float: right; padding: 100px 0 0 100px;;">
+        <h1 id="gano">@ViewBag.GANO</h1>
+        @Html.Button("Hesapla", new { type = "button", style = "width: 100px; height: 60px;" }) veya Enter'la
+    </div>
+</div>
+}
+<h4>Derslerin ganoya etkileri tamamen doğru olmayabilir. Lütfen kontrol ederek devam ediniz.</h4>

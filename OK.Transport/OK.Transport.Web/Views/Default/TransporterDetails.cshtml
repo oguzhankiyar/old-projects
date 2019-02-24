@@ -1,0 +1,73 @@
+﻿@model OK.Transport.Web.ViewModels.TransporterViewModel
+
+
+<div style="display: table; width: 1000px; margin-top: 10px;">
+    <div style="display: table; float: left; width: 350px; margin-left: 40px;">
+        <div style="background-color: rgba(54, 54, 54, .75); padding: 20px 80px 20px 20px;">
+            <h2>Otobüs Detayları</h2>
+            <b>Plaka: </b>@Model.Plate<br />
+            <b>Marka: </b>@Model.Brand<br />
+            <b>Model: </b>@Model.Model<br />
+            <b>Yolcu Kapasitesi: </b>@Model.PassengerCapacity<br />
+            <b>Çalışma Saatleri: </b>@Model.WorkingHours<br />
+            <b>Bagaj Kapasitesi: </b>@Model.BaggageCapacity
+        </div>
+        @using (Html.BeginForm())
+        {
+            string from = ViewBag.from;
+            string to = ViewBag.To;
+            string from_name = ViewBag.FromName;
+            string to_name = ViewBag.ToName;
+            string from_lat = ViewBag.FromLat;
+            string from_lng = ViewBag.FromLng;
+            string to_lat = ViewBag.ToLat;
+            string to_lng = ViewBag.ToLng;
+
+            @Html.Hidden("Id", Model.Id)
+            @Html.Hidden("From", from)
+            @Html.Hidden("To", to)
+            @Html.Hidden("FromName", from_name)
+            @Html.Hidden("ToName", to_name)
+            @Html.Hidden("FromLat", from_lat)
+            @Html.Hidden("FromLng", from_lng)
+            @Html.Hidden("ToLat", to_lat)
+            @Html.Hidden("ToLng", to_lng)
+            <input type="submit" value="Otobüsü Kirala" />
+        }
+    </div>
+    <div style="background-color: rgba(54, 54, 54, .75); display: table; float: left; padding: 20px 80px 20px 20px;">
+        <h2>Koltuk Şeması</h2>
+        @{
+            int columnCount = Convert.ToInt32(Model.SeatSchema[0].ToString());
+            int seatNumber = 1;
+
+        }
+        @for (var i = 1; i < Model.SeatSchema.Length; i++)
+        {
+            int seatType = Convert.ToInt32(Model.SeatSchema[i].ToString());
+            string seatName = "&nbsp;";
+            if (seatType == 1 || seatType == 2 || seatType == 3 || seatType == 4)
+            {
+                seatName = "" + seatNumber++;
+            }
+            else if (seatType == 9)
+            {
+                seatName = "Ş";
+            }
+            else if (seatType == 8)
+            {
+                seatName = "P";
+            }
+            else if (seatType == 5)
+            {
+                seatName = "M";
+            }
+
+            <span class="@("seat seat-" + seatType)">@Html.Raw(seatName)</span>
+            if (i % columnCount == 0)
+            {
+                <br />
+            }
+        }
+    </div>
+</div>

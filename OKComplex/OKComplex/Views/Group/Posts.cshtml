@@ -1,0 +1,46 @@
+﻿@model club_group
+@{
+    InfosecEntities Db = new InfosecEntities();
+    var posts = Model.club_posts.Where(x => x.IsApproval == true);
+}
+@section Map {
+    <div class="map">
+        <span>@Html.ActionLink(OK.ClubConfig("site-name"), "Index", "Home")</span>
+        <span><a href="@Url.Action("List", "Group")">Komiteler</a></span>
+        <span class="active">@Model.Name</span>
+    </div>
+}
+@{
+    Html.RenderAction("PostControl", "Group");
+}
+<div class="table">
+    <div class="title">Komite Yazıları</div>
+    <div class="content">
+        <div class="group">
+            <div class="name">
+                @Model.Name
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="@Url.Action("detail", "Group")">Hakkında</a></li>
+                    <li><a href="@Url.Action("members", "Group")">Üyeler</a></li>
+                    <li class="active">Yazılar</li>
+                    @if (Db.club_group.Where(x => x.IsSubGroup == true && x.ParentGroupId == Model.Id).Count() != 0)
+                    {
+                        <li><a href="@Url.Action("subgroups", "Group")">Alt Gruplar</a></li>
+                    }
+                </ul>
+            </div>
+            <div class="content">
+                @{
+                    Html.RenderAction("Group", "Post", new { id = Model.Id, page = ViewContext.RouteData.Values["page"] });
+                }
+                @if (Session["memberinfo"] != null)
+                {
+                    @Html.Button("Yazı Gönder", new { onclick = "$.OK.OpenNewPage('" + Url.Action("CreatePost", "Post", new { group = Model.Id }) + "');" })
+                }
+                @Html.Paging("$.OK.OpenNewPage('" + Url.Action("posts", "Group", new { page = "{page}" }) + "');", posts.Count(), 10)
+            </div>
+        </div>
+    </div>
+</div>

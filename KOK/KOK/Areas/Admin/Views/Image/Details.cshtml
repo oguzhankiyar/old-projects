@@ -1,0 +1,43 @@
+﻿@model KOK.Models.resim
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>resim</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Adi)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Adi)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Adres)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Adres)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Tarih)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tarih)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Onay)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Onay)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,77 @@
+﻿@model bgk_butce
+@{
+    List<SelectListItem> actions = new List<SelectListItem>();
+    actions.Add(new SelectListItem { Text = "Gelir", Value = "1" });
+    actions.Add(new SelectListItem { Text = "Gider", Value = "2" });
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a class="active" href="@Url.Action("index", "budget")" style="width: 50%;">İşlemler</a>
+            <a href="@Url.Action("index", "factory")" style="width: 49%;">Firmalar</a>
+        </div>
+    </div>
+</div>
+<div class="table">
+    <div class="title">İşlem Ekle</div>
+    <div class="content">
+        <div class="form">
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                @Html.AntiForgeryToken()
+                <ul>
+                    <li>@Html.LabelFor(model => model.Aciklama)</li>
+                    <li>@Html.TextAreaFor(model => model.Aciklama)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Aciklama)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Islem)</li>
+                    <li>@Html.DropDownListFor(model => model.Islem, actions)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Islem)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Miktar)</li>
+                    <li>@Html.EditorFor(model => model.Miktar)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Miktar)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.HarcananYer)</li>
+                    <li>@Html.EditorFor(model => model.HarcananYer)</li>
+                    <li>@Html.ValidationMessageFor(model => model.HarcananYer)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.FirmaID)</li>
+                    <li>@Html.DropDownList("FirmaID", string.Empty)</li>
+                    <li>@Html.ValidationMessageFor(model => model.FirmaID)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.EtkinlikID)</li>
+                    <li>@Html.DropDownList("EtkinlikID", string.Empty)</li>
+                    <li>@Html.ValidationMessageFor(model => model.EtkinlikID)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.FaturaID)</li>
+                    <li>@Html.EditorFor(model => model.FaturaID)</li>
+                    <li>@Html.ValidationMessageFor(model => model.FaturaID)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.IslemTarihi)</li>
+                    <li>@Html.EditorFor(model => model.IslemTarihi)</li>
+                    <li>@Html.ValidationMessageFor(model => model.IslemTarihi)</li>
+                </ul>
+                <ul>
+                    <li>Kaydet</li>
+                    <li>
+                        @Html.Button("Kaydet", new { type = "submit" })
+                        @Html.Button("Vazgeç", new { onclick = "window.location.href='" + Url.Action("index") + "';" })
+                    </li>
+                </ul>
+                @Html.MyEditor("Aciklama", "Full")
+            }
+        </div>
+    </div>
+</div>

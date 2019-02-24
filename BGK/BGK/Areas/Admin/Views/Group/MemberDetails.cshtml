@@ -1,0 +1,64 @@
+﻿@model bgk_grup_uye
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a class="active" href="@Url.Action("index", "group")" style="width: 25%;">Gruplar</a>
+            <a href="@Url.Action("index", "member")" style="width: 24%;">Üyeler</a>
+            <a href="@Url.Action("index", "role")" style="width: 25%;">Yetkiler</a>
+            <a href="@Url.Action("index", "grade")" style="width: 25%;">Seviyeler</a>
+        </div>
+    </div>
+</div>
+<div class="table">
+    <div class="title">Grup Üye Detayları</div>
+    <div class="content">
+        <div class="details">
+            <ul>
+                <li>@Html.DisplayNameFor(model => model.UyeID)</li>
+                <li>@Model.bgk_uye.AdSoyad</li>
+            </ul>
+            <ul>
+                <li>@Html.DisplayNameFor(model => model.GrupID)</li>
+                <li>@Model.bgk_grup.Adi</li>
+            </ul>
+            <ul>
+                <li>@Html.DisplayNameFor(model => model.Aciklama)</li>
+                <li>@Html.DisplayFor(model => model.Aciklama)</li>
+            </ul>
+            <ul>
+                <li>@Html.DisplayNameFor(model => model.Tip)</li>
+                <li>
+                    @if (Model.Tip == 1)
+                    {
+                        @("Başkan")
+                    }
+                    else if (Model.Tip == 2)
+                    {
+                        @("Başkan Yardımcısı")
+                    }
+                    else if (Model.Tip == 3)
+                    {
+                        @("Normal Üye")
+                    }
+                </li>
+            </ul>
+            <ul>
+                <li>@Html.DisplayNameFor(model => model.BaslangicTarihi)</li>
+                <li>@Html.DisplayFor(model => model.BaslangicTarihi)</li>
+            </ul>
+            <ul>
+                <li>@Html.DisplayNameFor(model => model.BitisTarihi)</li>
+                <li>@Html.DisplayFor(model => model.BitisTarihi)</li>
+            </ul>
+            <ul>
+                <li>@Html.DisplayNameFor(model => model.Aktif)</li>
+                <li>@Html.DisplayFor(model => model.Aktif)</li>
+            </ul>
+        </div>
+        <p>
+            @Html.Button("Düzenle", new { onclick = "window.location.href='" + Url.Action("editmember", new { num = Model.Id }) + "';" })
+            @Html.Button("Sil", new { onclick = "window.location.href='" + Url.Action("deletemember", new { num = Model.Id }) + "';" })
+        </p>
+    </div>
+</div>

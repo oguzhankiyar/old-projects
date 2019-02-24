@@ -1,0 +1,85 @@
+﻿@model bgk_uye
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a href="@Url.Action("index", "group")" style="width: 25%;">Gruplar</a>
+            <a class="active" href="@Url.Action("index", "member")" style="width: 24%;">Üyeler</a>
+            <a href="@Url.Action("index", "role")" style="width: 25%;">Yetkiler</a>
+            <a href="@Url.Action("index", "grade")" style="width: 25%;">Seviyeler</a>
+        </div>
+    </div>
+</div>
+<div class="table">
+    <div class="title">Üye Düzenle</div>
+    <div class="content">
+        <div class="form">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <ul>
+                    <li>@Html.LabelFor(model => model.OgrenciNo)</li>
+                    <li>@Html.EditorFor(model => model.OgrenciNo)</li>
+                    <li>@Html.ValidationMessageFor(model => model.OgrenciNo)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.AdSoyad)</li>
+                    <li>@Html.EditorFor(model => model.AdSoyad)</li>
+                    <li>@Html.ValidationMessageFor(model => model.AdSoyad)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Email)</li>
+                    <li>@Html.EditorFor(model => model.Email)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Email)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Telefon)</li>
+                    <li>@Html.EditorFor(model => model.Telefon)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Telefon)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Fakulte)</li>
+                    <li>@Html.EditorFor(model => model.Fakulte)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Fakulte)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Bolum)</li>
+                    <li>@Html.EditorFor(model => model.Bolum)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Bolum)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.GirisYili)</li>
+                    <li>@Html.EditorFor(model => model.GirisYili)</li>
+                    <li>@Html.ValidationMessageFor(model => model.GirisYili)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Yetki)</li>
+                    <li>@Html.DropDownList("Yetki", String.Empty)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Yetki)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Onay)</li>
+                    <li>@Html.EditorFor(model => model.Onay)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Onay)</li>
+                </ul>
+                <ul>
+                    <li>Kaydet</li>
+                    <li>
+                        @Html.Button("Kaydet", new { type = "submit" })
+                        @Html.Button("Vazgeç", new { onclick = "window.location.href='" + Url.Action("index") + "';" })
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.Sifre)
+                @Html.HiddenFor(model => model.KayitTarihi)
+                @Html.HiddenFor(model => model.SonGiris)
+                @Html.HiddenFor(model => model.Puan)
+                @Html.HiddenFor(model => model.CezaPuani)
+            }
+        </div>
+    </div>
+</div>

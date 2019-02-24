@@ -1,0 +1,24 @@
+﻿@model bgk_ayar
+
+<div class="title">Ayar Detayları</div>
+<div class="content">
+    <div class="details">
+        <ul>
+            <li>@Html.DisplayNameFor(model => model.Adi)</li>
+            <li>@Html.DisplayFor(model => model.Adi)</li>
+        </ul>
+        <ul>
+            <li>@Html.DisplayNameFor(model => model.Aciklama)</li>
+            <li>@Html.DisplayFor(model => model.Aciklama)</li>
+        </ul>
+        <ul>
+            <li>@Html.DisplayNameFor(model => model.Deger)</li>
+            <li>@Html.Raw(Model.Deger)</li>
+        </ul>
+    </div>
+</div>
+<div class="buttons">
+    @Html.Button("Düzenle", new { onclick = "window.location.href='" + Url.Action("edit", new { num = Model.Id }) + "';" })
+    @Html.Button("Ayarı Sil", new { onclick = "$.BGK.FormModal('" + Url.Action("delete", new { num = Model.Id }) + "', 'Eminim, sil', 'Vazgeç');" })
+    @Html.Button("Kapat", new { onclick = "$.BGK.ModalClose();" })
+</div>

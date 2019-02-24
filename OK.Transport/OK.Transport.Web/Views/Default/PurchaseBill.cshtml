@@ -1,0 +1,114 @@
+﻿@model OK.Transport.Web.ViewModels.TransporterReservationViewModel
+@{
+    ViewBag.ActiveLink = "linkSearch";
+    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+    double fromLat = Convert.ToDouble(Model.From.Lat);
+    double fromLng = Convert.ToDouble(Model.From.Lng);
+    double toLat = Convert.ToDouble(Model.To.Lat);
+    double toLng = Convert.ToDouble(Model.To.Lng);
+    string waypoints = "";
+}
+
+<div style="width: 80%;">
+    <div style="background-color: rgba(54, 54, 54, .75); display: table; width: 100%; padding: 20px; margin: 10px;">
+        <h2>Kiralama Özeti</h2>
+        <div id="map" style="width: 1000px; height: 350px;"></div>
+        <h4>Duraklar</h4>
+        <div style="background-color: rgba(255, 255, 255, .2); margin-bottom: 10px; padding: 5px;">@("A. " + Model.From.Name)</div>
+        @foreach (var item in Model.Stops)
+        {
+            waypoints += "{ location: \"" + item.Place.Name + "\" },";
+            waypoints = waypoints.TrimEnd(',');
+
+            <div id="waypoints" style="display: none;">@("[" + waypoints + "]")</div>
+            <div style="background-color: rgba(255, 255, 255, .2); margin-bottom: 10px; padding: 5px;">@(chars[item.Sort] + ". " + item.Place.Name)</div>
+        }
+        <div style="background-color: rgba(255, 255, 255, .2); margin-bottom: 10px; padding: 5px;">@(chars[Model.Stops.Count() + 1] + " - " + Model.To.Name)</div>
+    </div>
+    <div style="background-color: rgba(54, 54, 54, .75); display: table; width: 100%; padding: 20px; margin: 10px;">
+        <h2>Fatura Özeti</h2>
+        <button>Kupon Kullan</button>
+    </div>
+    <div style="background-color: rgba(54, 54, 54, .75); display: table; width: 100%; padding: 20px; margin: 10px;">
+        <h2>Ödeme</h2>
+        @using (Html.BeginForm("PurchaseComplete", "Default", FormMethod.Post))
+        {
+            string json = ViewBag.ModelJson;
+            @Html.Hidden("ModelJson", json)
+            <input type="text" placeholder="Kredi Kartı Sahibi" />
+            <input type="text" placeholder="Kredi Kartı No" /><br />
+            <input type="text" placeholder="Geçerlilik Ayı" />
+            <input type="text" placeholder="Geçerlilik Yılı" /><br />
+            <input type="text" placeholder="CVC" />
+            <input type="submit" value="İşlemi Tamamla" />
+        }
+    </div>
+</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8ZOOxJmhvlmMAZE4sFTZIjmzKsSFa0Mo&language=tr&callback=initMap" async defer></script>
+<script>
+    var lat1, lng1, lat2, lng2, center_lat, center_lng, _service, _display;
+    var way_points = JSON.parse($("#waypoints").text())
+
+    function initMap() {
+        lat1 = @fromLat;
+        lng1 = @fromLng;
+        lat2 = @toLat;
+        lng2 = @toLng;
+        center_lat = @((fromLat + toLat) / 2);
+        center_lng = @((fromLng + toLng) / 2);
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: { lat: center_lat, lng: center_lng },
+            mapTypeControlOptions: {
+                mapTypeIds: []
+            }
+        });
+        
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer({
+            draggable: false,
+            map: map
+        });
+
+        directionsDisplay.addListener('directions_changed', function () {
+            computeTotalDistance(directionsDisplay.getDirections());
+        });
+
+        _service = directionsService;
+        _display = directionsDisplay;
+
+        displayRoute(lat1, lng1, lat2, lng2, directionsService, directionsDisplay);
+    }
+
+    function displayRoute(lat1, lng1, lat2, lng2, service, display) {
+        service.route({
+            origin: { lat: lat1, lng: lng1 },
+            destination: { lat: lat2, lng: lng2 },
+            waypoints: way_points,
+            travelMode: google.maps.TravelMode.DRIVING,
+            avoidTolls: true
+        }, function (response, status) {
+            if (status === google.maps.DirectionsStatus.OK) {
+                display.setDirections(response);
+            } else {
+                alert('Could not display directions due to: ' + status);
+            }
+        });
+    }
+
+    function addWayPoint(wname) {
+        way_points.push({ location: wname }); //new google.maps.LatLng(wlat, wlng)
+        displayRoute(lat1, lng1, lat2, lng2, _service, _display);
+    }
+
+    function computeTotalDistance(result) {
+        var total = 0;
+        var myroute = result.routes[0];
+        for (var i = 0; i < myroute.legs.length; i++) {
+            total += myroute.legs[i].distance.value;
+        }
+        total = total / 1000;
+        document.getElementById('total').innerHTML = total + ' km';
+    }
+</script>

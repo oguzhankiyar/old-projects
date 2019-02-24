@@ -1,0 +1,48 @@
+﻿@model IEnumerable<bgk_anket>
+@{
+    int i = 0;
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);    
+}
+<script type="text/javascript">
+    function ChangeApproval(id) {
+        $.post("@Url.Action("changeapproval")/" + id, { id: id }, function (msg) { $("a#" + id + "_approval").fadeOut(500).fadeIn(500, function () { $("a#" + id + "_approval").attr("class", $("a#" + id + "_approval").attr("class") == "approved" ? "deprecated" : "approved").attr("title", $("a#" + id + "_approval").attr("class") == "approved" ? "Onayı Kaldır" : "Onayla"); }); $("body").append(msg); });
+    }
+</script>
+<div class="table">
+    <div class="title">Anketler
+        <span>@Html.ActionLink("Yeni Anket", "create")</span>
+    </div>
+    <div class="content">
+        <div class="list">
+            <ul>
+                <li style="width: 4%;">@Html.Label("Sıra")</li>
+                <li style="width: 35%;">@Html.Label("Soru")</li>
+                <li style="width: 7%; text-align: center;">@Html.Label("Seçenek")</li>
+                <li style="width: 7%;">@Html.Label("Hedef")</li>
+                <li style="width: 15%;">@Html.Label("Başlangıç Tarihi")</li>
+                <li style="width: 15%;">@Html.Label("Bitiş Tarihi")</li>
+                <li style="width: 13%;">@Html.Label("Araçlar")</li>
+            </ul>
+            @foreach (var poll in Model)
+            {
+                i++;
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li style="width: 4%;">@Html.DisplayFor(modelItem => poll.Sira)</li>
+                    <li style="width: 35%;">@Html.DisplayFor(modelItem => poll.Soru)</li>
+                    <li style="width: 7%; text-align: center;">@poll.bgk_anket_secenek.Count()</li>
+                    <li style="width: 7%;">@(poll.SadeceUye ? "Üyeler" : "Herkes")</li>
+                    <li style="width: 15%;">@Html.ShortDateTime(poll.BaslangicTarihi)</li>
+                    <li style="width: 15%;">@Html.ShortDateTime(poll.BitisTarihi)</li>
+                    <li style="width: 13%;">
+                        <a id="@(poll.Id + "_approval")" class="@(poll.Onay == true ? "approved" : "deprecated")" title="@(poll.Onay == true ? "Onayı Kaldır" : "Onayla")" href="javascript:void(0)" onclick="ChangeApproval('@poll.Id')"></a>
+                        @Html.ActionLink(" ", "edit", new { num = poll.Id }, new { @class = "edit", title = "Düzenle" })
+                        @Html.ActionLink(" ", "details", new { num = poll.Id }, new { @class = "details", title = "Detay" })
+                        <a class="delete" title="Sil" href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("delete", new { num = poll.Id })', 'Eminim, sil', 'Vazgeç');"> </a>
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>
+@Html.Paging()

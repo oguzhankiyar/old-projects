@@ -1,0 +1,114 @@
+﻿@model bgk_uye
+@{
+    ViewBag.Title = Model.AdSoyad;
+    var groups = Model.bgk_grup_uye.ToList();
+    var posts = Model.bgk_yazi.Where(x => x.Onay == true).ToList();
+    var comments = Model.bgk_yorum.Where(x => x.bgk_yazi.Onay == true && x.Onay == true).ToList();
+    int i = 0, j = 0, k = 0;
+}
+
+<div class="table">
+    <div class="title">@Model.AdSoyad
+        @if (Model.Id == (int)Session["memberID"])
+        {
+            <span><a href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("ChangePassword")', 'Kaydet', 'Vazgeç');">Şifremi Değiştir</a></span>
+        }
+    </div>
+    <div class="content">
+        @Model.Email<br />
+        @Model.Fakulte<br />
+        @Model.Bolum<br />
+        @Model.GirisYili<br />
+        @Model.OgrenciNo<br />
+        @Model.KayitTarihi<br />
+        @Model.Puan<br />
+    </div>
+</div>
+<div class="table">
+    <div class="title">Grupları (@groups.Count())
+        <span>
+            @if (groups.Count() > 5)
+            {
+                <a href="@Url.Action("Groups", new { id = Model.Id, seo = Model.AdSoyad.ConvertSeo() })">Tümü</a>
+            }
+        </span>
+    </div>
+    <div class="content list" style="padding: 0;">
+        @if (groups.Count() == 0)
+        {
+            <div class="warning">
+                Henüz üye olduğu grup yok :(
+            </div>
+        }
+        @foreach (var group in groups.Take(5))
+        {
+            i++;
+            <a href="@Url.Action("Details", "Group", new { id = group.GrupID })">
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li class="name">@group.bgk_grup.Adi<br />
+                        <span>@group.Aciklama.GetSummary(100)</span>
+                    </li>
+                </ul>
+            </a>
+        }
+    </div>
+</div>
+<div class="table">
+    <div class="title">Yazıları (@posts.Count())
+        <span>
+            @if (posts.Count() > 5)
+            {
+                <a href="@Url.Action("Posts", new { id = Model.Id, seo = Model.AdSoyad.ConvertSeo() })">Tümü</a>
+            }
+        </span>
+    </div>
+    <div class="content list" style="padding: 0;">
+        @if (posts.Count() == 0)
+        {
+            <div class="warning">
+                Henüz yazdığı yazı yok :(
+            </div>
+        }
+        @foreach (var post in posts.Take(5))
+        {
+            j++;
+            <a href="@Url.Action("Details", "Post", new { id = post.Id, seo = post.Seo })">
+                <ul class="@(j % 2 == 0 ? "second" : "first")">
+                    <li class="name">@post.Baslik<br />
+                        <span>@post.Icerik.GetSummary(100)</span>
+                    </li>
+                </ul>
+            </a>
+        }
+    </div>
+</div>
+<div class="table">
+    <div class="title">Yorumları (@comments.Count())
+        <span>
+            @if (comments.Count() > 5)
+            {
+                <a href="@Url.Action("Comments", new { id = Model.Id, seo = Model.AdSoyad.ConvertSeo() })">Tümü</a>
+            }
+        </span>
+    </div>
+    <div class="content list" style="padding: 0;">
+        @if (comments.Count() == 0)
+        {
+            <div class="warning">
+                Henüz yazdığı yorum yok :(
+            </div>
+        }
+        @foreach (var comment in comments.Take(5))
+        {
+            k++;
+            var post = comment.bgk_yazi;
+            <a href="@Url.Action("Details", "Post", new { id = post.Id, seo = post.Seo })">
+                <ul class="@(k % 2 == 0 ? "second" : "first")">
+                    <li class="name">@post.Baslik<br />
+                        <span>@comment.Yorum.GetSummary(100)</span>
+                    </li>
+                </ul>
+            </a>
+        }
+    </div>
+</div>

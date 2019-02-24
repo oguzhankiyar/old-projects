@@ -1,0 +1,49 @@
+﻿@model IEnumerable<bgk_anket>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);
+}
+
+@if (Model.Count() == 0)
+{
+    <div class="warning">
+        Şuan gösterilebilecek anket yok.
+    </div>
+}
+@foreach (var poll in Model)
+{
+    <div class="table">
+        <div class="title">@poll.Soru</div>
+        <div class="content">
+            @if (BGKFunction.IsVoted(poll.Id) || poll.BitisTarihi < DateTime.Now)
+            {
+                Html.RenderAction("Results", new { id = poll.Id });
+            }
+            else
+            {
+                <div id="@("poll_" + poll.Id)" class="poll">
+                    @foreach (var option in poll.bgk_anket_secenek.OrderBy(x => x.Sira).ToList())
+                    {
+                        if (poll.CokluSecim)
+                        {
+                            <div>
+                                <input type="checkbox" id="@("option_" + option.Id + "")" name="@("poll_" + poll.Id)" value="@option.Id" />
+                                <label for="@("option_" + option.Id)">@option.Adi</label>
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                <input type="radio" id="@("option_" + option.Id)" name="@("poll_" + poll.Id)" value="@option.Id" />
+                                <label for="@("option_" + option.Id)">@option.Adi</label>
+                            </div>
+                        }
+                    }
+                    <div class="warning"></div>
+                    @Html.Button("Gönder", new { id = poll.Id, type = "submit", style = "float: right;" })
+                </div>
+            }
+        </div>
+    </div>
+}
+@Html.Paging()

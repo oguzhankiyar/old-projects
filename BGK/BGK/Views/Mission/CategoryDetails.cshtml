@@ -1,0 +1,75 @@
+﻿@model bgk_gorev_kategori
+@{
+    ViewBag.Title = Model.Adi;
+    bool isSubscribed = Model.bgk_gorev_kategori_uye.SingleOrDefault(x => x.UyeID == (int)Session["memberID"]) == null ? false : true;
+    var missions = Model.bgk_gorev;
+    var members = Model.bgk_gorev_kategori_uye;
+    int i = 0, j = 0;
+}
+@section Widgets{
+    <div class="table">
+        <div class="title">Abone Olanlar (@members.Count())</div>
+        <div class="content list members" style="padding: 0;">
+            @if (members.Count() == 0)
+            {
+                <div class="warning">
+                    Henüz abonemiz yok :(
+                </div>
+            }
+            @foreach (var member in members)
+            {
+                i++;
+                <a href="@Url.Action("Details", "Member", new { id = member.UyeID })">
+                    <ul class="@(i % 2 == 0 ? "second" : "first")">
+                        <li>@member.bgk_uye.AdSoyad</li>
+                        <li style="float: right;">@member.bgk_uye.Puan puan</li>
+                    </ul>
+                </a>
+            }
+        </div>
+    </div>    
+}
+<div class="table">
+    <div class="title">@Model.Adi</div>
+    <div class="content">
+        @Html.Raw(Model.Aciklama)
+        <br /><br /><i><b>Not: </b> Bu görev kategorisi <a href="@Url.Action("Details", "Member", new { id = Model.OlusturanID })">@Model.bgk_uye.AdSoyad</a></i> adına site yönetimi tarafından oluşturulmuştur.
+    </div>
+</div>
+<div class="table">
+    <div class="title">Görevler (@missions.Count())</div>
+    <div class="content list missions" style="padding: 0;">
+        @if (missions.Count == 0)
+        { 
+            <div class="warning">
+                Bu kategoriye henüz görev eklenmemiş :(
+            </div>
+        }
+        @foreach (var mission in missions)
+        {
+            j++;
+            <a href="@Url.Action("Details", new { id = mission.Id })">
+                <ul class="@(j % 2 == 0 ? "second" : "first")">
+                    <li class="image"><img src="@BGKFunction.GetFile(mission.bgk_gorev_kategori.bgk_dosya)" /></li>
+                    <li class="name">@mission.Adi<br />
+                        <span>@mission.bgk_gorev_kategori.Adi</span></li>
+                    <li class="info"><b>@mission.Puan</b> puan, <b>@mission.GunSayisi</b> gün</li>
+                </ul>
+            </a>
+        }
+    </div>
+</div>
+<div class="buttons">
+    @if (Model.OlusturanID == (int)Session["memberID"])
+    {
+        @Html.Button("Görev Ver", new { onclick = "window.location.href='" + Url.Action("givemission", new { id = Model.Id }) + "';" })
+    }
+    @if (!isSubscribed)
+    {
+        @Html.Button("Abone Ol", new { onclick = "$.BGK.FormModal('" + Url.Action("subscribe", new { categoryID = Model.Id }) + "', 'Abone Ol', 'Vazgeç');" })
+    }
+    else
+    {
+        @Html.Button("Aboneliğimi Kaldır", new { onclick = "$.BGK.FormModal('" + Url.Action("unsubscribe", new { categoryID = Model.Id }) + "', 'Aboneliğimi Kaldır', 'Vazgeç');" })
+    }
+</div>

@@ -1,0 +1,15 @@
+﻿@model IEnumerable<duyuru>
+
+<div class="table">
+    <div class="title">Duyurular</div>
+    <div class="content notices" style="padding: 0;">
+        @foreach (var notice in Model)
+        {
+            <a href="@Url.Action("NoticeDetails", new { id = notice.Id })">
+                <ul>
+                    <li>@notice.Baslik</li>
+                </ul>
+            </a>
+        }
+    </div>
+</div>

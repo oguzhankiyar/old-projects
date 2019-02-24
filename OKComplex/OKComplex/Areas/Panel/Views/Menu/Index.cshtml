@@ -1,0 +1,46 @@
+﻿@model IEnumerable<club_menulink>
+@{
+    ViewBag.Title = "Linkler";
+    int i = 0;
+}
+<script type="text/javascript">
+    function ChangeApproval(id) {
+        $.post("@Url.Action("changeapproval")/" + id, { id: id }, function (msg) { $("a#" + id + "_approval").fadeOut(500).fadeIn(500, function () { $("a#" + id + "_approval").attr("class", $("a#" + id + "_approval").attr("class") == "approved" ? "deprecated" : "approved").attr("title", $("a#" + id + "_approval").attr("class") == "approved" ? "Onayı Kaldır" : "Onayla"); }); $("body").append(msg); });
+    }
+</script>
+<div class="list">
+    <h4>Üst Menü Linkleri</h4>
+    @foreach (var link in Model.Where(x => x.Type == 1))
+    {
+        i++;
+        <ul class="@(i % 2 == 0 ? "second" : "first")">
+            <li>
+                <b>@Html.DisplayFor(modelItem => link.Name)</b><br />
+                @OK.Summary(link.OnClick, 100)
+            </li>
+            <li class="manage">
+                <a id="@(link.Id + "_approval")" class="@(link.IsApproval == true ? "approved" : "deprecated")" title="@(link.IsApproval == true ? "Onayı Kaldır" : "Onayla")" href="javascript:void(0)" onclick="ChangeApproval('@link.Id')"></a>
+                @Html.ActionLink(" ", "edit", new { num = link.Id }, new { @class = "edit", title = "Düzenle" })
+                @Html.ActionLink(" ", "details", new { num = link.Id }, new { @class = "details", title = "Detay" })
+                @Html.ActionLink(" ", "delete", new { num = link.Id }, new { @class = "delete", title = "Sil" })
+            </li>
+        </ul>
+    }
+    <h4>Alt Menü Linkleri</h4>
+    @foreach (var link in Model.Where(x => x.Type == 2))
+    {
+        i++;
+        <ul class="@(i % 2 == 0 ? "second" : "first")">
+            <li>
+                <b>@Html.DisplayFor(modelItem => link.Name)</b><br />
+                @OK.Summary(link.OnClick, 100)
+            </li>
+            <li class="manage">
+                <a id="@(link.Id + "_approval")" class="@(link.IsApproval == true ? "approved" : "deprecated")" title="@(link.IsApproval == true ? "Onayı Kaldır" : "Onayla")" href="javascript:void(0)" onclick="ChangeApproval('@link.Id')"></a>
+                @Html.ActionLink(" ", "edit", new { num = link.Id }, new { @class = "edit", title = "Düzenle" })
+                @Html.ActionLink(" ", "details", new { num = link.Id }, new { @class = "details", title = "Detay" })
+                @Html.ActionLink(" ", "delete", new { num = link.Id }, new { @class = "delete", title = "Sil" })
+            </li>
+        </ul>
+    }
+</div>

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<user>
+@{
+    ViewBag.Title = "Üyeler";
+    int count = Convert.ToInt32(ViewBag.count);
+    int i = 0;
+}
+<script type="text/javascript">
+    function ChangeApproval(id) {
+        $.post("@Url.Action("changeapproval")/" + id, { id: id }, function (msg) { $("a#" + id + "_approval").fadeOut(500).fadeIn(500, function () { $("a#" + id + "_approval").attr("class", $("a#" + id + "_approval").attr("class") == "approved" ? "deprecated" : "approved").attr("title", $("a#" + id + "_approval").attr("class") == "approved" ? "Onayı Kaldır" : "Onayla"); }); $("body").append(msg); });
+    }
+    function ChangeBan(id) {
+        $.post("@Url.Action("changeban")/" + id, { id: id }, function (msg) { $("a#" + id + "_ban").fadeOut(500).fadeIn(500, function () { $("a#" + id + "_ban").attr("class", $("a#" + id + "_ban").attr("class") == "banned" ? "unbanned" : "banned").attr("title", $("a#" + id + "_ban").attr("class") == "banned" ? "Yasağı Kaldır" : "Yasakla"); }); $("body").append(msg); });
+    }
+</script>
+
+<div class="list">
+    @foreach (var user in Model)
+    {
+        i++;
+        <ul class="@(i % 2 == 0 ? "second" : "first")">
+            <li>
+                <b>@Html.DisplayFor(modelItem => user.Name)</b>&nbsp;&nbsp;<small>@Html.DisplayFor(modelItem => user.UserName)</small><br />
+                <small><b>Kayıt Tarihi: </b>@Html.DisplayFor(modelItem => user.RegistrationDate)</small>
+            </li>
+            <li class="manage">
+                @Html.ActionLink(" ", "info", "account", new { area = "", username = user.UserName }, new { @class = "view", target = "_blank", title = "Sitede Göster" })
+                <a id="@(user.Id + "_approval")" class="@(user.IsApproval == true ? "approved" : "deprecated")" title="@(user.IsApproval == true ? "Onayı Kaldır" : "Onayla")" href="javascript:void(0)" onclick="ChangeApproval('@user.Id')"></a>
+                <a id="@(user.Id + "_ban")" class="@(user.IsBanned == true ? "banned" : "unbanned")" title="@(user.IsBanned == true ? "Yasağı Kaldır" : "Yasakla")" href="javascript:void(0)" onclick="ChangeBan('@user.Id')"></a>
+                @Html.ActionLink(" ", "edit", new { num = user.Id }, new { @class = "edit", title = "Düzenle" })
+                @Html.ActionLink(" ", "details", new { num = user.Id }, new { @class = "details", title = "Detay" })
+                @Html.ActionLink(" ", "delete", new { num = user.Id }, new { @class = "delete", title = "Sil" })
+            </li>
+        </ul>
+    }
+</div>
+@Html.Paging("OpenNewPage('" + Url.Action("index", new { num = "{page}" }) + "');", count, 10)

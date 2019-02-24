@@ -1,0 +1,27 @@
+﻿@model bgk_galeri
+
+<div class="title">@Model.Adi</div>
+<div class="content details">
+    <ul>
+        <li>@Html.LabelFor(model => model.Seo)</li>
+        <li>@Html.DisplayFor(model => model.Seo)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.Aciklama)</li>
+        <li>@Html.DisplayFor(model => model.Aciklama)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.Onay)</li>
+        <li>@Html.DisplayFor(model => model.Onay)</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Resim Sayısı")</li>
+        <li>@Model.bgk_galeri_resim.Count()</li>
+    </ul>
+</div>
+<div class="buttons">
+    @Html.Button("Resimleri", new { onclick = "window.location.href='" + Url.Action("index", "image", new { galleryID = Model.Id }) + "';" })
+    @Html.Button("Düzenle", new { onclick = "window.location.href='" + Url.Action("edit", new { num = Model.Id }) + "';" })
+    @Html.Button("Galeriyi Sil", new { onclick = "$.BGK.FormModal('" + Url.Action("delete", new { num = Model.Id }) + "', 'Eminim, sil', 'Vazgeç');" })
+    @Html.Button("Kapat", new { onclick = "$.BGK.ModalClose();" })
+</div>

@@ -1,0 +1,216 @@
+﻿@model topic
+@{
+    int count = Convert.ToInt32(ViewBag.commentcount);
+    var user = Model.user;
+    int take = Convert.ToInt32(OK.Config("comment-paging-count"));
+    int page = Convert.ToInt32(ViewContext.RouteData.Values["page"]);
+    int sort = 1 + take * (page - 1);
+    forum parentforum = ViewBag.parentforum;
+    var previoustopic = OK.PreviousTopic(Model.Id);
+    var nexttopic = OK.NextTopic(Model.Id);
+}
+
+@section Map {
+    <div class="map">
+        <span>@Html.ActionLink(OK.Config("site-name"), "Index")</span>
+        <span>@Html.ActionLink(Model.forum.category.Name, "Category", new { id = Model.forum.category.Id, seo = Model.forum.category.Seo })</span>
+        @Html.Raw(parentforum == null ? "" : "<span>" + Html.ActionLink(parentforum.Name, "Forum", new { seo = parentforum.Seo, id = parentforum.Id, page = 1 }) + "</span>")
+        <span>@Html.ActionLink(Model.forum.Name, "Forum", new { seo = Model.forum.Seo, id = Model.forum.Id, page = 1 })</span>
+        <span class="active">@Model.Title</span>
+    </div>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("div.topic").mouseover(function () {
+            var index = $("div.topic").index(this);
+            $("div.topic:eq(" + index + ") div.buttons").fadeIn();
+        }).mouseleave(function () {
+            var index = $("div.topic").index(this);
+            $("div.topic:eq(" + index + ") div.buttons").fadeOut();
+        });
+    });
+    function UpdateRating(id, score, type) {
+        $("#loading").show();
+        $("div.rating").click(function () {
+            var index = $("div.rating").index(this);
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("UpdateRating")",
+                data: { id: id, score: score, type: type },
+                dataType: "JSON",
+                success: function (data) {
+                    $("#loading").hide();
+                    var oldmsg = $("div.rating:eq(" + index + ") div.msg").html();
+                    $("div.rating:eq(" + index + ") div.msg").fadeOut(500).fadeIn(500, function () { $("div.rating:eq(" + index + ") div.msg").html(data.msg); });
+                    if (data.result == "0") {
+                        setTimeout(function () {
+                            $("div.rating:eq(" + index + ") div.msg").fadeOut(500).fadeIn(500, function () { $("div.rating:eq(" + index + ") div.msg").html(oldmsg); });
+                        }, 2000);
+                    }
+                    else {
+                        $("div.rating:eq(" + index + ") div.bars").fadeOut(500).fadeIn(500, function () { $("div.rating:eq(" + index + ") div.bars").html(data.bars); });
+                        $("div.rating:eq(" + index + ") div.like-c").html(data.like);
+                        $("div.rating:eq(" + index + ") div.dislike-c").html(data.dislike);
+                        setTimeout(function () {
+                            $("div.rating:eq(" + index + ") div.msg").fadeOut(500).fadeIn(500, function () { $("div.rating:eq(" + index + ") div.msg").html(data.result); });
+                        }, 2000);
+                    }
+                }
+            });
+        });
+    }
+</script>
+
+<div class="table">
+    <div class="title">@Html.ShortDateTime((DateTime)Model.CreationDate)<span><a id="@("t" + Model.Id)" title="permalink" href="@Url.Action("GoTopic", "Forum", new { id = Model.Id })">#1</a></span></div>
+    <div class="content">
+        <div class="topic">
+            <ul class="info">
+                <li class="user">
+                    @Html.UserInfo((int)Model.WriterId)
+                </li>
+                <li class="topic">
+                    @if (Session["userinfo"] != null)
+                    {
+                        <div class="buttons">
+                            @if(Model.IsClosed == false)
+                            {
+                                if ((int)Session["userid"] == Model.WriterId)
+                                {
+                                    <span class="edit" title="Düzenle" onclick="$.OK.FormModal('@Url.Action("EditTopic", new { id = Model.Id })' , 'Gönder', 'Kapat');"></span>
+                                }
+                                <span class="quote" title="Alıntıla" onclick="$.OK.FormModal('@Url.Action("CreateComment", new { id = Model.Id, quote = "t-" + Model.Id })' , 'Gönder', 'Kapat');"></span>
+                            }
+                            @if (Session["role"].ToString() == "10")
+	                        {
+		                        <span class="view" title="Yönetimde gör" onclick="window.open('@Url.Action("details", "topic", new { area = "Admin", num = Model.Id })');"></span>
+                            }
+                        </div>
+                    }
+                    <div class="rating">
+                        @Html.LikeTable(Model.Id, "topic", Model.Rating, (int)Session["userid"])
+                    </div>
+                </li>
+            </ul>
+            <ul class="content">
+                <div style="float: left;">
+                    <h4>@Model.Title</h4>
+                </div>
+                <div class="share" style="float: right;">
+                    <a class="facebook" href="javascript:void(0);" onclick="javascript:window.open('@("http://www.facebook.com/sharer.php?s=100&p[title]=" + ViewBag.Title + " - " + OK.Config("site-name") + "&p[summary]=" + OK.Summary(Model.Content, 250) + "&p[url]= " + HttpContext.Current.Request.Url.AbsoluteUri + "&p[images][0]=" + Model.user.ImageFile + "")', 'Dialog', 'toolbar=no, location=no, directories=no, status=no, menubar=no, ' +'scrollbars=no, resizable=no, width=500, height=270, left=150, top=150');" title="Facebook'ta Paylaş"></a>
+                    <a class="twitter" href="javascript:void(0);" onclick="javascript:window.open('@("https://twitter.com/intent/tweet?text=" + Model.Title + "&url=" + HttpContext.Current.Request.Url.AbsoluteUri + "")', 'Dialog', 'toolbar=no, location=no, directories=no, status=no, menubar=no, ' +'scrollbars=no, resizable=no, width=500, height=270, left=150, top=150');" title="Twitter'da Paylaş"></a>
+                    <a class="google-plus" href="javascript:void(0);" onclick="javascript:window.open('@("https://plus.google.com/share?url=" + HttpContext.Current.Request.Url.AbsoluteUri + "")', 'Dialog', 'toolbar=no, location=no, directories=no, status=no, menubar=no, ' +'scrollbars=no, resizable=no, width=500, height=310, left=150, top=150');" title="Google+'da Paylaş"></a>
+                    <a class="email" href="@("mailto:?subject=" + Model.Title + " - " + OK.Config("site-name") + "&body=" + HttpContext.Current.Request.Url.AbsoluteUri + "%0D%0A%0D%0A" + OK.Summary(Model.Content, 250) + "")" title="E-posta ile Paylaş"></a>                    
+                </div>
+                <hr style="width: 100%;" />
+                <div id="@("t-" + Model.Id)">
+                    @Html.ViewTopic(Model.Content)
+                </div>
+                @if (Model.CreationDate != Model.ModifyDate)
+                {
+                    <div class="editinfo">
+                        <b>Son düzenlenme:</b> @Html.ShortDateTime((DateTime)Model.ModifyDate)
+                    </div>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+<div style="display: table; width: 100%; margin-bottom: 5px;">
+    @if (previoustopic != null)
+    {
+        <div style="float: left;">@Html.ActionLink(OK.Summary("‹‹ " + previoustopic.Title, 55), "Topic", new { id = previoustopic.Id, seo = previoustopic.Seo, page = 1 })</div>
+    }
+    @if (nexttopic != null)
+    {
+        <div style="float: right;">@Html.ActionLink(OK.Summary(nexttopic.Title + " ››", 55), "Topic", new { id = nexttopic.Id, seo = nexttopic.Seo, page = 1 })</div>
+    }
+</div>
+@if (OK.RelatedTopics(Model).Count() != 0)
+{
+    <div class="table">
+        <div class="title">Bunlar da İlginizi Çekebilir</div>
+        <div class="content">
+            <div class="topics">
+                <ul>
+                    <li class="image"></li>
+                    <li class="name">Konu</li>
+                    <li class="comments-views">Cevaplar / Okunma</li>
+                    <li class="lastcomment">Son Cevap</li>
+                </ul>
+                @foreach (topic topic in OK.RelatedTopics(Model))
+                {
+                    comment lastcomment = OK.LastComment(topic);
+                    <ul>
+                        <li class="image"><img src="@topic.user.ImageFile" /></li>
+                        <li class="name">@(topic.IsSticky == true ? "[Sabit] " : null)@(topic.IsClosed == true ? "[Kilitli] " : null)@Html.ActionLink(topic.Title, "Topic", new { seo = topic.Seo, id = topic.Id, page = 1})
+                            <span>Forum: @topic.forum.Name, Gön: <a href="javascript:void(0)" onclick="$.OK.Modal('@Url.Action("UserInfo", "Account", new { username = "i", id = topic.WriterId })');">@OK.UserName(topic.user)</a>, @Html.ShortDateTime((DateTime)topic.CreationDate)</span>
+                        </li>
+                        <li class="comments-views">Cevaplar: @topic.comments.Where(x => x.IsApproval == true).Count()<br />Okunma: @topic.ViewsCount</li>
+                        <li class="lastcomment">
+                            @if (lastcomment != null)
+                            {
+                                <text>Gön: <a href="javascript:void(0)" onclick="$.OK.Modal('@Url.Action("UserInfo", "Account", new { id = lastcomment.WriterId })');">@OK.UserName(lastcomment.user)</a><br />@Html.ShortDateTime((DateTime)lastcomment.CreationDate)</text>
+                            }
+                            else
+                            {
+                                <text>-</text>
+                            }
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+}
+@foreach (comment comment in ViewBag.comments)
+{
+    sort++;
+    <div class="table">
+        <div class="title">@Html.ShortDateTime((DateTime)comment.CreationDate)<span><a id="@("c" + comment.Id)" title="permalink" href="@Url.Action("GoComment", "Forum", new { id = comment.Id })">#@sort</a></span></div>
+        <div class="content">
+            <div class="topic">
+                <ul class="info">
+                    <li class="user">
+                        @Html.UserInfo((int)comment.WriterId)
+                    </li>
+                    <li class="topic">
+                        @if (Session["userinfo"] != null)
+                        {
+                            <div class="buttons">
+                                @if(Model.IsClosed == false)
+                                {
+                                    if ((int)Session["userid"] == comment.WriterId)
+                                    {
+                                        <span class="edit" title="Düzenle" onclick="$.OK.FormModal('@Url.Action("EditComment", new { id = comment.Id })' , 'Gönder', 'Kapat');"></span>
+                                    }
+                                    <span class="quote" title="Alıntıla" onclick="$.OK.FormModal('@Url.Action("CreateComment", new { id = Model.Id, quote = "c-" + comment.Id })' , 'Gönder', 'Kapat');"></span>
+                                }
+                                @if (Session["role"].ToString() == "10")
+                                {
+		                            <span class="view" title="Yönetimde gör" onclick="window.open('@Url.Action("details", "comment", new { area = "Admin", num = Model.Id })');"></span>
+                                }
+                            </div>
+                        }
+                        <div class="rating">
+                            @Html.LikeTable(comment.Id, "comment", comment.Rating, (int)Session["userid"])
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content">
+                    <h4>C: @Model.Title</h4><hr />
+                    @Html.ViewComment(comment)
+                    @if (comment.CreationDate != comment.ModifyDate)
+                    {
+                        <div class="editinfo">
+                            <b>Son düzenlenme:</b> @Html.ShortDateTime((DateTime)comment.ModifyDate)
+                        </div>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+@Html.Button("Yeni Cevap Yaz", new { onclick = "$.OK.FormModal('" + Url.Action("CreateComment", "Forum", new { id = Model.Id, quote = "" }) + "', 'Gönder', 'Vazgeç');" })
+@Html.Paging("$.OK.OpenNewPage('" + Url.Action("Topic", new { seo = Model.Seo, id = Model.Id, page = "{page}" }) + "');", count, take)

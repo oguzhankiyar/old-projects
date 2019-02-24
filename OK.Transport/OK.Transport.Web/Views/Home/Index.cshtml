@@ -1,0 +1,505 @@
+﻿@{
+    Layout = null;
+}
+<html>
+<head>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#from_results").hide();
+            $("#to_results").hide();
+            $("#transporterDetails").hide();
+            $("#transporterSeats").hide();
+            var from_id = "";
+            var to_id = "";
+            var from_name = "";
+            var to_name = "";
+
+            $("#tresults").hide();
+
+            $("#from").keyup(function () {
+                $("#from_results").hide();
+                $("#from_results").text("");
+
+                $.ajax({
+                    url: "@Url.Action("SearchPlace", "Home")",
+                    dataType: "json",
+                    data: {
+                        query: $(this).val()
+                    },
+                    success: function (data) {
+                        if (data.predictions.length != 0)
+                            $("#from_results").show();
+                        for (var i = 0; i < data.predictions.length; i++) {
+                            var place = $("<div class=\"from_place\" id=\"" + data.predictions[i].place_id + "\" style=\"cursor: pointer; margin: 5px; background: #363636; color: #fff; font-size: 13px; padding: 10px; width: 100%;\">" + data.predictions[i].description + "</div>");
+                            place.click(function () {
+                                $("#from").val($(this).text());
+                                $("#from_results").hide();
+                                $(".from_place").css("background", "#363636");
+                                $(this).css("background", "darkred");
+                                from_id = $(this).attr("id");
+                                from_name = $(this).text();
+                            });
+                            place.prependTo("#from_results");
+                        }
+                    }
+                });
+            });
+
+            $("#to").keyup(function () {
+                $("#to_results").hide();
+                $("#to_results").text("");
+
+                $.ajax({
+                    url: "@Url.Action("SearchPlace", "Home")",
+                    dataType: "json",
+                    data: {
+                        query: $(this).val()
+                    },
+                    success: function (data) {
+                        if (data.predictions.length != 0)
+                            $("#to_results").show();
+                        for (var i = 0; i < data.predictions.length; i++) {
+                            var place = $("<div class=\"to_place\" id=\"" + data.predictions[i].place_id + "\" style=\"cursor: pointer; margin: 5px; background: #363636; color: #fff; font-size: 13px; padding: 10px; width: 100%;\">" + data.predictions[i].description + "</div>");
+                            place.click(function () {
+                                $("#to").val($(this).text());
+                                $("#to_results").hide();
+                                $(".to_place").css("background", "#363636");
+                                $(this).css("background", "darkred");
+                                to_id = $(this).attr("id");
+                                to_name = $(this).text();
+                            });
+                            place.prependTo("#to_results");
+                        }
+                    }
+                });
+            });
+
+            $("#search").click(function () {
+                $(".page-2").hide();
+                $(".search_panel").hide();
+                $("#transporterDetails").hide();
+                $("#transporterSeats").hide();
+                $("#from_name").text(from_name);
+                $("#to_name").text(to_name);
+                getTransporters();
+                $("#tresults").fadeIn();
+                window.history.pushState(null, null, "/#/search/?from=" + from_id + "&to=" + to_id);
+            });
+
+
+            function getTransporters() {
+                $("#transporters").html("");
+                $.ajax({
+                    url: "@Url.Action("GetTransporters", "Home")",
+                    dataType: "json",
+                    data: {
+                        from: from_id,
+                        to: to_id
+                    },
+                    success: function (data) {
+                        $("#tresults").show();
+                        if (data.length == 0)
+                            alert("Uygun araç bulunamadı!");
+                        for (var i = 0; i < data.length; i++) {
+                            var dat = data[i];
+                            $("#distance").text(dat.distance + "km");
+                            var item = $("<span id=\"" + dat.id + "\" class=\"transporter\" style=\"opacity: 0; position: absolute;\"><img src=\"/Content/transporter.png\" width=\"100\" />" + dat.plate + " - " + dat.capacity + " yolcu - - - - - - - - - - - - - - - - - - ₺" + dat.price + "</span>");
+                            var top = $("#transporters").offset().top;
+                            item.click(function () {
+                                var itm = $(this);
+                                $("#transporters").css({ "position": "absolute", "top": "0px" }).animate({ "left": "-800px" }, 300, function () {
+                                    $("#transporters span").css("background-color", "rgba(54, 54, 54, .75)");
+                                    $("#transporters span").eq(itm.index()).css("background-color", "rgba(255, 165, 0, .75)");
+                                    getTransporterDetails(itm.attr("id"));
+
+                                });
+                            });
+                            item.prependTo($("#transporters"));
+                        }
+                        var items = $("#transporters span");
+                        var height = 135;
+                        var left = items.eq(0).offset().left;
+                        var i = 0;
+                        (function displayImages() {
+                            var item = items.eq(i++);
+                            item.css({ "left": "750px", "top": i * height + 50 }).animate({ "opacity": 1, "left": left + "px" }, 300, displayImages);
+                        })();
+                    }
+                });
+            }
+
+            function reserve(id) {
+                $("#transporters").fadeOut();
+                $("#transporterPanel").css({ "position": "absolute", "top": "135px" }).animate({ "left": "50px" }, 300, function () { });
+                $("#reservePanel").html("<h2>Yolcu Belirleme</h2><br />");
+                var list = $("<div></div>");
+                var txtName = $("<input type=\"text\" placeholder=\"Ad Soyad\" />");
+                var txtPlace = $("<input type=\"text\" placeholder=\"Bineceği/İneceği Yer\" />");
+                var btnSelectOnMap = $("<button>Haritadan bul</button>");
+                var txtSeat = $("<input type=\"text\" placeholder=\"Koltuk No\" />");
+                var button = $("<button>Ekle</button>")
+                list.appendTo($("#reservePanel"));
+                $("<br />").appendTo($("#reservePanel"));
+                txtName.appendTo($("#reservePanel"));
+                $("<br />").appendTo($("#reservePanel"));
+                txtPlace.appendTo($("#reservePanel"));
+                btnSelectOnMap.appendTo($("#reservePanel"));
+                $("<br />").appendTo($("#reservePanel"));
+                txtSeat.appendTo($("#reservePanel"));
+                button.appendTo($("#reservePanel"));
+                   
+                button.click(function () {
+                    if (txtName.val() == "" || txtPlace.val() == "" || txtSeat.val() == "")
+                        alert("Tüm alanları doldurmalısınız!");
+                    else
+                        list.append("<div>" + txtName.val() + " - " + txtPlace.val() + " - " + txtSeat.val() + "</div>");
+                });
+                $("#reservePanel").fadeIn();
+
+            }
+
+            function getTransporterDetails(id) {
+                $.ajax({
+                    url: "@Url.Action("GetTransporterDetails", "Home")",
+                    dataType: "json",
+                    data: {
+                        id: id
+                    },
+                    success: function (dt) {
+                        window.history.pushState(null, null, "/#/search/?from=" + from_id + "&to=" + to_id + "&transporter=" + dt.plate);
+                        $("#transporterDetails").show();
+                        $("#transporterDetails").html("<h2>" + dt.plate + "</h2><br /><b>Marka: </b>" + dt.brand + "<br /><b>Model: </b>" + dt.model + " (" + dt.year + ")<br /><b>Yolcu Kapasitesi: </b>" + dt.capacity + "<br /><b>Çalışma Saatleri: </b>" + dt.workingHours + "<br /><b>Bagaj Kapasitesi: </b>" + dt.baggageCapacity + "kg<br />");
+                        var button = $("<button>Otobüsü Kirala</button>")
+                        button.click(function () {
+                            reserve(id);
+                            button.hide();
+                        });
+                        button.appendTo($("#transporterDetails"));
+
+                        $("#transporterSeats").show();
+                        var html = "<h2>Koltuklar</h2><br />";
+                        var columnCount = parseInt(dt.seatSchema.charAt(0));
+                        var seatNumber = 1;
+                        for (var i = 1; i < dt.seatSchema.length; i++) {
+                            var seatType = dt.seatSchema.charAt(i);
+                            var seatName = "&nbsp;";
+                            if (seatType == 1 || seatType == 2 || seatType == 3 || seatType == 4)
+                                seatName = seatNumber++;
+                            else if (seatType == 9)
+                                seatName = "Ş";
+                            else if (seatType == 8)
+                                seatName = "P";
+                            else if (seatType == 5)
+                                seatName = "M";
+                            html += "<span class=\"seat seat-" + seatType + "\">" + seatName + "</span>";
+
+                            if (i % columnCount == 0)
+                                html += "<br />";
+                        }
+                        $("#transporterSeats").html(html);
+
+                        $("#transporterDetails").css({ "left": "750px", "top": i * height + 50 }).animate({ "opacity": 1, "left": left + "px" }, 300, function () { });
+
+                    }
+                });
+            }
+
+
+            $("#more_panel").hide();
+            $("#more").click(function () {
+                if ($(this).text() == "+ Daha fazla seçenek") {
+                    $(this).text("- Daha az seçenek");
+                    $("#more_panel").stop().fadeIn();
+                }
+                else {
+                    $(this).text("+ Daha fazla seçenek");
+                    $("#more_panel").stop().fadeOut();
+                }
+            });
+
+
+            $("#link_search").click(function () {
+                $("#transporterDetails").hide();
+                $("#tresults").hide();
+                $(".search_panel").fadeIn();
+            });
+
+            $("#back").click(function () {
+                $("#transporterDetails").hide();
+                $("#tresults").hide();
+                $(".search_panel").fadeIn();
+            });
+        });
+    </script>
+    <style type="text/css">
+        @@font-face {
+          font-family: Ubuntu Light;
+          src: url(/fonts/Ubuntu-L.ttf);
+          font-weight: bold;
+        }
+
+        body {
+            background: url('/Content/bg.jpg') fixed;
+            margin: 0;
+            padding: 0;
+            font-family: 'Ubuntu Light';
+            font-weight: 100;
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 30px;
+        }
+        ::-webkit-input-placeholder {
+           color: rgba(255, 255, 255, .5);
+        }
+
+        :-moz-placeholder { /* Firefox 18- */
+           color: rgba(255, 255, 255, .5);
+        }
+
+        ::-moz-placeholder {  /* Firefox 19+ */
+           color: rgba(255, 255, 255, .5);
+        }
+
+        :-ms-input-placeholder {  
+           color: rgba(255, 255, 255, .5);
+        }
+        a, a:link, a:visited, a:active {
+            color: #c5c5c5;
+            text-decoration: none;
+        }
+        a:link {
+            color: #c5c5c5;
+        }
+        a:hover {
+            color: #fff;
+        }
+        input {
+            background-color: rgba(255, 255, 255, .25);
+            font-size: 17px;
+            padding: 10px 15px;
+            margin: 5px;
+            outline: none;
+            border: none;
+            border-bottom: 2px solid #c5c5c5;
+            color: #fff;
+            width: 350px;
+        }
+        input:focus {
+            border-bottom: 2px solid #fff;
+        }
+        button {
+            background-color: rgba(139, 0, 0, .9);
+            font-size: 17px;
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-bottom: 2px solid #c5c5c5;
+            color: #fff;
+            min-width: 100px;
+            outline: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: rgba(255, 69, 0, .5);
+        }
+        button:active, button:target {
+            background-color: rgba(255, 69, 0, .9);
+            border-bottom: 2px solid #fff;
+        }
+
+        div {
+            display: table;
+        }
+        .page {
+            background: rgba(0, 0, 0, .50);
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+        }
+        .header-bar {
+            position: fixed;
+            display: table;
+            background-color: #FFFFFF;
+            width: 100%;
+            padding: 0 15%;
+            border-bottom: 3px solid #ffa500;
+            z-index: 1200;
+        }
+        .header-bar div {
+            float: left;
+        }
+        .header-bar .logo {
+            width: 35%;
+        }
+        .logo span {
+            padding: 5px;
+            font-size: 22.5px;
+            color: darkred;
+            font-weight: bold;
+            display: inline-table;
+            padding: 5px 0;
+        }
+        .menu div {
+            display: inline-table;
+            list-style: none;
+            padding: 5px 0;
+            margin: 0;
+            text-align: center;
+            width: 125px;
+            height: 30px;
+            color: darkred;
+        }
+        .menu div:hover {
+            background-color: #f5f5f5;
+            cursor: pointer;
+        }
+        .menu div.active {
+            background-color: #ffa500;
+            color: #fff;
+            cursor: default;
+        }
+
+        .container {
+            display: table;
+            width: 80%;
+            height: 100%;
+            padding: 75px 0 50px 15%;
+        }
+
+        .transporter {
+            display: table;
+            margin: 10px 5px 0 5px;
+            padding: 35px 10px;
+            background-color: rgba(54, 54, 54, .75);
+            font-size: 25px;
+            font-weight: 100;
+            width: 675px;
+        }
+        .transporter img {
+            vertical-align: middle;
+        }
+
+        .seat {
+            display: inline-table;
+            width: 45px;
+            height: 25px;
+            margin: 2.5px;
+            padding: 5px 0 0 0;
+            text-align: center;
+        }
+
+        .seat-1 {
+            background-color: rgba(255, 255, 255, .5);
+        }
+        .seat-5 {
+            background-color: rgba(31, 80, 239, .5);
+        }
+        .seat-6 {
+            background-color: rgba(0, 0, 0, .5);
+            width: 10px;
+        }
+        .seat-7 {
+            background-color: rgba(255, 69, 0, .5);
+            width: 10px;
+        }
+        .seat-8 {
+            background-color: rgba(255, 69, 0, .5);
+        }
+        .seat-9 {
+            background-color: rgba(255, 0, 0, .5);
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header-bar">
+            <div class="logo">
+                <span id="back" style="padding-right: 20px; cursor: pointer;">&larr;</span><span onclick="window.location.href='/'" style="cursor: pointer;">servis.im</span>
+            </div>
+            <div class="menu">
+                <div id="link_search" class="active">
+                    <span>Sefer Ara</span>
+                </div>
+                <div>
+                    <span>Popüler Seferler</span>
+                </div>
+                <div>
+                    <span>Takip Et</span>
+                </div>
+                <div>
+                    <span>Kampanyalar</span>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="search_panel" style="display: table; width: 100%; padding-top: 100px;">
+                <h1 style="font-weight: 100; padding-left: 25px;">Arayın, Kıyaslayın, Kiralayın</h1>
+                <div style="display: table; width: 100%; margin: auto; padding-top: 25px;">
+                    <div id="from_panel" style="float: left; width: 30%;">
+                        <input id="from" placeholder="nereden?" />
+                        <div id="from_results" style="max-height: 300px; width: 375px; position: absolute; z-index: 1500;"></div>
+                    </div>
+                    <div id="to_panel" style="float: left; width: 30%;">
+                        <input id="to" placeholder="nereye?" />
+                        <div id="to_results" style="max-height: 300px; width: 375px; position: absolute; z-index: 1500;"></div>
+                    </div>
+                    <div style="float: left;">
+                        <button id="search">Servis Ara</button>
+                    </div>
+                </div>
+                <div style="padding-left: 15px;">
+                    <a id="more" style="cursor: pointer;">+ Daha fazla seçenek</a>
+                </div>
+                <div id="more_panel" style="display: table; width: 100%; margin: auto;">
+                    <div style="float: left; width: 30%;">
+                        <input placeholder="na zaman?" />
+                    </div>
+                    <div style="float: left; width: 30%;">
+                        <input placeholder="araç tipi?" />
+                    </div>
+                </div>
+            </div>
+            <div id="results">
+
+            </div>
+            <div id="directions">
+
+            </div>
+
+            <div id="tresults" style="width: 100%; margin-left: 100px;">
+                <div id="summary" style="padding-top: 50px; width: 100%;">
+                    <div style="display: table; float: left;">
+                        <div id="from_name" style="float: left; padding-right: 5px;"></div>
+                        <div style="float: left; padding: 10px; border: 4px solid green; border-radius: 100px;"></div>
+                    </div>
+                    <div style="display: table; float: left; padding: 10px 0 0 0; width: 50%;">
+                        <div id="distance" style="position: absolute; padding: 5px 220px;"></div>
+                        <div style="border: 2.5px solid #f5f5f5; width: 100%;"></div>
+                    </div>
+                    <div style="display: table; float: left;">
+                        <div style="float: left; padding: 10px; border: 4px solid red; border-radius: 100px;"></div>
+                        <div id="to_name" style="float: left; padding-left: 5px;"></div>
+                    </div>
+                </div>
+                <div id="transporterPanel" style="display: table;">
+                    <div id="transporters" style="display: table; width: 100%; float: left;">
+
+                    </div>
+                    <div id="transporterDetails" style="background-color: rgba(54, 54, 54, .75); display: table; float: left; margin-top: 40px; padding: 20px 80px 20px 20px;">
+                        
+                    </div>
+                    <div id="transporterSeats" style="background-color: rgba(54, 54, 54, .75); display: table; float: left; margin-top: 40px; margin-left: 20px; padding: 20px 80px 20px 20px;">
+                        
+                    </div>
+                    <div id="reservePanel" style="background-color: rgba(54, 54, 54, .75); display: none; float: left; margin-top: 40px; margin-left: 20px; padding: 20px;">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+﻿@model club_page
+@{
+    ViewBag.Title = "Sayfa Sil";
+}
+
+<h3>Aşağıdaki sayfayı silmek istediğinizden emin misiniz?</h3>
+
+<div class="detail">
+    <ul>
+        <li>@Html.LabelFor(model => model.Name)</li>
+        <li>@Html.DisplayFor(model => model.Name)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.Seo)</li>
+        <li>@Html.DisplayFor(model => model.Seo)</li>
+    </ul>
+</div>
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.Button("Eminim, sil", new { type = "submit" })
+        @Html.Button("Vazgeç", new { onclick = "OpenNewPage('" + Url.Action("index") + "');" })
+    </p>
+}

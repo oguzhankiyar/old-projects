@@ -1,0 +1,55 @@
+﻿@model IEnumerable<bgk_dokuman>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);
+    int i = 0;
+}
+
+<script type="text/javascript">
+    function ChangeApproval(id) {
+        $.post("@Url.Action("changeapproval")/" + id, { id: id }, function (msg) { $("a#" + id + "_approval").fadeOut(500).fadeIn(500, function () { $("a#" + id + "_approval").attr("class", $("a#" + id + "_approval").attr("class") == "approved" ? "deprecated" : "approved").attr("title", $("a#" + id + "_approval").attr("class") == "approved" ? "Onayı Kaldır" : "Onayla"); }); $("body").append(msg); });
+    }
+</script>
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a href="@Url.Action("index", "documentcategory")" style="width: 50%;">Kategoriler</a>
+            <a class="active" href="@Url.Action("index", "document")" style="width: 49.9%;">Dökümanlar</a>
+        </div>
+    </div>
+</div>
+
+<div class="table">
+    <div class="title">Dökümanlar
+        <span>@Html.ActionLink("Yeni Döküman", "create")</span>
+    </div>
+    <div class="content">
+        <div class="list">
+            <ul>
+                <li style="width: 38%;">@Html.Label("Adi")</li>
+                <li style="width: 15%;">@Html.Label("Kategori")</li>
+                <li style="width: 15%;">@Html.Label("Ekleyen")</li>
+                <li style="width: 15%;">@Html.Label("Tarih")</li>
+                <li style="width: 15%;">@Html.Label("Araçlar")</li>
+            </ul>
+            @foreach (var document in Model)
+            {
+                i++;
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li style="width: 38%;">@document.Adi</li>
+                    <li style="width: 15%;">@Html.DisplayFor(modelItem => document.bgk_dokuman_kategori.Adi)</li>
+                    <li style="width: 15%;">@Html.DisplayFor(modelItem => document.bgk_uye.AdSoyad)</li>
+                    <li style="width: 15%;">@Html.ShortDateTime(document.EklenmeTarihi)</li>
+                    <li style="width: 15%;">
+                        <a id="@(document.Id + "_approval")" class="@(document.Onay == true ? "approved" : "deprecated")" title="@(document.Onay == true ? "Onayı Kaldır" : "Onayla")" href="javascript:void(0)" onclick="ChangeApproval('@document.Id')"></a>
+                        @Html.ActionLink(" ", "edit", new { num = document.Id }, new { @class = "edit", title = "Düzenle" })
+                        @Html.ActionLink(" ", "details", new { num = document.Id }, new { @class = "details", title = "Detay" })
+                        <a class="delete" title="Sil" href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("delete", new { num = document.Id })', 'Eminim, sil', 'Vazgeç');"> </a>
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>
+@Html.Paging()

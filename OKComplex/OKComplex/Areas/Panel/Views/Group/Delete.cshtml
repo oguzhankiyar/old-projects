@@ -1,0 +1,41 @@
+﻿@model club_group
+@{
+    ViewBag.Title = "Grup Sil";
+    int commentcount = 0;
+    foreach (var post in Model.club_posts.ToList())
+    {
+        commentcount += post.club_comments.Count();
+    }
+}
+
+<h3>Aşağıdaki grubu ve bu gruva ait tüm yazıları silmek istediğinizden emin misiniz?</h3>
+
+<div class="detail">
+    <ul>
+        <li>@Html.LabelFor(model => model.Name)</li>
+        <li>@Html.DisplayFor(model => model.Name)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.IsSubGroup)</li>
+        <li>@Html.DisplayFor(model => model.IsSubGroup)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.ParentGroupId)</li>
+        <li>@Html.DisplayFor(model => model.ParentGroupId)</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Üye Sayısı")</li>
+        <li>@Model.club_members.Count()</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Yazı Sayısı")</li>
+        <li>@Model.club_posts.Count()</li>
+    </ul>
+</div>
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.Button("Eminim, sil", new { type = "submit" })
+        @Html.Button("Vazgeç", new { onclick = "OpenNewPage('" + Url.Action("index") + "');" })
+    </p>
+}

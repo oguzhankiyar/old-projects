@@ -1,0 +1,27 @@
+﻿@model club_postcomment
+@{
+    ViewBag.Title = "Yorum Sil";
+}
+
+<h3>Aşağıdaki cevabı silmek istediğinizden emin misiniz?</h3>
+<div class="detail">
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.club_post.Title)</li>
+        <li>@Html.DisplayFor(model => model.club_post.Title)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Comment)</li>
+        <li>@Html.DisplayFor(model => model.Comment)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.MemberId)</li>
+        <li>@Model.club_member.Name</li>
+    </ul>
+</div>
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.Button("Eminim, sil", new { type = "submit" })
+        @Html.Button("Vazgeç", new { onclick = "OpenNewPage('" + Url.Action("index") + "');" })
+    </p>
+}

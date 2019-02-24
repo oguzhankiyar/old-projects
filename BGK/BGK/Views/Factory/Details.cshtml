@@ -1,0 +1,35 @@
+﻿@model bgk_firma
+@{
+    ViewBag.Title = Model.Adi;
+    var categories = Model.bgk_uye == null ? null : Model.bgk_uye.bgk_gorev_kategori;
+    int i = 0;
+}
+
+<div class="table">
+    <div class="title">@Model.Adi</div>
+    <div class="content">
+        @Html.Raw(Model.Aciklama)
+    </div>
+</div>
+@if (categories != null && categories.Count() != 0)
+{
+    <div class="table">
+        <div class="title">Görev Kategorileri</div>
+        <div class="content list categories" style="padding: 0;">
+            @foreach (var category in categories)
+            {
+                i++;
+                <a href="@Url.Action("CategoryDetails", "Mission", new { id = category.Id })">
+                    <ul class="@(i % 2 == 0 ? "second" : "first")">
+                        <li class="image"><img src="@category.bgk_dosya.DosyaAdi" /></li>
+                        <li class="name">
+                            @category.Adi<br />
+                        <span>@category.Aciklama.GetSummary(100)</span>
+                    </li>
+                    <li class="info"><b>@category.bgk_gorev.Count()</b> görev, <b>@category.bgk_gorev_kategori_uye.Count()</b> abone</li>
+                </ul>
+            </a>
+            }
+        </div>
+    </div>
+}

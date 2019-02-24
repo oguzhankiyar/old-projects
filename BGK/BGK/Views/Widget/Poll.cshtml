@@ -1,0 +1,38 @@
+﻿@model bgk_anket
+
+<div class="table">
+    <div class="title">Anket
+        <span><a href="@Url.Action("Index", "Poll")">Tümü</a></span>
+    </div>
+    <div class="content">
+        @if (BGKFunction.IsVoted(Model.Id) || Model.BitisTarihi < DateTime.Now)
+        {
+            Html.RenderAction("Results", "Poll", new { id = Model.Id });
+        }
+        else
+        {
+            <div id="@("poll_" + Model.Id)" class="poll">
+                <b>@Model.Soru</b><br />
+                @foreach (var option in Model.bgk_anket_secenek.OrderBy(x => x.Sira).ToList())
+                {
+                    if (Model.CokluSecim)
+                    {
+                        <div>
+                            <input type="checkbox" id="@("option_" + option.Id + "")" name="@("poll_" + Model.Id)" value="@option.Id" />
+                            <label for="@("option_" + option.Id)">@option.Adi</label>
+                        </div>
+                    }
+                    else
+                    {
+                        <div>
+                            <input type="radio" id="@("option_" + option.Id)" name="@("poll_" + Model.Id)" value="@option.Id" />
+                            <label for="@("option_" + option.Id)">@option.Adi</label>
+                        </div>
+                    }
+                }
+                <div class="warning"></div>
+                @Html.Button("Gönder", new { id = Model.Id, type = "submit", style = "float: right;" })
+            </div>
+        }
+    </div>
+</div>

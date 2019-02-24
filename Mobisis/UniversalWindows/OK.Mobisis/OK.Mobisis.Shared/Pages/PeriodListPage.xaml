@@ -1,0 +1,39 @@
+﻿<Page
+    x:Class="OK.Mobisis.Pages.PeriodListPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:OK.Mobisis.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource PageStyle}">
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="dönemler" Style="{StaticResource TitleStyle}" />
+            <ListView x:Name="PeriodList" Margin="5" Grid.Row="1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="5">
+                            <Rectangle Fill="Black" Opacity=".3" />
+                            <StackPanel Margin="5,5,5,10">
+                                <TextBlock Grid.Row="0" FontSize="25" FontWeight="ExtraLight">
+                                    <Run Text="{Binding Year}" />
+                                    <Run Text="{Binding Name}" />
+                                </TextBlock>
+                                <TextBlock Grid.Row="1" FontSize="15">
+                                    <Run Text="GANO: " Foreground="#ccc" />
+                                    <Run Text="{Binding GANO}" />
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+
+</Page>

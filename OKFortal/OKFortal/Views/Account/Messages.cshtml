@@ -1,0 +1,27 @@
+﻿@model IEnumerable<message>
+@{
+    ViewBag.Title = "Mesaj Kutusu";
+    OKDbEntities Db = new OKDbEntities();
+    int userid = (int)Session["userid"];
+    int id = Convert.ToInt32(Request.QueryString["id"]);
+}
+<div style="height: 450px; overflow-y: scroll;">
+    @if (Model != null)
+    {
+        foreach (var message in Model)
+        {
+            var sender = Db.user.Find(message.SenderId);
+            var receiver = Db.user.Find(message.ReceiverId);
+            if (receiver.Id == userid)
+            {
+                message.IsRead = true;
+                Db.SaveChanges();
+            }
+            <div id="@sender.Id" style="background-color: @(!(sender.Id == userid && message.IsRead == true) ? "#f9f9f9" : "#fff"); margin: 2px; padding: 5px;">
+                <small style="color: #ccc; float: right;">@Html.ShortDateTime((DateTime)message.SendingDate)</small>
+                <b>@OK.UserName(sender)</b><br />
+                @message.Content<br />
+            </div>
+        }
+    }
+</div>

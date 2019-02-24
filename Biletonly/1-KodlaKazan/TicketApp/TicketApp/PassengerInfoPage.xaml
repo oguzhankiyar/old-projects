@@ -1,0 +1,88 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TicketApp.PassengerInfoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource AppPageStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="DodgerBlue">
+            <TextBlock Padding="15,5" Text="biletall - nereye gitmek istiyorsan oraya..." FontSize="{StaticResource PhoneFontSizeMedium}" />
+        </Grid>
+
+        <ScrollViewer Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Margin="0,15,0,0">
+                    <TextBlock Text="Email Adresiniz" Style="{StaticResource PhoneTextSmallStyle}" />
+                    <TextBox x:Name="Email" />
+                    <TextBlock Text="Telefon Numaranız" Style="{StaticResource PhoneTextSmallStyle}" />
+                    <TextBox x:Name="PhoneNumber" InputScope="Number" />
+                </StackPanel>
+                <StackPanel x:Name="FirstPassenger" Grid.Row="1">
+                    <Grid Background="DimGray" Margin="0,0,0,10">
+                        <TextBlock Margin="5">1. Yolcu</TextBlock>
+                    </Grid>
+                    <TextBlock Text="1. Yolcu Adı" Style="{StaticResource PhoneTextSmallStyle}" />
+                    <TextBox x:Name="FirstPassenger_Name" />
+                    <TextBlock Text="1. Yolcu Soyadı" Style="{StaticResource PhoneTextSmallStyle}" />
+                    <TextBox x:Name="FirstPassenger_LastName" />
+                    <toolkit:ListPicker x:Name="FirstPassenger_Service" Header="1. Yolcu Servis Biniş Yeri" />
+                </StackPanel>
+                <StackPanel x:Name="SecondPassenger" Grid.Row="2">
+                    <Grid Background="DimGray" Margin="0,0,0,10">
+                        <TextBlock Margin="5">2. Yolcu</TextBlock>
+                    </Grid>
+                    <TextBlock Text="2. Yolcu Adı" Style="{StaticResource PhoneTextSmallStyle}" />
+                    <TextBox x:Name="SecondPassenger_Name" />
+                    <TextBlock Text="2. Yolcu Soyadı" Style="{StaticResource PhoneTextSmallStyle}" />
+                    <TextBox x:Name="SecondPassenger_LastName" />
+                    <toolkit:ListPicker x:Name="SecondPassenger_Service" Header="1. Yolcu Servis Biniş Yeri" />
+                </StackPanel>
+                <StackPanel x:Name="ThirdPassenger" Grid.Row="3">
+                    <Grid Background="DimGray" Margin="0,0,0,10">
+                        <TextBlock Margin="5">3. Yolcu</TextBlock>
+                    </Grid>
+                    <TextBlock Text="3. Yolcu Adı" Style="{StaticResource PhoneTextSmallStyle}" />
+                    <TextBox x:Name="ThirdPassenger_Name" />
+                    <TextBlock Text="3. Yolcu Soyadı" Style="{StaticResource PhoneTextSmallStyle}" />
+                    <TextBox x:Name="ThirdPassenger_LastName" />
+                    <toolkit:ListPicker x:Name="ThirdPassenger_Service" Header="1. Yolcu Servis Biniş Yeri" />
+                </StackPanel>
+                <StackPanel x:Name="FourthPassenger" Grid.Row="4">
+                    <Grid Background="DimGray" Margin="0,0,0,10">
+                        <TextBlock Margin="5">4. Yolcu</TextBlock>
+                    </Grid>
+                    <TextBlock Text="4. Yolcu Adı" Style="{StaticResource PhoneTextSmallStyle}" />
+                    <TextBox x:Name="FourthPassenger_Name" />
+                    <TextBlock Text="4. Yolcu Soyadı" Style="{StaticResource PhoneTextSmallStyle}" />
+                    <TextBox x:Name="FourthPassenger_LastName" />
+                    <toolkit:ListPicker x:Name="FourthPassenger_Service" Header="1. Yolcu Servis Biniş Yeri" />
+                </StackPanel>
+                <Button Grid.Row="5" Content="Devam et" Click="Continue_Click" />
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+
+</phone:PhoneApplicationPage>

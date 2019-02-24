@@ -1,0 +1,28 @@
+﻿@model IEnumerable<club_category>
+@{
+    ViewBag.Title = "Kategoriler";
+    int i = 0;
+}
+<script type="text/javascript">
+    function ChangeApproval(id) {
+        $.post("@Url.Action("changeapproval")/" + id, { id: id }, function (msg) { $("a#" + id + "_approval").fadeOut(500).fadeIn(500, function () { $("a#" + id + "_approval").attr("class", $("a#" + id + "_approval").attr("class") == "approved" ? "deprecated" : "approved").attr("title", $("a#" + id + "_approval").attr("class") == "approved" ? "Onayı Kaldır" : "Onayla"); }); $("body").append(msg); });
+    }
+</script>
+<div class="list">
+    @foreach (var category in Model)
+    {
+        i++;
+        <ul class="@(i % 2 == 0 ? "second" : "first")">
+            <li>
+                <b>@Html.DisplayFor(modelItem => category.Name)</b>
+            </li>
+            <li class="manage">
+                @Html.ActionLink(" ", "Category", "Forum", new { area = "", id = category.Id, seo = category.Seo }, new { @class = "view", target = "_blank", title = "Sitede Göster" })
+                <a id="@(category.Id + "_approval")" class="@(category.IsApproval == true ? "approved" : "deprecated")" title="@(category.IsApproval == true ? "Onayı Kaldır" : "Onayla")" href="javascript:void(0)" onclick="ChangeApproval('@category.Id')"></a>
+                @Html.ActionLink(" ", "edit", new { num = category.Id }, new { @class = "edit", title = "Düzenle" })
+                @Html.ActionLink(" ", "details", new { num = category.Id }, new { @class = "details", title = "Detay" })
+                @Html.ActionLink(" ", "delete", new { num = category.Id }, new { @class = "delete", title = "Sil" })
+            </li>
+        </ul>
+    }
+</div>

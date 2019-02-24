@@ -1,0 +1,613 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{25D6B42A-2A8A-470C-9FAF-307775D995CC}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BGK</RootNamespace>
+    <AssemblyName>BGK</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net40\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ActivityController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BudgetController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CommentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ConfigController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DocumentCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DocumentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FactoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GalleryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GradeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GroupController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MissionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NoteController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NotificationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SharedController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ImageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MemberController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MissionCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PollController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PostController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UploadController.cs" />
+    <Compile Include="Controllers\ActivityController.cs" />
+    <Compile Include="Controllers\DocumentController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\FactoryController.cs" />
+    <Compile Include="Controllers\GalleryController.cs" />
+    <Compile Include="Controllers\GroupController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\MissionController.cs" />
+    <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Controllers\PollController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\WidgetController.cs" />
+    <Compile Include="Functions\BGKFunction.cs" />
+    <Compile Include="Functions\Helpers.cs" />
+    <Compile Include="Functions\MaintenanceControl.cs" />
+    <Compile Include="Functions\MemberControl.cs" />
+    <Compile Include="Functions\Controls.cs" />
+    <Compile Include="Functions\Sitemap.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BGKModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BGKModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BGKModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BGKModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BGKModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_anket.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_anket_secenek.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_anket_secim.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_ayar.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_bildirim.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_butce.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_communication.cs" />
+    <Compile Include="Models\bgk_dokuman.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_dokuman_kategori.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_dosya.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_etkinlik.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_etkinlik_gorevli.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_etkinlik_konusmaci.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_firma.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_galeri.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_galeri_resim.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_gorev.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_gorev_kategori.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_gorev_kategori_uye.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_gorev_uye.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_grup.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_grup_uye.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_kategori.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_menu.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_mesaj.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_not.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_oylama.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_sayfa.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_search.cs" />
+    <Compile Include="Models\bgk_seviye.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_uye.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_yazi.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_yetki.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bgk_yorum.cs">
+      <DependentUpon>BGKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChangePasswordModel.cs" />
+    <Compile Include="Models\delete_action.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Areas\Admin\Themes\Default\Images\approved.png" />
+    <Content Include="Areas\Admin\Themes\Default\Images\BgkParaf.png" />
+    <Content Include="Areas\Admin\Themes\Default\Images\delete.png" />
+    <Content Include="Areas\Admin\Themes\Default\Images\deprecated.png" />
+    <Content Include="Areas\Admin\Themes\Default\Images\detail.png" />
+    <Content Include="Areas\Admin\Themes\Default\Images\edit.png" />
+    <Content Include="Areas\Admin\Themes\Default\Images\error_bg.jpg" />
+    <Content Include="Areas\Admin\Themes\Default\Images\EruLogolu.png" />
+    <Content Include="Areas\Admin\Themes\Default\Images\first.gif" />
+    <Content Include="Areas\Admin\Themes\Default\Images\home.png" />
+    <Content Include="Areas\Admin\Themes\Default\Images\last.gif" />
+    <Content Include="Areas\Admin\Themes\Default\Images\loading.gif" />
+    <Content Include="Areas\Admin\Themes\Default\Images\next.gif" />
+    <Content Include="Areas\Admin\Themes\Default\Images\previous.gif" />
+    <Content Include="Areas\Admin\Themes\Default\Images\rating.gif" />
+    <Content Include="Areas\Admin\Themes\Default\Images\success_bg.jpg" />
+    <Content Include="Areas\Admin\Themes\Default\Images\topic.png" />
+    <Content Include="Areas\Admin\Themes\Default\Images\view.png" />
+    <Content Include="Areas\Admin\Themes\Default\StyleSheet.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Models\BGKModel.edmx.sql" />
+    <Content Include="Scripts\BGK.js" />
+    <Content Include="Scripts\jquery-1.7.2.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Uploads.js" />
+    <Content Include="Themes\Dark\images\BgkParaf.png" />
+    <Content Include="Themes\Dark\images\error_bg.jpg" />
+    <Content Include="Themes\Dark\images\EruLogolu.png" />
+    <Content Include="Themes\Dark\images\EruLogolu2.png" />
+    <Content Include="Themes\Dark\images\facebook.png" />
+    <Content Include="Themes\Dark\images\favicon.ico" />
+    <Content Include="Themes\Dark\images\first.gif" />
+    <Content Include="Themes\Dark\images\home.png" />
+    <Content Include="Themes\Dark\images\last.gif" />
+    <Content Include="Themes\Dark\images\loading.gif" />
+    <Content Include="Themes\Dark\images\menu-bg.png" />
+    <Content Include="Themes\Dark\images\next.gif" />
+    <Content Include="Themes\Dark\images\previous.gif" />
+    <Content Include="Themes\Dark\images\success_bg.jpg" />
+    <Content Include="Themes\Dark\images\twitter.png" />
+    <Content Include="Themes\Dark\images\up_circular.png" />
+    <Content Include="Themes\Dark\StyleSheet.css" />
+    <Content Include="Themes\Modern\images\BgkParaf.png" />
+    <Content Include="Themes\Modern\images\error_bg.jpg" />
+    <Content Include="Themes\Modern\images\EruLogolu.png" />
+    <Content Include="Themes\Modern\images\EruLogolu2.png" />
+    <Content Include="Themes\Modern\images\facebook.png" />
+    <Content Include="Themes\Modern\images\favicon.ico" />
+    <Content Include="Themes\Modern\images\first.gif" />
+    <Content Include="Themes\Modern\images\home.png" />
+    <Content Include="Themes\Modern\images\last.gif" />
+    <Content Include="Themes\Modern\images\loading.gif" />
+    <Content Include="Themes\Modern\images\next.gif" />
+    <Content Include="Themes\Modern\images\previous.gif" />
+    <Content Include="Themes\Modern\images\success_bg.jpg" />
+    <Content Include="Themes\Modern\images\twitter.png" />
+    <Content Include="Themes\Modern\images\up_circular.png" />
+    <Content Include="Themes\Modern\StyleSheet.css" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Menu.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Areas\Admin\Views\Config\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Config\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Config\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Config\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Page\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Page\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Page\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Page\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Comment\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Comment\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Comment\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Comment\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Gallery\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Gallery\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Gallery\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Post\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Post\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Post\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Post\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Upload\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Budget\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Budget\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Budget\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Budget\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Factory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Factory\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Factory\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Factory\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Activity\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Activity\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Activity\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Activity\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Member\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Member\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Member\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Member\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Grade\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Grade\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Grade\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Menu.cshtml" />
+    <Content Include="Areas\Admin\Themes\Default\Images\Thumbs.db" />
+    <Content Include="Areas\Admin\Views\Image\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Image\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Image\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Image\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Group\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Group\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Group\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Group\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Poll\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Poll\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Poll\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Poll\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Poll\AddOption.cshtml" />
+    <Content Include="Areas\Admin\Views\Upload\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Group\AddMember.cshtml" />
+    <Content Include="Areas\Admin\Views\Group\EditMember.cshtml" />
+    <Content Include="Areas\Admin\Views\Group\MemberDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Upload\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\MissionCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\MissionCategory\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\MissionCategory\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\MissionCategory\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Activity\SpeakerDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Activity\AddSpeaker.cshtml" />
+    <Content Include="Areas\Admin\Views\Activity\EditSpeaker.cshtml" />
+    <Content Include="Areas\Admin\Views\Activity\OfficerDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Activity\AddOfficer.cshtml" />
+    <Content Include="Areas\Admin\Views\Member\SendMessage.cshtml" />
+    <Content Include="Areas\Admin\Views\Group\SendMessage.cshtml" />
+    <Content Include="Areas\Admin\Views\Upload\Upload.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\DeleteActions.cshtml" />
+    <Content Include="Areas\Admin\Views\Gallery\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Member\CreatePassword.cshtml" />
+    <Content Include="Areas\Admin\Views\DocumentCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DocumentCategory\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\DocumentCategory\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\DocumentCategory\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Note\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Note\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Note\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Note\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Notification\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Notification\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Document\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Document\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Document\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Document\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\MissionCategory\SubscribtionDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Mission\Index.cshtml" />
+    <EntityDeploy Include="Models\BGKModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BGKModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BGKModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BGKModel.edmx</DependentUpon>
+      <LastGenOutput>BGKModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\BGKModel.edmx.diagram">
+      <DependentUpon>BGKModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\BGKModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BGKModel.edmx</DependentUpon>
+      <LastGenOutput>BGKModel.cs</LastGenOutput>
+    </Content>
+    <None Include="Properties\PublishProfiles\bgk.ogzkyr.net.pubxml" />
+    <Content Include="Views\Member\Login.cshtml" />
+    <Content Include="Views\Home\Membership.cshtml" />
+    <Content Include="Views\Post\Index.cshtml" />
+    <Content Include="Views\Post\Details.cshtml" />
+    <Content Include="Views\Home\Communication.cshtml" />
+    <Content Include="Views\Page\Details.cshtml" />
+    <Content Include="Views\Gallery\Index.cshtml" />
+    <Content Include="Views\Gallery\Images.cshtml" />
+    <Content Include="Views\Gallery\View.cshtml" />
+    <Content Include="Views\Widget\AboutBGK.cshtml" />
+    <Content Include="Views\Widget\Search.cshtml" />
+    <Content Include="Views\Widget\Posts.cshtml" />
+    <Content Include="Views\Widget\Gallery.cshtml" />
+    <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Widget\Poll.cshtml" />
+    <Content Include="Views\Poll\Results.cshtml" />
+    <Content Include="Views\Poll\Index.cshtml" />
+    <Content Include="Views\Member\Messages.cshtml" />
+    <Content Include="Views\Member\Messaging.cshtml" />
+    <Content Include="Views\Member\Posts.cshtml" />
+    <Content Include="Views\Member\Uploads.cshtml" />
+    <Content Include="Views\Activity\Index.cshtml" />
+    <Content Include="Views\Activity\Details.cshtml" />
+    <Content Include="Views\Activity\Speaker.cshtml" />
+    <Content Include="Views\Activity\Officer.cshtml" />
+    <Content Include="Views\Factory\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Views\Factory\Index.cshtml" />
+    <Content Include="Views\Member\Details.cshtml" />
+    <Content Include="Views\Member\Groups.cshtml" />
+    <Content Include="Views\Member\Comments.cshtml" />
+    <Content Include="Views\Member\List.cshtml" />
+    <Content Include="Views\Widget\MemberMenu.cshtml" />
+    <Content Include="Views\Member\Missions.cshtml" />
+    <Content Include="Views\Mission\List.cshtml" />
+    <Content Include="Views\Mission\Details.cshtml" />
+    <Content Include="Views\Mission\TakeMission.cshtml" />
+    <Content Include="Views\Mission\Categories.cshtml" />
+    <Content Include="Views\Mission\Subscribe.cshtml" />
+    <Content Include="Views\Group\Index.cshtml" />
+    <Content Include="Views\Group\Details.cshtml" />
+    <Content Include="Views\Group\GiveMission.cshtml" />
+    <Content Include="Views\Mission\CategoryDetails.cshtml" />
+    <Content Include="Views\Mission\CompleteMission.cshtml" />
+    <Content Include="Views\Mission\MissionMember.cshtml" />
+    <Content Include="Views\Widget\PinnedPosts.cshtml" />
+    <Content Include="Views\Group\AddMember.cshtml" />
+    <Content Include="Views\Group\EditMember.cshtml" />
+    <Content Include="Views\Group\DeleteMember.cshtml" />
+    <Content Include="Views\Group\MemberDetails.cshtml" />
+    <Content Include="Views\Mission\Unsubscribe.cshtml" />
+    <Content Include="Views\Mission\GiveMission.cshtml" />
+    <Content Include="Views\Mission\EditMission.cshtml" />
+    <Content Include="Views\Mission\MissionActions.cshtml" />
+    <Content Include="Views\Mission\DeleteMission.cshtml" />
+    <Content Include="Views\Group\SendMessage.cshtml" />
+    <Content Include="Views\Home\Modal.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Maintenance.cshtml" />
+    <Content Include="Views\Member\ChangePassword.cshtml" />
+    <Content Include="Views\Post\Create.cshtml" />
+    <Content Include="Views\Document\Index.cshtml" />
+    <Content Include="Views\Document\Details.cshtml" />
+    <Content Include="Views\Member\MyNotifications.cshtml" />
+    <Content Include="Views\Error\CustomErrors.cshtml" />
+    <Content Include="Views\Error\NoRole.cshtml" />
+    <Content Include="Views\Error\NoMember.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>5192</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:5181/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

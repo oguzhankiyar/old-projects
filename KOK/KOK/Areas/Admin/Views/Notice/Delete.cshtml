@@ -1,0 +1,61 @@
+﻿@model KOK.Models.duyuru
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>duyuru</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Baslik)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Baslik)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Icerik)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Icerik)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Sira)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sira)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Tarih)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tarih)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Onay)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Onay)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Manset)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Manset)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

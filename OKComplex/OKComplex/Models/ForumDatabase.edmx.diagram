@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4923747770d345d197f2312f2701e2d3" Name="Diagram1">
+        <EntityTypeShape EntityType="OKDbModel.category" Width="1.5" PointX="3.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OKDbModel.comment" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="OKDbModel.config" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OKDbModel.forum" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OKDbModel.menulink" Width="1.5" PointX="8.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OKDbModel.message" Width="1.5" PointX="10.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OKDbModel.notice" Width="1.5" PointX="10.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OKDbModel.post" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OKDbModel.rating" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OKDbModel.topic" Width="1.5" PointX="8.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OKDbModel.user" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OKDbModel.usertype" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <AssociationConnector Association="OKDbModel.FK_forum_category" ManuallyRouted="false" />
+        <AssociationConnector Association="OKDbModel.FK_comment_topic" ManuallyRouted="false" />
+        <AssociationConnector Association="OKDbModel.FK_comment_user" ManuallyRouted="false" />
+        <AssociationConnector Association="OKDbModel.FK_topic_forum" ManuallyRouted="false" />
+        <AssociationConnector Association="OKDbModel.FK_post_user" ManuallyRouted="false" />
+        <AssociationConnector Association="OKDbModel.FK_rating_user" ManuallyRouted="false" />
+        <AssociationConnector Association="OKDbModel.FK_topic_user" ManuallyRouted="false" />
+        <AssociationConnector Association="OKDbModel.FK_user_usertype" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

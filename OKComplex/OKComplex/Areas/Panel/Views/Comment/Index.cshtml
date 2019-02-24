@@ -1,0 +1,37 @@
+﻿@model IEnumerable<club_postcomment>
+@{
+    ViewBag.Title = "Yorumlar";
+    int count = Convert.ToInt32(ViewBag.count);
+    int i = 0;
+}
+<script type="text/javascript">
+    function ChangeApproval(id) {
+        $.post("@Url.Action("changeapproval")/" + id, { id: id }, function (msg) { $("a#" + id + "_approval").fadeOut(500).fadeIn(500, function () { $("a#" + id + "_approval").attr("class", $("a#" + id + "_approval").attr("class") == "approved" ? "deprecated" : "approved").attr("title", $("a#" + id + "_approval").attr("class") == "approved" ? "Onayı Kaldır" : "Onayla"); }); $("body").append(msg); });
+    }
+</script>
+<div class="list">
+    @foreach (var comment in Model)
+    {
+        i++;
+        <ul class="@(i % 2 == 0 ? "second" : "first")">
+            <li>
+                <b>@OK.Summary(comment.Comment, 100)</b><br />
+                <small>
+                    <b>Konu:</b> @OK.Summary(comment.club_post.Title, 50)
+                    &nbsp;
+                    <b>Gönderen:</b> @(comment.MemberId == null ? comment.WriterName : comment.club_member.Name)
+                    &nbsp;
+                    <b>Tarih:</b> @Html.ShortDateTime(Convert.ToDateTime(comment.WritingDate))
+                </small>
+            </li>
+            <li class="manage">
+                @Html.ActionLink(" ", "GoComment", "Forum", new { area = "", id = comment.Id }, new { @class = "view", target = "_blank", title = "Sitede Göster" })
+                <a id="@(comment.Id + "_approval")" class="@(comment.IsApproval == true ? "approved" : "deprecated")" title="@(comment.IsApproval == true ? "Onayı Kaldır" : "Onayla")" href="javascript:void(0)" onclick="ChangeApproval('@comment.Id')"></a>
+                @Html.ActionLink(" ", "edit", new { num = comment.Id }, new { @class = "edit", title = "Düzenle" })
+                @Html.ActionLink(" ", "details", new { num = comment.Id }, new { @class = "details", title = "Detay" })
+                @Html.ActionLink(" ", "delete", new { num = comment.Id }, new { @class = "delete", title = "Sil" })
+            </li>
+        </ul>
+    }
+</div>
+@Html.Paging("OpenNewPage('" + Url.Action("index", new { num = "{page}" }) + "');", count, 10)

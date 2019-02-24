@@ -1,0 +1,123 @@
+﻿@model club_post
+
+@section Map {
+    <div class="map">
+        <span>@Html.ActionLink(OK.ClubConfig("site-name"), "Index", "Home")</span>
+        @if (Model.CategoryId != null)
+        {
+            <span><a href="@Url.Action("Category", "Post", new { seo = Model.club_category.Seo })">@Model.club_category.Name</a></span>
+        }
+        else
+        {
+            <span><a href="@Url.Action("Detail", "Group", new { seo = Model.club_group.Seo, page = 1 })">@Model.club_group.Name</a></span>
+        }
+        <span class="active">@Model.Title</span>
+    </div>
+}
+<script type="text/javascript">
+    function ToggleCommentBar() {
+        $("div.createcomment .info").html("");
+        $("div.createcomment input[type=text]").val("");
+        $("div.createcomment textarea").val("");
+        $("div.createcomment").stop().slideToggle(500);
+    }
+    function CreateComment() {
+        $.post($("div.createcomment form").attr("action"), $("div.createcomment form").serialize(), function (msg) {
+            $("div.createcomment .info").html(msg);
+        });
+    }
+</script>
+@if (Model.IsApproval == false)
+{
+    Html.RenderAction("PostControl", "Group");
+}
+<div class="table">
+    <div class="title">@Model.Title @Html.Raw(Model.IsApproval == false ? "<font color=red>(Onaysız)</font>" : "")</div>
+    <div class="content">
+        <div class="post">
+            <ul class="info">
+                @if (Model.CategoryId != null)
+                {
+                    <li><b>Kategori: </b><a href="@Url.Action("Category", "Post", new { seo = Model.club_category.Seo, page = 1 })">@Model.club_category.Name</a></li>
+                }
+                else
+                {
+                    <li><b>Grup: </b><a href="@Url.Action("Detail", "Group", new { seo = Model.club_group.Seo, page = 1 })">@Model.club_group.Name</a></li>
+                }
+                <li><b>Yazan: </b><a href="@Url.Action("info", "member", new { id = Model.club_member.Id })">@Model.club_member.Name</a></li>
+                <li><b>Tarih: </b>@Html.ShortDateTime((DateTime)Model.WritingDate)</li>
+                <li><b>Yorum: </b>@Model.club_comments.Count() yorum</li>
+            </ul>
+            <ul class="content">
+                @if (!string.IsNullOrEmpty(Model.Image))
+                {
+                    <li class="image"><img src="@Model.Image" /></li>
+                }
+                <li>@Html.Raw(Model.Content)</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="table">
+    <div class="title">Yorumlar (@ViewBag.commentcount)<span><a href="javascript:void(0)" onclick="ToggleCommentBar()">Yorum yap</a></span></div>
+    <div class="content">
+        <div class="createcomment">
+            @using (Html.BeginForm("CreateCommentSave", "Post", FormMethod.Post))
+            {
+                <div class="form">
+                    @if (Session["memberinfo"] == null)
+                    {
+                        <ul>
+                            <li>@Html.Label("WriterName")</li>
+                            <li>@Html.Editor("WriterName")</li>
+                        </ul>
+                    }
+                    else
+                    {
+                        @Html.Hidden("MemberId", Session["memberid"])
+                    }
+                    <ul>
+                        <li>@Html.Label("Comment")</li>
+                        <li>@Html.TextArea("Comment")</li>
+                    </ul>
+                    <ul>
+                        <li class="info" style="width: auto;"></li>
+                        <li style="width: auto; float: right;">
+                            @Html.Button("Gönder", new { onclick = "CreateComment()" })
+                            @Html.Button("Vazgeç", new { onclick = "ToggleCommentBar()" })
+                        </li>
+                    </ul>
+                    @Html.Hidden("PostId", Model.Id)
+                </div>
+            }
+        </div>
+        @if (ViewBag.commentcount == 0)
+        {
+            <div style="text-align: center;">Bu yazıya ilk yorumu siz yapın</div>
+        }
+        else
+        {
+            <div class="comments">
+                @foreach (club_postcomment comment in ViewBag.comments)
+                {
+                    if (comment.MemberId == null)
+                    {
+                        <ul>
+                            <li>@comment.WriterName<span>@Html.ShortDateTime((DateTime)comment.WritingDate)</span></li>
+                            <li>@comment.Comment</li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul>
+                            <li><a href="@Url.Action("info", "member", new { id = comment.club_member.Id })">@comment.club_member.Name</a><span>@Html.ShortDateTime((DateTime)comment.WritingDate)</span></li>
+                            <li>@comment.Comment</li>
+                        </ul>
+                    }
+                }
+            </div>
+        }
+        @Html.Paging("$.OK.OpenNewPage('" + Url.Action("Detail", "Post", new { id = Model.Id, seo = Model.Seo, page = "{page}" }) + "');", (int)ViewBag.commentcount, 10)
+    </div>
+</div>

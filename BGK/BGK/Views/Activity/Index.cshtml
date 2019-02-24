@@ -1,0 +1,30 @@
+﻿@model IEnumerable<bgk_etkinlik>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);
+    int i = 0;
+}
+
+<div class="table">
+    <div class="title">Etkinlikler</div>
+    <div class="content list activities">
+        @if (count == 0)
+        {
+            <div class="warning">
+                Henüz etkinlk yapılmamış.
+            </div>
+        }
+        @foreach (var activity in Model)
+        {
+            i++;
+            <a href="@Url.Action("Details", new { id = activity.Id, seo = activity.Adi.ConvertSeo() })">
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li class="name">@activity.Adi<br />
+                        <span>@activity.Aciklama.GetSummary(100)</span>
+                    </li>
+                </ul>
+            </a>
+        }
+    </div>
+</div>
+@Html.Paging()

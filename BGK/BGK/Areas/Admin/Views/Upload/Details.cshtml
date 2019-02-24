@@ -1,0 +1,52 @@
+﻿@model bgk_dosya
+
+<script type="text/javascript" src="http://www.steamdev.com/zclip/js/jquery.zclip.min.js"></script>
+
+<script type="text/javascript">
+    function CopyToClipboard(text) {
+        window.prompt("Kopyalamak için Ctrl + C tuşlarına basınız", text);
+    }
+</script>
+
+<div class="title">Dosya Detayları</div>
+<div class="content">
+    <div class="details">
+        <ul>
+            <li>@Html.LabelFor(model => model.Aciklama)</li>
+            <li>@Html.DisplayFor(model => model.Aciklama)</li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.DosyaAdi)</li>
+            <li>@Html.DisplayFor(model => model.DosyaAdi)</li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.Adres)</li>
+            <li title="@(Model.DosyaAdi.Length > 40 ? Model.Adres : "")">@Model.Adres.GetSummary(40)</li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.DosyaTipi)</li>
+            <li>@Html.DisplayFor(model => model.DosyaTipi)</li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.YukleyenID)</li>
+            <li>@Model.bgk_uye.AdSoyad</li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.YuklenmeTarihi)</li>
+            <li>@Html.DisplayFor(model => model.YuklenmeTarihi)</li>
+        </ul>
+        <ul>
+            <li>@Html.Label("Kullanıldığı Yerler")</li>
+            <li>
+                Gelir-Gider (@Model.bgk_butce.Count()),
+                Etkinlik (@Model.bgk_etkinlik.Count()),
+                Resim (@Model.bgk_galeri_resim.Count())
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="buttons">
+    @Html.Button("Adresi Kopyala", new { onclick = "CopyToClipboard('" + Model.Adres + "');" })
+    @Html.Button("Dosyayı Sil", new { onclick = "$.BGK.FormModal('" + Url.Action("delete", new { num = Model.Id }) + "', 'Eminim, sil', 'Vazgeç');" })
+    @Html.Button("Kapat", new { onclick = "$.BGK.ModalClose();" })
+</div>

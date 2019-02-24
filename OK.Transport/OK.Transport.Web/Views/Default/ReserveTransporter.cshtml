@@ -1,0 +1,390 @@
+﻿@model OK.Transport.Web.ViewModels.TransporterViewModel
+@{
+    ViewBag.ActiveLink = "linkSearch";
+
+    string fromId = ViewBag.fromId;
+    string toId = ViewBag.toId;
+    string fromName = ViewBag.fromName;
+    string toName = ViewBag.toName;
+    double fromLat = Convert.ToDouble(ViewBag.FromLat);
+    double fromLng = Convert.ToDouble(ViewBag.FromLng);
+    double toLat = Convert.ToDouble(ViewBag.ToLat);
+    double toLng = Convert.ToDouble(ViewBag.ToLng);
+    string id = Request.QueryString["id"];
+}
+
+<script type="text/javascript">
+    $(function () {
+        var from_id;
+        var from_name;
+        var stop_type = 1;
+        var sub_stop = 1;
+        var stops = [];
+        var chars = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ").split('');
+        
+        Array.prototype.removeValue = function(name, value){
+            var array = $.map(this, function(v,i){
+                return v[name] === value ? null : v;
+            });
+            this.length = 0; //clear original array
+            this.push.apply(this, array); //push all elements except the one we want to delete
+        }
+
+        $("#from").keyup(function () {
+            $("#from_results").hide();
+            $("#from_results").text("");
+
+            $.ajax({
+                url: "@Url.Action("AutoComplete")",
+                dataType: "json",
+                data: { query: $(this).val() },
+                success: function (data) {
+                    if (data.predictions.length != 0)
+                        $("#from_results").show();
+                    for (var i = 0; i < data.predictions.length; i++) {
+                        var place = $("<div class=\"from_place\" id=\"" + data.predictions[i].place_id + "\" style=\"cursor: pointer; margin: 5px; background: #363636; color: #fff; font-size: 13px; padding: 10px; width: 100%;\">" + data.predictions[i].description + "</div>");
+                        place.click(function () {
+                            $("#from").val($(this).text());
+                            $("#from_results").hide();
+                            $(".from_place").css("background", "#363636");
+                            $(this).css("background", "darkred");
+                            from_id = $(this).attr("id");
+                            from_name = $(this).text();
+                            //$("#from_id").val($(this).attr("id"));
+                        });
+                        place.prependTo("#from_results");
+                    }
+                }
+            });
+        });
+
+        function removeStop(id, name) {
+            stops.removeValue("placeId", id);
+
+            way_points.removeValue("location", name);
+            updateStopList();
+        }
+
+        function updateStopList() {
+            var i = 0;
+            $("#from_char").text(chars[0] + ".");
+            $("#list").html("");
+            $("#stopList").html("");
+
+            for (; i < stops.length;; i++) {
+                var stop = stops[i];
+                var item = $("<div id=\"" + stop["placeId"] + "\" name=\"" + stop["placeName"] + "\" class=\"stopItem\" title=\"binecek: " + stop["passengerCountGetOn"] + " - inecek: " + stop["passengerCountGetOff"] + "\" style=\"background-color: rgba(255, 255, 255, .2); margin-bottom: 10px;  padding: 5px; width: 250px;\"></div>");
+                item.text(chars[i + 1] + ". " + stop["placeName"]);
+                var btnRemove = $("<a href=\"javascript:void(0)\"> X </a>");
+                btnRemove.click(function () {
+                    var parent = $(this).parent();
+                    var id = parent.attr("id");
+                    var name = parent.attr("name");
+                    removeStop(id, name);
+                });
+                item.append(btnRemove);
+                $("#list").append(item);
+                $("#stopList").append("<div class=\"rotate\" title=\"" + from_name + "\" style=\"display: inline-table;\">" + from_name.substring(0, 20) + "</div>");
+            }
+            $("#to_char").text(chars[i + 1] + ".");      
+        }
+        
+        function stopsSorted() {
+            way_points = [];
+            stops = [];
+            $("#list div").each(function(index, element){
+                var id = $(this).attr("id");
+                var name = $(this).attr("name");
+                var get_on_count = 0;
+                var get_off_count = 0;
+
+                stops.push({ passengerCountGetOn: get_on_count, passengerCountGetOff: get_off_count, placeId: id, placeName: name });
+                way_points.push({ location: name });
+            });
+            updateStopList();
+            displayRoute(lat1, lng1, lat2, lng2, _service, _display);
+        }
+
+        $("#addStop").click(function () {
+            var get_on_count = $("#txtPassengerCountGetOn").val() == "" ? "0" : $("#txtPassengerCountGetOn").val();
+            var get_off_count = $("#txtPassengerCountGetOff").val() == "" ? "0" : $("#txtPassengerCountGetOff").val();
+            
+            stops.push({ passengerCountGetOn: get_on_count, passengerCountGetOff: get_off_count, placeId: from_id, placeName: from_name });
+            $("#Stops").val(JSON.stringify(stops));
+            addWayPoint(from_name);
+            updateStopList();
+
+            $("#from").val("");
+            $("#txtPassengerCountGetOn").val("");
+            $("#txtPassengerCountGetOff").val("");
+            from_id = null;
+            from_name = null;
+        });
+
+        function stopTypeChanged() {
+            if ($("#stopType_2").is(":checked")) {
+                stop_type = 2;
+                $("#passengerInfo_panel").hide();
+            }
+            else {
+                stop_type = 1;
+                $("#passengerInfo_panel").show();
+            }
+        }
+        $("#stopType_1").change(function () { stopTypeChanged(); });
+        $("#stopType_2").change(function () { stopTypeChanged(); });
+        $("#stopType_3").change(function () { stopTypeChanged(); });
+
+        function subStopChanged() {
+            if ($("#subStop_1").is(":checked")) {
+                sub_stop = 1;
+                $("#subStop_panel").show();
+            }
+            else {
+                sub_stop = 2;
+                $("#subStop_panel").hide();
+            }
+        }
+
+        $("#subStop_1").change(function () { subStopChanged(); });
+        $("#subStop_2").change(function () { subStopChanged(); });
+
+        $("#list").sortable({
+            placeholder: "state-highlight", 
+            start: function(event, ui) {
+                ui.item.data('start_pos', ui.item.index());
+            },
+            stop: function(event, ui) {
+                var start_pos = ui.item.data('start_pos');
+                if (start_pos != ui.item.index()) {
+                    stopsSorted();
+                } else {
+                    // the item was returned to the same position
+                }
+            }
+        });
+
+        $("#btnContinue").click(function () {
+            $("#Stops").val(JSON.stringify(stops));
+            $("form").submit();
+        });
+    });
+</script>
+<h2>Otobüsü Kirala</h2>
+
+<div id="total" style="text-align: center;"></div>
+<div style="width: 100%; margin: 50px 0;">
+    <div style="display: table; float: left;">
+        <div style="float: left; padding-right: 5px;">@WebUtility.HtmlDecode(WebUtility.HtmlDecode(fromName))</div>
+        <div style="float: left; padding: 10px; border: 4px solid green; border-radius: 100px;"></div>
+    </div>
+    <div style="display: table; float: left; padding: 10px 0 0 0; width: 50%;">
+        <div id="stopList" style="position: absolute; padding: 5px; width: 700px;"></div>
+        <div style="border: 2.5px solid #f5f5f5; width: 100%;"></div>
+    </div>
+    <div style="display: table; float: left;">
+        <div style="float: left; padding: 10px; border: 4px solid red; border-radius: 100px;"></div>
+        <div style="float: left; padding-left: 5px;">@WebUtility.HtmlDecode(WebUtility.HtmlDecode(toName))</div>
+    </div>
+</div>
+<div>
+    <div id="map" style="float: left; width: 750px; height: 400px;"></div>
+    <div id="subStop_panel" style="background-color: rgba(54, 54, 54, .75); padding: 20px; margin: 10px; float: left;">
+        <div style="background-color: rgba(255, 255, 255, .2); margin-bottom: 10px; padding: 5px;"><span id="from_char">A.</span> @WebUtility.HtmlDecode(WebUtility.HtmlDecode(fromName))</div>
+        <div id="list" style="width: 250px;">
+
+        </div>
+        <div style="background-color: rgba(255, 255, 255, .2); margin-bottom: 10px; padding: 5px;"><span id="to_char">B.</span> @WebUtility.HtmlDecode(WebUtility.HtmlDecode(toName))</div>
+        
+        
+    </div>
+</div>
+
+<div style="display: table; width: 1000px; margin-top: 10px;">
+    <div style="display: table; float: left;">
+        <div style="background-color: rgba(54, 54, 54, .75); padding: 20px; margin: 10px;">
+            <h2>Otobüs Detayları</h2>
+            <b>Plaka: </b>@Model.Plate<br />
+            <b>Marka: </b>@Model.Brand<br />
+            <b>Model: </b>@Model.Model<br />
+            <b>Yolcu Kapasitesi: </b>@Model.PassengerCapacity<br />
+            <b>Çalışma Saatleri: </b>@Model.WorkingHours<br />
+            <b>Bagaj Kapasitesi: </b>@Model.BaggageCapacity
+        </div>
+        <div style="background-color: rgba(54, 54, 54, .75); padding: 20px 45px 20px 20px; margin: 10px;">
+            <h2>Şoför Detayları</h2>
+            <img src="http://ogzkyr.net/ok-photo.jpg" /><br />
+            <b>Ad Soyad: </b>Oğuzhan Kiyar<br />
+            <b>Yaş: </b>22<br />
+            <b>Tecrübe: </b>2 yıl<br />
+            <b>Tip: </b>Bireysel Şoför<br />
+            <b>Telefon: </b>(535) 066 64 30<br />
+            <b>Değerlendirme: </b>★★★★☆
+        </div>
+    </div>
+    <div style="background-color: rgba(54, 54, 54, .75); display: table; float: left; padding: 20px; margin: 10px;">
+        <h2>Koltuk Şeması</h2>
+        @{
+            int columnCount = Convert.ToInt32(Model.SeatSchema[0].ToString());
+            int seatNumber = 1;
+        }
+        @for (var i = 1; i < Model.SeatSchema.Length; i++)
+        {
+            int seatType = Convert.ToInt32(Model.SeatSchema[i].ToString());
+            string seatName = "&nbsp;";
+            if (seatType == 1 || seatType == 2 || seatType == 3 || seatType == 4)
+            {
+                seatName = "" + seatNumber++;
+            }
+            else if (seatType == 9)
+            {
+                seatName = "Ş";
+            }
+            else if (seatType == 8)
+            {
+                seatName = "P";
+            }
+            else if (seatType == 5)
+            {
+                seatName = "M";
+            }
+
+            <span class="@("seat seat-" + seatType)">@Html.Raw(seatName)</span>
+            if (i % columnCount == 0)
+            {
+                <br />
+            }
+        }
+    </div>
+    <div style="background-color: rgba(54, 54, 54, .75); display: table; float: left; padding: 20px; margin: 10px;">
+        <h2>Ara Durak Seçimi</h2>
+        <input id="subStop_1" type="radio" name="subStop" checked="checked" /><label for="subStop_1">Ara Durak Var</label>
+        <input id="subStop_2" type="radio" name="subStop" /><label for="subStop_2">Ara Durak Yok</label>
+        <div id="from_panel">
+            <input id="from" type="text" placeholder="Durak Yeri" autocomplete="off" />
+            <div id="from_results" style="max-height: 300px; width: 375px; position: absolute; z-index: 1500;"></div>
+        </div>
+        <input id="stopType_1" type="radio" name="stopType" checked="checked" /><label for="stopType_1">Yolcu Var</label>
+        <input id="stopType_2" type="radio" name="stopType" /><label for="stopType_2">Yolcu Yok</label>
+        <div id="passengerInfo_panel">
+            <input id="txtPassengerCountGetOn" type="text" placeholder="Binecek Yolcu Sayısı" style="width: 150px;" />
+            <input id="txtPassengerCountGetOff" type="text" placeholder="İnecek Yolcu Sayısı" style="width: 150px;" />
+            <button id="addStop">+</button>
+        </div>
+    </div>
+    <div style="display: table; float: left; margin-left: 5px;">
+        @using (Html.BeginForm())
+        {
+            @Html.Hidden("transporterId", id)
+            @Html.Hidden("fromId", fromId)
+            @Html.Hidden("toId", toId)
+            @Html.Hidden("fromName", fromName)
+            @Html.Hidden("toName", toName)
+            @Html.Hidden("fromLat", fromLat)
+            @Html.Hidden("fromLng", fromLng)
+            @Html.Hidden("toLat", toLat)
+            @Html.Hidden("toLng", toLng)
+            @Html.Hidden("Stops")
+            <input id="btnContinue" type="button" value="İşleme Devam Et" />
+        }
+    </div>
+</div>
+<style type="text/css">
+    .rotate {
+        font-size: 12px;
+        width: 125px;
+/* Safari */
+-webkit-transform: rotate(-32.5deg);
+
+/* Firefox */
+-moz-transform: rotate(-32.5deg);
+
+/* IE */
+-ms-transform: rotate(-32.5deg);
+
+/* Opera */
+-o-transform: rotate(-32.5deg);
+
+/* Internet Explorer */
+filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
+}
+    .state-highlight { height: 1.5em; line-height: 1.2em; }
+</style>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8ZOOxJmhvlmMAZE4sFTZIjmzKsSFa0Mo&language=tr&callback=initMap" async defer></script>
+<script>
+    var lat1, lng1, lat2, lng2, center_lat, center_lng, _service, _display;
+    var way_points = [];
+
+    function initMap() {
+        lat1 = @fromLat;
+        lng1 = @fromLng;
+        lat2 = @toLat;
+        lng2 = @toLng;
+        center_lat = @((fromLat + toLat) / 2);
+        center_lng = @((fromLng + toLng) / 2);
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: { lat: center_lat, lng: center_lng },
+            mapTypeControlOptions: {
+                mapTypeIds: []
+            }
+        });
+
+        google.maps.event.addListener(map, 'click', function (event) {
+            alert("Latitude: " + event.latLng.lat() + " " + ", longitude: " + event.latLng.lng());
+        });
+
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer({
+            draggable: true,
+            map: map
+        });
+
+        directionsDisplay.addListener('directions_changed', function () {
+            computeTotalDistance(directionsDisplay.getDirections());
+        });
+
+        _service = directionsService;
+        _display = directionsDisplay;
+
+        displayRoute(lat1, lng1, lat2, lng2, directionsService, directionsDisplay);
+    }
+
+    function displayRoute(lat1, lng1, lat2, lng2, service, display) {
+        service.route({
+            origin: { lat: lat1, lng: lng1 },
+            destination: { lat: lat2, lng: lng2 },
+            waypoints: way_points,
+            travelMode: google.maps.TravelMode.DRIVING,
+            avoidTolls: true
+        }, function (response, status) {
+            if (status === google.maps.DirectionsStatus.OK) {
+                display.setDirections(response);
+            } else {
+                alert('Could not display directions due to: ' + status);
+            }
+        });
+    }
+
+    function addWayPoint(wname) {
+        way_points.push({ location: wname }); //new google.maps.LatLng(wlat, wlng)
+        displayRoute(lat1, lng1, lat2, lng2, _service, _display);
+    }
+
+    function removeWayPoint(wname) {
+        way_points.removeValue("location", wname);
+        displayRoute(lat1, lng1, lat2, lng2, _service, _display);
+    }
+
+    function computeTotalDistance(result) {
+        var total = 0;
+        var myroute = result.routes[0];
+        for (var i = 0; i < myroute.legs.length; i++) {
+            total += myroute.legs[i].distance.value;
+        }
+        total = total / 1000;
+        document.getElementById('total').innerHTML = total + ' km';
+    }
+</script>

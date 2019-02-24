@@ -1,0 +1,28 @@
+﻿@model club_groupmember
+@{
+    ViewBag.Title = "Grup Üyeliğini Kaldır";
+}
+
+<h3>Aşağıdaki üyenin grup üyeliğini kaldırmak istediğinizden emin misiniz?</h3>
+
+<div class="detail">
+    <ul>
+        <li>@Html.LabelFor(model => model.club_group.Name)</li>
+        <li>@Html.DisplayFor(model => model.club_group.Name)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.MemberId)</li>
+        <li>@Html.DisplayFor(model => model.MemberId)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.Role)</li>
+        <li>@Html.DisplayFor(model => model.Role)</li>
+    </ul>
+</div>
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.Button("Eminim, sil", new { type = "submit" })
+        @Html.Button("Vazgeç", new { onclick = "OpenNewPage('" + Url.Action("index") + "');" })
+    </p>
+}

@@ -1,0 +1,63 @@
+﻿@model OK.Transport.Web.ViewModels.SearchResultViewModel
+@{
+    ViewBag.ActiveLink = "linkSearch";
+}
+<script type="text/javascript">
+    $(function () {
+        $("#transporters .transporter").click(function () {
+            var top = $("#transporters").offset().top;
+            var selected = $(this);
+            $("#transporters").css({ "position": "absolute", "top": top }).animate({ "left": "-500px" }, 300, function () {
+                $("#transporters .transporter").css("background-color", "rgba(54, 54, 54, .75)");
+                selected.css("background-color", "rgba(255, 165, 0, .75)");
+                getTransporterDetails(selected.attr("id"));
+            });
+        });
+
+        function getTransporterDetails(id) {
+            var top = $("#transporters").offset().top;
+            $.ajax({
+                url: "@Url.Action("TransporterDetails")",
+                dataType: "html",
+                data: { id: id, from: "@Model.From.Id", to: "@Model.To.Id", from_name: "@WebUtility.HtmlEncode(Model.From.Name)", to_name: "@WebUtility.HtmlEncode(Model.To.Name)", from_lat: "@Model.From.Lat", from_lng: "@Model.From.Lng", to_lat: "@Model.To.Lat", to_lng: "@Model.To.Lng" },
+                success: function (data) {
+                    $("#details").css({ "left": "750px", "top": top }).html(data).animate({ "opacity": 1, "left": "0px" }, 300, function () { });
+                }
+            });
+        }
+    });
+</script>
+<div style="width: 100%; margin-bottom: 15px;">
+    <div style="display: table; float: left;">
+        <div style="float: left; padding-right: 5px;">@Model.From.Name</div>
+        <div style="float: left; padding: 10px; border: 4px solid green; border-radius: 100px;"></div>
+    </div>
+    <div style="display: table; float: left; padding: 10px 0 0 0; width: 50%;">
+        <div style="position: absolute; padding: 5px 220px;">~@(Model.Distance)km</div>
+        <div style="border: 2.5px solid #f5f5f5; width: 100%;"></div>
+    </div>
+    <div style="display: table; float: left;">
+        <div style="float: left; padding: 10px; border: 4px solid red; border-radius: 100px;"></div>
+        <div style="float: left; padding-left: 5px;">@Model.To.Name</div>
+    </div>
+</div>
+<div id="transporters">
+    @if (!Model.Transporters.Any())
+    {
+        <i style="opacity: .5">aramanıza uygun otobüs bulunamadı</i>
+    }
+    else
+    {
+        foreach (var item in Model.Transporters)
+        {
+            <div id="@item.Id" class="transporter">
+                <span class="plate">@item.Plate</span>
+                <span class="capacity" style="padding-left: 50px;">@(item.PassengerCapacity + " yolcu")</span>
+                <span class="price" style="float: right;">@(item.Price + " TL")</span>
+            </div>
+        }
+    }
+</div>
+<div id="details">
+
+</div>

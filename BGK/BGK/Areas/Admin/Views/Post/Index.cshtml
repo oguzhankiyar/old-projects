@@ -1,0 +1,56 @@
+﻿@model IEnumerable<bgk_yazi>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);
+    int i = 0;
+}
+
+<script type="text/javascript">
+    function ChangeApproval(id) {
+        $.post("@Url.Action("changeapproval")/" + id, { id: id }, function (msg) { $("a#" + id + "_approval").fadeOut(500).fadeIn(500, function () { $("a#" + id + "_approval").attr("class", $("a#" + id + "_approval").attr("class") == "approved" ? "deprecated" : "approved").attr("title", $("a#" + id + "_approval").attr("class") == "approved" ? "Onayı Kaldır" : "Onayla"); }); $("body").append(msg); });
+    }
+</script>
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a href="@Url.Action("index", "category")" style="width: 33%;">Kategoriler</a>
+            <a class="active" href="@Url.Action("index", "post")" style="width: 33%;">Yazılar</a>
+            <a href="@Url.Action("index", "comment")" style="width: 33%;">Yorumlar</a>
+        </div>
+    </div>
+</div>
+<div class="table">
+    <div class="title">Yazılar
+        <span>@Html.ActionLink("Yeni Yazı", "create")</span>
+    </div>
+    <div class="content">
+        <div class="list">
+            <ul>
+                <li style="width: 38%;">@Html.Label("Başlık")</li>
+                <li style="width: 15%;">@Html.Label("Kategori")</li>
+                <li style="width: 15%;">@Html.Label("Yazan")</li>
+                <li style="width: 15%;">@Html.Label("Tarih")</li>
+                <li style="width: 15%;">@Html.Label("Araçlar")</li>
+            </ul>
+            @foreach (var post in Model)
+            {
+                i++;
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li style="width: 38%;">@post.Baslik.GetSummary(100)</li>
+                    <li style="width: 15%;">@Html.DisplayFor(modelItem => post.bgk_kategori.Adi)</li>
+                    <li style="width: 15%;">@Html.DisplayFor(modelItem => post.bgk_uye.AdSoyad)</li>
+                    <li style="width: 15%;">@Html.ShortDateTime(post.YazimTarihi)</li>
+                    <li style="width: 15%;">
+                        <a id="@(post.Id + "_approval")" class="@(post.Onay == true ? "approved" : "deprecated")" title="@(post.Onay == true ? "Onayı Kaldır" : "Onayla")" href="javascript:void(0)" onclick="ChangeApproval('@post.Id')"></a>
+                        @Html.ActionLink(" ", "Details", "Post", new { area = "", id = post.Id, seo = post.Seo }, new { @class = "view", target = "_blank", title = "Sitede Göster" })
+                        @Html.ActionLink(" ", "edit", new { num = post.Id }, new { @class = "edit", title = "Düzenle" })
+                        <a class="details" title="Detay" href="javascript:void(0);" onclick="$.BGK.Modal('@Url.Action("details", new { num = post.Id })');"> </a>
+                        <a class="delete" title="Sil" href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("delete", new { num = post.Id })', 'Eminim, sil', 'Vazgeç');"> </a>
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>
+@Html.Paging()

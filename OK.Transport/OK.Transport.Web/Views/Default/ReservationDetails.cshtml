@@ -1,0 +1,20 @@
+﻿@model OK.Transport.Web.Models.Reservation
+@{
+    ViewBag.ActiveLink = "linkReservationSearch";
+}
+
+<div style="width: 80%;">
+    <div style="background-color: rgba(54, 54, 54, .75); display: table; width: 100%; padding: 20px; margin: 10px;">
+        <h2>Rezervasyon Detayları</h2>
+        <b>Kod: </b>@Model.Code<br />
+        @Model.Journey.Title<br />
+
+        <h4>Duraklar</h4>
+        <div>@("1 - " + Model.Journey.DeparturePlace.Name)</div>
+        @foreach (var item in Model.Journey.JourneyStops)
+        {
+            <div>@(item.Sort + 1) - @item.Place.Name</div>
+        }
+        <div>@((Model.Journey.JourneyStops.Count() + 2) + " - " + Model.Journey.ArrivalPlace.Name)</div>
+    </div>
+</div>

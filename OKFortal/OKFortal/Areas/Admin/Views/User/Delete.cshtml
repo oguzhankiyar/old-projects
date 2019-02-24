@@ -1,0 +1,43 @@
+﻿@model user
+@{
+    ViewBag.Title = "Üye Sil";
+}
+
+<h3>Aşağıdaki üyeyi ve bu üyeye ait tüm konuları, cevapları silmek istediğinizden emin misiniz?</h3>
+<div class="detail">
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.UserName)</li>
+        <li>@Html.DisplayFor(model => model.UserName) @(Model.DisplayType == 1 ? "(Görünen İsim)" : "")</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Name)</li>
+        <li>@Html.DisplayFor(model => model.Name) @(Model.DisplayType == 1 ? "" : "(Görünen İsim)")</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Email)</li>
+        <li>@Html.DisplayFor(model => model.Email)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.ImageFile)</li>
+        <li>@Html.DisplayFor(model => model.ImageFile)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Seo)</li>
+        <li>@Html.DisplayFor(model => model.Seo)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.RegistrationDate)</li>
+        <li>@Html.DisplayFor(model => model.RegistrationDate)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.type.Name)</li>
+        <li>@Html.Raw(Model.type.Name)</li>
+    </ul>
+</div>
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.Button("Eminim, sil", new { type = "submit" })
+        @Html.Button("Vazgeç", new { onclick = "OpenNewPage('" + Url.Action("index") + "');" })
+    </p>
+}

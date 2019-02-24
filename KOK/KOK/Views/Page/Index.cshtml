@@ -1,0 +1,10 @@
+﻿@model sayfa
+@{
+    ViewBag.Title = Model.Adi;
+}
+<div class="table">
+    <div class="title">@Model.Adi</div>
+    <div class="content">
+        @Html.Raw(Model.Icerik)
+    </div>
+</div>

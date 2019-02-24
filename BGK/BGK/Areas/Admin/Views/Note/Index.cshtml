@@ -1,0 +1,46 @@
+﻿@model IEnumerable<bgk_not>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);
+    int i = 0;
+}
+
+<div class="table">
+    <div class="title">Notlar
+        <span>@Html.ActionLink("Not Ekle", "create")</span>
+    </div>
+    <div class="content">
+        @if (count == 0)
+        {
+            <div class="warning">
+                Henüz not yazılmamış :(
+            </div>
+        }
+        else
+        {
+            <div class="list">
+                <ul>
+                    <li style="width: 60%;">@Html.Label("Konu")</li>
+                    <li style="width: 15%;">@Html.Label("Yazan")</li>
+                    <li style="width: 15%;">@Html.Label("Tarih")</li>
+                    <li style="width: 9%;">@Html.Label("Araçlar")</li>
+                </ul>
+                @foreach (var note in Model)
+                {
+                    i++;
+                    <ul class="@(i % 2 == 0 ? "second" : "first")">
+                        <li style="width: 60%;">@Html.Raw(note.Konu)</li>
+                        <li style="width: 15%;">@note.bgk_uye.AdSoyad</li>
+                        <li style="width: 15%;">@Html.ShortDateTime(note.Tarih)</li>
+                        <li style="width: 9%;">
+                            @Html.ActionLink(" ", "edit", new { num = note.Id }, new { @class = "edit", title = "Düzenle" })
+                            @Html.ActionLink(" ", "details", new { num = note.Id }, new { @class = "details", title = "Detay" })
+                            <a class="delete" title="Sil" href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("delete", new { num = note.Id })', 'Eminim, sil', 'Vazgeç');"> </a>
+                        </li>
+                    </ul>
+                }
+            </div>
+        }
+    </div>
+</div>
+@Html.Paging()

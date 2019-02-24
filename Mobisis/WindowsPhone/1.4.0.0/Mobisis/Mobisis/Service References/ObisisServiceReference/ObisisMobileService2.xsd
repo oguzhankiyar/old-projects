@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ObisisService.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ObisisService.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://apis.ogzkyr.net/ObisisMobileService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="Connection">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ObjectModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DataObject" nillable="true" type="tns:ObjectModel" />
+          <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="State" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Connection" nillable="true" type="tns:Connection" />
+  <xs:complexType name="ObjectModel">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="ObjectModel" nillable="true" type="tns:ObjectModel" />
+  <xs:simpleType name="GradeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="GT" />
+      <xs:enumeration value="FF" />
+      <xs:enumeration value="FD" />
+      <xs:enumeration value="DD" />
+      <xs:enumeration value="DC" />
+      <xs:enumeration value="CC" />
+      <xs:enumeration value="CB" />
+      <xs:enumeration value="BB" />
+      <xs:enumeration value="BA" />
+      <xs:enumeration value="AA" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="GradeType" nillable="true" type="tns:GradeType" />
+  <xs:complexType name="Activity">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ObjectModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Activity" nillable="true" type="tns:Activity" />
+  <xs:complexType name="Document">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ObjectModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsPrinted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="PrintCount" type="xs:int" />
+          <xs:element minOccurs="0" name="PrintDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Program" type="tns:ProgramType" />
+          <xs:element minOccurs="0" name="RequestCount" type="xs:int" />
+          <xs:element minOccurs="0" name="RequestDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Document" nillable="true" type="tns:Document" />
+  <xs:simpleType name="ProgramType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Major" />
+      <xs:enumeration value="Minor" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ProgramType" nillable="true" type="tns:ProgramType" />
+  <xs:complexType name="Exam">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ObjectModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Date" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Mark" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Exam" nillable="true" type="tns:Exam" />
+  <xs:complexType name="Lesson">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ObjectModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AbsentState" nillable="true" type="tns:AbsentType" />
+          <xs:element minOccurs="0" name="Average" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="AverageEffect" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Class" type="xs:int" />
+          <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Credit" type="xs:double" />
+          <xs:element minOccurs="0" name="Final" nillable="true" type="tns:Exam" />
+          <xs:element minOccurs="0" name="FirstMidterm" nillable="true" type="tns:Exam" />
+          <xs:element minOccurs="0" name="Grade" nillable="true" type="tns:GradeType" />
+          <xs:element minOccurs="0" name="Integration" nillable="true" type="tns:Exam" />
+          <xs:element minOccurs="0" name="IntegrationRight" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SecondMidterm" nillable="true" type="tns:Exam" />
+          <xs:element minOccurs="0" name="State" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="SuccessFactor" type="xs:double" />
+          <xs:element minOccurs="0" name="ThirdMidterm" nillable="true" type="tns:Exam" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Lesson" nillable="true" type="tns:Lesson" />
+  <xs:simpleType name="AbsentType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Free" />
+      <xs:enumeration value="Passed" />
+      <xs:enumeration value="Failed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AbsentType" nillable="true" type="tns:AbsentType" />
+  <xs:complexType name="ListModel">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ObjectModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="List" nillable="true" type="tns:ArrayOfObjectModel" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ListModel" nillable="true" type="tns:ListModel" />
+  <xs:complexType name="ArrayOfObjectModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ObjectModel" nillable="true" type="tns:ObjectModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfObjectModel" nillable="true" type="tns:ArrayOfObjectModel" />
+  <xs:complexType name="FoodList">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ObjectModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Foods" nillable="true" type="tns:ArrayOfFood" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FoodList" nillable="true" type="tns:FoodList" />
+  <xs:complexType name="ArrayOfFood">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Food" nillable="true" type="tns:Food" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFood" nillable="true" type="tns:ArrayOfFood" />
+  <xs:complexType name="Food">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ObjectModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Calorie" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Food" nillable="true" type="tns:Food" />
+  <xs:complexType name="Graduation">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ObjectModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Condition" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Value" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Graduation" nillable="true" type="tns:Graduation" />
+  <xs:complexType name="Period">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ObjectModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Code" type="xs:int" />
+          <xs:element minOccurs="0" name="GANO" type="xs:double" />
+          <xs:element minOccurs="0" name="Lessons" nillable="true" type="tns:ArrayOfLesson" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Year" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="YearCode" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Period" nillable="true" type="tns:Period" />
+  <xs:complexType name="ArrayOfLesson">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Lesson" nillable="true" type="tns:Lesson" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLesson" nillable="true" type="tns:ArrayOfLesson" />
+  <xs:complexType name="Program">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ObjectModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Class" type="xs:int" />
+          <xs:element minOccurs="0" name="Department" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Faculty" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="GANO" type="xs:double" />
+          <xs:element minOccurs="0" name="Periods" nillable="true" type="tns:ArrayOfPeriod" />
+          <xs:element minOccurs="0" name="Type" type="tns:ProgramType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Program" nillable="true" type="tns:Program" />
+  <xs:complexType name="ArrayOfPeriod">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Period" nillable="true" type="tns:Period" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPeriod" nillable="true" type="tns:ArrayOfPeriod" />
+  <xs:complexType name="Student">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ObjectModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Documents" nillable="true" type="tns:ArrayOfDocument" />
+          <xs:element minOccurs="0" name="GraduationState" nillable="true" type="tns:ArrayOfGraduation" />
+          <xs:element minOccurs="0" name="ID" type="xs:int" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Programs" nillable="true" type="tns:ArrayOfProgram" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Student" nillable="true" type="tns:Student" />
+  <xs:complexType name="ArrayOfDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Document" nillable="true" type="tns:Document" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDocument" nillable="true" type="tns:ArrayOfDocument" />
+  <xs:complexType name="ArrayOfGraduation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Graduation" nillable="true" type="tns:Graduation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGraduation" nillable="true" type="tns:ArrayOfGraduation" />
+  <xs:complexType name="ArrayOfProgram">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Program" nillable="true" type="tns:Program" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProgram" nillable="true" type="tns:ArrayOfProgram" />
+</xs:schema>

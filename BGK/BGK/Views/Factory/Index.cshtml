@@ -1,0 +1,31 @@
+﻿@model IEnumerable<bgk_firma>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);
+    int i = 0;  
+}
+
+<div class="table">
+    <div class="title">Firmalar</div>
+    <div class="content list factories" style="padding: 0;">
+        @if (count == 0)
+        {
+            <div class="warning">
+                Henüz firma eklenmemiş :(
+            </div>
+        }
+        @foreach (var factory in Model)
+        {
+            i++;
+            <a href="@Url.Action("Details", new { id = factory.Id, seo = factory.Adi.ConvertSeo() })">
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li class="image"><img src="@factory.bgk_dosya.DosyaAdi" /></li>
+                    <li class="name">@factory.Adi<br />
+                        <span>@factory.Aciklama.GetSummary(100)</span>
+                    </li>
+                </ul>
+            </a>
+        }
+    </div>
+</div>
+@Html.Paging()

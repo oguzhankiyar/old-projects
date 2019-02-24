@@ -1,0 +1,38 @@
+﻿@model bgk_grup
+@{
+    ViewBag.Title = Model.Adi;
+    var members = Model.bgk_grup_uye.Where(x => x.Aktif == true);
+    int i = 0;
+}
+
+<div class="table">
+    <div class="title">@Model.Adi</div>
+    <div class="content">
+        @Html.Raw(Model.Aciklama)
+    </div>
+</div>
+<div class="table">
+    <div class="title">Üyeler (@members.Count())</div>
+    <div class="content list members" style="padding: 0;">
+        @foreach (var member in members.ToList())
+        {
+            i++;
+            <ul class="@(i % 2 == 0 ? "second" : "first")">
+                <li class="name"><a href="@Url.Action("Details", "Member", new { id = member.UyeID })">@member.bgk_uye.AdSoyad</a><br />
+                    <span>@(member.Tip == 1 ? "Başkan" : member.Tip == 2 ? "Başkan Yardımcısı" : "Normal Üye")</span></li>
+                @if (Model.bgk_grup_uye.SingleOrDefault(x => x.UyeID == (int)Session["memberID"] && x.Tip == 1) != null)
+                {
+                    <li class="info"><a href="@Url.Action("memberdetails", "group", new { id = member.Id, seo = member.bgk_uye.AdSoyad.ConvertSeo() })">Detay</a></li>
+                }
+            </ul>
+        }
+    </div>
+</div>
+<div class="buttons">
+    @if (Model.bgk_grup_uye.SingleOrDefault(x => x.UyeID == (int)Session["memberID"] && x.Tip == 1) != null)
+    {
+        @Html.Button("Üye Ekle", new { onclick = "window.location.href='" + Url.Action("addmember", new { id = Model.Id }) + "';" })
+        @Html.Button("Mesaj Gönder", new { onclick = "$.BGK.FormModal('" + Url.Action("SendMessage", new { id = Model.Id }) + "', 'Gönder', 'Vazgeç');" })
+        @Html.Button("Görev Ver", new { onclick = "window.location.href='" + Url.Action("givemission", new { id = Model.Id }) + "';" })
+    }
+</div>

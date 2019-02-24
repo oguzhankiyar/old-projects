@@ -1,0 +1,15 @@
+﻿@model bgk_gorev
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div class="title">@Model.Adi Görevini Kaldır</div>
+<div class="content">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <h2>Bu görevi kaldırmak istediğinizden emin misiniz?</h2>
+        <h3>Kaldırdığınızda bu görevi alan üyelerden kazandıkları puanlar silinecek!</h3>
+        @Html.HiddenFor(model => model.Id)
+    }
+</div>

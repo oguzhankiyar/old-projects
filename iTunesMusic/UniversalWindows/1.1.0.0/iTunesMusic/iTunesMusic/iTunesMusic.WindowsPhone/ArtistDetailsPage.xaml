@@ -1,0 +1,74 @@
+﻿<Page
+    x:Class="iTunesMusic.ArtistDetailsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:iTunesMusic"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="ArtistDetails" Margin="12,12,12,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <Image x:Name="ArtistImage"  Source="{Binding ImageSource.Sizex60}" Width="75" Height="75" Margin="0,0,10,0" Grid.RowSpan="2" />
+        <TextBlock Text="{Binding Name}" FontSize="30" Grid.Column="1" />
+        <TextBlock Text="Artist" FontSize="20" Opacity=".5" Grid.Column="1" Grid.Row="1" />
+
+        <Pivot Grid.Row="2" Grid.ColumnSpan="2" Margin="-12,0">
+            <PivotItem Margin="5,5,5,0">
+                <PivotItem.Header>
+                    <TextBlock Text="details" FontSize="25" />
+                </PivotItem.Header>
+                <StackPanel Margin="10,5">
+                    <TextBlock Text="Genre" Opacity=".5" FontSize="20" />
+                    <TextBlock Text="{Binding Genre.Name}" Margin="12" FontSize="30" />
+
+                    <TextBlock Text="Album Count" Opacity=".5" FontSize="20" />
+                    <TextBlock Text="{Binding Albums.Count}" Margin="12" FontSize="30" />
+
+                    <TextBlock Text="Song Count" Opacity=".5" FontSize="20" />
+                    <TextBlock Text="{Binding Songs.Count}" Margin="12" FontSize="30" />
+                </StackPanel>
+            </PivotItem>
+            <PivotItem Margin="5,5,5,0">
+                <PivotItem.Header>
+                    <TextBlock Text="albums" FontSize="25" />
+                </PivotItem.Header>
+                <ListView x:Name="Albums" ItemsSource="{Binding Albums}" SelectionChanged="Albums_SelectionChanged">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="7,5">
+                                <Rectangle Fill="Cyan" Opacity=".1" />
+                                <TextBlock Text="{Binding Name}" Padding="12" FontSize="20" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </PivotItem>
+            <PivotItem Margin="5,5,5,0">
+                <PivotItem.Header>
+                    <TextBlock Text="songs" FontSize="25" />
+                </PivotItem.Header>
+                <ListView x:Name="Songs" ItemsSource="{Binding Songs}" SelectionChanged="Songs_SelectionChanged">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="7,5">
+                                <Rectangle Fill="Cyan" Opacity=".1" />
+                                <TextBlock Text="{Binding Name}" Padding="12" FontSize="20" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</Page>

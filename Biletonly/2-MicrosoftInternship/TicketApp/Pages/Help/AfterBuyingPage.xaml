@@ -1,0 +1,45 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TicketApp.Pages.Help.AfterBuyingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    Orientation="Portrait"
+    mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource PageStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <control:Header />
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="5">
+                <control:Title Value="Satış sonrası" />
+                <TextBlock TextWrapping="Wrap" LineHeight="30" FontWeight="Light" Padding="5">
+                    Satış işlemleri sonucunda bir PNR kodu oluşmaktadır. İşleminiz tamamlandığında otomatik olarak 'İşlem Detayları' sayfasına yönlendirilirsiniz.<LineBreak />
+                    <LineBreak />Ayrıca belirttiğiniz eposta adresine bilet detayları tarafımızdan iletilecektir.<LineBreak />
+                    <LineBreak />Satın aldığınız biletleri iptal etme imkanınız bulunmaktadır. Maalesef iptal işlemi her koşulda yapılamamaktadır. Aşağıdan bu durumları inceleyebilirsiniz.<LineBreak />
+                </TextBlock>
+                <control:Title Value="Bilet iptali" />
+                <TextBlock TextWrapping="Wrap" LineHeight="30" FontWeight="Light" Padding="5">
+                    1. Tarihi geçmiş seferlerin iptali taşıyıcı firmanın inisiyatifindedir. Taşıyıcı firma ile irtibata geçmeniz gerekmektedir.<LineBreak />
+                    2. Bazı şirketlerin bilet iptalinde direkt olarak para iadesi yapılırken, bazılarında ise Biletall Açık Bileti'ne dönüştürülmektedir.<LineBreak />
+                    3. Biletall Açık Bilet, 3 ay içerisinde aynı havayoluna ait, aynı tutarda yeni bir bilet satın alınabilir. Bu süre içerisinde kullanılmayan açık biletler otomatik olarak iptal edilir.<LineBreak />
+                    <LineBreak />(*) Bilet iptali bu sürümde gerçekleştirilememektedir. Bunun için Biletall Çağrı Merkezi'ni arayabilirsiniz.
+                    <LineBreak />
+                </TextBlock>
+                <TextBlock FontSize="35" TextAlignment="Center" Foreground="Orange" FontWeight="Light" Tap="CallBiletall_Tap">
+                    Biletall Çağrı Merkezi<LineBreak />
+                    0850 360 32 58<LineBreak />
+                </TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</phone:PhoneApplicationPage>

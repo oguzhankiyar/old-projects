@@ -1,0 +1,38 @@
+﻿@model bgk_not
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div class="table">
+    <div class="title">Not Ekle</div>
+    <div class="content">
+        <div class="form">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <ul>
+                    <li>@Html.LabelFor(model => model.Konu)</li>
+                    <li>@Html.EditorFor(model => model.Konu)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Konu)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Icerik)</li>
+                    <li>@Html.TextAreaFor(model => model.Icerik)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Icerik)</li>
+                </ul>
+                <ul>
+                    <li>Kaydet</li>
+                    <li>
+                        @Html.Button("Kaydet", new { type = "submit" })
+                        @Html.Button("Vazgeç", new { onclick = "window.location.href='" + Url.Action("index") + "';" })
+                    </li>
+                </ul>
+                @Html.MyEditor("Icerik", "Standard")
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.Tarih)
+                @Html.HiddenFor(model => model.UyeID)
+            }
+        </div>
+    </div>
+</div>

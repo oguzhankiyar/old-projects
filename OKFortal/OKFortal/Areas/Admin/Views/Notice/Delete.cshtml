@@ -1,0 +1,23 @@
+﻿@model notice
+@{
+    ViewBag.Title = "Duyuru Sil";
+}
+
+<h3>Aşağıdaki duyuruyu silmek istediğinizden emin misiniz?</h3>
+<div class="detail">
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Title)</li>
+        <li>@Html.DisplayFor(model => model.Title)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Content)</li>
+        <li>@Html.DisplayFor(model => model.Content)</li>
+    </ul>
+</div>
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.Button("Eminim, sil", new { type = "submit" })
+        @Html.Button("Vazgeç", new { onclick = "OpenNewPage('" + Url.Action("index") + "');" })
+    </p>
+}

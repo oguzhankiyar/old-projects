@@ -1,0 +1,293 @@
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Mobisis+ | Erciyes Üniv. Öğrenci Bilgi Sistemi Mobil Uygulaması</title>
+		<style type="text/css">
+			body {
+				background-color: darkred;
+				color: white;
+				font-size: 17pt;
+				font-family: 'Segoe UI SemiLight', Trebuchet MS;
+				padding: 0 25px 25px 0;
+			}
+			div, ul, li, span {
+				padding: 0;
+				margin: 0;
+				list-style: none;
+			}
+			a {
+				text-decoration: none;
+				color: inherit;
+			}
+			div.header {
+				position: fixed;
+				background-color: darkred;
+				width: 100%;
+				top: 0;
+				padding: 25px;
+			}
+			div.header div {
+				font-size: 25pt;
+			}
+			div.header span {
+				font-size: 12pt;
+			}
+			div.left {
+				position: fixed;
+				background-color: darkred;
+				padding: 25px;
+				z-index: 1;
+				top: 100px;
+				left: 0;
+				float: left;
+				width: 175px;
+			}
+			div.menu {
+				padding: 75px 0;
+			}
+			div.menu ul li {
+				padding: 5px 0;
+			}
+			div.menu ul li a {
+				opacity: .7;
+			}
+			div.menu ul li a.active, div.menu ul li a:hover {
+				opacity: 1;
+			}
+			div.menu ul li a.active {
+				cursor: default;
+			}
+			div.platforms ul li a {
+				opacity: .7;
+			}
+			div.platforms ul li a.active {
+				opacity: 1;
+				color: orange;
+				cursor: default;
+			}
+			div.container {
+				float: left;
+				margin-top: 125px;
+				margin-left: 200px;
+				padding: 25px;
+				z-index: -99;
+			}
+			div.container div.contents div ul li {
+				display: none;
+				font-size: 14pt;
+			}
+			div.contents span {
+				color: #ccc;
+				font-size: 20pt;
+			}
+			div.contents div.images img {
+				width: 225px;
+				border: 2px solid #ccc;
+				margin: 5px 5px 15px 5px;
+			}
+		</style>
+		<script src="jquery-1.9.1.js" type="text/javascript"></script>
+		<script type="text/javascript" src="http://css-tricks.com/examples/HorzScrolling/jquery.mousewheel.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$("body").mousewheel(function(event, delta) {
+					if ($(".container").width() > $("body").width())
+						this.scrollLeft -= (delta * 100);
+					else
+						this.scrollTop -= (delta * 100);
+					event.preventDefault();
+				});
+				var clickedIndex = 0;
+				$("div.menu ul li a").click(function() {
+					if (!$(this).is(".active")) {
+						var index = $("div.menu ul li a").index(this);
+						clickedIndex = index;
+						$("div.menu ul li a").removeClass("active");
+						$(this).addClass("active");
+						var id;
+						if ($("#android a").is(".active"))
+							id = "android";
+						else
+							id = "windows-phone";
+						$("div.contents div ul li").stop().slideUp(500);
+						$("div.contents div." + id + " ul li:eq(" + index + ")").stop().slideDown(500);
+					}
+				});
+				$("div.menu ul li:eq(0) a").click();
+				$("div.platforms ul li a").click(function() {
+					if (!$(this).is(".active")) {
+						$("div.platforms ul li a").removeClass("active");
+						$(this).addClass("active");
+						$("div.menu ul li a").removeClass("active");
+						$("div.menu ul li:eq(" + clickedIndex + ") a").click();
+					}
+				});
+				$("#FeedBack_Click").click(function() {
+					var name = $("#Name").val();
+					var email = $("#Email").val();
+					var subject = $("#Subject").val();
+					var message = $("#Message").val();
+					if (name == "")
+						$("h4").text("Adınızı girmediniz!");
+					else if (email == "")
+						$("h4").text("Email adresinizi girmediniz!");
+					else if (subject == "0")
+						$("h4").text("Konu seçmediniz!");
+					else if (message == "")
+						$("h4").text("Mesajınızı yazmadınız!");
+					else
+						$("h4").text("Geri bildiriminiz gönderildi! Teşekkür ederiz..");
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="header">
+			<img src="mobisis_logo.png" width="75" height="75" style="float: left; margin-right: 15px;" />
+			<div>Mobisis+</div>
+			<span>Erciyes Üniv. Öğrenci Bilgi Sistemi Mobil Uygulaması</span>
+		</div>
+		<div class="left">
+			<div class="menu">
+				<ul>
+					<li><a href="javascript:void(0);">Anasayfa</a></li>
+					<li><a href="javascript:void(0);">Özellikler</a></li>
+					<li><a href="javascript:void(0);">Sürüm Geçmişi</a></li>
+					<li><a href="javascript:void(0);">İndir</a></li>
+					<!--<li><a href="javascript:void(0);">Geri Bildirim</a></li>-->
+				</ul>
+			</div>
+			<div class="platforms">
+				<ul>
+					<li id="windows"><a class="active" href="javascript:void(0);">Windows Phone</a></li>
+					<li id="android"><a href="javascript:void(0);">Android</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="container">
+			<div class="contents">
+				<div class="windows-phone">
+					<ul>
+						<li>
+							<div class="images">
+								<div style=" display: table;">
+									<img src="wp-images/login.png" />
+									<img src="wp-images/info.png" />
+									<img src="wp-images/menu.png" />
+									<img src="wp-images/foodlist.png" />
+									<img src="wp-images/periods.png" />
+									<img src="wp-images/period-details.png" />
+									<img src="wp-images/lessons.png" />
+									<img src="wp-images/lesson-details.png" />
+								</div>
+							</div>
+						</li>
+						<li>
+							<br /><br />
+							Öğrenci numarası ve şifresi ile giriş yaptıktan sonra öğrenci:<br /><br />
+							- Genel bilgilerine<br />
+							- Dönemlerin listesine<br />
+							- Önceki dönemlerin ve geçerli olan dönemin derslerinin listesine<br />
+							- Ders detaylarına<br />
+							- Yemekhanedeki 2 haftalık yemek listesine erişebilir.<br /><br />
+							Not: Bir kez giriş yapıldıktan sonra geçerli dönemin derslerini güncellemek için tekrardan giriş yapılmasına gerek yoktur.<br />
+							Her 'Dersler' sayfasına girildiğinde arkaplanda notlar güncellenir.
+						</li>
+						<li>
+							<br /><br />
+							<span>Mobisis+ v1.0.0 (25.12.2013)</span><br /><br />
+							Öğrenci numarası ve şifresi ile giriş yaptıktan sonra öğrenci:<br /><br />
+							- Genel bilgilerine<br />
+							- Dönemlerin listesine<br />
+							- Önceki dönemlerin ve geçerli olan dönemin derslerinin listesine<br />
+							- Ders detaylarına<br />
+							- Yemekhanedeki 2 haftalık yemek listesine erişebilir.<br /><br />
+							Not: Bir kez giriş yapıldıktan sonra geçerli dönemin derslerini güncellemek için tekrardan giriş yapılmasına gerek yoktur.<br />
+							Her 'Dersler' sayfasına girildiğinde arkaplanda notlar güncellenir.
+						</li>
+						<li>
+							<br /><br /><br /><br />
+							Uygulamayı telefonunuza sadece mağazadan yükleyebilirsiniz.<br />
+							Uygulama tamamen ücretsizdir.<br />
+							İndirme adresi: <a style="color: orange;" target="_blank" href="http://www.windowsphone.com/en-us/store/app/mobisis/a99016f6-5e9a-40be-a6c6-872d197836e6">Mobisis+ on Windows Phone Store</a>
+						</li>
+						<li style="padding-left: 10px;">
+							<br />
+							<input id="Name" type="text" placeholder="Adınız Soyadınız" style="font-size: 17px; width: 700px; height: 35px; padding: 5px; margin-bottom: 5px;" /><br />
+							<input id="Email" type="email" placeholder="Email Adresiniz" style="font-size: 17px; width: 700px; height: 35px; padding: 5px; margin-bottom: 5px;" /><br />
+							<select id="Subject" style="font-size: 17px; width: 700px; height: 35px; padding: 5px; margin-bottom: 5px;">
+								<option value="0">Konuyu Seçin</option>
+								<option value="1">Teşekkür</option>
+								<option value="2">Hata</option>
+								<option value="3">Şikayet</option>
+								<option value="4">Öneri</option>
+							</select><br />
+							<textarea id="Message" style="font-size: 17px; resize: none; width: 700px; font-family: 'Segoe UI'; height: 200px; padding: 5px; margin-bottom: 5px;" placeholder="Mesajınız"></textarea><br />
+							Boşlukları doldurun ve bize ulaştırın..&nbsp;&nbsp;&nbsp;
+							<input id="FeedBack_Click" type="submit" value="Ulaştır" style="font-size: 17px; width: 125px; height: 35px; padding: 5px; margin-bottom: 5px;">
+							<h4></h4>
+						</li>
+					</ul>
+				</div>
+				<div class="android">
+					<ul>
+						<li>
+							<div class="images">
+								<div style=" display: table;">
+									<img src="android-images/login.png" />
+									<img src="android-images/info.png" />
+									<img src="android-images/menu.png" />
+									<img src="android-images/foodlist.png" />
+									<img src="android-images/notification.png" />
+									<img src="android-images/periods.png" />
+									<img src="android-images/lessons.png" />
+									<img src="android-images/settings.png" />
+									<img src="android-images/lesson-details.png" />
+								</div>
+							</div>
+						</li>
+						<li>
+							<br /><br />
+							Öğrenci numarası ve şifresi ile giriş yaptıktan sonra öğrenci:<br /><br />
+							- Genel bilgilerine<br />
+							- Dönemlerin listesine<br />
+							- Önceki dönemlerin ve geçerli olan dönemin derslerinin listesine<br />
+							- Ders detaylarına<br />
+							- İsteğe bağlı olarak herhangi bir not açıklandığında bildirim alma,<br />
+							- Yemekhanedeki 2 haftalık yemek listesine erişebilir.<br /><br />
+							Not: Bir kez giriş yapıldıktan sonra geçerli dönemin derslerini güncellemek için tekrardan giriş yapılmasına gerek yoktur.<br />
+							Her 'Dersler' sayfasına girildiğinde arkaplanda notlar güncellenir.
+						</li>
+						<li>
+							<span>Mobisis+ v1.0.0 (08.01.2014)</span><br /><br />
+							Öğrenci numarası ve şifresi ile giriş yaptıktan sonra öğrenci:<br /><br />
+							- Genel bilgilerine<br />
+							- Dönemlerin listesine<br />
+							- Önceki dönemlerin ve geçerli olan dönemin derslerinin listesine<br />
+							- Ders detaylarına<br />
+							- İsteğe bağlı olarak herhangi bir not açıklandığında bildirim alma,<br />
+							- Yemekhanedeki 2 haftalık yemek listesine erişebilir.<br /><br />
+							Not: Bir kez giriş yapıldıktan sonra geçerli dönemin derslerini güncellemek için tekrardan giriş yapılmasına gerek yoktur.<br />
+							Her 'Dersler' sayfasına girildiğinde arkaplanda notlar güncellenir.
+						</li>
+						<li>
+							<br /><br /><br /><br />
+							Uygulamayı telefonunuza yüklemek için:<br />
+							İndirme adresi: <a style="color: orange;" target="_blank" href="http://mobisis.ogzkyr.net/files/Mobisis-v1.0.rar">Mobisis+ on Android</a><br />
+							.APK dosyasını telefonunuza atın ve çalıştırın..
+						</li>
+						<li>
+							<span>Android Geri Bildirim</span>
+							İçerik buraya gelecek<br />
+							İçerik buraya gelecek<br />
+							İçerik buraya gelecek<br />
+							İçerik buraya gelecek<br />
+							İçerik buraya gelecek<br />
+							İçerik buraya gelecek
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

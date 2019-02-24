@@ -1,0 +1,43 @@
+﻿@model IEnumerable<bgk_firma>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);
+    int i = 0;
+}
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a href="@Url.Action("index", "activity")" style="width: 50%;">Etkinlikler</a>
+            <a class="active" href="@Url.Action("index", "factory")" style="width: 49%;">Firmalar</a>
+        </div>
+    </div>
+</div>
+<div class="table">
+    <div class="title">Firmalar
+        <span>@Html.ActionLink("Yeni Firma", "create")</span>
+    </div>
+    <div class="content">
+        <div class="list">
+            <ul>
+                <li style="width: 35%;">@Html.Label("Adı")</li>
+                <li style="width: 48%;">@Html.Label("Açıklama")</li>
+                <li style="width: 15%;">@Html.Label("Araçlar")</li>
+            </ul>
+            @foreach (var factory in Model)
+            {
+                i++;
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li style="width: 35%;">@Html.DisplayFor(modelItem => factory.Adi)</li>
+                    <li style="width: 48%;">@factory.Aciklama.GetSummary(100)</li>
+                    <li style="width: 15%;">
+                        @Html.ActionLink(" ", "edit", new { num = factory.Id }, new { @class = "edit", title = "Düzenle" })
+                        @Html.ActionLink(" ", "details", new { num = factory.Id }, new { @class = "details", title = "Detay" })
+                        <a class="delete" title="Sil" href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("delete", new { num = factory.Id })', 'Eminim, sil', 'Vazgeç');"> </a>
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>
+@Html.Paging()

@@ -1,0 +1,50 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Http;
+using System.Web.Mvc;
+using System.Web.Routing;
+using OKComplex.Models;
+
+namespace OKComplex
+{
+    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
+    // visit http://go.microsoft.com/?LinkId=9394801
+    public class MvcApplication : System.Web.HttpApplication
+    {
+        protected void Application_Start()
+        {
+            AreaRegistration.RegisterAllAreas();
+
+            WebApiConfig.Register(GlobalConfiguration.Configuration);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+        }
+        protected void Session_Start()
+        {
+            Session["memberid"] = 0;
+            Session["memberrole"] = "0";
+            Session["memberinfo"] = null;
+            if (Session["userinfo"] == null && Request.Cookies["OK_password"] != null)
+            {
+                int userid = Convert.ToInt32(Request.Cookies["OK_userid"].Value);
+                string password = Request.Cookies["OK_password"].Value;
+                OKDbEntities Db = new OKDbEntities();
+                var user = Db.user.SingleOrDefault(x => x.Id == userid && x.Password == password);
+                if (user != null)
+                {
+                    Session["userinfo"] = user;
+                    Session["userid"] = user.Id;
+                    Session["role"] = 10; //user.TypeId.ToString();
+                }
+                Db.Dispose();
+            }
+            else if (Session["userinfo"] == null)
+            {
+                Session["role"] = 0;
+                Session["userid"] = 0;
+            }
+        }
+    }
+}

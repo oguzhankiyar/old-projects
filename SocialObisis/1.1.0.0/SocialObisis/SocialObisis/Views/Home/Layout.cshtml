@@ -1,0 +1,87 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@((string.IsNullOrEmpty(ViewBag.Title) ? "" : ViewBag.Title + " - ") + "Obisis Analiz Merkezi")</title>
+    <link rel="stylesheet" href="@Url.Content("~/Theme/StyleSheet.css")" />
+    <script src="@Url.Content("~/Scripts/jquery-1.7.2.min.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            var ID = "@ViewBag.menuID";
+            MenuActivate(ID);
+        });
+        function MenuActivate(menuID) {
+            $("div.sections div.active").animate({
+                opacity: 0.7
+            }, 500, function () { $(this).removeClass("active"); });
+            $("div.sections div#" + menuID).animate({
+                opacity: 1
+            }, 500, function () { $(this).addClass("active"); });
+        }
+        function ChangePage(url, menuID) {
+            $("div.container").html("");
+            ShowLoading("Sayfa yükleniyor");
+            MenuActivate(menuID);
+            setTimeout(function () {
+                $.post(url + "?type=partial", {}, function (msg) {
+                    HideLoading();
+                    window.history.pushState(null, document.title, url);
+                    $("div.container").html(msg);
+                });
+            }, 1000);
+        }
+        function ShowLoading(message) {
+            $("div.container").html("");
+            $("div#loading div").text(message);
+            $("div#loading").show();
+        }
+        function HideLoading() {
+            $("div#loading").hide();
+        }
+    </script>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                Obisis Analiz Merkezi
+                <span>Copyright &copy; Oğuzhan Kiyar</span>
+            </div>
+            <div class="sections">
+                @if (Session["sifre"] == null)
+                {
+                    <div id="obisis_login"><a href="@Url.Action("Login", "Obisis")">Giriş</a></div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $("div.sections div").each(function () {
+                                if ($(this).attr("id") != "obisis_login")
+                                    $(this).attr("onclick", "").css("cursor", "default");
+                            });
+                        });
+                    </script>
+                }
+                <div id="obisis_info" onclick="ChangePage('@Url.Action("info", "obisis")', 'obisis_info');">Bilgiler</div>
+                <div id="obisis_periods" onclick="ChangePage('@Url.Action("index", "period")', 'obisis_periods');">Dönemler</div>
+                <div id="obisis_lessons" onclick="ChangePage('@Url.Action("index", "lesson")', 'obisis_lessons');">Dersler</div>
+                <div id="lesson_gano" onclick="ChangePage('@Url.Action("gano", "lesson")', 'lesson_gano');">Gano Hesaplama</div>
+                @*<div id="obisis_myfaculty" onclick="ChangePage('@Url.Action("index", "faculty")', 'obisis_myfaculty');">Fakültem</div>
+                <div id="obisis_mydepartment" onclick="ChangePage('@Url.Action("index", "department")', 'obisis_mydepartment');">Bölümüm</div>
+                <div id="obisis_myclass" onclick="ChangePage('@Url.Action("index", "class")', 'obisis_myclass');">Sınıfım</div>*@
+                @if (Session["sifre"] != null)
+                {
+                    <div><a href="@Url.Action("Logout", "Obisis")">Çıkış</a></div>
+                }
+            </div>
+        </div>
+        <div id="loading" style="position: fixed; top: 50%; left: 42%; display: none; width: 200px; text-align: center;">
+            <img src="https://raw.github.com/bjartwolf/SP2013Node/master/static/Metro-UI/images/preloader-w8-line-white.gif" /><br />
+            <div style="text-align: center; width: 100%;">Sayfa yükleniyor</div>
+        </div>
+        <div class="container">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

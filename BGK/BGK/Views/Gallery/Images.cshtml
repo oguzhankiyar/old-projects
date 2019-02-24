@@ -1,0 +1,25 @@
+﻿@model IEnumerable<bgk_galeri_resim>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);    
+}
+@if (Model.Count() == 0)
+{
+    <div class="warning">
+        Henüz resim eklenmemiş.
+    </div>
+}
+<div class="gallery">
+    @foreach (var image in Model)
+    {
+        <div class="table">
+            <div class="content">
+                <a href="@Url.Action("View", "Gallery", new { seo = image.bgk_galeri.Seo, id = image.Id })">
+                    <img src="@BGKFunction.GetFile(image.bgk_dosya)" /><br />
+                    @image.Aciklama
+                </a>
+            </div>
+        </div>
+    }
+</div>
+@Html.Paging()

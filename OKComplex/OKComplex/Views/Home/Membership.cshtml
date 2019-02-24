@@ -1,0 +1,18 @@
+﻿<div class="membership">
+
+    @if (Session["memberinfo"] == null)
+	{
+        <div><a href="@Url.Action("loginform", "member")">Giriş Yapın</a></div>
+	}
+    else
+	{
+        var member = (club_member)Session["memberinfo"];
+        <div style="text-align: center;">
+            Merhaba <b>@member.Name</b><br />
+            <a href="@Url.Action("info", "member", new { id = member.Id })">Profilim</a>
+            @if (Session["memberrole"].ToString() == "10")
+            { <span> - </span><a href="@Url.Action("index", "home", new { area = "Panel" })" target="_blank">Panel</a>}
+             - <a href="@Url.Action("Logout", "Member")">Çıkış</a>
+        </div>
+	}
+</div>

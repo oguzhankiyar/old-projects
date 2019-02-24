@@ -1,0 +1,4 @@
+# Eklenenler
+- Giristeki ve Yemek listesindeki hatalar giderildi,
+- Internet baglantisi kontrolü düzeltildi,
+- Giris yapildiktan sonra düğmelerin disabled ayarlari düzeltildi.

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<bgk_yazi>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);
+}
+<script type="text/javascript">
+    $(function () {
+        $("#search input").val("@ViewBag.query");
+    });
+</script>
+@if (Model.Count() == 0)
+{
+    <div class="warning">
+        @ViewBag.Message
+    </div>
+}
+@foreach (var post in Model)
+{
+    <div class="table">
+        <div class="title"><a href="@Url.Action("Details", "Post", new { id = post.Id, seo = post.Seo, page = 1 })">@post.Baslik</a>
+            @if (post.Manset)
+            {
+                <span title="Manşet" style="font-size: 20px;">☆</span>
+            }
+        </div>
+        <div class="content">
+            @if (string.IsNullOrEmpty(post.Ozet))
+            {
+                @Html.Raw(post.Icerik.GetSummary(500))
+            }
+            else
+            {
+                @Html.Raw(post.Ozet)
+            }
+        </div>
+    </div>
+}
+@if (BGKFunction.GetMyRole().YaziYazma)
+{
+    @Html.Button("Yazı Gönder", new { onclick = "window.location.href='" + Url.Action("Create") + "';" })
+}
+@Html.Paging()

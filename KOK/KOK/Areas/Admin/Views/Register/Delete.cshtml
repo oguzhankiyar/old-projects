@@ -1,0 +1,89 @@
+﻿@model KOK.Models.basvuru
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>basvuru</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Ad)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Ad)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Soyad)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Soyad)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Kurum)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Kurum)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Meslek)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Meslek)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Tur)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tur)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.OdemeTarihi)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OdemeTarihi)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DekontNumarasi)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DekontNumarasi)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Telefon)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Telefon)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Onay)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Onay)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

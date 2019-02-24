@@ -1,0 +1,30 @@
+﻿@model club_postcomment
+@{
+    ViewBag.Title = "Yorum Detayları";
+}
+<div class="detail">
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.club_post.Title)</li>
+        <li>@Html.DisplayFor(model => model.club_post.Title)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Comment)</li>
+        <li>@Html.DisplayFor(model => model.Comment)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.MemberId)</li>
+        <li>@Model.club_member.Name</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.WritingDate)</li>
+        <li>@Html.DisplayFor(model => model.WritingDate)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.IsApproval)</li>
+        <li>@Html.DisplayFor(model => model.IsApproval)</li>
+    </ul>
+</div>
+<p>
+    @Html.Button("Düzenle", new { onclick = "OpenNewPage('" + Url.Action("edit", new { num = Model.Id }) + "');" })
+    @Html.Button("Sil", new { onclick = "OpenNewPage('" + Url.Action("delete", new { num = Model.Id }) + "');" })
+</p>

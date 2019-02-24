@@ -1,0 +1,60 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TicketApp.Pages.TicketAction.ListPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:TicketApp.UserControls"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    Orientation="Portrait"
+    mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource PageStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <control:Header />
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <phone:LongListSelector x:Name="TicketList" Margin="5">
+                <phone:LongListSelector.ItemTemplate>
+                    <DataTemplate>
+                        <local:TicketListItem Clicked="Ticket_Clicked" />
+                    </DataTemplate>
+                </phone:LongListSelector.ItemTemplate>
+            </phone:LongListSelector>
+            <Grid x:Name="SearchPanel" Margin="5,0" Visibility="Collapsed" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <control:InputBox x:Name="txtPNR" Label="PNR kodu:" Value="{Binding Path=Code, Mode=TwoWay}" CasingMode="Upper" />
+                <control:InputBox x:Name="txtParameter" Label="Soyad veya GSM:" Value="{Binding Path=Parameter, Mode=TwoWay}" CasingMode="UpperAfterSpace" Grid.Column="1" />
+            </Grid>
+            <Grid x:Name="SearchButtons" Margin="5,0,5,5" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <control:Button x:Name="btnSearch" Value="Bilet ara" Grid.Row="2" Grid.ColumnSpan="2" Clicked="btnSearch_Clicked" />
+                <control:Button x:Name="btnCancel" Value="Vazgeç" Grid.Row="2" Grid.Column="1" Visibility="Collapsed"  Clicked="btnCancel_Clicked" />
+            </Grid>
+            <Grid x:Name="RemoveButtons" Margin="5,0" Visibility="Collapsed" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <control:Button x:Name="btnRemove" Value="Listeden kaldır" Grid.Row="2" Clicked="btnRemove_Clicked" />
+                <control:Button x:Name="btnCancelRemove" Value="Vazgeç" Grid.Row="2" Grid.Column="1" Clicked="btnCancelRemove_Clicked" />
+            </Grid>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

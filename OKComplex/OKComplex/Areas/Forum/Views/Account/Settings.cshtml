@@ -1,0 +1,125 @@
+﻿@model user
+@{
+    ViewBag.Title = "Ayarlarım";
+    List<SelectListItem> names = new List<SelectListItem>();
+    names.Add(new SelectListItem { Text = Model.UserName, Value = "1" });
+    names.Add(new SelectListItem { Text = Model.Name, Value = "2" });
+    List<SelectListItem> cities = new List<SelectListItem>();
+    string[] city = (OK.Config("cities")).Split(',');
+    for (int i = 0; i < city.Length; i++)
+    {
+        cities.Add(new SelectListItem { Text = city[i], Value = city[i] });
+    }
+    List<SelectListItem> jobs = new List<SelectListItem>();
+    string[] job = (OK.Config("jobs")).Split(',');
+    for (int i = 0; i < job.Length; i++)
+    {
+        jobs.Add(new SelectListItem { Text = job[i], Value = job[i] });
+    }
+    List<SelectListItem> gender = new List<SelectListItem>();
+    gender.Add(new SelectListItem { Text = "Erkek", Value = "Erkek" });
+    gender.Add(new SelectListItem { Text = "Kadın", Value = "Kadın" });
+}
+
+@section Map {
+    <div class="map">
+        <span>@Html.ActionLink(OK.Config("site-name"), "Index", "Home")</span>
+        <span>@Html.ActionLink("Profilim", "info", "account", new { seo = Model.UserName })</span>
+        <span class="active">Ayarlarım</span>
+    </div>
+}
+
+<style type="text/css">
+    div.form {
+        display: table;
+        width: 100%;
+    }
+    div.form ul li:first-child {
+        font-size: 15px;
+    }
+    div.form ul li:last-child {
+        width: 100%;
+    }
+</style>
+<div class="table">
+    <div class="title">Ayarlarım</div>
+    <div class="content" style="padding: 5px;">
+        @using (Html.BeginForm("SettingsSave", "Account", FormMethod.Post))
+        {
+            <div class="form">
+                <ul>
+                    <li><h3>Üyelik Bilgilerin</h3></li>
+                </ul>
+                <hr />
+                <ul>
+                    <li><b>@Html.LabelFor(model => model.UserName)</b>@Html.DescriptionFor(model => model.UserName)</li>
+                    <li>@Html.DisplayFor(model => model.UserName)</li>
+                </ul>
+                <ul>
+                    <li><b>@Html.LabelFor(model => model.Name)</b>@Html.DescriptionFor(model => model.Name)</li>
+                    <li>@Html.EditorFor(model => model.Name)</li>
+                </ul>
+                <ul>
+                    <li><b>@Html.LabelFor(model => model.Email)</b>@Html.DescriptionFor(model => model.Email)</li>
+                    <li>@Html.EditorFor(model => model.Email)</li>
+                </ul>
+                <ul>
+                    <li><b>@Html.LabelFor(model => model.Password)</b>@Html.DescriptionFor(model => model.Password)</li>
+                    <li>@Html.Button("Şifremi Değiştir", new { onclick = "$.OK.FormModal('" + Url.Action("ChangePassword") + "', 'Kaydet', 'Vazgeç');" })</li>
+                </ul>
+                <ul>
+                    <li><b>@Html.LabelFor(model => model.DisplayType)</b>@Html.DescriptionFor(model => model.DisplayType)</li>
+                    <li>@Html.DropDownListFor(model => model.DisplayType, names)</li>
+                </ul>
+                <ul>
+                    <li><b>@Html.LabelFor(model => model.ImageFile)</b>@Html.DescriptionFor(model => model.ImageFile)</li>
+                    <li><span style="display: inline-table;">@Html.EditorFor(model => model.ImageFile)</span>
+                        <span style="display: inline-table;">@Html.Button("Bilgisayardan yükle", new { onclick = "$.OK.FormModal('" + Url.Action("ChangePicture") + "', 'Kaydet', 'Vazgeç');" })</span></li>
+                </ul>
+                <ul>
+                    <li><h3>Kişisel Bilgilerin</h3></li>
+                </ul>
+                <hr />
+                <ul>
+                    <li><b>@Html.LabelFor(model => model.Gender)</b>@Html.DescriptionFor(model => model.Gender)</li>
+                    <li>@Html.DropDownListFor(model => model.Gender, gender)</li>
+                </ul>
+                <ul>
+                    <li><b>@Html.LabelFor(model => model.Birthday)</b>@Html.DescriptionFor(model => model.Birthday)</li>
+                    <li>@Html.EditorFor(model => model.Birthday)</li>
+                </ul>
+                <ul>
+                    <li><b>@Html.LabelFor(model => model.Job)</b>@Html.DescriptionFor(model => model.Job)</li>
+                    <li>@Html.DropDownListFor(model => model.Job, jobs)</li>
+                </ul>
+                <ul>
+                    <li><b>@Html.LabelFor(model => model.City)</b>@Html.DescriptionFor(model => model.City)</li>
+                    <li>@Html.DropDownListFor(model => model.City, cities)</li>
+                </ul>
+                <ul>
+                    <li><b>@Html.LabelFor(model => model.SocialSites)</b>@Html.DescriptionFor(model => model.SocialSites)</li>
+                    <li>@Html.EditorFor(model => model.SocialSites)</li>
+                </ul>
+                <ul>
+                    <li><b>@Html.LabelFor(model => model.About)</b>@Html.DescriptionFor(model => model.About)</li>
+                    <li>@Html.TextAreaFor(model => model.About)</li>
+                </ul>
+                <ul>
+                    <li><b>Kaydet</b></li>
+                    <li>@Html.Button("Değişiklikleri Kaydet", new { type = "button", onclick = "$.OK.SuccessModal('Değişiklikler kaydediliyor..');setTimeout(function () {$(\"form\").submit();}, 2000);" })</li>
+                </ul>
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.UserName)
+                @Html.HiddenFor(model => model.Password)
+                @Html.HiddenFor(model => model.RegistrationDate)
+                @Html.HiddenFor(model => model.LastLoginDate)
+                @Html.HiddenFor(model => model.LoginCount)
+                @Html.HiddenFor(model => model.Rating)
+                @Html.HiddenFor(model => model.TypeId)
+                @Html.HiddenFor(model => model.IsApproval)
+                @Html.HiddenFor(model => model.IsBanned)
+                @Html.HiddenFor(model => model.ConfirmationCode)
+            </div>
+        }
+    </div>
+</div>

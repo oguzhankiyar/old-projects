@@ -1,0 +1,33 @@
+﻿
+<script type="text/javascript">
+    $(function () {
+        menuBG();
+        $(window).resize(function () {
+            menuBG();
+        });
+    });
+    function menuBG() {
+        $("div.menu-bg").css({
+            "width": $("body").width()
+        });
+    }
+</script>
+<div class="menu-bg">&nbsp;</div>
+<div class="menu">
+	<ul>
+		<li><a class="image" href="@Url.Action("Index", "")"><img src="@Url.Content("~/Themes/Modern/images/home.png")" style="vertical-align: middle;" /></a></li>
+        <li><a href="@Url.Action("Index", "Config")">Ayarlar</a></li>
+        <li><a href="@Url.Action("Index", "Post")">Yazılar</a></li>
+        <li><a href="@Url.Action("Index", "Gallery")">Galeriler</a></li>
+        <li><a href="@Url.Action("Index", "Menu")">Linkler</a></li>
+        <li><a href="@Url.Action("Index", "Activity")">Etkinlikler</a></li>
+        <li><a href="@Url.Action("Index", "Poll")">Anket</a></li>
+        <li><a href="@Url.Action("Index", "Member")">Üyeler</a></li>
+        <li><a href="@Url.Action("Index", "Budget")">Gelir-Gider</a></li>
+        <li><a href="@Url.Action("Index", "Upload")">Dosyalar</a></li>
+        <li><a href="@Url.Action("Index", "Mission")">Görevler</a></li>
+        <li><a href="@Url.Action("Index", "Document")">Dökümanlar</a></li>
+        <li><a href="@Url.Action("Index", "Notification")">Log</a></li>
+        <li><a href="@Url.Action("Index", "Note")">Not</a></li>
+	</ul>
+</div>

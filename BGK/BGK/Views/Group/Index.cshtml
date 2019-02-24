@@ -1,0 +1,29 @@
+﻿@model IEnumerable<bgk_grup>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);
+    int i = 0;
+}
+<div class="table">
+    <div class="title">Gruplar</div>
+    <div class="content list groups" style="padding: 0;">
+        @if (count == 0)
+        {
+            <div class="warning">
+                Henüz grup oluşturulmamış :(
+            </div>
+        }
+        @foreach (var group in Model)
+        {
+            i++;
+            <a href="@Url.Action("details", new { id = group.Id, seo = group.Adi.ConvertSeo() })">
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li class="name">
+                        @group.Adi @(group.Tip == 1 ? "(Komite)" : "")<br />
+                        <span>@group.Aciklama.GetSummary(100)</span>
+                    </li>
+                </ul>
+            </a>
+        }
+    </div>
+</div>

@@ -1,0 +1,27 @@
+﻿@model comment
+@{
+    ViewBag.Title = "Cevap Sil";
+}
+
+<h3>Aşağıdaki cevabı silmek istediğinizden emin misiniz?</h3>
+<div class="detail">
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.topic.Title)</li>
+        <li>@Html.DisplayFor(model => model.topic.Title)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Content)</li>
+        <li>@Html.DisplayFor(model => model.Content)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.WriterId)</li>
+        <li>@OK.UserName(Model.user)</li>
+    </ul>
+</div>
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.Button("Eminim, sil", new { type = "submit" })
+        @Html.Button("Vazgeç", new { onclick = "OpenNewPage('" + Url.Action("index") + "');" })
+    </p>
+}

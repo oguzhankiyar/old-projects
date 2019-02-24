@@ -1,0 +1,54 @@
+﻿@model IEnumerable<bgk_butce>
+@{
+    int i = 0;
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);
+}
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a class="active" href="@Url.Action("index", "budget")" style="width: 50%;">İşlemler</a>
+            <a href="@Url.Action("index", "factory")" style="width: 49%;">Firmalar</a>
+        </div>
+    </div>
+</div>
+<div class="table">
+    <div class="title">İşlemler
+        <span>@Html.ActionLink("Yeni İşlem", "create")</span>
+    </div>
+    <div class="content">
+        <div class="list">
+            <ul>
+                <li style="width: 35%;">@Html.Label("Açıklama")</li>
+                <li style="width: 15%;">@Html.Label("Miktar")</li>
+                <li style="width: 15%;">@Html.Label("İşlem")</li>
+                <li style="width: 20%;">@Html.Label("İşlem Tarihi")</li>
+                <li style="width: 13%;">@Html.Label("Araçlar")</li>
+            </ul>
+            @foreach (var budget in Model)
+            {
+                i++;
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li style="width: 35%;">@budget.Aciklama.GetSummary(75)</li>
+                    <li style="width: 15%;">@Html.DisplayFor(modelItem => budget.Miktar)</li>
+                    <li style="width: 15%;">@(budget.Islem == 1 ? "Gelir" : "Gider")</li>
+                    <li style="width: 20%;">@(((DateTime)budget.IslemTarihi).ToString("d MMMMMMM yyyy"))</li>
+                    <li style="width: 13%;">
+                        @Html.ActionLink(" ", "edit", new { num = budget.Id }, new { @class = "edit", title = "Düzenle" })
+                        <a class="details" title="Detay" href="javascript:void(0);" onclick="$.BGK.Modal('@Url.Action("details", new { num = budget.Id })');"> </a>
+                        <a class="delete" title="Sil" href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("delete", new { num = budget.Id })', 'Eminim, sil', 'Vazgeç');"> </a>
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>
+<div class="table" style="width: 250px; display: block; float: left;">
+    <div class="content" style="padding: 5px;">
+        <b style="width: 105px; display: inline-table;">Toplam Gelir: </b>@Convert.ToDouble(ViewBag.InCome)₺<br />
+        <b style="width: 105px; display: inline-table;">Toplam Gider: </b>@Convert.ToDouble(ViewBag.Expense)₺<br />
+        <b style="width: 105px; display: inline-table;">Kazanç: </b>@(Convert.ToDouble(ViewBag.InCome) - Convert.ToDouble(ViewBag.Expense))₺
+    </div>
+</div>
+@Html.Paging()

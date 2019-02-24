@@ -1,0 +1,6 @@
+- Uygulama arayüzü gelistirildi.
+- Ders programi bölümü eklendi.
+- Gano hesaplama bölümü eklendi.
+- Mezuniyet/Belgelerim bölümü eklendi.
+- Bildirim alma seçenegi eklendi.
+- Bazi hatalar düzeltildi.

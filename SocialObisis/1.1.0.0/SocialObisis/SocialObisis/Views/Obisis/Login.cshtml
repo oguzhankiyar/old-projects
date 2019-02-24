@@ -1,0 +1,60 @@
+﻿@model Obisis.Ogrenci
+@{
+    if (Request.QueryString["type"] == "partial")
+    {
+        Layout = "";
+    }
+    ViewBag.menuID = "obisis_login";
+}
+
+
+<script type="text/javascript">
+    $(function () {
+        $("div.form input[type=button]").click(function () {
+            Login();
+        });
+        $(window).keypress(function (event) {
+            if (event.keyCode == 13 && $("div.login input").is(":focus"))
+                Login();
+        });
+        function Login() {
+            $.post("@Url.Action("DoLogin")", $("form").serialize(), function (msg) {
+                if (msg == "success") {
+                    ShowLoading("Bilgileriniz yükleniyor");
+                    window.history.pushState(null, document.title, "/obisis/info");
+                    $.post("/obisis/info", {}, function (data) {
+                        HideLoading();
+                        $("body").html(data);
+                    });
+                }
+                else {
+                    ShowLoading("Sunucuya bağlanılamıyor");
+                    window.history.pushState(null, document.title, "/obisis/login");
+                    $.post("/obisis/login", {}, function (data) {
+                        HideLoading();
+                        $("body").html(data);
+                    });
+                }
+            });
+        }
+    });
+</script>
+
+<div class="login form">
+    @using (Html.BeginForm("DoLogin", "Obisis", FormMethod.Post))
+    {
+        <ul>
+            <li>@Html.LabelFor(model => model.OgrenciNo)</li>
+            <li>@Html.EditorFor(model => model.OgrenciNo)</li>
+            <li>@Html.ValidationMessageFor(model => model.OgrenciNo)</li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.Sifre)</li>
+            <li>@Html.EditorFor(model => model.Sifre)</li>
+            <li>@Html.ValidationMessageFor(model => model.Sifre)</li>
+        </ul>
+        <ul class="submit">
+            <li>@Html.Button("Giriş Yap", new { type = "button" }) veya Enter'la</li>
+        </ul>
+    }
+</div>

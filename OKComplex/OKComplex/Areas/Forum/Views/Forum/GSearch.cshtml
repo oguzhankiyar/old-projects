@@ -1,0 +1,39 @@
+﻿
+@section Map {
+    <div class="map">
+        <span>@Html.ActionLink(OK.Config("site-name"), "Index")</span>
+        <span class="active">Google Özel Arama</span>
+    </div>
+}
+
+<style type="text/css">
+    .gsc-control-cse {
+        padding: 0;
+    }
+    .gsc-cursor-box {
+        float: right;
+    }
+    .gcsc-branding, .gsc-above-wrapper-area {
+        display: none;
+    }
+    .gs-title {
+        color: #1FA2E1;
+    }
+    .gs-result a.gs-visibleUrl, .gs-result .gs-visibleUrl {
+        color: #1FA2E1;
+    }
+    .gsc-cursor-page {
+        text-decoration: none;
+        padding: 2px 6px 2px 6px;
+        color: #000;
+    }
+</style>
+<div onclick="$.OK.OpenNewPage('/forum/search?p=1&q=');" style="display: table; background-color: #eee; width: 100%; padding: 5px; margin-bottom: 5px; text-align: center; font-size: 15px; font-weight: bold; cursor: pointer;">
+    Aradığınızı bulamadınız mı? Bir de @OK.Config("site-name") Arama'yı deneyin..
+</div>
+<div class="table">
+    <div class="title">Google Özel Arama</div>
+    <div class="content">
+        <gcse:search></gcse:search>
+    </div>
+</div>

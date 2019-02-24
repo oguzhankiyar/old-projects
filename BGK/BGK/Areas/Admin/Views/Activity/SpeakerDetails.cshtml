@@ -1,0 +1,12 @@
+﻿@model bgk_etkinlik_konusmaci
+
+<div class="title">@Model.AdSoyad</div>
+<div class="content details">
+    <b>@Model.Konu</b></li>
+    @Html.Raw(Model.Aciklama)
+</div>
+<div class="buttons">
+    @Html.Button("Düzenle", new { onclick = "window.location.href='" + Url.Action("editspeaker", new { num = Model.Id }) + "';" })
+    @Html.Button("Konuşmacıyı Sil", new { onclick = "$.BGK.FormModal('" + Url.Action("deletespeaker", new { num = Model.Id }) + "', 'Eminim, sil', 'Vazgeç');" })
+    @Html.Button("Kapat", new { onclick = "$.BGK.ModalClose();" })
+</div>

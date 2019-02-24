@@ -1,0 +1,15 @@
+﻿@model IEnumerable<club_category>
+
+<div class="table">
+    <div class="title">Kategoriler</div>
+    <div class="content">
+        <div class="itemlist">
+            <ul>
+                @foreach (var category in Model)
+                {
+                    <li><a href="@Url.Action("Category", "Post", new { seo = category.Seo })">@category.Name</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

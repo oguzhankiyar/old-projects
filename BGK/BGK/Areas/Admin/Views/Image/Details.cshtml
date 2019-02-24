@@ -1,0 +1,44 @@
+﻿@model bgk_galeri_resim
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a href="@Url.Action("index", "gallery")" style="width: 50%;">Galeriler</a>
+            <a class="active" href="@Url.Action("index", "image", new { num = 0 })" style="width: 49.9%;">Resimler</a>
+        </div>
+    </div>
+</div>
+<div class="table">
+    <div class="title">Resim Detayları</div>
+    <div class="content">
+        <div class="details">
+            <ul>
+                <li>@Html.LabelFor(model => model.Aciklama)</li>
+                <li>@Html.DisplayFor(model => model.Aciklama)</li>
+            </ul>
+            <ul>
+                <li>@Html.LabelFor(model => model.GaleriID)</li>
+                <li>@Html.DisplayFor(model => model.bgk_galeri.Adi)</li>
+            </ul>
+            <ul>
+                <li>@Html.LabelFor(model => model.Sira)</li>
+                <li>@Html.DisplayFor(model => model.Sira)</li>
+            </ul>
+            <ul>
+                <li>@Html.LabelFor(model => model.EklenmeTarihi)</li>
+                <li>@Html.DisplayFor(model => model.EklenmeTarihi)</li>
+            </ul>
+            <ul>
+                <li>@Html.LabelFor(model => model.Onay)</li>
+                <li>@Html.DisplayFor(model => model.Onay)</li>
+            </ul>
+            <ul style="text-align: center;">
+                <img src="@Model.bgk_dosya.DosyaAdi" style="width: auto;" />
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="buttons">
+    @Html.Button("Düzenle", new { onclick = "window.location.href='" + Url.Action("edit", new { num = Model.Id }) + "';" })
+    @Html.Button("Resmi Sil", new { onclick = "$.BGK.FormModal('" + Url.Action("delete", new { num = Model.Id }) + "', 'Eminim, sil', 'Vazgeç');" })
+</div>

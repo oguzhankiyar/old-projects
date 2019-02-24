@@ -1,0 +1,909 @@
+﻿/*
+    METRO STYLE THEME FOR OKFORTAL
+    DESIGNED BY OĞUZHAN KİYAR
+    ALL RIGHTS RESERVED
+*/
+
+body {
+    background: /*#1FA2E1*/#000 url('images/background.gif') repeat fixed; /*background.jpeg//Untitled.png*/
+    margin: 0;
+    padding: 0;
+    font-size: .85em;
+    font-family: 'Segoe UI', Tahoma, Arial, Helvetica, sans-serif;
+    color: #363636;
+    cursor: default;
+    overflow-y: scroll;
+}
+
+/*FOR BROWSER DIFFERENCES*/
+div, ul, li, span, input, select, textarea {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+/*SELECTION STYLE*/
+::selection {
+    background-color: rgba(0,0,0,0.05);
+}
+::-moz-selection {
+    background-color: rgba(0,0,0,0.05);
+}
+
+/*BASIC ELEMENTS STYLE*/
+header, footer, nav, section {
+    display: block;
+}
+p {
+    margin: 0.25% 0;
+}
+hr {
+    border: 1px dotted gray;
+    border-bottom: 0;
+}
+h1, h2, h3, h4, h5, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+a:link {
+    color: #1FA2E1;
+    text-decoration: none;
+}
+a:visited {
+    color: #1FA2E1;
+    text-decoration: none;
+}
+a:hover {
+    color: #333333;
+}
+a:active {
+    color: #FFAB00;
+}
+
+/*FORM TABLE STYLE*/
+div.form {
+    display: table;
+    width: 100%;
+}
+    div.form ul {
+        display: table;
+        line-height: 35px;
+        width: 100%;
+    }
+        div.form ul li {
+            display: inline-table;
+            float: left;
+            width: 100%;
+        }
+
+/*DETAIL TABLE STYLE*/  
+div.detail {
+    display: table;
+    width: 100%;
+}
+    div.detail ul {
+        display: table;
+        width: 100%;
+        line-height: 35px;
+    }
+        div.detail ul li {
+            display: inline-table;
+            float: left;
+        }
+            div.detail ul li:first-child {
+                width: 25%;
+                font-weight: bold;
+            }
+            div.detail ul li:last-child {
+                width: 75%;
+            }
+                div.detail ul li:last-child small {
+                    padding-left: 5px;
+                }
+        div.detail ul.full-style li:first-child {
+            width: 100%;
+        }
+
+/*PAGING STYLE*/
+div.paging {
+    display: table;
+    background-color: #fff;
+    float: right;
+    line-height: 18px;
+    padding: 2px 10px;
+    margin-bottom: 7px;
+    font-size: 12px;
+    color: #666;
+}
+    div.paging ul li {
+        display: inline-block;
+        font-weight: bold;
+        margin: 2px;
+    }
+        div.paging ul li img {
+            vertical-align: middle;
+        }
+        div.paging ul li.first img {
+            background: url('images/first.gif') center center no-repeat;
+            padding: 8px;
+        }
+        div.paging ul li.previous img {
+            background: url('images/previous.gif') center center no-repeat;
+            padding: 8px;
+        }
+        div.paging ul li.next img {
+            background: url('images/next.gif') center center no-repeat;
+            padding: 8px;
+        }
+        div.paging ul li.last img {
+            background: url('images/last.gif') center center no-repeat;
+            padding: 8px;
+        }
+        div.paging ul li a {
+            text-decoration: none;
+            padding: 2px 6px 2px 6px;
+            color: #000;
+        }
+        div.paging ul li a:hover {
+            background-color: #f5f5f5;
+            color: #000;
+            padding: 1px 5px 1px 5px;
+            border: 1px solid Gray;
+            cursor: pointer;
+        }
+        div.paging ul li.active {
+            background-color: #eee;
+            color: Black;
+            padding: 1px 5px 1px 5px;
+            border: 1px solid gray;
+            cursor: default;
+        }
+
+/*MODAL STYLE*/
+div.modal {
+    position: fixed;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.2);
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+div.modalcontent {
+    position: fixed;
+    display: none;
+    background: #fff;
+    padding-left: 5px;
+    min-height: 75px;
+}
+    div.modalcontent div.title {
+        display: inline-table;
+        padding-bottom: 3px;
+        border-bottom: 1px solid #ccc;
+        width: 99%;
+        margin-top: 5px;
+        color: #383838;
+        font-family: 'Trebuchet MS';
+        font-weight: 500;
+        font-size: 16px;
+    }
+    div.modalcontent span.close {
+        position: absolute;
+        right: 5px;
+        padding: 5px;
+        font-family: Verdana;
+        color: #c1c1c1;
+        font-size: 15px;
+        font-weight: bold;
+    }
+        div.modalcontent span.close:hover {
+            padding: 5px;
+            color: #333;
+            cursor: pointer;
+        }
+    div.modalcontent div.content {
+        display: table;
+        width: 500px;
+        max-width: 750px;
+        padding: 5px 5px 10px 0;
+    }
+    div.modalcontent div.success {
+        background: url('images/success_bg.jpg') no-repeat right bottom;
+        height: 150px;
+        font-size: 15px;
+        line-height: 25px;
+        color: Green;
+    }
+    div.modalcontent div.error {
+        background: url('images/error_bg.jpg') no-repeat right bottom;
+        height: 150px;
+        font-size: 15px;
+        line-height: 25px;
+        color: Red;
+    }
+    div.modalcontent span.info {
+        display: table;
+        float: left;
+        line-height: 28px;
+    }
+    div.modalcontent span.buttons {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding: 5px;
+    }
+    div.modalcontent ul, div.modalcontent li, div.modalcontent div {
+        min-width: 500px;
+    }
+
+/*GO TOP AND LOADING IMAGE STYLE*/
+#loading {
+    display: none;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin: 0 0 25px 60px;
+}
+#top {
+    display: none;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 0 75px 25px 0;
+    cursor: pointer;
+    background-color: #ccc;
+    border-radius: 25px;
+}
+    #top:hover {
+        background-color: #fff;
+    }
+
+/*FORM ELEMENTS STYLE*/
+input[type="text"], input[type="select"], input[type="password"], text-box, textarea, select {
+    background-color: #F0F0F0;
+    border: 0;
+    outline: none;
+    min-width: 300px;
+    padding: 8px;
+    font-size: 10pt;
+    font-family: 'Segoe UI';
+    color: #666;
+    width: 98%;
+}
+select {
+    min-width: 315px;
+}
+textarea {
+    min-height: 100px;
+}
+input[type="button"], input[type="submit"] {
+    background-color: #ddd;
+    border: 0;
+    margin: 0 0 0 5px;
+    padding: 6px 14px;
+    color: gray;
+}
+    input[type="button"]:hover, input[type="submit"]:hover {
+        background-color: gray;
+        color: #fff;
+        cursor: pointer;
+    }
+    input[type="button"]:active, input[type="submit"]:active {
+        background-color: #000;
+        color: #fff;
+    }
+input.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+div.buttons {
+    float: right;
+    margin-bottom: 7px;
+}
+
+div.page {
+    display: table;
+    background-color: #f5f5f5;
+    border-top: 0;
+    border-bottom: 0;
+    width: 1000px;
+    margin: auto;
+}
+
+/*LOGO AND MEMBERSHIP TABLES STYLE*/
+div.top {
+    display: table;
+    background-color: #eee;
+    width: 100%;
+}
+    div.top div.logo {
+        display: inline-table;
+        float: left;
+        background: url('images/logo.jpg') no-repeat;
+        width: 45%;
+        height: 75px;
+        font-size: 18pt;
+        font-family: 'Segoe UI';
+    }
+    div.top div.membership {
+        display: inline-table;
+        background-color: #e5e5e5;
+        float: right;
+        padding: 5px;
+        margin: 5px;
+    }
+        div.top div.membership ul {
+            display: inline-table;
+
+        }
+            div.top div.membership ul li.messages {
+                background: #eee url('images/messages.png') no-repeat center center;
+            }
+            div.top div.membership ul li.settings {
+                background: #eee url('images/settings.png') no-repeat center center;
+            }
+            div.top div.membership ul li.logout {
+                background: #eee url('images/logout.png') no-repeat center center;
+            }
+            div.top div.membership ul img {
+                vertical-align: middle;
+                width: 40px;
+                height: 40px;
+                margin-right: 3px;
+            }
+            div.top div.membership ul li {
+                display: inline-block;
+                background-color: #eee;
+                padding: 7px 14px;
+                margin: 5px 3px;
+            }
+                div.top div.membership ul li:hover {
+                    background-color: #ddd;
+                    cursor: pointer;
+                }
+    div.top div.menu {
+        display: table;
+        background-color: #ddd;
+        width: 100%;
+    }
+        div.top div.menu ul {
+            display: table;
+        }
+        div.top div.menu ul li {
+            display: inline-block;
+            padding: 7px 12px;
+            margin: 0;
+        }
+            div.top div.menu ul li:not(:last-child) {
+                border-right: 2px solid #e5e5e5;
+            }
+            div.top div.menu ul li:hover {
+                background-color: #e5e5e5;
+                cursor: pointer;
+            }
+            div.top div.menu ul li:active {
+                background-color: gray;
+                color: #fff;
+            }
+
+div.main {
+    display: table;
+    width: 100%;
+    padding: 7px;
+}
+div.bottom {
+    background-color: #e5e5e5;
+    padding: 5px;
+}
+
+/*NORMAL TABLE STYLE*/
+div.table {
+    display: table;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 7px;
+}
+    div.table div.title {
+        display: table;
+        background-color: #ddd;
+        width: 100%;
+        padding: 4px;
+        color: #888;
+        border-bottom: 2px solid #9c9c9c;
+        font-family: 'Segoe UI';
+        font-weight: bold;
+        font-size: 14px;
+    }
+        div.table div.title small {
+            font-weight: normal;
+            padding-left: 10px;
+        }
+        div.table div.title span {
+            float: right;
+        }
+        div.table div.title span.expanded {
+            background: url('images/down-arrow.gif') no-repeat;
+            transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+            opacity: 0.5;
+            padding: 5px 7px;
+            margin: 5px;
+        }
+        div.table div.title span.expanded:hover {
+            opacity: 1;
+            cursor: pointer;
+        }
+        div.table div.title span.collapsed {
+            background: url('images/down-arrow.gif') no-repeat;
+            opacity: 0.5;
+            padding: 5px 7px;
+            margin: 5px;
+        }
+        div.table div.title span.collapsed:hover {
+            opacity: 1;
+            cursor: pointer;
+        }
+        div.table div.title a {
+            color: inherit;
+        }
+        div.table div.title a:hover {
+            color: #000;
+        }
+    div.table div.content {
+        line-height: 20px;
+        font-size: 13px;
+    }
+
+/*MAP TABLE STYLE*/
+div.map {
+    display: table;
+    width: 100%;
+    margin-bottom: 5px;
+}
+    div.map span {
+        display: inline-table;
+        padding: 5px 10px;
+        border-right: 2px solid #ccc;
+        border-radius: 25px;
+    }
+    div.map span.active {
+        border-right: 0;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+/*NOTICES TABLE STYLE*/
+div.notices {
+    display: table;
+    width: 100%;
+    margin-bottom: 7px;
+}
+    div.notices ul {
+        display: table;
+        background: #ffffea url('images/announcement.png') no-repeat 5px center;
+        width: 100%;
+        margin-bottom: 2px;
+        padding: 7px 7px 7px 30px;
+        cursor: pointer;
+    }
+        div.notices ul li {
+            display: inline-table;
+        }
+        div.notices ul li:first-child {
+            font-weight: bold;
+        }
+        div.notices ul li:last-child {
+            float: right;
+        }
+
+/*FONT STYLE WHEN NO ITEM*/
+div.noitem {
+    text-align: center;
+    color: gray;
+    line-height: 25px;
+}
+
+/*FORUMS TABLE STYLE*/
+div.forums {
+    display: table;
+    width: 100%;
+}
+    div.forums ul:not(:first-child) {
+        background-color: #fff;
+        padding: 5px 0 5px 0;
+        border-bottom: 1px dotted #ddd;
+    }
+    div.forums ul:first-child {
+        background-color: #eee;
+        line-height: 25px;
+        font-weight: bold;
+    }
+    div.forums ul li {
+        text-align: center;
+        vertical-align: top;
+    }
+    div.forums ul li.image {
+        display: inline-table;
+        width: 5%;
+        padding: 0.5% 0;
+    }
+    div.forums ul li.image img {
+        width: 40px;
+        height: 40px;
+    }
+    div.forums ul li.name {
+        display: inline-table;
+        width: 50%;
+        text-align: left;
+        font-weight: bold;
+        padding: 0.5% 0;
+    }
+        div.forums ul li.name span {
+            display: table;
+            line-height: 20px;
+            font-size: 12px;
+            font-weight: normal;
+        }
+        div.forums ul li.name div {
+            display: inline-table;
+            background-color: #fcfcfc;
+            padding: 3px 5px 4px;
+            margin: 4px 5px 0 0;
+            font-size: 13px;
+            font-weight: normal;
+            color: gray;
+        }
+        div.forums ul li.name div img {
+            width: 16px;
+            height: 16px;
+            margin-right: 3px;
+            vertical-align: middle;
+        }
+        div.forums ul li.name div:hover {
+            background-color: #f5f5f5;
+            cursor: pointer;
+        }
+        div.forums ul li.name div a {
+            text-decoration: none;
+        }
+    div.forums ul li.topics-views {
+        display: inline-table;
+        width: 15%;
+        padding: 6px;
+    }
+    div.forums ul li.lasttopic {
+        display: inline-table;
+        width: 28%;
+    }
+        div.forums ul li.lasttopic div {
+            line-height: 14px;
+            font-size: 11px;
+        }
+    div.forums ul:first-child li {
+        background-color: #eee;
+        padding: 0;
+    }
+    div.forums ul:last-child {
+        border: 0;
+    }
+
+/*TOPICS TABLE STYLE*/
+div.topics {
+    display: table;
+    width: 100%;
+}
+    div.topics ul:not(:first-child) {
+        background-color: #fff;
+        border-bottom: 1px dotted #ddd;
+    }
+    div.topics ul:first-child {
+        background-color: #eee;
+        line-height: 25px;
+        font-weight: bold;
+    }
+    div.topics ul li {
+        text-align: center;
+        vertical-align: top;
+    }
+    div.topics ul li.image {
+        display: inline-table;
+        width: 5%;
+        padding: 0.5% 0;
+    }
+    div.topics ul li.image img {
+        width: 40px;
+        height: 40px;
+    }
+    div.topics ul li.name {
+        display: inline-table;
+        width: 55%;
+        text-align: left;
+        font-weight: bold;
+        padding: 0.5% 0;
+    }
+        div.topics ul li.name span {
+            display: table;
+            line-height: 20px;
+            font-size: 12px;
+            font-weight: normal;
+        }
+    div.topics ul li.comments-views {
+        display: inline-table;
+        width: 15%;
+        padding: 6px;
+    }
+    div.topics ul li.lastcomment {
+        display: inline-table;
+        width: 23%;
+        padding: 6px;
+    }
+    div.topics ul:not(:first-child) li.lastcomment {
+        line-height: 14px;
+        font-size: 11px;
+    }
+    div.topics ul:first-child li {
+        padding: 0;
+    }
+    div.topics ul:last-child {
+        border: 0;
+    }
+
+/*TOPIC TABLE STYLE*/
+div.topic ul.info {
+    background-color: #eee;
+    float: left;
+    width: 100%;
+    border-bottom: 1px dotted #ccc;
+}
+    div.topic ul.info li.user {
+        min-width: 22%;
+        float: left;
+        padding: 3px;
+    }
+    div.topic ul.info li.topic {
+        float: right;
+        padding: 3px;
+    }
+        div.topic ul.info li.topic div.buttons {
+            display: none;
+            float: left;
+            margin: 10px;
+        }
+            div.topic ul.info li.topic div.buttons span {
+                display: inline-table;
+                padding: 15px;
+                margin: 2px;
+                cursor: pointer;
+            }
+                div.topic ul.info li.topic div.buttons span.edit {
+                    background: #f5f5f5 url('images/edit.png') no-repeat center center;
+                }
+                div.topic ul.info li.topic div.buttons span.quote {
+                    background: #f5f5f5 url('images/quote.png') no-repeat center center;
+                }
+                div.topic ul.info li.topic div.buttons span.view {
+                    background: #f5f5f5 url('images/view.png') no-repeat center center;
+                }
+                div.topic ul.info li.topic div.buttons span:hover {
+                    background-color: #ddd;
+                }
+        div.topic ul.info li.topic div.rating {
+            display: table;
+            float: left;
+            width: 210px;
+            text-align: center;
+        }
+            div.topic ul.info li.topic div.rating div.bars {
+                display: table;
+                width: 100%;
+            }
+            div.topic ul.info li.topic div.rating div {
+                display: inline-table;
+                padding: 7px 2px;
+                margin: 1px;
+            }
+            div.topic ul.info li.topic div.rating div.like {
+                background-color: #4ba123;
+            }
+            div.topic ul.info li.topic div.rating div.dislike {
+                background-color: #cd5555;
+            }
+            div.topic ul.info li.topic div.rating div.info {
+                width: 100%;
+                padding: 0;
+                margin: 0;
+                text-align: center;
+                font-family: Tahoma;
+                font-size: 11px;
+                color: #808080;
+            }
+            div.topic ul.info li.topic div.rating div.info div {
+                padding: 9px 7px;
+                margin-left: 2px;
+                line-height: 0;
+                vertical-align: middle;
+            } 
+            div.topic ul.info li.topic div.rating div.like-b {
+                background: url('images/like.png') no-repeat;
+                opacity: 0.5;
+                float: left;
+                cursor: pointer;
+            }
+                div.topic ul.info li.topic div.rating div.like-c {
+                    float: left;
+                }
+            div.topic ul.info li.topic div.rating div.dislike-b {
+                background: url('images/dislike.png') no-repeat;
+                opacity: 0.5;
+                float: right;
+                cursor: pointer;
+            }
+                div.topic ul.info li.topic div.rating div.dislike-c {
+                    float: right;
+                }
+                div.topic ul.info li.topic div.rating div:hover {
+                    opacity: 1;
+                }
+div.topic ul.content {
+    float: left;
+    width: 99%;
+    line-height: 23px;
+    padding: 5px;
+    text-align: justify;
+}
+    div.topic ul.content hr {
+        border: 1px dotted gray;
+        border-bottom: 0;
+    }
+    div.topic ul.content div.info {
+        display: table;
+        width: 100%;
+        background-color: #f8f8f8;
+        padding: 5px;
+    }
+    div.topic ul.content div.editinfo {
+        float: right;
+        padding: 5px;
+        font-style: italic;
+        color: Gray;
+    }
+
+/*SHARE BAR STYLE*/
+div.share a {
+    opacity: 0.5;
+    padding: 8px;
+    margin: 1px 2px;
+}
+    div.share a.facebook {
+        background: url('images/facebook.png') no-repeat center;
+    }
+    div.share a.twitter {
+        background: url('images/twitter.png') no-repeat center;
+    }
+    div.share a.google-plus {
+        background: url('images/google-plus.png') no-repeat center;
+    }
+    div.share a.email {
+        background: url('images/email.png') no-repeat center;
+    }
+    div.share a:hover {
+        opacity: 1;
+    }
+
+/*QUOTE STYLE*/
+blockquote {
+    display: table;
+    width: 95%;
+    border-left: 5px solid #ddd;
+    margin: 5px 15px;
+    padding: 5px 15px;
+}
+    blockquote div {
+        display: table;
+    }
+
+/*USER PROFILE STYLE*/
+    div.profile div.left {
+        display: table;
+        float: left;
+        width: 20%;
+        margin-right: 5px;
+    }
+    div.profile div.right {
+        display: table;
+        float: right;
+        width: 79.5%;
+    }
+    div.profile div.table {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 0 5px;
+    }
+        div.profile div.table div.title {
+            background-color: transparent;
+            border-bottom: 1px dashed gray;
+            font-size: 17px;
+            padding: 5px;
+        }
+    div.userinfo {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 5px;
+    }
+        div.userinfo img {
+            width: 100%;
+        }
+        div.userinfo div.menu {
+            display: table;
+            width: 100%;
+        }
+            div.userinfo div.menu ul {
+                display: table;
+                width: 100%;
+                padding: 5px;
+                border-bottom: 1px dotted #ddd;
+            }
+                div.userinfo div.menu ul:first-child {
+                    border-top: 1px dotted #ddd;
+                }
+                div.userinfo div.menu ul:hover {
+                    background-color: #eee;
+                    cursor: pointer;
+                }
+                div.userinfo div.menu ul:active {
+                    background-color: #ddd;
+                }
+                div.userinfo div.menu ul li {
+                    display: inline-table;
+                }
+                div.userinfo div.menu ul li:last-child:not(:first-child) {
+                    float: right;
+                    color: #ccc;
+                }
+
+                
+/*USER INFO BAR STYLE*/
+div.user-info div.image {
+    background: #fff;
+    display: inline-table;
+    float: left;
+    border: 1px solid #ccc;
+    padding: 1px;
+    margin-right: 3px;
+}
+    div.user-info div.image img {
+        display: table;
+        width: 52px;
+        height: 52px;
+        vertical-align: top;
+        cursor: pointer;
+    }
+div.user-info div.name {
+    display: table;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+    div.user-info div.name img {
+        width: 16px;
+        height: 16px;
+        padding-left: 2px;
+        vertical-align: middle;
+    }
+div.user-info div.level {
+    display: table;
+    font-size: 13px;
+    color: #005fbf;
+    font-weight: bold;
+}
+div.user-info div.rating {
+    display: table;
+}
+    div.user-info div.rating span {
+        background: url('images/rating.gif');
+        padding: 8px;
+        display: inline-block;
+    }

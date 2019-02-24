@@ -1,0 +1,58 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TicketApp.Pages.Airplane.PassengerListPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:TicketApp.UserControls"
+    xmlns:converter="clr-namespace:TicketApp.Converters"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    Orientation="Portrait"
+    mc:Ignorable="d">
+
+    <phone:PhoneApplicationPage.Resources>
+        <converter:PassengerTypeToStringConverter x:Name="passengerTypeConverter" />
+    </phone:PhoneApplicationPage.Resources>
+    
+    <Grid x:Name="LayoutRoot" Style="{StaticResource PageStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <control:Header />
+        <ScrollViewer Grid.Row="1" Margin="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <control:InputBox x:Name="txtEmail" Label="Email adresi:" Value="{Binding Path=PNR.Email, Mode=TwoWay}" CasingMode="Lower" Scope="EmailSmtpAddress" />
+                <control:InputBox x:Name="txtTelephoneNumber" Label="Sabit telefon numarası:" Value="{Binding Path=PNR.TelephoneNumber, Mode=TwoWay}" Scope="Number" Length="10" Grid.Row="1" />
+                <control:InputBox x:Name="txtPhoneNumber" Label="Cep telefonu numarası:" Value="{Binding Path=PNR.PhoneNumber, Mode=TwoWay}" Scope="Number" Length="10" Grid.Row="2" />
+
+                <phone:Pivot x:Name="PassengersPivot" ItemsSource="{Binding Path=Passengers, Mode=TwoWay}" Margin="-12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3">
+                    <phone:Pivot.HeaderTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Stretch" Margin="-4,0">
+                                <Rectangle Fill="White" Opacity=".3" />
+                                <TextBlock Foreground="Orange" FontSize="25" TextAlignment="Center" Text="{Binding Path=Type, Converter={StaticResource passengerTypeConverter}}" Padding="15,5" />
+                            </Grid>
+                        </DataTemplate>
+                    </phone:Pivot.HeaderTemplate>
+                    <phone:Pivot.ItemTemplate>
+                        <DataTemplate>
+                            <local:FlightPassengerForm />
+                        </DataTemplate>
+                    </phone:Pivot.ItemTemplate>
+                </phone:Pivot>
+                <control:Button x:Name="btnContinue" Clicked="btnContinue_Clicked" Grid.Row="4" />
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+
+</phone:PhoneApplicationPage>

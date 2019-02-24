@@ -1,0 +1,85 @@
+﻿@model KOK.Models.basvuru
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>basvuru</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Ad)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Ad)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Soyad)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Soyad)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Kurum)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Kurum)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Meslek)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Meslek)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Tur)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tur)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.OdemeTarihi)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OdemeTarihi)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DekontNumarasi)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DekontNumarasi)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Telefon)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Telefon)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Onay)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Onay)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

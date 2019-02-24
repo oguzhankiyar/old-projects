@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_weight="1"
+    android:layout_height="0dp"
+   	android:layout_below="@id/Title" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/linkLogin"
+			style="@style/MenuItemStyle"
+			android:text="@string/title_activity_login" />
+        
+        <TextView
+            android:id="@+id/linkInfo"
+			style="@style/MenuItemStyle"
+			android:text="@string/title_activity_info" />
+        
+        <TextView
+            android:id="@+id/linkPeriod"
+			style="@style/MenuItemStyle"
+			android:text="@string/title_activity_period" />
+        
+        <TextView
+            android:id="@+id/linkLesson"
+			style="@style/MenuItemStyle"
+			android:text="@string/title_activity_lesson" />
+        
+        <TextView
+            android:id="@+id/linkFood"
+			style="@style/MenuItemStyle"
+			android:text="@string/title_activity_food" />
+        
+        <TextView
+            android:id="@+id/linkSettings"
+			style="@style/MenuItemStyle"
+			android:text="@string/title_activity_settings" />
+        
+        <TextView
+            android:id="@+id/linkAbout"
+			style="@style/MenuItemStyle"
+			android:text="@string/title_activity_about" />
+                
+    </LinearLayout>
+
+</ScrollView>

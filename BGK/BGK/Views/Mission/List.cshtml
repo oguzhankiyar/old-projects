@@ -1,0 +1,59 @@
+﻿@model IEnumerable<bgk_gorev>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);
+    int i = 0;
+}
+<div class="table">
+    <div class="title">@ViewBag.Title</div>
+    <div class="content list missions" style="padding: 0;">
+        @if (count == 0)
+        {
+            <div class="warning">
+                @ViewBag.Message
+            </div>
+        }
+        @foreach (var mission in Model)
+        {
+            i++;
+            var member = mission.bgk_gorev_uye.SingleOrDefault(x => x.UyeID == (int)Session["memberID"]);
+            <a href="@Url.Action("Details", new { id = mission.Id })">
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li class="name">@mission.Adi<br />
+                        <span>@(mission.KategoriID != null ? mission.bgk_gorev_kategori.Adi : mission.bgk_grup.Adi)</span>
+                    </li>
+                    <li class="info">
+                        @if (member != null)
+                        {
+                            if (member.Tamamlandi && member.Kabul == true)
+                            {
+                            <b style="color: green;">Kabul Edildi</b>
+                            }
+                            else if (member.Tamamlandi && member.Kabul == false)
+                            {
+                                <b style="color: red;">Kabul Edilmedi</b>
+                            }
+                            else if (member.Tamamlandi)
+                            {
+                                <b style="color: gray;">Kabul Bekliyor</b>
+                            }
+                            else if (member.Onay == null)
+                            {
+                                <b style="color: gray;">Onayınızı Bekliyor</b>
+                            }
+                            else if (member.Onay == false)
+                            {
+                                <b style="color: green;">Onaylamadınız</b>
+                            }
+                            else
+                            {
+                                <b style="color: red;">Tamamlanmadı</b>
+                            }
+                        }
+                    </li>
+                </ul>
+            </a>
+        }
+    </div>
+</div>
+@Html.Paging()

@@ -1,0 +1,29 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TicketApp.Pages.Setting.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    Orientation="Portrait"
+    mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource PageStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <control:Header />
+        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+            <control:Button Clicked="btnFavoritePassengers_Clicked" Value="Favori yolcular" Height="100" />
+            <control:Button Clicked="btnResetTickets_Clicked" Value="Biletleri sıfırla" Height="100" />
+            <control:Button Clicked="btnUpdateStations_Clicked" Value="İstasyonları güncelle" Height="100" />
+            <control:Button Clicked="btnResetFavoritePassengers_Clicked" Value="Favori yolcuları sıfırla" Height="100" />
+            <control:Button Clicked="btnResetSearchHistory_Clicked" Value="Arama geçmişini sıfırla" Height="100" />
+        </StackPanel>
+    </Grid>
+
+</phone:PhoneApplicationPage>

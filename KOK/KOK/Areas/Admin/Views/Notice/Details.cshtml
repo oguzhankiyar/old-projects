@@ -1,0 +1,57 @@
+﻿@model KOK.Models.duyuru
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>duyuru</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Baslik)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Baslik)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Icerik)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Icerik)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Sira)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sira)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Tarih)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tarih)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Onay)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Onay)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Manset)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Manset)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

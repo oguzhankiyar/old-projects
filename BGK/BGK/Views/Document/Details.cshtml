@@ -1,0 +1,43 @@
+﻿@model bgk_dokuman
+@{
+    ViewBag.Title = Model.Adi;
+    BGKEntities Db = new BGKEntities();
+    var categories = Db.bgk_dokuman_kategori.Where(x => x.Onay == true).OrderBy(x => x.Sira);
+    int i = 0;
+}
+@section Widgets {
+    @if (categories.Count() != 0)
+    {
+        <div class="table">
+            <div class="title">Kategoriler (@categories.Count())</div>
+            <div class="content list" style="padding: 0;">
+                @foreach (var category in categories)
+                {
+                    i++;
+                    <a href="@Url.Action("Category", new { id = category.Id, seo = category.Seo })">
+                        <ul class="@(i % 2 == 0 ? "second" : "first")">
+                            <li class="name">@category.Adi<br />
+                                <span>@category.Aciklama.GetSummary(50)</span>
+                            </li>
+                        </ul>
+                    </a>
+                }
+            </div>
+        </div>
+    }
+}
+<div class="table">
+    <div class="title">@Model.Adi</div>
+    <div class="content">
+        @Html.Raw(Model.Icerik)
+        @if (Model.DosyaID != null)
+        {
+            <br /><br />
+            <a href="@Model.bgk_dosya.Adres" target="blank">
+                <div style="width: 100%; display: table; padding: 10px; background-color: #f9f9f9; text-align: center; font-size: 17px; font-weight: bold;">
+                    Dosyayı Göster
+                </div>
+            </a>
+        }
+    </div>
+</div>

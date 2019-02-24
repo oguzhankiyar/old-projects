@@ -1,0 +1,49 @@
+﻿@model IEnumerable<club_post>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+}
+@section Map {
+    <div class="map">
+        <span>@Html.ActionLink(OK.ClubConfig("site-name"), "Index", "Home")</span>
+        <span>@Html.ActionLink("Arama", "Index", "Home")</span>
+        <span class="active">@Request.QueryString["q"]</span>
+    </div>
+}
+
+@if (count == 0)
+{
+    <div style="text-align: center;">Aramanıza uygun yazı bulunamadı</div>
+}
+@foreach (var post in Model)
+{
+    <div class="table">
+        <div class="title"><a href="@Url.Action("Detail", "Post", new { id = post.Id, page = 1, seo = post.Seo })">@post.Title</a></div>
+        <div class="content">
+            <div class="post">
+                <ul class="info">
+                    @if (post.CategoryId != null)
+                    {
+                        <li><b>Kategori: </b><a href="@Url.Action("Category", "Post", new { seo = post.club_category.Seo, page = 1 })">@post.club_category.Name</a></li>
+                    }
+                    else
+                    {
+                        <li><b>Grup: </b><a href="@Url.Action("Detail", "Group", new { seo = post.club_group.Seo, page = 1 })">@post.club_group.Name</a></li>
+                    }
+                    <li><b>Yazan: </b><a href="@Url.Action("info", "member", new { id = post.club_member.Id })">@post.club_member.Name</a></li>
+                    <li><b>Tarih: </b>@Html.ShortDateTime((DateTime)post.WritingDate)</li>
+                    <li><b>Yorum: </b>@post.club_comments.Count() yorum</li>
+                </ul>
+                <ul class="content">
+                    @if (!string.IsNullOrEmpty(post.Image))
+                    {
+                        <li class="image"><img src="@post.Image" /></li>
+                    }
+                    <li>
+                        @Html.Raw(OK.Summary(post.Content, 1000))
+                        <a class="continue" href="@Url.Action("Detail", "Post", new { id = post.Id, page = 1, seo = post.Seo })">Devamını oku</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}

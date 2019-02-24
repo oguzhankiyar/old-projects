@@ -1,0 +1,56 @@
+﻿@model club_member
+@{
+    ViewBag.Title = "Üye Detayları";
+}
+
+<div class="detail">
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Name)</li>
+        <li>@Html.DisplayFor(model => model.Name) @(Model.DisplayType == 1 ? "" : "(Görünen İsim)")</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Email)</li>
+        <li>@Html.DisplayFor(model => model.Email)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Image)</li>
+        <li>@Html.DisplayFor(model => model.Image)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Gender)</li>
+        <li>@Html.DisplayFor(model => model.Gender)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Birthday)</li>
+        <li>@Html.DisplayFor(model => model.Birthday)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Faculty)</li>
+        <li>@Html.DisplayFor(model => model.Faculty)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Program)</li>
+        <li>@Html.DisplayFor(model => model.Program)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Class)</li>
+        <li>@Html.DisplayFor(model => model.Class)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.SchoolNo)</li>
+        <li>@Html.DisplayFor(model => model.SchoolNo)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.IsApproval)</li>
+        <li>@Html.DisplayFor(model => model.IsApproval)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.RegistrationDate)</li>
+        <li>@Html.DisplayFor(model => model.RegistrationDate)</li>
+    </ul>
+</div>
+<p>
+    @Html.Button("Yetki Ver", new { onclick = "OpenNewPage('" + Url.Action("create", "fforum") + "');" })
+    @Html.Button("Düzenle", new { onclick = "OpenNewPage('" + Url.Action("edit", new { num = Model.Id }) + "');" })
+    @Html.Button("Sil", new { onclick = "OpenNewPage('" + Url.Action("delete", new { num = Model.Id }) + "');" })
+</p>

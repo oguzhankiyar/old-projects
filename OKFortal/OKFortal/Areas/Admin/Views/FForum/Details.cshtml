@@ -1,0 +1,63 @@
+﻿@model forum
+@{
+    ViewBag.Title = "Forum Detayları";
+    OKDbEntities Db = new OKDbEntities();
+    int commentcount = 0;
+    foreach (var topic in Model.topics)
+    {
+        commentcount += topic.comments.Count();
+    }
+}
+
+<div class="detail">
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Name)</li>
+        <li>@Html.DisplayFor(model => model.Name)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Description)</li>
+        <li>@Html.DisplayFor(model => model.Description)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.ImageFile)</li>
+        <li>@Html.DisplayFor(model => model.ImageFile)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.category.Name)</li>
+        <li>@Html.DisplayFor(model => model.category.Name)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.ParentForumId)</li>
+        <li>@Html.DisplayFor(model => model.ParentForumId)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.IsSubForum)</li>
+        <li>@Html.DisplayFor(model => model.IsSubForum)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.IsApproval)</li>
+        <li>@Html.DisplayFor(model => model.IsApproval)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Seo)</li>
+        <li>@Html.DisplayFor(model => model.Seo)</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Alt Forum Sayısı")</li>
+        <li>@Db.forum.Where(x => x.IsSubForum == false && x.ParentForumId == Model.Id).Count()</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Konu Sayısı")</li>
+        <li>@Model.topics.Count()</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Cevap Sayısı")</li>
+        <li>@commentcount</li>
+    </ul>
+</div>
+<p>
+    @Html.Button("Alt Forum Ekle", new { onclick = "OpenNewPage('" + Url.Action("create", "fforum") + "');" })
+    @Html.Button("Konu Ekle", new { onclick = "OpenNewPage('" + Url.Action("create", "fforum") + "');" })
+    @Html.Button("Düzenle", new { onclick = "OpenNewPage('" + Url.Action("edit", new { num = Model.Id }) + "');" })
+    @Html.Button("Sil", new { onclick = "OpenNewPage('" + Url.Action("delete", new { num = Model.Id }) + "');" })
+</p>

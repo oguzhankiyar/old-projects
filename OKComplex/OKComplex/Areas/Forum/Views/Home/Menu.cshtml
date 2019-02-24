@@ -1,0 +1,10 @@
+﻿@model IEnumerable<menulink>
+
+<div class="menu">
+    <ul>
+        @foreach (var link in Model)
+        {
+            <li onclick="@link.OnClick">@link.Name</li>
+        }
+    </ul>
+</div>

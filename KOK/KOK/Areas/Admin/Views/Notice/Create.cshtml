@@ -1,0 +1,72 @@
+﻿@model KOK.Models.duyuru
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>duyuru</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Baslik)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Baslik)
+            @Html.ValidationMessageFor(model => model.Baslik)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Icerik)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Icerik)
+            @Html.ValidationMessageFor(model => model.Icerik)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Sira)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Sira)
+            @Html.ValidationMessageFor(model => model.Sira)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Tarih)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Tarih)
+            @Html.ValidationMessageFor(model => model.Tarih)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Onay)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Onay)
+            @Html.ValidationMessageFor(model => model.Onay)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Manset)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Manset)
+            @Html.ValidationMessageFor(model => model.Manset)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

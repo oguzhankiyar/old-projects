@@ -1,0 +1,58 @@
+﻿@model ENotice.Web.Models.Log
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Log</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Message)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Message)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ItemId)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ItemId)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ItemType)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ItemType)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ActionDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ActionDate)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

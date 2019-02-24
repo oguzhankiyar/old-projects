@@ -1,0 +1,142 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Activity"
+    style="@style/ActivityStyle"
+    tools:context=".LessonDetailsActivity" >
+
+    <TextView
+        android:id="@+id/Title"
+        style="@style/TitleStyle"
+        android:text="@string/title_activity_lesson_details" />
+
+    <TextView
+      	android:id="@+id/MenuLink"
+        style="@style/MenuLinkStyle" />
+    
+	<ScrollView 
+        android:id="@+id/Container"
+    	style="@style/ContainerStyle" >
+
+	    <LinearLayout
+        	android:id="@+id/ContainerLayout"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical" >
+			
+	        <TextView
+				android:id="@+id/tvAdi"
+				style="@style/LargeTextStyle"
+				android:layout_gravity="center"
+				android:singleLine="true" />
+	        
+		    <LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+				android:baselineAligned="false" >
+		
+			    <LinearLayout
+		            android:layout_width="0dp"
+		            android:layout_height="match_parent"
+		            android:layout_weight="1"
+					android:orientation="vertical" >
+			        
+			        <TextView
+						android:id="@+id/tvKrediText"
+						style="@style/MediumTextStyle"
+						android:text="@string/lesson_Kredi" />
+		
+			        <TextView
+						android:id="@+id/tvVize1Text"
+						style="@style/MediumTextStyle"
+						android:text="@string/lesson_Vize1" />
+			        
+			        <TextView
+						android:id="@+id/tvVize2Text"
+						style="@style/MediumTextStyle"
+						android:text="@string/lesson_Vize2" />
+			        
+			        <TextView
+						android:id="@+id/tvVize3Text"
+						style="@style/MediumTextStyle"
+						android:text="@string/lesson_Vize3" />
+			        
+			        <TextView
+						android:id="@+id/tvFinalText"
+						style="@style/MediumTextStyle"
+						android:text="@string/lesson_Final" />
+			        
+			        <TextView
+						android:id="@+id/tvButunlemeText"
+						style="@style/MediumTextStyle"
+						android:text="@string/lesson_Butunleme" />
+			        
+			        <TextView
+						android:id="@+id/tvOrtalamaText"
+						style="@style/MediumTextStyle"
+						android:text="@string/lesson_Ortalama" />
+			        
+			        <TextView
+			        	android:id="@+id/tvHarfNotuText"
+			        	style="@style/MediumTextStyle"
+			        	android:text="@string/lesson_HarfNotu" />
+			        
+			        <TextView
+			            android:id="@+id/tvDurumText"
+			            style="@style/MediumTextStyle"
+			            android:text="@string/lesson_Durum" />
+			        
+			    </LinearLayout>
+			    
+			    <LinearLayout
+		            android:layout_width="0dp"
+		            android:layout_height="match_parent"
+		            android:layout_weight=".3"
+					android:orientation="vertical"
+					android:gravity="center" >
+			        
+			        <TextView
+						android:id="@+id/tvKredi"
+						style="@style/MediumTextStyle" />
+			        
+			        <TextView
+						android:id="@+id/tvVize1"
+						style="@style/MediumTextStyle" />
+			        
+			        <TextView
+						android:id="@+id/tvVize2"
+						style="@style/MediumTextStyle" />
+			        
+			        <TextView
+						android:id="@+id/tvVize3"
+						style="@style/MediumTextStyle" />
+			        
+			        <TextView
+						android:id="@+id/tvFinal"
+						style="@style/MediumTextStyle" />
+			        
+			        <TextView
+						android:id="@+id/tvButunleme"
+						style="@style/MediumTextStyle" />
+			        
+			        <TextView
+						android:id="@+id/tvOrtalama"
+						style="@style/MediumTextStyle" />
+			        	        
+			        <TextView
+			            android:id="@+id/tvHarfNotu"
+			            style="@style/MediumTextStyle" />
+			        
+			        <TextView
+			            android:id="@+id/tvDurum"
+			            style="@style/MediumTextStyle" />
+			        
+			    </LinearLayout>
+        
+	    	</LinearLayout>
+	        
+		</LinearLayout>
+	
+	</ScrollView>
+        
+</RelativeLayout>

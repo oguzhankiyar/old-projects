@@ -1,0 +1,62 @@
+﻿@{
+    string path = Server.MapPath("Musics");
+    DirectoryInfo directory = new DirectoryInfo(path);
+    FileInfo[] musics = directory.GetFiles().OrderByDescending(x => x.CreationTime).ToArray();
+    List<string> sarkilar = new List<string>() { };
+    foreach (FileInfo music in musics)
+    {
+        if (music.Name.Contains("mp3"))
+        {
+            sarkilar.Add("/Musics/" + music.Name);
+        }
+    }
+    string listem = string.Join(",", sarkilar.ToArray());
+    int i = 0;
+}
+    <div class="title">
+        ogzkyr's playlist
+        <span></span>
+        <p></p>
+        <div class="message"></div>
+    </div>
+    <div class="list">
+        <div style="overflow-y: scroll;">
+            <ul>
+                @foreach (var item in sarkilar)
+                {
+                    <li id="@(i++)">@item.Replace("/Musics/", "").Replace(".mp3", "")</li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="player">
+        <audio id="MuzikCalarim" controls="controls" autoplay="autoplay">
+            <source />
+        </audio>
+        <div class="buttons">
+            <div id="slider">
+                <p>&nbsp;</p>
+            </div>
+            <div style="position: absolute; top: 75px; z-index: 999; right: 40px;">
+                <div id="time"></div>
+                /
+                <div id="duration"></div>
+            </div>
+            <div class="button" id="prev"></div>
+            <div class="button" id="play-pause"></div>
+            <div class="button" id="stop"></div>
+            <div class="button unmuted" id="mute"></div>
+            <div class="button" id="random"></div>
+            <div class="button" id="next"></div><br />
+            <div id="volume"><input type="range" min="0" step="0.1" max="10" value="10" /></div>
+        </div>
+        <div class="settings">
+            <label>Şarkı bittiğinde nasıl devam etsin?</label>
+            <input id="sirayla" type="radio" value="Sirayla" name="secim" checked="checked" />
+            <label for="sirayla">Sırayla</label>
+            <input id="rast" type="radio" value="Rastgele" name="secim" />
+            <label for="rast">Rastgele</label>
+            <input id="listem" type="hidden" value="@listem" /><br />
+            Klavye kısayolları ile kontrol edebilirsiniz
+        </div>
+    </div>

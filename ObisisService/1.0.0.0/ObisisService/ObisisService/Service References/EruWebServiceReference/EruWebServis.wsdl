@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="EruWebServis" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/OBISISMOBILLogic" />
+      <xsd:import schemaLocation="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/OBISISMOBILData" />
+      <xsd:import schemaLocation="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
+      <xsd:import schemaLocation="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+      <xsd:import schemaLocation="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc?xsd=xsd7" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IEruWebServis_GetData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetData" />
+  </wsdl:message>
+  <wsdl:message name="IEruWebServis_GetData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEruWebServis_BildirimIstek_InputMessage">
+    <wsdl:part name="parameters" element="tns:BildirimIstek" />
+  </wsdl:message>
+  <wsdl:message name="IEruWebServis_BildirimIstek_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BildirimIstekResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEruWebServis_PageDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:PageDetail" />
+  </wsdl:message>
+  <wsdl:message name="IEruWebServis_PageDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PageDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEruWebServis_CalenderAndDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:CalenderAndDetail" />
+  </wsdl:message>
+  <wsdl:message name="IEruWebServis_CalenderAndDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CalenderAndDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEruWebServis_CalenderDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:CalenderDetail" />
+  </wsdl:message>
+  <wsdl:message name="IEruWebServis_CalenderDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CalenderDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEruWebServis_Calender_InputMessage">
+    <wsdl:part name="parameters" element="tns:Calender" />
+  </wsdl:message>
+  <wsdl:message name="IEruWebServis_Calender_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CalenderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEruWebServis_GetEventDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEventDetail" />
+  </wsdl:message>
+  <wsdl:message name="IEruWebServis_GetEventDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEventDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEruWebServis_YemekList_InputMessage">
+    <wsdl:part name="parameters" element="tns:YemekList" />
+  </wsdl:message>
+  <wsdl:message name="IEruWebServis_YemekList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:YemekListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEruWebServis_personelYemekList_InputMessage">
+    <wsdl:part name="parameters" element="tns:personelYemekList" />
+  </wsdl:message>
+  <wsdl:message name="IEruWebServis_personelYemekList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:personelYemekListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEruWebServis_DuyurularList_InputMessage">
+    <wsdl:part name="parameters" element="tns:DuyurularList" />
+  </wsdl:message>
+  <wsdl:message name="IEruWebServis_DuyurularList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DuyurularListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEruWebServis_pinleriGetir_InputMessage">
+    <wsdl:part name="parameters" element="tns:pinleriGetir" />
+  </wsdl:message>
+  <wsdl:message name="IEruWebServis_pinleriGetir_OutputMessage">
+    <wsdl:part name="parameters" element="tns:pinleriGetirResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IEruWebServis">
+    <wsdl:operation name="GetData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEruWebServis/GetData" message="tns:IEruWebServis_GetData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEruWebServis/GetDataResponse" message="tns:IEruWebServis_GetData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BildirimIstek">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEruWebServis/BildirimIstek" message="tns:IEruWebServis_BildirimIstek_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEruWebServis/BildirimIstekResponse" message="tns:IEruWebServis_BildirimIstek_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PageDetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEruWebServis/PageDetail" message="tns:IEruWebServis_PageDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEruWebServis/PageDetailResponse" message="tns:IEruWebServis_PageDetail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CalenderAndDetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEruWebServis/CalenderAndDetail" message="tns:IEruWebServis_CalenderAndDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEruWebServis/CalenderAndDetailResponse" message="tns:IEruWebServis_CalenderAndDetail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CalenderDetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEruWebServis/CalenderDetail" message="tns:IEruWebServis_CalenderDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEruWebServis/CalenderDetailResponse" message="tns:IEruWebServis_CalenderDetail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Calender">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEruWebServis/Calender" message="tns:IEruWebServis_Calender_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEruWebServis/CalenderResponse" message="tns:IEruWebServis_Calender_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEventDetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEruWebServis/GetEventDetail" message="tns:IEruWebServis_GetEventDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEruWebServis/GetEventDetailResponse" message="tns:IEruWebServis_GetEventDetail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="YemekList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEruWebServis/YemekList" message="tns:IEruWebServis_YemekList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEruWebServis/YemekListResponse" message="tns:IEruWebServis_YemekList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="personelYemekList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEruWebServis/personelYemekList" message="tns:IEruWebServis_personelYemekList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEruWebServis/personelYemekListResponse" message="tns:IEruWebServis_personelYemekList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DuyurularList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEruWebServis/DuyurularList" message="tns:IEruWebServis_DuyurularList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEruWebServis/DuyurularListResponse" message="tns:IEruWebServis_DuyurularList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="pinleriGetir">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEruWebServis/pinleriGetir" message="tns:IEruWebServis_pinleriGetir_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEruWebServis/pinleriGetirResponse" message="tns:IEruWebServis_pinleriGetir_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IEruWebServis" type="tns:IEruWebServis">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetData">
+      <soap:operation soapAction="http://tempuri.org/IEruWebServis/GetData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BildirimIstek">
+      <soap:operation soapAction="http://tempuri.org/IEruWebServis/BildirimIstek" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PageDetail">
+      <soap:operation soapAction="http://tempuri.org/IEruWebServis/PageDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalenderAndDetail">
+      <soap:operation soapAction="http://tempuri.org/IEruWebServis/CalenderAndDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalenderDetail">
+      <soap:operation soapAction="http://tempuri.org/IEruWebServis/CalenderDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Calender">
+      <soap:operation soapAction="http://tempuri.org/IEruWebServis/Calender" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventDetail">
+      <soap:operation soapAction="http://tempuri.org/IEruWebServis/GetEventDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="YemekList">
+      <soap:operation soapAction="http://tempuri.org/IEruWebServis/YemekList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="personelYemekList">
+      <soap:operation soapAction="http://tempuri.org/IEruWebServis/personelYemekList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DuyurularList">
+      <soap:operation soapAction="http://tempuri.org/IEruWebServis/DuyurularList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pinleriGetir">
+      <soap:operation soapAction="http://tempuri.org/IEruWebServis/pinleriGetir" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EruWebServis">
+    <wsdl:port name="BasicHttpBinding_IEruWebServis" binding="tns:BasicHttpBinding_IEruWebServis">
+      <soap:address location="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

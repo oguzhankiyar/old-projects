@@ -1,0 +1,10 @@
+﻿@model IEnumerable<club_menulink>
+
+<div class="menu">
+    <ul>
+        @foreach (var menu in Model)
+        {
+            <li><a href="javascript:void(0)" onclick="@menu.OnClick">@menu.Name</a></li>
+        }
+    </ul>
+</div>

@@ -1,0 +1,43 @@
+﻿@model KOK.Models.sayfa
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>sayfa</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Adi)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Adi)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Icerik)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Icerik)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Seo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Seo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Onay)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Onay)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

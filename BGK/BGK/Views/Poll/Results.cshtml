@@ -1,0 +1,20 @@
+﻿@model bgk_anket
+
+@if (BGKFunction.IsVoted(Model.Id) || Model.BitisTarihi < DateTime.Now)
+{
+    BGKEntities Db = new BGKEntities();
+    int total = Db.bgk_anket_secim.Where(x => x.bgk_anket_secenek.AnketID == Model.Id).Count();
+    <div>
+        <b>@Model.Soru</b><br />
+        @foreach (var option in Model.bgk_anket_secenek.OrderBy(x => x.Sira).ToList())
+        {
+            int selectCount = option.bgk_anket_secim.Count();
+            <div style="width: 100%;">
+                <div style="width: 100%; font-weight: bold;">@option.Adi</div>
+                <div style="background-color: #eee; padding: 2px; width: @(total * selectCount == 0 ? "0" : "" + selectCount * 100 / total)%;">
+                    @((total == 0 ? "%0" : "%" + string.Format("{0:0.#}", (double)selectCount * 100 / total)))
+                </div>
+        </div>
+        }
+    </div>
+}

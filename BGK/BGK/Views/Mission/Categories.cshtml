@@ -1,0 +1,29 @@
+﻿@model IEnumerable<bgk_gorev_kategori>
+@{
+    int i = 0;
+}
+
+<div class="table">
+    <div class="title">@ViewBag.Title</div>
+    <div class="content list categories" style="padding: 0;">
+        @if (Model.Count() == 0)
+        {
+            <div class="warning">
+                @ViewBag.Message
+            </div>
+        }
+        @foreach (var category in Model)
+        {
+            i++;
+            <a href="@Url.Action("CategoryDetails", new { id = category.Id })">
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li class="image"><img src="@BGKFunction.GetFile(category.bgk_dosya)" /></li>
+                    <li class="name">@category.Adi<br />
+                        <span>@category.Aciklama.GetSummary(100)</span>
+                    </li>
+                    <li class="info"><b>@category.bgk_gorev.Count()</b> görev, <b>@category.bgk_gorev_kategori_uye.Count()</b> abone</li>
+                </ul>
+            </a>
+        }
+    </div>
+</div>

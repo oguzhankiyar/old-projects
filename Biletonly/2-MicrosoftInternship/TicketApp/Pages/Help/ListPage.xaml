@@ -1,0 +1,40 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TicketApp.Pages.Help.ListPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    Orientation="Portrait"
+    mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource PageStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <control:Header />
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="5">
+                <control:Title Value="Seferleri listeleme" />
+                <TextBlock TextWrapping="Wrap" LineHeight="30" FontWeight="Light" Padding="5">
+                    Önceki adımda 'Seferleri listele' düğmesine dokunarak bu aşamaya geldiniz.<LineBreak />Şimdi sıra seferleri listeleme ve filtreleme işlemlerinde!<LineBreak />
+                    <LineBreak />
+                    - Bu bölümde diğer sayfalarda görmediğiniz bir panel ile karışacaksınız. Endişelenmeyin.<LineBreak />
+                    - Bu panelden tarih kısmının sol ve sağındaki oklara tıklayarak önceki veya sonraki günler için arama yapabilirsiniz.<LineBreak />
+                    - Panelin en sağında bulunan aşağı yöndeki oka tıklayarak, paneli genişletin.<LineBreak />
+                    - Panelin içinde seferleri gerçekleştirecek firmaların isimlerini görebilirsiniz. Bunlara dokunarak listeden çıkarabilir veya daha sonradan tekrar listeye dahil edebilirsiniz.<LineBreak />
+                    - 'Hepsini seç' ve 'Seçimleri kaldır' düğmelerine dokunarak bu işlemleri kolayca yapabilirsiniz.<LineBreak />
+                    - 'Fiyat' ve 'Saat' düğmelerini seçerek neye göre sıralanacağını seçebilirsiniz. Bir kez daha dokunarak ters sıralanmasını sağlayabilirsiniz.<LineBreak />
+                    - Eğer 'Gidiş-Dönüş' seçeneğini seçip arama yaptıysanız, sefer seçtikten sonra dönüş seçenekleri gelecektir.<LineBreak />
+                    - Artık istediğiniz seferi seçerek sonraki adıma geçebilirsiniz.
+                </TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</phone:PhoneApplicationPage>

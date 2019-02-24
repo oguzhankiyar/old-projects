@@ -1,0 +1,26 @@
+﻿@model bgk_bildirim
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div class="title">Bildirim Gönder</div>
+<div class="content">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        @Html.AntiForgeryToken()
+        <div class="form">
+            <ul>
+                <li>@Html.LabelFor(model => model.UyeID)</li>
+                <li>@Html.DropDownList("UyeID", String.Empty)</li>
+                <li>@Html.ValidationMessageFor(model => model.UyeID)</li>
+            </ul>
+            <ul>
+                <li>@Html.LabelFor(model => model.Icerik)</li>
+                <li>@Html.TextAreaFor(model => model.Icerik)</li>
+                <li>@Html.ValidationMessageFor(model => model.Icerik)</li>
+            </ul>
+            @Html.MyEditor("Icerik", "Standard")
+        </div>
+    }
+</div>

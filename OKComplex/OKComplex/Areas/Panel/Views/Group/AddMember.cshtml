@@ -1,0 +1,53 @@
+﻿@model club_groupmember
+@{
+    ViewBag.Title = Model.club_group.Name + " Grubuna Üye Ekle";
+    InfosecEntities Db = new InfosecEntities();
+    List<SelectListItem> groups = new List<SelectListItem>();
+    foreach (var group in Db.club_group.ToList())
+    {
+        if (group.Id == Model.club_group.Id)
+        {
+            groups.Add(new SelectListItem { Text = group.Name, Value = group.Id.ToString(), Selected = true });
+        }
+        else
+        {
+            groups.Add(new SelectListItem { Text = group.Name, Value = group.Id.ToString() });
+        }
+    }
+    List<SelectListItem> members = new List<SelectListItem>();
+    foreach (var member in Db.club_member.Where(x => x.IsApproval == true).ToList())
+	{
+		 members.Add(new SelectListItem { Text = member.Name, Value = member.Id.ToString() });
+	}
+    List<SelectListItem> roles = new List<SelectListItem>();
+    roles.Add(new SelectListItem { Text = "Başkan", Value = "1" });
+    roles.Add(new SelectListItem { Text = "Üye", Value = "2" });
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()){
+    <div class="form">
+        <ul>
+            <li>@Html.DisplayNameFor(modelItem => Model.GroupId)</li>
+            <li>@Html.DropDownListFor(modelItwm => Model.GroupId, groups)</li>
+        </ul>
+        <ul>
+            <li>@Html.DisplayNameFor(modelItem => Model.MemberId)</li>
+            <li>@Html.DropDownListFor(modelItwm => Model.MemberId, members)</li>
+        </ul>
+        <ul>
+            <li>@Html.DisplayNameFor(modelItem => Model.Role)</li>
+            <li>@Html.DropDownListFor(modelItem => Model.Role, roles)</li>
+        </ul>
+        <ul>
+            <li>Kaydet</li>
+            <li>
+                @Html.Button("Kaydet", new { type = "submit" })
+                @Html.Button("Vazgeç", new { onclick = "OpenNewPage('" + Url.Action("memberlist") + "');" })
+            </li>
+        </ul>
+        @Html.Hidden("GroupId", Model.Id)
+    </div>
+}

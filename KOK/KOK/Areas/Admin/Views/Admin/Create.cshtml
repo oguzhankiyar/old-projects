@@ -1,0 +1,48 @@
+﻿@model KOK.Models.yonetici
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>yonetici</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.KullaniciAdi)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.KullaniciAdi)
+            @Html.ValidationMessageFor(model => model.KullaniciAdi)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Sifre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Sifre)
+            @Html.ValidationMessageFor(model => model.Sifre)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Onay)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Onay)
+            @Html.ValidationMessageFor(model => model.Onay)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

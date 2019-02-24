@@ -1,0 +1,82 @@
+﻿@model IEnumerable<topic>
+@{
+    string query = Request.QueryString["q"] == null ? "" : Request.QueryString["q"].ToString();
+    ViewBag.Title = query == "" ? "Arama" : "Arama: " + query;
+    int count = Convert.ToInt32(ViewBag.count);
+}
+
+@section Map {
+    <div class="map">
+        <span>@Html.ActionLink(OK.Config("site-name"), "Index")</span>
+        <span class="active">@ViewBag.Title</span>
+    </div>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("input[type=text]").change(function () {
+            $("input[type=button]").attr("onclick", "$.OK.OpenNewPage('@Url.Action("search")?q=" + $(this).val() + "');");
+        });
+        $(window).keyup(function (e) {
+            if (e.keyCode == 13 && $("input[type=text]").is(":focus")) {
+                $("input[type=button]").click();
+            }
+        });
+    });
+</script>
+<div onclick="$.OK.OpenNewPage('@Url.Action("gsearch")');" style="display: table; background-color: #eee; width: 100%; padding: 5px; margin-bottom: 5px; text-align: center; font-size: 15px; font-weight: bold; cursor: pointer;">
+    Aradığınızı bulamadınız mı? Bir de Google Özel Arama'yı deneyin..
+</div>
+<div class="table">
+    <div class="title">Arama<small>@query</small></div>
+        <div class="content">
+            <div style="padding: 5px;">
+                @Html.TextBox("search", query, new { style = "width: 92%;", placeholder = OK.Config("site-name") + " Arama" })
+                @Html.Button("Ara", null)
+            </div>
+            @if (query != "")
+            {
+                if (Model.Count() == 0)
+                {
+                    <div class="noitem">Aramanıza uygun konu bulunamadı</div>
+                }
+                else
+                {
+                    <div class="topics">
+                        <ul>
+                            <li class="image"></li>
+                            <li class="name">Konu</li>
+                            <li class="comments-views">Cevaplar / Okunma</li>
+                            <li class="lastcomment">Son Cevap</li>
+                        </ul>
+                        @foreach (topic topic in Model)
+                        {
+                            comment lastcomment = OK.LastComment(topic);
+                            <ul>
+                                <li class="image"><img src="@topic.user.ImageFile" /></li>
+                                <li class="name">@(topic.IsSticky == true ? "[Sabit] " : null)@(topic.IsClosed == true ? "[Kilitli] " : null)@Html.ActionLink(topic.Title, "Topic", new { seo = topic.Seo, id = topic.Id, page = 1})
+                                    <span>Forum: @topic.forum.Name, Gön: <a href="javascript:void(0)" onclick="$.OK.Modal('@Url.Action("UserInfo", "Account", new { username = "i", id = topic.WriterId })');">@OK.UserName(topic.user)</a>, @Html.ShortDateTime((DateTime)topic.CreationDate)</span>
+                            </li>
+                                <li class="comments-views">Cevaplar: @topic.comments.Where(x => x.IsApproval == true).Count()<br />Okunma: @topic.ViewsCount</li>
+                                <li class="lastcomment">
+                                    @if (lastcomment != null)
+                                    {
+                                        <text>Gön: <a href="javascript:void(0)" onclick="$.OK.Modal('@Url.Action("UserInfo", "Account", new { id = lastcomment.WriterId })');">@OK.UserName(lastcomment.user)</a><br />@Html.ShortDateTime((DateTime)lastcomment.CreationDate)</text>
+                                    }
+                                    else
+                                    {
+                                        <text>-</text>
+                                    }
+                                </li>
+                            </ul>
+                        }
+                </div>
+	        }
+        }
+    </div>
+</div>
+
+@if (query != "")
+{
+    @Html.Paging("$.OK.OpenNewPage('" + Url.Action("search", new { page = "{page}", q = query }) + "');", count, Convert.ToInt32(OK.Config("topic-paging-count")))
+}

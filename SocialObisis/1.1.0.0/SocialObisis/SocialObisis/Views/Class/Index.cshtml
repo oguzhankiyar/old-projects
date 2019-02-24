@@ -1,0 +1,14 @@
+﻿@model Obisis.Ogrenci
+@{
+    if (Request.QueryString["type"] == "partial")
+    {
+        Layout = "";
+    }
+    ViewBag.menuID = "obisis_myclass";
+}
+
+<div class="list">
+    <ul>
+        <li>@Model.Sinif. Sınıf</li>
+    </ul>
+</div>

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<bgk_menu>
+@{
+    int i = 0;
+}
+
+<script type="text/javascript">
+    function ChangeApproval(id) {
+        $.post("@Url.Action("changeapproval")/" + id, { id: id }, function (msg) { $("a#" + id + "_approval").fadeOut(500).fadeIn(500, function () { $("a#" + id + "_approval").attr("class", $("a#" + id + "_approval").attr("class") == "approved" ? "deprecated" : "approved").attr("title", $("a#" + id + "_approval").attr("class") == "approved" ? "Onayı Kaldır" : "Onayla"); }); $("body").append(msg); });
+    }
+</script>
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a class="active" href="@Url.Action("index", "menu")" style="width: 50%;">Linkler</a>
+            <a href="@Url.Action("index", "page")" style="width: 49%;">Sayfalar</a>
+        </div>
+    </div>
+</div>
+<div class="table">
+    <div class="title">Linkler
+        <span>@Html.ActionLink("Yeni Link", "create")</span>
+    </div>
+    <div class="content">
+        <div class="list">
+            <ul>
+                <li style="width: 7%;">@Html.Label("Sıra")</li>
+                <li style="width: 23%;">@Html.Label("Adı")</li>
+                <li style="width: 48%;">@Html.Label("Adres")</li>
+                <li style="width: 7%;">@Html.Label("Hedef")</li>
+                <li style="width: 13%;">@Html.Label("Araçlar")</li>
+            </ul>
+            @foreach (var link in Model)
+            {
+                i++;
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li style="width: 7%;">@Html.DisplayFor(modelItem => link.Sira)</li>
+                    <li style="width: 23%;">@Html.DisplayFor(modelItem => link.Adi)</li>
+                    <li style="width: 48%;">@Html.DisplayFor(modelItem => link.Adres)</li>
+                    <li style="width: 7%;">@(link.SadeceUye ? "Üyeler" : "Herkes")</li>
+                    <li style="width: 13%;">
+                        <a id="@(link.Id + "_approval")" class="@(link.Onay == true ? "approved" : "deprecated")" title="@(link.Onay == true ? "Onayı Kaldır" : "Onayla")" href="javascript:void(0)" onclick="ChangeApproval('@link.Id')"></a>
+                        @Html.ActionLink(" ", "edit", new { num = link.Id }, new { @class = "edit", title = "Düzenle" })
+                        <a class="details" title="Detay" href="javascript:void(0);" onclick="$.BGK.Modal('@Url.Action("details", new { num = link.Id })');"> </a>
+                        <a class="delete" title="Sil" href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("delete", new { num = link.Id })', 'Eminim, sil', 'Vazgeç');"> </a>
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>

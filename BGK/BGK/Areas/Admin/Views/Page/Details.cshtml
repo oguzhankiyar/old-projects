@@ -1,0 +1,45 @@
+﻿@model bgk_sayfa
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a href="@Url.Action("index", "menu")" style="width: 50%;">Linkler</a>
+            <a class="active" href="@Url.Action("index", "page")" style="width: 49%;">Sayfalar</a>
+        </div>
+    </div>
+</div>
+<div class="table-group-1">
+    <div class="first">
+        <div class="table">
+            <div class="title">@Model.Adi</div>
+            <div class="content details">
+                <div class="details">
+                    @Html.Raw(Model.Icerik)
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            @Html.Button("Düzenle", new { onclick = "window.location.href='" + Url.Action("edit", new { num = Model.Id }) + "';" })
+            @Html.Button("Sayfayı Sil", new { onclick = "$.BGK.FormModal('" + Url.Action("delete", new { num = Model.Id }) + "', 'Eminim, sil', 'Vazgeç');" })
+        </div>
+    </div>
+    <div class="second">
+        <div class="table">
+            <div class="title">Detaylar</div>
+            <div class="content details">
+                <ul>
+                    <li>@Html.LabelFor(model => model.Adi)</li>
+                    <li>@Html.DisplayFor(model => model.Adi)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Seo)</li>
+                    <li>@Html.DisplayFor(model => model.Seo)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Onay)</li>
+                    <li>@Html.DisplayFor(model => model.Onay)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

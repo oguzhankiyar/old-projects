@@ -1,0 +1,64 @@
+﻿
+<div id="map" style="width: 800px; height: 350px;"></div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8ZOOxJmhvlmMAZE4sFTZIjmzKsSFa0Mo&language=tr&callback=initMap" async defer></script>
+<script>
+    function initMap() {
+        var lat1 = 39.9333635;
+        var lat2 = 37.2612315;
+        var lng1 = 32.8597419;
+        var lng2 = 35.3905046;
+        var center_lat = (lat1 + lat2) / 2;
+        var center_lng = (lng1 + lng2) / 2;
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: { lat: center_lat, lng: center_lng },
+            mapTypeControlOptions: {
+                mapTypeIds: []
+            }
+        });
+
+        google.maps.event.addListener(map, 'click', function (event) {
+            alert("Latitude: " + event.latLng.lat() + " " + ", longitude: " + event.latLng.lng());
+        });
+
+
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer({
+            draggable: true,
+            map: map
+        });
+
+        directionsDisplay.addListener('directions_changed', function () {
+            computeTotalDistance(directionsDisplay.getDirections());
+        });
+
+        displayRoute(lat1, lng1, lat2, lng2, directionsService, directionsDisplay);
+    }
+
+    function displayRoute(lat1, lng1, lat2, lng2, service, display) {
+        service.route({
+            origin: { lat: lat1, lng: lng1 },
+            destination: { lat: lat2, lng: lng2 },
+            //waypoints: [{location: 'Cocklebiddy, WA'}, {location: 'Broken Hill, NSW'}],
+            travelMode: google.maps.TravelMode.DRIVING,
+            avoidTolls: true
+        }, function (response, status) {
+            if (status === google.maps.DirectionsStatus.OK) {
+                display.setDirections(response);
+            } else {
+                alert('Could not display directions due to: ' + status);
+            }
+        });
+    }
+
+    function computeTotalDistance(result) {
+        var total = 0;
+        var myroute = result.routes[0];
+        for (var i = 0; i < myroute.legs.length; i++) {
+            total += myroute.legs[i].distance.value;
+        }
+        total = total / 1000;
+        document.getElementById('total').innerHTML = total + ' km';
+    }
+</script>

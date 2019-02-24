@@ -1,0 +1,38 @@
+﻿@model IEnumerable<club_post>
+@{
+    ViewBag.Title = "Yazılar";
+    int count = Convert.ToInt32(ViewBag.count);
+    int i = 0;
+}
+<script type="text/javascript">
+    function ChangeApproval(id) {
+        $.post("@Url.Action("changeapproval")/" + id, { id: id }, function (msg) { $("a#" + id + "_approval").fadeOut(500).fadeIn(500, function () { $("a#" + id + "_approval").attr("class", $("a#" + id + "_approval").attr("class") == "approved" ? "deprecated" : "approved").attr("title", $("a#" + id + "_approval").attr("class") == "approved" ? "Onayı Kaldır" : "Onayla"); }); $("body").append(msg); });
+    }
+</script>
+
+<div class="list">
+    @foreach (var post in Model)
+    {
+        i++;
+        <ul class="@(i % 2 == 0 ? "second" : "first")">
+            <li>
+                <b>@OK.Summary(post.Title, 100)</b><br />
+                <small>
+                    <b>Forum:</b> @Html.DisplayFor(modelItem => post.club_category.Name)
+                    &nbsp;
+                    <b>Gönderen:</b> @post.club_member.Name
+                    &nbsp;
+                    <b>Tarih:</b> @Html.ShortDateTime(Convert.ToDateTime(post.WritingDate))
+                </small>
+            </li>
+            <li class="manage">
+                @Html.ActionLink(" ", "GoTopic", "Forum", new { area = "", id = post.Id }, new { @class = "view", target = "_blank", title = "Sitede Göster" })
+                <a id="@(post.Id + "_approval")" class="@(post.IsApproval == true ? "approved" : "deprecated")" title="@(post.IsApproval == true ? "Onayı Kaldır" : "Onayla")" href="javascript:void(0)" onclick="ChangeApproval('@post.Id')"></a>
+                @Html.ActionLink(" ", "edit", new { num = post.Id }, new { @class = "edit", title = "Düzenle" })
+                @Html.ActionLink(" ", "details", new { num = post.Id }, new { @class = "details", title = "Detay" })
+                @Html.ActionLink(" ", "delete", new { num = post.Id }, new { @class = "delete", title = "Sil" })
+            </li>
+        </ul>
+    }
+</div>
+@Html.Paging("OpenNewPage('" + Url.Action("index", new { num = "{page}" }) + "');", count, 10)

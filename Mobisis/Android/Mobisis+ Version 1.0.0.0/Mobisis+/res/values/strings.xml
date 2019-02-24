@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Mobisis+</string>
+    <string name="app_copyright">Oğuzhan Kiyar</string>
+    <string name="title_activity_login">Giriş</string>
+    <string name="title_activity_info">Bilgiler</string>
+    <string name="title_activity_period">Dönemler</string>
+    <string name="title_activity_period_details">Dönem Detayları</string>
+    <string name="title_activity_lesson">Dersler</string>
+    <string name="title_activity_lesson_details">Ders Detayları</string>
+    <string name="title_activity_food">Yemek Listesi</string>
+    <string name="title_activity_settings">Ayarlar</string>
+    <string name="title_activity_about">Hakkında</string>
+    <string name="about_app">Bu uygulama Erciyes Üniversitesi Bilgisayar Mühendisliği öğrencisi Oğuzhan Kiyar tarafından yazılmıştır.\n\nÖneri, hata ve şikayetleriniz için iletişim: http://mobisis.ogzkyr.net\n\n\n\nKullandığınız için teşekkürler..\nOğuzhan Kiyar</string>
+    <string name="studentID">Öğrenci Numaranız</string>
+    <string name="password">Şifreniz</string>
+    <string name="login">Giriş Yap</string>
+    <string name="rememberMe">Beni hatırla</string>
+    <string name="info_fullName">Ad Soyad</string>
+    <string name="info_faculty">Fakülte</string>
+    <string name="info_program">Bölüm</string>
+    <string name="info_class">Sınıf</string>
+    <string name="info_gano">GANO</string>
+    
+	<string name="lesson_Kredi">Kredi</string>
+	<string name="lesson_Vize1">1. Vize</string>
+	<string name="lesson_Vize2">2. Vize</string>
+	<string name="lesson_Vize3">3. Vize</string>
+	<string name="lesson_Final">Final</string>
+	<string name="lesson_Butunleme">Bütünleme</string>
+	<string name="lesson_Ortalama">Ortalama</string>
+	<string name="lesson_Durum">Durum</string>
+	<string name="lesson_HarfNotu">Harf Notu</string>
+	
+	<string name="settings_service_state">Herhangi bir dersin notu açıklandığında beni haberdar et.</string>
+	<string name="settings_service_delay">Çalışma aralığı</string>
+	<string name="settings_service_control">Bildirim için ekstra tercihleriniz</string>
+	<string name="settings_service_sound">Ses</string>
+	<string name="settings_service_vibrate">Titreşim</string>
+	<string name="settings_save">Değişiklikleri Kaydet</string>
+</resources>

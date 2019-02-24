@@ -1,0 +1,106 @@
+﻿@model IEnumerable<category>
+
+<script type="text/javascript">
+    $(function () {
+        if ($.OK.getCookie("OK_collapse") != null) {
+            var id = $.OK.getCookie("OK_collapse").split(',');
+            for (var i = 0; i < id.length; i++) {
+                $("div#" + id[i] + " div.forums").hide();
+                $("div#" + id[i] + " div.title span").attr("class", "collapsed").attr("title", "Genişlet");
+            }
+        }
+        $("div.table div.title span").click(function () {
+            var index = $("div.table div.title span").index(this);
+            $("div.table div.content div.forums:eq(" + index + ")").fadeToggle(500);
+            if ($(this).attr("class") != "collapsed") {
+                $("div.table:eq(" + index + ") div.title span").attr("class", "collapsed").attr("title", "Genişlet");
+            }
+            else {
+                $("div.table:eq(" + index + ") div.title span").attr("class", "expanded").attr("title", "Daralt");
+            }
+            var collapsed = "";
+            for (var i = 0; i < $("div.table").length; i++) {
+                if ($("div.table:eq(" + i + ") div.title span").attr("class") == "collapsed") {
+                    collapsed += $("div.table:eq(" + i + ")").attr("id") + ",";
+                }
+            }
+            if (collapsed == "") {
+                $.OK.deleteCookie("OK_collapse");
+            }
+            else {
+                $.OK.setCookie("OK_collapse", collapsed.substring(0, collapsed.length - 1), 365);
+            }
+        });
+    });
+</script>
+
+@section Map {
+    <div class="map">
+        <span class="active">@OK.Config("site-name")</span>
+    </div>
+}
+
+@if (Model.Count() == 0)
+{
+    <div class="noitem">Henüz kategori eklenmemiş</div>
+}
+else
+{
+    foreach (var category in Model)
+    {
+        var forums = category.forums.Where(x => x.IsApproval == true && x.IsSubForum == false).OrderBy(x => x.Sort).ToList();
+        <div id="@category.Id" class="table">
+            <div class="title"><b>@Html.ActionLink(category.Name, "Category", new { seo = category.Seo, id = category.Id })</b><span class="expanded" title="Daralt"></span></div>
+            <div class="content">
+                @if (forums.Count() == 0)
+                {
+                    <div class="noitem">Henüz forum eklenmemiş</div>
+                }
+                else
+                {
+                    <div class="forums">
+                        <ul>
+                            <li class="image"></li>
+                            <li class="name">Forum</li>
+                            <li class="topics-views">Konular / Okunma</li>
+                            <li class="lasttopic">Son Konu</li>
+                        </ul>
+                        @foreach (var forum in forums)
+                        {
+                            topic lasttopic = OK.LastTopic(forum);
+                            <ul>
+                                <li class="image"><img src="@forum.ImageFile" /></li>
+                                <li class="name">@Html.ActionLink(forum.Name, "Forum", new { seo = forum.Seo, id = forum.Id, page = 1 })
+                                    <span>@forum.Description</span>
+                                    @foreach (var subforum in category.forums.Where(x => x.IsApproval == true && x.IsSubForum == true && x.ParentForumId == forum.Id).OrderBy(x => x.Sort).ToList())
+                                    {
+                                        <a href="@Url.Action("Forum", new { seo = subforum.Seo, id = subforum.Id, page = 1 })">
+                                            <div>
+                                                <img src="@subforum.ImageFile" />@subforum.Name
+                                            </div>
+                                        </a>
+                                    }
+                                </li>
+                                <li class="topics-views">Konular: @forum.topics.Where(x => x.IsApproval == true).Count()<br />Okunma: @forum.ViewsCount</li>
+                                <li class="lasttopic">
+                                    @if (lasttopic != null)
+                                    {
+                                        @Html.ActionLink(OK.Summary(lasttopic.Title, 40), "Topic", new { seo = lasttopic.Seo, id = lasttopic.Id, page = 1 })
+                                        <div>
+                                            Gön: <a href="javascript:void(0)" onclick="$.OK.Modal('@Url.Action("UserInfo", "Account", new { id = lasttopic.WriterId })');">@OK.UserName(lasttopic.user)</a><br />
+                                            @Html.ShortDateTime((DateTime)lasttopic.CreationDate)
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <text>-</text>
+                                    }
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    }
+}

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>cc3050e4-0b8d-4912-b474-21f677fd5e02</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>iTunesMusic</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\StringFormatConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\VisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Album.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Artist.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Country.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\EntityListItems\SearchListItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Genre.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\ImageSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\EntityListItems\AlbumListItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\EntityListItems\ArtistListItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\EntityListItems\SongListItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Member.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Playlist.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Song.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\SongSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parsings\AlbumParsing.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parsings\ArtistParsing.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parsings\MemberParsing.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parsings\PlaylistParsing.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parsings\SearchParsing.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parsings\SongParsing.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\AlbumRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\ArtistRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\MemberRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\PlaylistRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\SearchRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\SongRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\AlbumResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\ArtistResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\MemberResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\PlaylistResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\SearchResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\SongResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\Database.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\DataSaver.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\TextTools.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Images\Artists\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Images\Albums\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Images\Songs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Resources\en-us.resw" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,142 @@
+﻿@model IEnumerable<ENotice.Web.Models.Notice>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style type="text/css">
+        body {
+            background: #363636;
+            font-family: 'Segoe UI';
+            padding: 50px 0 0 0;
+        }
+        .page {
+            display: table;
+            width: 86%;
+            background: #f5f5f5;
+            padding: 15px;
+            margin-left: 6%;
+        }
+            .table tr td {
+                color: gray;
+                line-height: 35px;
+            }
+            .table tr th {
+                background: #ccc;
+                color: black;
+                padding: 5px 10px;
+                min-width: 50px;
+            }
+        div.menu {
+            margin: 50px 0 35px 0;
+        }
+            div.menu ul li {
+                display: inline-block;
+                list-style-type: none;
+                width: 120px;
+                background: gray;
+                color: white;
+                padding: 10px 15px;
+                text-align: center;
+            }
+        h2 {
+            color: gray;
+            font-weight: 300;
+            margin: 20px 0 50px 0;
+            font-size: 30px;
+        }
+        a, a:link, a:visited {
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <h2>Fakülte E-Duyuru Sistemi: Yönetim Paneli</h2>
+        <div class="menu">
+            <ul>
+                <li>Anasayfa</li>
+                <li>Fakülteler</li>
+                <li>Bölümler</li>
+                <li>Monitörler</li>
+                <li>Duyurular</li>
+                <li>Yöneticiler</li>
+                <li>Loglar</li>
+            </ul>
+        </div>
+        <p>
+            @Html.ActionLink("Yeni duyuru ekle", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Başlık
+                </th>
+                <th>
+                    Tip
+                </th>
+                <th>
+                    Öncelik
+                </th>
+                <th>
+                    Fakülte
+                </th>
+                <th>
+                    Bölüm
+                </th>
+                <th>
+                    Monitor
+                </th>
+                <th>
+                    Tarih
+                </th>
+                <th>
+                    Onay
+                </th>
+                <th></th>
+            </tr>
+    
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td style="text-align: center;">
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td style="text-align: center;">
+                    @Html.DisplayFor(modelItem => item.Priority)
+                </td>
+                <td style="text-align: center;">
+                    @Html.DisplayFor(modelItem => item.FacultyIds)
+                </td>
+                <td style="text-align: center;">
+                    @Html.DisplayFor(modelItem => item.DepartmentIds)
+                </td>
+                <td style="text-align: center;">
+                    @Html.DisplayFor(modelItem => item.MonitorIds)
+                </td>
+                <td style="text-align: center;">
+                    @Html.DisplayFor(modelItem => item.CreatedAt)
+                </td>
+                <td style="text-align: center;">
+                    @Html.DisplayFor(modelItem => item.IsApproved)
+                </td>
+                <td>
+                    @Html.ActionLink("Düzenle", "Edit", new { id=item.Id }) |
+                    @Html.ActionLink("Detaylar", "Details", new { id=item.Id }) |
+                    @Html.ActionLink("Sil", "Delete", new { id=item.Id })
+                </td>
+            </tr>
+        }
+    
+        </table>
+    </div>
+</body>
+</html>

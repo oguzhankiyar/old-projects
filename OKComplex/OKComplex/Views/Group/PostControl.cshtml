@@ -1,0 +1,31 @@
+﻿@{
+    InfosecEntities Db = new InfosecEntities();
+    int memberid = (int)Session["memberid"];
+}
+<script type="text/javascript">
+    function ChangeApproval(id) {
+        $.post("@Url.Action("ChangePostApproval")", { id: id }, function (msg) { $("#" + id).fadeOut(); setTimeout(function () { window.location.reload(); }, 1000); });
+    }
+</script>
+
+@foreach (var group in Db.club_groupmember.Where(x => x.MemberId == memberid && x.Role == 1).ToList())
+{
+    int groupid = (int)group.GroupId;
+    var posts = Db.club_post.Where(y => y.GroupId == groupid && y.IsApproval == false).ToList();
+    if (posts.Count() != 0)
+    {
+        <div style="display: table; background-color: lightyellow; width: 100%; padding: 5px;">
+            <h4>Onayınızı bekleyen yazı(lar) var</h4>
+            @foreach (var post in posts)
+            {
+                <div id="@post.Id">
+                    <div style="float: left;">@post.Title
+                        <a href="@Url.Action("Detail", "Post", new { id = post.Id, seo = post.Seo, page = 1 })"><b>[ Önizle ]</b></a>
+                        <a href="javascript:void(0)" onclick="ChangeApproval('@post.Id');"><b>[ Onayla ]</b></a>
+                    </div>
+                    <div style="float: right">@post.club_member.Name</div>
+                </div>
+            }
+        </div>
+    }
+}

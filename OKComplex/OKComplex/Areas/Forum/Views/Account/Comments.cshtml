@@ -1,0 +1,30 @@
+﻿@model IEnumerable<comment>
+
+<script type="text/javascript">
+    $(function () {
+        $("#comments").css("font-weight", "bold");
+    });
+</script>
+<div class="profile">
+    @{
+        string username = ViewContext.RouteData.Values["username"].ToString();
+        int count = Convert.ToInt32(ViewBag.count);
+        Html.RenderAction("UserMenu", "Account", new { username = username });
+    }
+    <div class="right">
+        <div class="table">
+            <div class="title">Yazdığı Cevaplar</div>
+            <div class="content">
+                @if (Model.Count() == 0)
+                {
+                    <div class="noitem">Henüz yazdığı cevap yok</div>
+                }
+                @foreach (var comment in Model)
+                {
+                    @OK.Summary(comment.Content, 100)<br />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Paging("window.location.href='" + Url.Action("topics", "account", new { username = username, page = "{page}" }) + "'", count, 10)

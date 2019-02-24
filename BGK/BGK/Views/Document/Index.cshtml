@@ -1,0 +1,53 @@
+﻿@model IEnumerable<bgk_dokuman>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);
+    BGKEntities Db = new BGKEntities();
+    var categories = Db.bgk_dokuman_kategori.Where(x => x.Onay == true).OrderBy(x => x.Sira);
+    int i = 0, j = 0;
+}
+@section Widgets {
+    @if (categories.Count() != 0)
+    {
+        <div class="table">
+            <div class="title">Kategoriler (@categories.Count())</div>
+            <div class="content list" style="padding: 0;">
+                @foreach (var category in categories)
+	            {
+                    i++;
+                    <a href="@Url.Action("Category", new { id = category.Id, seo = category.Seo })">
+                        <ul class="@(i % 2 == 0 ? "second" : "first")">
+                            <li class="name">@category.Adi<br />
+                                <span>@category.Aciklama.GetSummary(50)</span>
+                            </li>
+                        </ul>
+                    </a>
+                }
+            </div>
+        </div>
+    }
+}
+
+<div class="table">
+    <div class="title">@ViewBag.Title</div>
+    <div class="content list" style="padding: 0;">
+        @if (count == 0)
+        {
+            <div class="warning">
+                @ViewBag.Message
+            </div>
+        }
+        @foreach (var document in Model)
+        {
+            j++;
+            <a href="@Url.Action("Details", new { id = document.Id, seo = document.Seo })">
+                <ul class="@(j % 2 == 0 ? "second" : "first")">
+                    <li class="name">@document.Adi<br />
+                        <span>@document.Icerik.GetSummary(100)</span>
+                    </li>
+                </ul>
+            </a>
+        }
+    </div>
+</div>
+@Html.Paging()

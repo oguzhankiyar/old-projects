@@ -1,0 +1,94 @@
+﻿@model bgk_grup
+@{
+    var members = Model.bgk_grup_uye;
+    var missions = Model.bgk_gorev;
+    int i = 0, j = 0;
+}
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a class="active" href="@Url.Action("index", "group")" style="width: 25%;">Gruplar</a>
+            <a href="@Url.Action("index", "member")" style="width: 24%;">Üyeler</a>
+            <a href="@Url.Action("index", "role")" style="width: 25%;">Yetkiler</a>
+            <a href="@Url.Action("index", "grade")" style="width: 25%;">Seviyeler</a>
+        </div>
+    </div>
+</div>
+<div class="table-group-1">
+    <div class="first">
+        <div class="table">
+            <div class="title">Grup Detayları</div>
+            <div class="content">
+                <div class="details">
+                    <ul>
+                        <li>@Html.DisplayNameFor(model => model.Adi)</li>
+                        <li>@Html.DisplayFor(model => model.Adi)</li>
+                    </ul>
+                    <ul>
+                        <li>@Html.DisplayNameFor(model => model.Tip)</li>
+                        <li>@(Model.Tip == 1 ? "Komite" : "Diğer")</li>
+                    </ul>
+                    <ul>
+                        <li>@Html.DisplayNameFor(model => model.Aciklama)</li>
+                        <li>@Html.Raw(Model.Aciklama)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            @Html.Button("Üye Ekle", new { onclick = "window.location.href='" + Url.Action("addmember", new { num = Model.Id }) + "';" })
+            @Html.Button("Mesaj Gönder", new { onclick = "$.BGK.FormModal('" + Url.Action("sendmessage", new { num = Model.Id }) + "', 'Gönder', 'Vazgeç');" })
+            @Html.Button("Düzenle", new { onclick = "window.location.href='" + Url.Action("edit", new { num = Model.Id }) + "';" })
+            @Html.Button("Sil", new { onclick = "$.BGK.FormModal('" + Url.Action("delete", new { num = Model.Id }) + "', 'Eminim, sil', 'Vazgeç');" })
+        </div>
+        <div class="table">
+            <div class="title">Görevler (@missions.Count())</div>
+            <div class="content list missions" style="padding: 5px;">
+                @if (missions.Count() == 0)
+                {
+                    <div class="warning">
+                        Henüz verdiği görev yok :(
+                    </div>
+                }
+                @foreach (var mission in missions)
+                {
+                    i++;
+                    <ul class="@(i % 2 == 0 ? "second" : "first")">
+                        <li style="width: 53%;">@mission.Adi</li>
+                        <li style="width: 20%;">@mission.bgk_uye.AdSoyad</li>
+                        <li style="width: 10%;">@mission.Puan</li>
+                        <li style="width: 15%;">
+                            @Html.ActionLink(" ", "edit", "mission", new { num = mission.Id }, new { @class = "edit", title = "Düzenle" })
+                            @Html.ActionLink(" ", "details", "mission", new { num = mission.Id }, new { @class = "details", title = "Detay" })
+                            <a class="delete" title="Sil" href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("delete", "mission", new { num = mission.Id })', 'Eminim, sil', 'Vazgeç');"> </a>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="second">
+        <div class="table">
+            <div class="title">Üyeler (@members.Count())</div>
+            <div class="content normal-list">
+                @if (members.Count() == 0)
+                {
+                    <div class="warning">
+                        Henüz üyesi bulunmuyor :(
+                    </div>
+                }
+                @foreach (var member in members)
+                {
+                    j++;
+                    <a href="@Url.Action("Details", "Member", new { num = member.UyeID })">
+                        <ul class="@(j % 2 == 0 ? "second" : "first")">
+                            <li>@member.bgk_uye.AdSoyad</li>
+                            <li style="float: right;">@(member.Aktif == true ? "Aktif" : "Pasif")</li>
+                        </ul>
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿@model forum
+@{
+    ViewBag.Title = "Forum Sil";
+}
+
+<h3>Aşağıdaki forumu ve bu foruma ait konuları, cevapları silmek istediğinizden emin misiniz?</h3>
+<div class="detail">
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Name)</li>
+        <li>@Html.DisplayFor(model => model.Name)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Description)</li>
+        <li>@Html.DisplayFor(model => model.Description)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.category.Name)</li>
+        <li>@Html.DisplayFor(model => model.category.Name)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.ParentForumId)</li>
+        <li>@Html.DisplayFor(model => model.ParentForumId)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.IsSubForum)</li>
+        <li>@Html.DisplayFor(model => model.IsSubForum)</li>
+    </ul>
+</div>
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.Button("Eminim, sil", new { type = "submit" })
+        @Html.Button("Vazgeç", new { onclick = "OpenNewPage('" + Url.Action("index") + "');" })
+    </p>
+}

@@ -1,0 +1,59 @@
+﻿@model bgk_dokuman
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a href="@Url.Action("index", "documentcategory")" style="width: 50%;">Kategoriler</a>
+            <a class="active" href="@Url.Action("index", "document")" style="width: 49.9%;">Dökümanlar</a>
+        </div>
+    </div>
+</div>
+
+<div class="table-group-1">
+    <div class="first">
+        <div class="table">
+            <div class="title">@Model.Adi</div>
+            <div class="content details">
+                @Html.Raw(Model.Icerik)
+            </div>
+        </div>
+        <div class="buttons">
+            @Html.Button("Düzenle", new { onclick = "window.location.href='" + Url.Action("edit", new { num = Model.Id }) + "';" })
+            @Html.Button("Dökümanı Sil", new { onclick = "$.BGK.FormModal('" + Url.Action("delete", new { num = Model.Id }) + "', 'Eminim, sil', 'Vazgeç');" })
+        </div>
+    </div>
+    <div class="second">
+        <div class="table">
+            <div class="title">Detaylar</div>
+            <div class="content details">
+                <ul>
+                    <li>Seo</li>
+                    <li>@Model.Seo</li>
+                </ul>
+                <ul>
+                    <li>Sıra</li>
+                    <li>@Model.Sira</li>
+                </ul>
+                <ul>
+                    <li>Eklenme Tarihi</li>
+                    <li>@Html.ShortDateTime(Model.EklenmeTarihi)</li>
+                </ul>
+                @if (Model.DosyaID != null)
+                {
+                    <ul>
+                        <li>Dosya</li>
+                        <li><a href="javascript:void();" onclick="$.BGK.Modal('@Url.Action("Details", "Upload", new { num = Model.DosyaID })');">@Model.bgk_dosya.Aciklama.GetSummary(20)</a></li>
+                    </ul>
+                }
+                <ul>
+                    <li>Kategori</li>
+                    <li><a href="@Url.Action("Details", "DocumentCategory", new { num = Model.KategoriID })">@Model.bgk_dokuman_kategori.Adi</a></li>
+                </ul>
+                <ul>
+                    <li>Ekleyen</li>
+                    <li><a href="@Url.Action("Details", "Member", new { num = Model.UyeID })">@Model.bgk_uye.AdSoyad</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+﻿@model bgk_mesaj
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div class="title">Mesaj Gönder</div>
+<div class="content">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        @Html.AntiForgeryToken()
+        @Html.TextAreaFor(model => model.Mesaj)
+        @Html.ValidationMessageFor(model => model.Mesaj)
+        @Html.HiddenFor(model => model.GonderenID)
+        @Html.MyEditor("Mesaj", "Standard")
+    }
+</div>

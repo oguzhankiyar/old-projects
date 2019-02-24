@@ -1,0 +1,58 @@
+﻿@model IEnumerable<bgk_kategori>
+@{
+    int i = 0;
+}
+
+<script type="text/javascript">
+    function ChangeApproval(id) {
+        $.post("@Url.Action("changeapproval")/" + id, { id: id }, function (msg) { $("a#" + id + "_approval").fadeOut(500).fadeIn(500, function () { $("a#" + id + "_approval").attr("class", $("a#" + id + "_approval").attr("class") == "approved" ? "deprecated" : "approved").attr("title", $("a#" + id + "_approval").attr("class") == "approved" ? "Onayı Kaldır" : "Onayla"); }); $("body").append(msg); });
+    }
+</script>
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a class="active" href="@Url.Action("index", "category")" style="width: 33%;">Kategoriler</a>
+            <a href="@Url.Action("index", "post")" style="width: 33%;">Yazılar</a>
+            <a href="@Url.Action("index", "comment")" style="width: 33%;">Yorumlar</a>
+        </div>
+    </div>
+</div>
+<div class="table">
+    <div class="title">Kategoriler
+        <span>@Html.ActionLink("Yeni Kategori", "create")</span>
+    </div>
+    <div class="content">
+        <div class="list">
+            <ul>
+                <li style="width: 7%;">@Html.Label("Sıra")</li>
+                <li style="width: 33%;">@Html.Label("Adı")</li>
+                <li style="width: 15%;">@Html.Label("Seo")</li>
+                <li style="width: 15%; text-align: center;">@Html.Label("Yazı Sayısı")</li>
+                <li style="width: 15%; text-align: center;">@Html.Label("Yorum Sayısı")</li>
+                <li style="width: 13%;">@Html.Label("Araçlar")</li>
+            </ul>
+            @foreach (var category in Model)
+            {
+                i++;
+                int commentCount = 0;
+                foreach (var post in category.bgk_yazi.ToList())
+                {
+                    commentCount += post.bgk_yorum.Count();
+                }
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li style="width: 7%;">@Html.DisplayFor(modelItem => category.Sira)</li>
+                    <li style="width: 33%;">@category.Adi.GetSummary(100)</li>
+                    <li style="width: 15%;">@Html.DisplayFor(modelItem => category.Seo)</li>
+                    <li style="width: 15%; text-align: center;">@category.bgk_yazi.Count()</li>
+                    <li style="width: 15%; text-align: center;">@commentCount</li>
+                    <li style="width: 13%;">
+                        <a id="@(category.Id + "_approval")" class="@(category.Onay == true ? "approved" : "deprecated")" title="@(category.Onay == true ? "Onayı Kaldır" : "Onayla")" href="javascript:void(0)" onclick="ChangeApproval('@category.Id')"></a>
+                        @Html.ActionLink(" ", "edit", new { num = category.Id }, new { @class = "edit", title = "Düzenle" })
+                        <a class="details" href="javascript:void(0);" onclick="$.BGK.Modal('@Url.Action("details", new { num = category.Id })');"> </a>
+                        <a class="delete" href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("delete", new { num = category.Id })', 'Eminim, sil', 'Vazgeç');"> </a>
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>

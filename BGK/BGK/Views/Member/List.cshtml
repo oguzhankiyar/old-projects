@@ -1,0 +1,15 @@
+﻿@model IEnumerable<bgk_uye>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);
+}
+<div class="table">
+    <div class="title">Üyeler</div>
+    <div class="content">
+        @foreach (var member in Model)
+        {
+            <a href="@Url.Action("Details", new { id = member.Id })">@member.AdSoyad</a><br />
+        }
+    </div>
+</div>
+@Html.Paging()

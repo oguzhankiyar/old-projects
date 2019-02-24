@@ -1,0 +1,178 @@
+﻿@model bgk_uye
+@{
+    var categories = Model.bgk_gorev_kategori;
+    var subscribtions = Model.bgk_gorev_kategori_uye;
+    var groups = Model.bgk_grup_uye;
+    var missions = Model.bgk_gorev_uye;
+    int i = 0, j = 0, k = 0, l = 0;
+}
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a href="@Url.Action("index", "group")" style="width: 25%;">Gruplar</a>
+            <a class="active" href="@Url.Action("index", "member")" style="width: 24%;">Üyeler</a>
+            <a href="@Url.Action("index", "role")" style="width: 25%;">Yetkiler</a>
+            <a href="@Url.Action("index", "grade")" style="width: 25%;">Seviyeler</a>
+        </div>
+    </div>
+</div>
+<div class="table-group-1">
+    <div class="first">
+        <div class="table">
+            <div class="title">@Model.AdSoyad</div>
+            <div class="content details">
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.OgrenciNo)</li>
+                    <li>@Html.DisplayFor(model => model.OgrenciNo)</li>
+                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Email)</li>
+                    <li>@Html.DisplayFor(model => model.Email)</li>
+                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Telefon)</li>
+                    <li>@Html.DisplayFor(model => model.Telefon)</li>
+                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Fakulte)</li>
+                    <li>@Html.DisplayFor(model => model.Fakulte)</li>
+                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Bolum)</li>
+                    <li>@Html.DisplayFor(model => model.Bolum)</li>
+                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.GirisYili)</li>
+                    <li>@Html.DisplayFor(model => model.GirisYili)</li>
+                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.KayitTarihi)</li>
+                    <li>@Html.DisplayFor(model => model.KayitTarihi)</li>
+                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Onay)</li>
+                    <li>@Html.DisplayFor(model => model.Onay)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="buttons">
+            @Html.Button("Yazıları", new { onclick = "window.location.href='" + Url.Action("index", "comment", new { memberID = Model.Id }) + "';" })
+            @Html.Button("Yorumları", new { onclick = "window.location.href='" + Url.Action("index", "comment", new { memberID = Model.Id }) + "';" })
+            @Html.Button("Bildirim Gönder", new { onclick = "$.BGK.FormModal('" + Url.Action("create", "notification", new { num = Model.Id }) + "', 'Gönder', 'Vazgeç');" })
+            @Html.Button("Mesaj Gönder", new { onclick = "$.BGK.FormModal('" + Url.Action("sendmessage", new { num = Model.Id }) + "', 'Gönder', 'Vazgeç');" })
+            @Html.Button("Düzenle", new { onclick = "window.location.href='" + Url.Action("edit", new { num = Model.Id }) + "';" })
+            @Html.Button("Şifre Değiştir", new { onclick = "$.BGK.FormModal('" + Url.Action("CreatePassword", new { num = Model.Id }) + "', 'Eminim, değiştir', 'Vazgeç');" })
+            @Html.Button("Üyeyi Sil", new { onclick = "$.BGK.FormModal('" + Url.Action("delete", new { num = Model.Id }) + "', 'Eminim, sil', 'Vazgeç');" })
+        </div>
+    </div>
+    <div class="second">
+        <div class="table">
+            <div class="title">Detaylar</div>
+            <div class="content details">
+                <ul>
+                    <li>Yetki</li>
+                    <li>@Html.Raw(Model.GetMemberRole().Adi)</li>
+                </ul>
+                <ul>
+                    <li>Seviye</li>
+                    <li>@Html.Raw(BGKFunction.GetGrade(Model.Puan))</li>
+                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.Puan)</li>
+                    <li>@Html.DisplayFor(model => model.Puan)</li>
+                </ul>
+                <ul>
+                    <li>@Html.DisplayNameFor(model => model.CezaPuani)</li>
+                    <li>@Html.DisplayFor(model => model.CezaPuani)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="table">
+            <div class="title">Kategorileri (@categories.Count())
+                <span><a href="@Url.Action("create", "missioncategory", new { memberID = Model.Id })">Kategori Ekle</a></span>
+            </div>
+            <div class="content normal-list">
+                @if (categories.Count() == 0)
+                { 
+                    <div class="warning">
+                        Henüz kategorisi yok :(
+                    </div>
+                }
+                @foreach (var category in categories)
+                {
+                    i++;
+                    <a href="@Url.Action("details", "missioncategory", new { num = category.Id })">
+                        <ul class="@(i % 2 == 0 ? "second" : "first")">
+                            <li>@category.Adi</li>
+                            <li style="float: right;">@category.bgk_gorev_kategori_uye.Count() abone</li>
+                        </ul>
+                    </a>
+                }
+            </div>
+        </div>
+        <div class="table">
+            <div class="title">Abonelikleri (@subscribtions.Count())</div>
+            <div class="content normal-list">
+                @if (subscribtions.Count() == 0)
+                {
+                    <div class="warning">
+                        Henüz aboneliği yok :(
+                    </div>
+                }
+                @foreach (var subscribtion in subscribtions)
+                {
+                    j++;
+                    <a href="javascript:void(0);" onclick="$.BGK.Modal('@Url.Action("SubscribtionDetails", "MissionCategory", new { num = subscribtion.Id })');">
+                        <ul class="@(j % 2 == 0 ? "second" : "first")">
+                            <li>@subscribtion.bgk_gorev_kategori.Adi</li>
+                        </ul>
+                    </a>
+                }
+            </div>
+        </div>
+        <div class="table">
+            <div class="title">Görevleri (@missions.Count())
+                <span><a href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("givemission", "mission", new { memberID = Model.Id })', 'Görev Ver', 'Vazgeç');">Görev Ver</a></span>
+            </div>
+            <div class="content normal-list">
+                @if (missions.Count() == 0)
+                {
+                    <div class="warning">
+                        Henüz görevi yok :(
+                    </div>
+                }
+                @foreach (var mission in missions)
+                {
+                    k++;
+                    <a href="@Url.Action("details", "mission", new { num = mission.Id })">
+                        <ul class="@(k % 2 == 0 ? "second" : "first")">
+                            <li>@mission.bgk_gorev.Adi</li>
+                        </ul>
+                    </a>
+                }
+            </div>
+        </div>
+        <div class="table">
+            <div class="title">Grupları (@groups.Count())</div>
+            <div class="content normal-list">
+                @if (groups.Count() == 0)
+                {
+                    <div class="warning">
+                        Henüz grubu yok :(
+                    </div>
+                }
+                @foreach (var group in groups.OrderBy(x => x.Tip).ThenBy(x => x.bgk_grup.Adi))
+                {
+                    l++;
+                    <a href="@Url.Action("details", "group", new { num = group.GrupID })">
+                        <ul class="@(l % 2 == 0 ? "second" : "first")">
+                            <li>@group.bgk_grup.Adi</li>
+                            <li style="float: right;">@(group.Tip == 1 ? "Grup Başkanı" : group.Tip == 2 ? "Başkan Yardımcısı" : "Normal Üye")</li>
+                        </ul>
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</div>

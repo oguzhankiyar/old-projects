@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AboutText" xml:space="preserve">
+    <value>To assist in the development of this game, please send feedback now.</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Block Tetris</value>
+  </data>
+  <data name="CancelButton" xml:space="preserve">
+    <value>Back to game</value>
+  </data>
+  <data name="FeedbackError" xml:space="preserve">
+    <value>We can't send your feedback.
+Please try again later.</value>
+  </data>
+  <data name="FeedbackSuccessful" xml:space="preserve">
+    <value>Your feedback is sent.
+Thanks for your interest.</value>
+  </data>
+  <data name="FeedbackText" xml:space="preserve">
+    <value>The feedbacks what you sent are important for me and the game.</value>
+  </data>
+  <data name="FeedbackTitle" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="GameOver" xml:space="preserve">
+    <value>Game Over!</value>
+  </data>
+  <data name="GoStore" xml:space="preserve">
+    <value>Show on store</value>
+  </data>
+  <data name="GoTutorial" xml:space="preserve">
+    <value>Go to tutorial</value>
+  </data>
+  <data name="MessageError" xml:space="preserve">
+    <value>The message should be 20 chars at least.</value>
+  </data>
+  <data name="NameError" xml:space="preserve">
+    <value>Your name is required.</value>
+  </data>
+  <data name="NewScore" xml:space="preserve">
+    <value>New Score!</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="Paused" xml:space="preserve">
+    <value>Paused!</value>
+  </data>
+  <data name="PlayTimerText" xml:space="preserve">
+    <value>Game will start in {0} second(s).</value>
+  </data>
+  <data name="Point" xml:space="preserve">
+    <value>points</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset app data</value>
+  </data>
+  <data name="Scoreboard" xml:space="preserve">
+    <value>Scoreboard</value>
+  </data>
+  <data name="SelectColor" xml:space="preserve">
+    <value>Select your color</value>
+  </data>
+  <data name="SendButton" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="SendFeedback" xml:space="preserve">
+    <value>Send feedback</value>
+  </data>
+  <data name="StartButton" xml:space="preserve">
+    <value>Start to game</value>
+  </data>
+  <data name="StartPlaying" xml:space="preserve">
+    <value>Start Playing!</value>
+  </data>
+  <data name="VersionText" xml:space="preserve">
+    <value>Version 1.0.0.0</value>
+  </data>
+  <data name="Words" xml:space="preserve">
+    <value>ABOUT, AGAIN, AIR, AROUND, AWAY, HOME, HOUSE, LARGE, LONG, MAN, SHORT, WOMAN, MEDIUM, SMALL, SOUND, ACROSS, ANIMAL, BOOK, BODY, CAR, CITY, COUNTRY, CUT, DOG, CAT, DONE, DOOR, EARTH, FAMILY, FATHER, MOTHER, SISTER, BROTHER, FOOD, MONEY, MORNING, NOTHING, ANYTHING, ROOM, YOUNG, OLD, USUALLY, SCHOOL, HIGH, LOW, BIRD, FINALLY, PROBLEM, QUESTION, SCIENTIST, SIMPLE, ROUND, SUMMER, WINTER, STRONG, SURFACE, WEATHER, WIDE, WILD, BABY, BASE, DIRECTION, CHILD, FIGURE, FAMOUS, MACHINE, COMPUTER, LENGTH, WIDTH, HEIGHT, MOMENT, MODERN, MINUTE, SECOND, HOUR, PLAN, PLANE, PRESENT, PAST, PERFECT, SPEED, SQUARE, NORTH, EAST, SOUTH, WEST, YELLOW, ORANGE, BLUE, BLACK, WHITE, GREEN, GRAY, RED, LIGHT, DARK, REASON, RESULT, UNIT, TRAVEL, WALL, ACTION, ADDITION, AFRAID, AHEAD, AMOUNT, ANCIENT, BOLD, GOOD, BAD, BLOOD, BROWN, CENTURY, CLOTH, PREVIOUS, FORWARD, NEXT, INTEREST, PERSON, PRISON, BREAK, RADIO, PHONE, MOBILE, WIFE, HUSBAND, TRAIN, AIRPLANE, FLIGHT, POSITION, PRACTICE, LEVEL, LOVE, METHOD, SILVER, GOLD, BRONZE, SHARP, SECTION, SENSE, WRONG, FALSE, TRUE, HANDSOME, BEAUTIFUL, PATH, TERM, SPEECH, UNCLE, CLOUD, AZURE, NATION, METAL, ROCK, RAP, NONE, OFFICE, NULL, PRESIDENT, REPORT, SAFE, SALT, ORIGINAL, TRADE, WORK, HOLIDAY, WEEK, WEEKEND, SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER, MONTH, DRESS, SORT, SOLUTION, SHARE, SEASON, SURPRISE, STRENGTH, DANGEROUS, REGULAR, HUNGRY, FURTHER, FINAL, USUAL, VALLEY, JUMP, OXYGEN, POPULATION, APPLE, ANGLE, SERIOUS, WONDERFUL, TOOL, WESTERN, SERVICE, LEADER, DEVELOPER, FAVORITE, SMOKE, SPACE, ASIA, EUROPE, SUCCESS, ERROR, PROPERTY, PARALLEL, NEIGHBOR, MAGIC, KNIGHT, NIGHT, EFFORT, SETTING, JOURNEY, MASSAGE, MINERAL, ARTICLE, BLOG, TODAY, YESTERDAY, TOMORROW, VOLUME, SONG, ALBUM, ARTIST, GENRE, TRAFFIC, IDENTITY, CHARACTER, GATE, FOREIGN, FOOTBALL, BASKETBALL, TENNIS, ACCOUNT, PINK, SHADOW, ROCKET, PARTY, MUSICAL, ELEPHANT, SWING, MARRIED, REVIEW, COMPLEX, TONIGHT, MISTAKE, UNIVERSE, SOCIETY, SCREEN, POSITIVE, NEGATIVE, MILITARY, DOCTOR, ENGINEER, TECHNICAL, SUPPORT, MARS, JUPITER, SATURN, OPTION, GRAVITY, PACKAGE, TROPICAL, TYPICAL, VERTICAL, WELCOME, HELLO, GUARD, EQUALLY, MANAGER, LEMON, PEACH, APRICOT, SILLY, ZOO, MEMORY, EXCHANGE, DAMAGE, CUSTOM, DEBUG, LABEL, OFFICIAL, MONKEY, HAPPY, SHOUT, SHAKE, COOKIE, CONTRAST, CHOICE, ADVICE, ATTEMPT</value>
+  </data>
+  <data name="WriteName" xml:space="preserve">
+    <value>Write your name</value>
+  </data>
+  <data name="YourEmail" xml:space="preserve">
+    <value>Your email address</value>
+  </data>
+  <data name="YourMessage" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="YourName" xml:space="preserve">
+    <value>Your name</value>
+  </data>
+</root>

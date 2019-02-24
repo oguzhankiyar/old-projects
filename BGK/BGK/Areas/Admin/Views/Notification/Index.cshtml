@@ -1,0 +1,46 @@
+﻿@model IEnumerable<bgk_bildirim>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);
+    int i = 0;
+}
+
+<script type="text/javascript">
+    function ChangeApproval(id) {
+        $.post("@Url.Action("changeapproval")/" + id, { id: id }, function (msg) { $("a#" + id + "_approval").fadeOut(500).fadeIn(500, function () { $("a#" + id + "_approval").attr("class", $("a#" + id + "_approval").attr("class") == "approved" ? "deprecated" : "approved").attr("title", $("a#" + id + "_approval").attr("class") == "approved" ? "Onayı Kaldır" : "Onayla"); }); $("body").append(msg); });
+    }
+</script>
+<div class="table">
+    <div class="title">Bildirimler
+        <span><a href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("create", new { num = 0 })', 'Gönder', 'Vazgeç');">Bildirim Gönder</a></span>
+    </div>
+    <div class="content">
+        @if (count == 0)
+        {
+            <div class="warning">
+                Henüz bildiriminiz yok :(
+            </div>
+        }
+        else
+        {
+            <div class="list">
+                <ul>
+                    <li style="width: 90%;">@Html.Label("Bildirim")</li>
+                    <li style="width: 9%;">@Html.Label("Araçlar")</li>
+                </ul>
+                @foreach (var notification in Model)
+                {
+                    i++;
+                    <ul class="@(i % 2 == 0 ? "second" : "first")">
+                        <li style="width: 90%;">@Html.Raw(notification.Icerik)</li>
+                        <li style="width: 9%;">
+                            <a id="@(notification.Id + "_approval")" class="@(notification.Okundu == true ? "approved" : "deprecated")" title="@(notification.Okundu == true ? "Okunmadı olarak işaretle" : "Okundu olarak işaretle")" href="javascript:void(0)" onclick="ChangeApproval('@notification.Id')"></a>
+                            <a class="delete" title="Sil" href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("delete", new { num = notification.Id })', 'Eminim, sil', 'Vazgeç');"> </a>
+                        </li>
+                    </ul>
+                }
+            </div>
+        }
+    </div>
+</div>
+@Html.Paging()

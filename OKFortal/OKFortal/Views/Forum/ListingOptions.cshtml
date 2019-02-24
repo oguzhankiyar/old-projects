@@ -1,0 +1,57 @@
+﻿@{
+    List<SelectListItem> sorts = new List<SelectListItem>();
+    sorts.Add(new SelectListItem { Text = "Özel Sıralama", Value = "special" });
+    sorts.Add(new SelectListItem { Text = "Başlığına", Value = "title" });
+    sorts.Add(new SelectListItem { Text = "Yazarına", Value = "writer" });
+    sorts.Add(new SelectListItem { Text = "Gönderim Zamanına", Value = "date" });
+    sorts.Add(new SelectListItem { Text = "Cevap Sayısına", Value = "comments" });
+    sorts.Add(new SelectListItem { Text = "Okunma Sayısına", Value = "views" });
+    sorts.Add(new SelectListItem { Text = "Son Cevaba", Value = "lastcomment" });
+    List<SelectListItem> orders = new List<SelectListItem>();
+    orders.Add(new SelectListItem { Text = "Baştan Sona", Value = "asc" });
+    orders.Add(new SelectListItem { Text = "Sondan Başa", Value = "desc" });
+    List<SelectListItem> days = new List<SelectListItem>();
+    days.Add(new SelectListItem { Text = "Hepsi", Value = "0" });
+    days.Add(new SelectListItem { Text = "Son 1 Gün", Value = "1" });
+    days.Add(new SelectListItem { Text = "Son 2 Gün", Value = "2" });
+    days.Add(new SelectListItem { Text = "Son 5 Gün", Value = "5" });
+    days.Add(new SelectListItem { Text = "Son 1 Hafta", Value = "7" });
+    days.Add(new SelectListItem { Text = "Son 10 Gün", Value = "10" });
+    days.Add(new SelectListItem { Text = "Son 2 Hafta", Value = "14" });
+    days.Add(new SelectListItem { Text = "Son 1 Ay", Value = "30" });
+    days.Add(new SelectListItem { Text = "Son 45 Gün", Value = "45" });
+    days.Add(new SelectListItem { Text = "Son 2 Ay", Value = "60" });
+    days.Add(new SelectListItem { Text = "Son 75 Gün", Value = "75" });
+    days.Add(new SelectListItem { Text = "Son 100 Gün", Value = "100" });
+    days.Add(new SelectListItem { Text = "Son 1 Yıl", Value = "365" });
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#sort").val("@Request.QueryString["sort"]");
+        $("#order").val("@Request.QueryString["order"]");
+        $("#day").val("@Request.QueryString["day"]");
+    });
+</script>
+
+<div class="title">Listeleme Seçenekleri</div>
+<div class="content">
+    @using (Html.BeginForm("ListingOptionsSave", "Forum", FormMethod.Post))
+    {
+        <div class="form">
+            <ul>
+                <li><b>Neye Göre</b></li>
+                <li>@Html.DropDownList("sort", new SelectList(sorts, "Value", "Text"))</li>
+            </ul>
+            <ul>
+                <li><b>Baştan / Sondan</b></li>
+                <li>@Html.DropDownList("order", new SelectList(orders, "Value", "Text"))</li>
+            </ul>
+            <ul>
+                <li><b>Gün Kısıtlaması</b></li>
+                <li>@Html.DropDownList("day", new SelectList(days, "Value", "Text"))</li>
+            </ul>
+        </div>
+    }
+</div>

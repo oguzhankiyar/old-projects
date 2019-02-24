@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d0c93b35-65fc-4134-8787-e74c19a60615" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://obisis.erciyes.edu.tr/mws/ObisisMobileService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ObisisMobileService.disco" MetadataType="Disco" ID="63657b01-5314-47e7-9181-5bdc27f15187" SourceId="1" SourceUrl="http://obisis.erciyes.edu.tr/mws/ObisisMobileService.svc?disco" />
+    <MetadataFile FileName="ObisisMobileService.wsdl" MetadataType="Wsdl" ID="9e4d8955-4bf4-4583-b8e7-6ab1d121082b" SourceId="1" SourceUrl="http://obisis.erciyes.edu.tr/mws/ObisisMobileService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="ObisisMobileService.xsd" MetadataType="Schema" ID="e084563d-97e2-4312-9a5b-f508726acdc9" SourceId="1" SourceUrl="http://obisis.erciyes.edu.tr/mws/ObisisMobileService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ObisisMobileService1.xsd" MetadataType="Schema" ID="e3027058-03fd-4da9-8bb0-77a4a27658e4" SourceId="1" SourceUrl="http://obisis.erciyes.edu.tr/mws/ObisisMobileService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ObisisMobileService2.xsd" MetadataType="Schema" ID="dd0eb4e4-7ef2-4f9b-b892-964fb77250ce" SourceId="1" SourceUrl="http://obisis.erciyes.edu.tr/mws/ObisisMobileService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ObisisMobileService3.xsd" MetadataType="Schema" ID="b4bfc46d-cf5f-44eb-bc44-a3729516b4e0" SourceId="1" SourceUrl="http://obisis.erciyes.edu.tr/mws/ObisisMobileService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ObisisMobileService1.wsdl" MetadataType="Wsdl" ID="c549175f-9656-4da1-b6a9-c57fd8d7217e" SourceId="1" SourceUrl="http://obisis.erciyes.edu.tr/mws/ObisisMobileService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

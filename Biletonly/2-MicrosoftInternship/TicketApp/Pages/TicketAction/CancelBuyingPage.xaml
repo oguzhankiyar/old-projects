@@ -1,0 +1,33 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TicketApp.Pages.TicketAction.CancelBuyingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    Orientation="Portrait"
+    mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource PageStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <control:Header />
+
+        <StackPanel Margin="5" Grid.Row="1">
+            <TextBlock TextWrapping="Wrap" LineHeight="30" FontWeight="Light" Padding="5">
+                'Onay kodunu gönder' düğmesine dokunduğunuzda bileti satın aldığınız eposta adresinize (aşağıda belirtilen) bir onay kodu gönderilecektir. bu kodu aşağıdaki kutucuğa yazarak işlemi onaylayabilirsiniz.<LineBreak />
+                <LineBreak />E-posta: ogzkyr@windowslive.com
+            </TextBlock>
+            <control:Button x:Name="btnSendCode" Value="Onay kodunu gönder" Margin="0,25,0,75" Clicked="btnSendCode_Clicked" />
+            <control:InputBox x:Name="txtCode" Label="Onay kodu:" CasingMode="Upper" />
+            <control:Button x:Name="btnCancel"  Value="İşlemi onayla ve bileti iptal et" Clicked="btnCancel_Clicked" />
+            <TextBlock x:Name="txtInfo" TextWrapping="Wrap" LineHeight="30" FontWeight="Light" Padding="5" />
+        </StackPanel>
+    </Grid>
+
+</phone:PhoneApplicationPage>

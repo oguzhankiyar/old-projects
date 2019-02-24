@@ -1,0 +1,47 @@
+﻿@model IEnumerable<bgk_sayfa>
+@{
+    int i = 0;
+}
+
+<script type="text/javascript">
+    function ChangeApproval(id) {
+        $.post("@Url.Action("changeapproval")/" + id, { id: id }, function (msg) { $("a#" + id + "_approval").fadeOut(500).fadeIn(500, function () { $("a#" + id + "_approval").attr("class", $("a#" + id + "_approval").attr("class") == "approved" ? "deprecated" : "approved").attr("title", $("a#" + id + "_approval").attr("class") == "approved" ? "Onayı Kaldır" : "Onayla"); }); $("body").append(msg); });
+    }
+</script>
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a href="@Url.Action("index", "menu")" style="width: 50%;">Linkler</a>
+            <a class="active" href="@Url.Action("index", "page")" style="width: 49%;">Sayfalar</a>
+        </div>
+    </div>
+</div>
+<div class="table">
+    <div class="title">Sayfalar
+        <span>@Html.ActionLink("Yeni Sayfa", "create")</span>
+    </div>
+    <div class="content">
+        <div class="list">
+            <ul>
+                <li style="width: 43%;">@Html.Label("Adı")</li>
+                <li style="width: 43%;">@Html.Label("Seo")</li>
+                <li style="width: 13%;">@Html.Label("Araçlar")</li>
+            </ul>
+            @foreach (var page in Model)
+            {
+                i++;
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li style="width: 43%;">@Html.DisplayFor(modelItem => page.Adi)</li>
+                    <li style="width: 43%;">@Html.DisplayFor(modelItem => page.Seo)</li>
+                    <li style="width: 13%;">
+                        <a id="@(page.Id + "_approval")" class="@(page.Onay == true ? "approved" : "deprecated")" title="@(page.Onay == true ? "Onayı Kaldır" : "Onayla")" href="javascript:void(0)" onclick="ChangeApproval('@page.Id')"></a>
+                        @Html.ActionLink(" ", "edit", new { num = page.Id }, new { @class = "edit", title = "Düzenle" })
+                        @Html.ActionLink(" ", "details", new { num = page.Id }, new { @class = "details", title = "Detay" })
+                        <a class="delete" title="Sil" href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("delete", new { num = page.Id })', 'Eminim, sil', 'Vazgeç');"> </a>
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>

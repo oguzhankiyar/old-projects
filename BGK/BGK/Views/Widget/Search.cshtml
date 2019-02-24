@@ -1,0 +1,15 @@
+﻿@model bgk_search
+<script type="text/javascript">
+    $(function () {
+        $(window).keyup(function (e) {
+            if (e.keyCode == 13 && $("#search input[type=text]").is(":focus")) {
+                window.location.href = "@Url.Action("Search", "Post")?q=" + $("#search input[type=text]").val() + "";
+            }
+        });
+    });
+</script>
+<div class="table">
+    <div id="search" class="content">
+        @Html.TextBoxFor(model => model.Query, new { placeholder = "Aramak istediğin kelimeyi yaz ve Enter'la..." })
+    </div>
+</div>

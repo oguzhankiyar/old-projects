@@ -1,0 +1,93 @@
+﻿@model IEnumerable<message>
+@{
+    ViewBag.Title = "Mesajlaşma";
+    OKDbEntities Db = new OKDbEntities();
+    int userid = (int)Session["userid"];
+}
+
+@section Map {
+    <div class="map">
+        <span>@Html.ActionLink(OK.Config("site-name"), "Index", "Home")</span>
+        <span>@Html.ActionLink("Profilim", "info", "account", new { seo = Db.user.Find(userid).UserName })</span>
+        <span class="active">Mesajlaşma</span>
+    </div>
+}
+
+<script type="text/javascript">
+    $(function () {
+        for (var i = 0; i < $("div.users div").length; i++) {
+            if ($("div.users div:eq(" + i + ")").attr("id") == "@userid" && $("div.users div#" +$("div.users div:eq(" + i + ")").attr("class")).length != 0) {
+                $("div.users div:eq(" + i + ")").hide();
+            }
+            else {
+                for (var j = 0; j < i; j++) {
+                    if ($("div.users div:eq(" + i + ")").attr("id") == $("div.users div:eq(" + j + ")").attr("id")) {
+                        $("div.users div:eq(" + i + ")").hide();
+                        break;
+                    }
+                }
+            }
+        }
+        $("div.neww").click(function () {
+            $(this).html("<select><option>Üyeler</option></select>");
+        });
+    });
+    function ViewMessages(username) {
+        $.post("@Url.Action("Messages", "Account")", { username: username }, function (msg) {
+            $("div.messages").html(msg);
+        });
+    }        
+</script>
+<div class="table">
+    <div class="title">Mesajlaşma</div>
+    <div class="content">
+        <div class="users" style="display: table; float: left; width: 20%; background-color: #eee; height: 500px;">
+            @foreach (var message in Model)
+            {
+                var sender = Db.user.Find(message.SenderId);
+                var receiver = Db.user.Find(message.ReceiverId);
+                <div id="@sender.Id" class="@message.ReceiverId @(ViewContext.RouteData.Values["username"].ToString() == sender.UserName ? "active" : null)" onclick="$.OK.OpenNewPage('@Url.Action("MessageBox", new { username = (userid == sender.Id ? Db.user.Find((int)message.ReceiverId).UserName : Db.user.Find((int)message.SenderId).UserName) })');">
+                    <b>@OK.UserName(sender)</b>
+                </div>
+            }
+            <div class="neww">
+                Yeni konuşma başlat
+            </div>
+        </div>
+        <div class="newmessage" style="display: table; width: 80%; padding: 5px;">
+            @Html.TextArea("message", new { style = "min-height: 45px; width: 90%;" })
+            @Html.Button("send", new { onclick = "SendMessage()", style = "height: 60px; vertical-align: top;" })
+        </div>
+        <div class="messages" style="display: table; float: right; width: 80%;">
+            @if (ViewContext.RouteData.Values["username"] != null)
+	        {
+		        <script type="text/javascript">
+		            ViewMessages('@ViewContext.RouteData.Values["username"].ToString()');
+		            var message = setInterval(function () {
+		                ViewMessages('@ViewContext.RouteData.Values["username"].ToString()');
+		            }, 3000);
+		        </script>
+            }
+            else
+	        {
+                <div class="noitem">Bir konuşma seçin ve yazışmaya başlayın..</div>
+	        }
+        </div>
+        <style type="text/css">
+            div.users div {
+                padding: 10px 5px;
+                border-bottom: 1px dotted #ddd;
+            }
+            div.users div:hover {
+                background-color: gray;
+                color: white;
+                cursor: pointer;
+            }
+                div.users div.active {
+                    background-color: gray;
+                    color: white;
+                }
+        </style>
+
+    </div>
+</div>

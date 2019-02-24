@@ -1,0 +1,16 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="ServiceSoap" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://88.247.60.172/KodlaKazan/Service.asmx"
+                binding="basicHttpBinding" bindingConfiguration="ServiceSoap"
+                contract="BiletAllService.ServiceSoap" name="ServiceSoap" />
+        </client>
+    </system.serviceModel>
+</configuration>

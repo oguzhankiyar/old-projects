@@ -1,0 +1,48 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TicketApp.Pages.Help.BuyingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    Orientation="Portrait"
+    mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource PageStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <control:Header />
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="5">
+                <control:Title Value="Satış işlemi" />
+                <TextBlock TextWrapping="Wrap" LineHeight="30" FontWeight="Light" Padding="5">
+                    Bu aşamada biletinizi artık satın alabilirsiniz.<LineBreak />
+                    <LineBreak />
+                    - Üst kısımda sefer özetini ve çekilcek tutuarı görebilirsiniz. Dilerseniz daha önceden iptal ettiğiniz bilet ile oluşan Biletall Açık Para'yı 'Açık param var' düğmesine dokunarak kullanabilirsiniz.<LineBreak />
+                    - Kredi kartı bilgilerini doğru şekilde doldurun.<LineBreak />
+                    - Ekranı sağa kaydırın.<LineBreak />
+                    - Fatura tipini seçerek belirtilen alanları doldurun.<LineBreak />
+                    - Kullanım şartlarını okuyup, kabul ettiğinizi belirtin.<LineBreak />
+                    - 'Satın al' düğmesinin yanında '3D secure kullan' seçeneği göreceksiniz. Her firmada 3D Secure ile güvenli ödeme işlemi aktif değildir.<LineBreak />
+                    - Bazı firmalarda ise 3D Secure ile güvenli ödeme zorunlu tutulmaktadır.<LineBreak />
+                    - Eğer aktifse ve seçili değilse seçmenizi öneririz.<LineBreak />
+                    - Normal ödeme yapılacaksa işlem gerçekleştirilerek oluşan PNR kodu ile birlikte 'İşlem Detayları' sayfasına yönlendirilirsiniz.<LineBreak />
+                    - 3D Secure ile ödeme yapılacaksa 'Ödeme Onayı' aşamasına yönlendirileceksiniz.<LineBreak />
+                    - 'Ödeme Onayı' sayfasında kredi kartınıza kayırlı olan telefon numaranıza onay kodu bankanız tarafından kısa mesaj olarak gönderilecektir.<LineBreak />
+                    - Onay kodunu kutucuğa yazarak 'Gönder' düğmesine dokunduğunuzda ödeme alınacak ve biletiniz oluşturulacaktır.<LineBreak />
+                    - Biletiniz oluşturulduktan sonra otomatik olarak 'İşlem Detayları' sayfasına yönelendirileceksiniz.<LineBreak />
+                    - Ayrıca belirttiğiniz eposta adresine bilet detayları tarafımızdan iletilecektir.<LineBreak />
+                    <LineBreak />
+                    (*) Ödeme hesap ekstrenizde 'BİLETAL A.Ş.' şirketi altında görünecektir.
+                </TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</phone:PhoneApplicationPage>

@@ -1,0 +1,610 @@
+﻿/*
+    MODERN STYLE THEME FOR BGK
+    DESIGNED BY OĞUZHAN KİYAR
+    ALL RIGHTS RESERVED
+*/
+
+body {
+	background: #f5f5f5;/* url('http://bgk.ogzkyr.net/ceylan/images/bg.jpg') center center;*/
+	color: gray;
+	margin: 0;
+    font-family: 'Segoe UI', Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 15px;
+    overflow-y: scroll;
+    cursor: default;
+}
+div.warning {
+    padding: 5px;
+    text-align: center;
+}
+#top {
+    display: none;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    background: url('images/up_circular.png');
+    padding: 13px;
+    margin: 0 75px 25px 0;
+    cursor: pointer;
+    border-radius: 25px;
+}
+    #top:hover {
+        background-color: #fff;
+    }
+/*FOR BROWSER DIFFERENCES*/
+div, ul, li, span, input, select, textarea {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+/*SELECTION STYLE*/
+::selection {
+    background-color: rgba(0,0,0,0.05);
+}
+::-moz-selection {
+    background-color: rgba(0,0,0,0.05);
+}
+
+/*BASIC ELEMENTS STYLE*/
+header, footer, nav, section {
+    display: block;
+}
+p {
+    margin: 0.25% 0;
+}
+hr {
+    border: 1px dotted gray;
+    border-bottom: 0;
+}
+h1, h2, h3, h4, h5, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+a:link {
+    color: #1FA2E1;
+    text-decoration: none;
+}
+a:visited {
+    color: #1FA2E1;
+    text-decoration: none;
+}
+a:hover {
+    color: #333333;
+}
+a:active {
+    color: #FFAB00;
+}
+
+/*PAGING STYLE*/
+div.paging {
+    display: table;
+    background-color: #fff;
+    float: right;
+    line-height: 18px;
+    padding: 2px 10px;
+    margin-bottom: 8px;
+    font-size: 12px;
+    color: #666;
+    box-shadow: 0 0 5px #ccc;
+}
+    div.paging ul li {
+        display: inline-block;
+        font-weight: bold;
+        margin: 2px;
+    }
+        div.paging ul li img {
+            vertical-align: middle;
+        }
+        div.paging ul li.first img {
+            background: url('images/first.gif') center center no-repeat;
+            padding: 8px;
+        }
+        div.paging ul li.previous img {
+            background: url('images/previous.gif') center center no-repeat;
+            padding: 8px;
+        }
+        div.paging ul li.next img {
+            background: url('images/next.gif') center center no-repeat;
+            padding: 8px;
+        }
+        div.paging ul li.last img {
+            background: url('images/last.gif') center center no-repeat;
+            padding: 8px;
+        }
+        div.paging ul li a {
+            text-decoration: none;
+            padding: 2px 6px 2px 6px;
+            color: #000;
+        }
+        div.paging ul li a:hover {
+            background-color: #f5f5f5;
+            color: #000;
+            padding: 1px 5px 1px 5px;
+            border: 1px solid Gray;
+            cursor: pointer;
+        }
+        div.paging ul li.active {
+            background-color: #eee;
+            color: Black;
+            padding: 1px 5px 1px 5px;
+            border: 1px solid gray;
+            cursor: default;
+        }
+        
+/*FORM ELEMENTS STYLE*/
+input[type="text"], input[type="select"], input[type="number"], input[type="date"], input[type="datetime"], input[type="password"], input[type="email"], textarea, select {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    outline: none;
+    min-width: 300px;
+    padding: 8px;
+    font-size: 10pt;
+    font-family: 'Segoe UI';
+    color: #666;
+    width: 100%;
+}
+select {
+    min-width: 315px;
+}
+textarea {
+    min-height: 100px;
+}
+input[type="button"], input[type="submit"] {
+    background-color: darkred;
+    border: none;
+    box-shadow: 0 0 3px #ff0000;
+    margin-left: 8px;
+    padding: 7px 10px;
+    color: white;
+    text-shadow: 0 0 3px #fff;
+    font-family: 'Segoe UI';
+    border-radius: 3px;
+}
+    input[type="button"]:hover, input[type="submit"]:hover {
+        background-color: #000;
+        color: #fff;
+        cursor: pointer;
+    }
+    input[type="button"]:active, input[type="submit"]:active {
+        background-color: #fff;
+        color: darkred;
+    }
+input.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+div.buttons {
+    display: table;
+    float: right;
+    margin-bottom: 7px;
+    padding-right: 2px;
+}
+
+
+
+
+
+
+div.logo {
+	width: 1100px;
+	margin: auto;
+	clear: both;
+	height: 85px;
+}
+	div.image {
+		background: url('images/EruLogolu.png') no-repeat;
+		height: 75px;
+		width: 75%;
+		float: left;
+        cursor: pointer;
+	}
+	div.social {
+        display: table;
+		float: right;
+		background-color: #f9f9f9;
+		font-size: 20px;
+		text-align: center;
+		padding: 0 10px;
+		margin: 15px 10px 0;
+		box-shadow: 0 0 5px #ccc;
+	}
+		 div.social a {
+            display: inline-table;
+			margin: 5px;
+            padding: 13px;
+		}
+            div.social a.facebook {
+                background: url('images/facebook.png') no-repeat;
+            }
+            div.social a.twitter {
+                background: url('images/twitter.png') no-repeat;
+            }
+	div.menu-bg {
+		position: absolute;
+		left: 0;
+		background-color: darkred;
+		line-height: 36px;
+		box-shadow: 0 0 5px darkred;
+		z-index: -999;
+	}
+    div.menu {
+		line-height: 36px;
+		font-family: Trebuchet MS;
+		z-index: 999;
+		width: 1100px;
+		margin: auto auto 2px;
+	}
+		 div.menu ul {
+			display: inline-table;
+			padding: 0 2px;
+		}
+			 div.menu ul li {
+				display: inline-block;
+			}
+				div.menu ul li a {
+					padding: 8px 14px;
+					text-shadow: #fff 0.1em 0.1em 0.4em;
+					color: #fff;
+					border-right: 1px solid #8b3e2f;
+				}
+				div.menu ul li:last-child a {
+					border-right: none;
+				}
+				div.menu ul li a:hover {
+					background-color: #8b3e2f;
+					color: #fff;
+				}
+				div.menu ul li a.image:hover {
+					background-color: transparent;
+				}
+
+                div.page {
+		background: #f9f9f9;
+		width: 1100px;
+		margin: auto;
+	}
+		div.container {
+            display: table;
+			border: 1px solid #fff;
+			border-top: 0;
+			border-bottom: 0;
+			padding: 12px 10px 7px 10px;
+            width: 100%;
+		}
+		 div.footer {
+			background-color: darkred;
+			padding: 5px;
+			color: #fff;
+		}
+		
+		div.table {
+            display: table;
+            width: 100%;
+			background-color: #fff;
+			margin-bottom: 8px;
+			box-shadow: 0 0 5px #ccc;
+            border: 1px solid #ccc;
+		}
+			div.table div.title {
+                background-color: #f5f5f5;
+				font-family: Trebuchet MS;
+				color: #333;
+				font-size: 17px;
+                padding: 5px 7px;
+                line-height: 25px;
+                border-bottom: 2px solid #ddd;
+			}
+                div.table div.title span {
+                    float: right;
+                    font-size: 13px;
+                }
+                    div.table div.title span a {
+                        color: inherit;
+                    }
+			div.table div.content {
+				display: table;
+				width: 100%;
+                font-size: 14px;
+                line-height: 24px;
+			}
+		div.gallery div.table {
+			display: inline-table;
+			max-width: 192px;
+			margin-right: 5.3px;
+			vertical-align: middle;
+		}
+		div.gallery div.table:last-child {
+			height: 135px;
+			margin-right: 0;
+			padding-top: 55px;
+		}
+		div.gallery img {
+            display: table;
+			width: 100%;
+			height: 125px;
+		}
+		div.table-1 {
+			background-color: lightyellow;
+		}
+		div.table-2 {
+			background-color: lightblue;
+		}
+		div.table-3 {
+			background-color: pink;
+		}
+		div.table-3 {
+			background-color: #ddd;
+		}
+		
+		div.table-group-1 div.first {
+			display: inline-table;
+			width: 66%;
+			margin-right: 5px;
+            vertical-align: top;
+		}
+		div.table-group-1 div.second {
+			display: inline-table;
+			width: 33%;
+            vertical-align: top;
+		}
+		div.table-group-2 div.first {
+			display: inline-table;
+			width: 33%;
+			margin-right: 5px;
+		}
+		div.table-group-2 div.second {
+			display: inline-table;
+			width: 66%;
+		}
+		div.table-group-3 div.first {
+			display: inline-table;
+			width: 49.5%;
+			margin-right: 5px;
+		}
+		div.table-group-3 div.second {
+			display: inline-table;
+			width: 49.5%;
+		}
+		div.table-group-4 div.first {
+			display: inline-table;
+			width: 33%;
+			margin-right: 5px;
+		}
+		div.table-group-4 div.second {
+			display: inline-table;
+			width: 32.3%;
+			margin-right: 5px;
+		}
+		div.table-group-4 div.third {
+			display: inline-table;
+			width: 33%;
+		}
+        
+a.approved {
+    display: inline-block;
+    background: url('images/approved.png') no-repeat;
+    padding: 8px;
+    margin: 8px 5px;
+}
+a.deprecated {
+    display: inline-block;
+    background: url('images/deprecated.png') no-repeat;
+    padding: 8px;
+    margin: 8px 5px;
+}
+a.view {
+    display: inline-block;
+    background: url('images/view.png') no-repeat;
+    padding: 8px;
+    margin: 8px 5px;
+}
+a.add {
+    display: inline-block;
+    background: url('images/detail.png') no-repeat;
+    padding: 8px;
+    margin: 8px 5px;
+}
+a.edit {
+    display: inline-block;
+    background: url('images/edit.png') no-repeat;
+    padding: 8px;
+    margin: 8px 5px;
+}
+a.details {
+    display: inline-block;
+    background: url('images/detail.png') no-repeat;
+    padding: 8px;
+    margin: 8px 5px;
+}
+a.delete {
+    display: inline-block;
+    background: url('images/delete.png') no-repeat;
+    padding: 8px;
+    margin: 8px 5px;
+}
+
+div.list {
+}
+    div.list ul {
+        padding: 0 5px;
+    }
+        div.list ul.second {
+            background-color: rgba(0, 0, 0, 0.025);
+        }
+    div.list ul:first-child {
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(245,245,245,1)), color-stop(100%,rgba(255,255,255,1)));
+        background: -moz-gradient(linear, left top, left bottom, color-stop(0%,rgba(245,245,245,1)), color-stop(100%,rgba(255,255,255,1)));
+        background: -o-gradient(linear, left top, left bottom, color-stop(0%,rgba(245,245,245,1)), color-stop(100%,rgba(255,255,255,1)));
+        font-weight: bold;
+        font-family: 'Trebuchet MS';
+    }
+    div.list ul li {
+        display: inline-table;
+        line-height: 25px;
+        padding-left: 7px;
+    }
+        div.list ul li:last-child {
+            text-align: center;
+            vertical-align: middle;
+        }
+div.normal-list {
+display: table;
+}
+        div.normal-list ul {
+            display: table;
+            width: 100%;
+            padding: 5px 10px;
+        }
+            div.normal-list ul li {
+                display: inline-table;
+            }
+            div.normal-list ul.second {
+                background-color: rgba(0, 0, 0, 0.025);
+            }
+div.form {
+    display: table;
+    width: 100%;
+    padding: 5px;
+}
+    div.form ul {
+        display: table;
+        line-height: 35px;
+        width: 100%;
+    }
+        div.form ul li {
+            display: inline-table;
+            float: left;
+            width: 100%;
+        }
+            div.form ul li:first-child {
+                color: #000;
+                font-weight: bold;
+                font-family: 'Trebuchet MS';
+            }
+        div.form ul:last-child {
+            float: right;
+            width: auto;
+        }
+        div.form ul:last-child li {
+            display: inline-table;
+            width: auto;
+            margin-top: 7px;
+        }
+div.details {
+    padding: 5px;
+}
+    div.details ul {
+        display: table;
+        width: 100%;
+        line-height: 25px;
+    }
+    div.details ul li {
+        display: inline-table;
+        float: left;
+    }
+    div.details ul li:first-child {
+        width: 35%;
+        font-weight: bold;
+    }
+
+div.sections {
+    display: table;
+    width: 100%;
+}
+    div.sections a {
+        display: table;
+        border-right: 1px solid #ccc;
+        text-align: center;
+        color: inherit;
+        float: left;
+    }
+        div.sections a:last-child {
+            border-right: none;
+            float: right;
+        }
+        div.sections a.active {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+/*MODAL STYLE*/
+div.modal {
+    position: fixed;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.2);
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+div.modalcontent {
+    position: fixed;
+    display: none;
+    background: #fff;
+    min-height: 75px;
+    border: 1px solid #ccc;
+}
+    div.modalcontent div.title {
+        display: inline-table;
+        background-color: #f5f5f5;
+        border-bottom: 2px solid #ddd;
+        width: 100%;
+        padding: 5px;
+        font-family: 'Trebuchet MS';
+        color: #383838;
+        font-weight: bold;
+        font-size: 16px;
+    }
+    div.modalcontent span.close {
+        position: absolute;
+        right: 5px;
+        padding: 5px;
+        font-family: Verdana;
+        color: #c1c1c1;
+        font-size: 15px;
+        font-weight: bold;
+    }
+        div.modalcontent span.close:hover {
+            padding: 5px;
+            color: #333;
+            cursor: pointer;
+        }
+    div.modalcontent div.content {
+        display: table;
+        width: 500px;
+        max-width: 750px;
+        padding: 5px;
+    }
+    div.modalcontent div.buttons {
+        padding: 7px;
+        text-align: right;
+        margin: 0;
+    }
+    div.modalcontent div.success {
+        background: url('images/success_bg.jpg') no-repeat right bottom;
+        height: 150px;
+        font-size: 15px;
+        line-height: 25px;
+        padding: 50px 10px;
+        color: Green;
+    }
+    div.modalcontent div.error {
+        background: url('images/error_bg.jpg') no-repeat right bottom;
+        height: 150px;
+        font-size: 15px;
+        line-height: 25px;
+        padding: 50px 10px;
+        color: Red;
+    }
+    div.modalcontent span.info {
+        display: table;
+        float: left;
+        line-height: 28px;
+    }
+    div.modalcontent ul, div.modalcontent li, div.modalcontent div {
+        min-width: 500px;
+    }

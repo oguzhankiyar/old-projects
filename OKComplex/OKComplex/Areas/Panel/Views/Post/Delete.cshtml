@@ -1,0 +1,31 @@
+﻿@model club_post
+@{
+    ViewBag.Title = "Yazı Sil";
+}
+
+<h3>Aşağıdaki yazıyı ve bu yazıya ait tüm yorumları silmek istediğinizden emin misiniz?</h3>
+<div class="detail">
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Title)</li>
+        <li>@Html.DisplayFor(model => model.Title)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.club_category.Name)</li>
+        <li>@Html.DisplayFor(model => model.club_category.Name)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.MemberId)</li>
+        <li>@Model.club_member.Name</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Yorum Sayısı")</li>
+        <li>@Model.club_comments.Count()</li>
+    </ul>
+</div>
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.Button("Eminim, sil", new { type = "submit" })
+        @Html.Button("Vazgeç", new { onclick = "OpenNewPage('" + Url.Action("index") + "');" })
+    </p>
+}

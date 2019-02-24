@@ -1,0 +1,106 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TicketApp.Pages.TicketAction.DetailsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:TicketApp.UserControls"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    xmlns:selector="clr-namespace:TicketApp.Selectors"
+    Orientation="Portrait"
+    mc:Ignorable="d">
+    
+    <Grid x:Name="LayoutRoot" Style="{StaticResource PageStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <control:Header />
+        <Grid Grid.Row="1" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <phone:Pivot x:Name="TicketPivot">
+                <phone:PivotItem>
+                    <phone:PivotItem.Header>
+                        <TextBlock Text="özet" FontSize="40" />
+                    </phone:PivotItem.Header>
+                    <Grid Margin="-12,-6,-12,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <control:DetailBox Label="PNR:" Value="{Binding Path=PNR.Code}" />
+                        <control:DetailBox x:Name="txtTicketType" Label="Tip:" Grid.Column="1" />
+                        <control:DetailBox x:Name="txtLastState" Label="Son durum:" Grid.Row="1" Grid.ColumnSpan="2" />
+                        <control:DetailBox x:Name="txtReservationOption" Label="Opsiyon tarihi:" Value="{Binding Path=PNR.ExpirationDate, StringFormat='d MMMMMMM yyyy, ddd HH:mm'}" Grid.Row="2" Grid.ColumnSpan="2" />
+                        <control:DetailBox Label="Yolcu sayısı:" Value="{Binding Path=Passengers.Count, StringFormat='{}{0} yolcu'}" Grid.Row="3" />
+                        <control:DetailBox Label="Toplam tutar:" Value="{Binding Path=Price.TotalPrice, StringFormat='{}₺{0:0.##}'}" Grid.Row="3" Grid.Column="1" />
+                    </Grid>
+                </phone:PivotItem>
+                <phone:PivotItem>
+                    <phone:PivotItem.Header>
+                        <TextBlock Text="sefer" FontSize="40" />
+                    </phone:PivotItem.Header>
+                    <ScrollViewer Margin="-12,-6,-12,0">
+                        <phone:LongListSelector ItemsSource="{Binding Path=Journeys}">
+                            <phone:LongListSelector.ItemTemplate>
+                                <DataTemplate>
+                                    <phone:LongListSelector ItemsSource="{Binding Path=Segments}">
+                                        <phone:LongListSelector.ItemTemplate>
+                                            <DataTemplate>
+                                                <selector:JourneyDetailsTemplateSelector />
+                                            </DataTemplate>
+                                        </phone:LongListSelector.ItemTemplate>
+                                    </phone:LongListSelector>
+                                </DataTemplate>
+                            </phone:LongListSelector.ItemTemplate>
+                        </phone:LongListSelector>
+                    </ScrollViewer>
+                </phone:PivotItem>
+                <phone:PivotItem>
+                    <phone:PivotItem.Header>
+                        <TextBlock Text="yolcu" FontSize="40" />
+                    </phone:PivotItem.Header>
+                    <Grid Margin="-12,-6,-12,0">
+                        <phone:LongListSelector x:Name="PassengerList" ItemsSource="{Binding Path=Passengers}">
+                            <phone:LongListSelector.ItemTemplate>
+                                <DataTemplate>
+                                    <local:TicketPassengerItem DataContext="{Binding}" />
+                                </DataTemplate>
+                            </phone:LongListSelector.ItemTemplate>
+                        </phone:LongListSelector>
+                    </Grid>
+                </phone:PivotItem>
+            </phone:Pivot>
+            <Grid x:Name="DefaultButtons" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <control:Button Value="Satın al" Clicked="btnBuyTicket_Clicked" />
+                <control:Button Value="Görüntüle" Clicked="btnViewTicket_Clicked" Grid.Column="1" />
+                <control:Button Value="İptal et" Clicked="btnCancelTicket_Clicked" Grid.Column="2" />
+            </Grid>
+            <Grid x:Name="ContinueButtons" Grid.Row="1" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <control:Button x:Name="btnContinue" Value="Devam et" Clicked="btnContinue_Clicked" />
+                <control:Button x:Name="btnBack" Value="Vazgeç" Clicked="btnBack_Clicked" Grid.Column="1" />
+            </Grid>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

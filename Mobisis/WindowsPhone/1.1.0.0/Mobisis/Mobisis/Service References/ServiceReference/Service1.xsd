@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ObisisService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ObisisService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Baglanti">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Durum" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Mesaj" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Ogrenci" nillable="true" type="tns:Ogrenci" />
+      <xs:element minOccurs="0" name="OgrenciNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Reference" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sifre" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Baglanti" nillable="true" type="tns:Baglanti" />
+  <xs:complexType name="Ogrenci">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdSoyad" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Bolum" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Donemler" nillable="true" type="tns:ArrayOfDonem" />
+      <xs:element minOccurs="0" name="Fakulte" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GANO" type="xs:double" />
+      <xs:element minOccurs="0" name="OgrenciNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sifre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sinif" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Ogrenci" nillable="true" type="tns:Ogrenci" />
+  <xs:complexType name="ArrayOfDonem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Donem" nillable="true" type="tns:Donem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDonem" nillable="true" type="tns:ArrayOfDonem" />
+  <xs:complexType name="Donem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Adi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Dersler" nillable="true" type="tns:ArrayOfDers" />
+      <xs:element minOccurs="0" name="GANO" type="xs:double" />
+      <xs:element minOccurs="0" name="No" type="xs:int" />
+      <xs:element minOccurs="0" name="OgretimYili" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OgretimYiliKodu" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Donem" nillable="true" type="tns:Donem" />
+  <xs:complexType name="ArrayOfDers">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Ders" nillable="true" type="tns:Ders" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDers" nillable="true" type="tns:ArrayOfDers" />
+  <xs:complexType name="Ders">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Adi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BasariKatsayisi" type="xs:double" />
+      <xs:element minOccurs="0" name="Butunleme" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Durum" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Final" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="HarfNotu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Kod" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Kredi" type="xs:double" />
+      <xs:element minOccurs="0" name="Ortalama" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="OrtalamayaEtki" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Sinif" type="xs:int" />
+      <xs:element minOccurs="0" name="Vize1" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Vize2" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Vize3" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Ders" nillable="true" type="tns:Ders" />
+  <xs:complexType name="ArrayOfYemekList">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="YemekList" nillable="true" type="tns:YemekList" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfYemekList" nillable="true" type="tns:ArrayOfYemekList" />
+  <xs:complexType name="YemekList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Ogun" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Tarih" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Yemekler" nillable="true" type="tns:ArrayOfYemekList.Yemek" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="YemekList" nillable="true" type="tns:YemekList" />
+  <xs:complexType name="ArrayOfYemekList.Yemek">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="YemekList.Yemek" nillable="true" type="tns:YemekList.Yemek" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfYemekList.Yemek" nillable="true" type="tns:ArrayOfYemekList.Yemek" />
+  <xs:complexType name="YemekList.Yemek">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Adi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Kalori" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="YemekList.Yemek" nillable="true" type="tns:YemekList.Yemek" />
+</xs:schema>

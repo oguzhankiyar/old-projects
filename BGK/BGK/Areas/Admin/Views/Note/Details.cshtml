@@ -1,0 +1,31 @@
+﻿@model bgk_not
+
+<div class="table-group-1">
+    <div class="first">
+        <div class="table">
+            <div class="title">@Model.Konu</div>
+            <div class="content details">
+                @Html.Raw(Model.Icerik)
+            </div>
+        </div>
+        <div class="buttons">
+            @Html.Button("Düzenle", new { onclick = "window.location.href='" + Url.Action("edit", new { num = Model.Id }) + "';" })
+            @Html.Button("Notu Sil", new { onclick = "$.BGK.FormModal('" + Url.Action("delete", new { num = Model.Id }) + "', 'Eminim, sil', 'Vazgeç');" })
+        </div>
+    </div>
+    <div class="second">
+        <div class="table">
+            <div class="title">Detaylar</div>
+            <div class="content details">
+                <ul>
+                    <li>Ekleyen</li>
+                    <li><a href="@Url.Action("Details", new { num = Model.UyeID })">@Model.bgk_uye.AdSoyad</a></li>
+                </ul>
+                <ul>
+                    <li>Tarih</li>
+                    <li>@Html.ShortDateTime(Model.Tarih)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

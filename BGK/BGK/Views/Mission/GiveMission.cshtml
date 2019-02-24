@@ -1,0 +1,64 @@
+﻿@model bgk_gorev
+@{
+    ViewBag.Title = "Görev Ver";
+    var category = (bgk_gorev_kategori)ViewBag.category;
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div class="table">
+    <div class="title">Görev Ver</div>
+    <div class="content">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="form">
+                <ul>
+                    <li>@Html.LabelFor(model => model.KategoriID)</li>
+                    <li>@category.Adi</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Adi)</li>
+                    <li>@Html.EditorFor(model => model.Adi)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Adi)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Aciklama)</li>
+                    <li>@Html.TextAreaFor(model => model.Aciklama)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Aciklama)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.GunSayisi)</li>
+                    <li>@Html.EditorFor(model => model.GunSayisi)</li>
+                    <li>@Html.ValidationMessageFor(model => model.GunSayisi)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.BitisTarihi)</li>
+                    <li>@Html.EditorFor(model => model.BitisTarihi)</li>
+                    <li>@Html.ValidationMessageFor(model => model.BitisTarihi)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Puan)</li>
+                    <li>@Html.EditorFor(model => model.Puan)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Puan)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.CezaPuani)</li>
+                    <li>@Html.EditorFor(model => model.CezaPuani)</li>
+                    <li>@Html.ValidationMessageFor(model => model.CezaPuani)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Sira)</li>
+                    <li>@Html.EditorFor(model => model.Sira)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Sira)</li>
+                </ul>
+                <div class="buttons">
+                    @Html.Button("Kaydet", new { type = "submit" })
+                    @Html.Button("Vazgeç", new { onclick = "window.location.href='" + Url.Action("categorydetails", new { id = category.Id }) + "';" })
+                </div>
+                @Html.MyEditor("Aciklama", "Standard")
+                @Html.HiddenFor(model => model.KategoriID)
+            </div>
+        }
+    </div>
+</div>

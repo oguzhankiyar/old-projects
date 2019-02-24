@@ -1,0 +1,39 @@
+﻿@model IEnumerable<club_group>
+@{
+    ViewBag.Title = "Gruplar";
+    int i = 0;
+    InfosecEntities Db = new InfosecEntities();
+}
+<div class="list">
+    @foreach (var group in Model)
+    {
+        i++;
+        <ul class="@(i % 2 == 0 ? "second" : "first")">
+            <li>
+                <b>@Html.DisplayFor(modelItem => group.Name)</b>
+            </li>
+            <li class="manage">
+                @Html.ActionLink(" ", "addmember", new { num = group.Id }, new { @class = "add", title = "Üye Ekle" })
+                @Html.ActionLink(" ", "memberlist", new { num = group.Id }, new { @class = "details", title = "Üye Listesi" })
+                @Html.ActionLink(" ", "edit", new { num = group.Id }, new { @class = "edit", title = "Düzenle" })
+                @Html.ActionLink(" ", "details", new { num = group.Id }, new { @class = "details", title = "Detay" })
+                @Html.ActionLink(" ", "delete", new { num = group.Id }, new { @class = "delete", title = "Sil" })
+            </li>
+        </ul>
+        foreach (var subgroup in Db.club_group.Where(x => x.ParentGroupId == group.Id && x.IsSubGroup == true).OrderBy(x => x.Sort).ToList())
+        {
+            <ul class="third">
+                <li>
+                    <b>@Html.DisplayFor(modelItem => subgroup.Name)</b>
+                </li>
+                <li class="manage">
+                    @Html.ActionLink(" ", "addmember", new { num = subgroup.Id }, new { @class = "add", title = "Üye Ekle" })
+                    @Html.ActionLink(" ", "memberlist", new { num = subgroup.Id }, new { @class = "details", title = "Üye Listesi" })
+                    @Html.ActionLink(" ", "edit", new { num = subgroup.Id }, new { @class = "edit", title = "Düzenle" })
+                    @Html.ActionLink(" ", "details", new { num = subgroup.Id }, new { @class = "details", title = "Detay" })
+                    @Html.ActionLink(" ", "delete", new { num = subgroup.Id }, new { @class = "delete", title = "Sil" })
+                </li>
+            </ul>
+        }
+    }
+</div>

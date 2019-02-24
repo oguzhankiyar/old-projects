@@ -1,0 +1,164 @@
+﻿body {
+    background: #000 url('background.jpg') fixed center center;
+    color: #fff;
+    font-family: 'Segoe UI';
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    line-height: 50px;
+    width: 100%;
+    cursor: default;
+}
+::selection {
+    background-color: transparent;
+}
+::-moz-selection {
+    background-color: transparent;
+}
+::-webkit-scrollbar { 
+    display: none;
+}
+div.title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    font-family: 'Segoe WP SemiLight', 'Segoe UI', 'Trebuchet MS';
+    font-size: 30px;
+    text-align: left;
+    padding: 6px 30px;
+    z-index: 999;
+    border-bottom: 2px solid #056aa5;
+}
+    div.title:hover {
+        cursor: pointer;
+    }
+    div.title span {
+        color: #ccc;
+        padding-left: 20px;
+    }
+    div.title p {
+    display: none;
+    position: absolute;
+    top: 47px;
+    background-color: #056aa5;
+    font-family: 'Segoe UI';
+    height: 25px;
+    font-size: 15px;
+    width: 30px;
+    padding: 0 5px;
+    line-height: 25px;
+    text-align: center;
+    }
+div.message {
+    display: none;
+    position: fixed;
+    right: 70px;
+    top: 5px;
+    font-size: 25px;
+    color: white;
+    font-family: 'Segoe WP SemiLight', 'Segoe UI', 'Trebuchet MS';
+}
+
+div.list {
+    display: table;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+}
+    div.list ul {
+        padding: 0;
+        margin: 0;
+    }
+        div.list ul li {
+            list-style-type: none;
+            text-align: left;
+            padding: 5px 25px;
+            height: 32px;
+            line-height: 32px;
+            margin-bottom: 1px;
+        }
+            div.list ul li:hover, div.list ul li.active {
+                background-color: rgba(5, 106, 165, 0.5);
+                cursor: pointer;
+            }
+div.player {
+}
+div.player div {
+    display: inline-table;
+}
+
+audio {
+    display: none;
+}
+
+div.buttons {
+    background-color: #056aa5;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+div.button {
+    padding: 18px;
+    box-shadow: 0 0 10px #fff;
+    border-radius: 75px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+    div.button:hover {
+        background-color: gray;
+    }
+div#time, div#duration {
+    width: 50px;
+}
+div#slider {
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: table;
+    width: 100%;
+    height: 63px;
+    z-index: -999;
+    font-size: 15px;
+}
+    div#slider p {
+        background-color: #00a1ff;
+        width: 0%;
+        height: 100%;
+        margin: 0;
+        padding: 7px;
+    }
+
+div.played {
+    background: #fff url('pause.png') no-repeat center center;
+}
+div.paused {
+    background: #fff url('play.png') no-repeat center center;
+}
+div.muted {
+    background: #fff url('mute.png') no-repeat center center;
+}
+div.unmuted {
+    background: #fff url('volume_down.png') no-repeat center center;
+}
+div#prev {
+    background: #fff url('skip_to_start.png') no-repeat center center;
+}
+div#next {
+    background: #fff url('end.png') no-repeat center center;
+}
+div#stop {
+    background: #fff url('stop.png') no-repeat center center;
+}
+div#random {
+    background: #fff url('shuffle.png') no-repeat center center;
+}
+
+
+div.player div.settings {
+    display: none;
+}
+#volume {
+    display: none;
+}

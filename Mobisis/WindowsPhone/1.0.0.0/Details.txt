@@ -1,0 +1,9 @@
+# Detaylar
+Erciyes üniversitesi öğrenci bilgi sisteminin Windows Phone 8 mobil platformundaki uygulaması. Bu uygulama sayesinde;
+ - Temel bilgilerinize,
+ - Şuan ki ve geçmiş dönemlerinize,
+ - Aldığınız derslere,
+ - Ders detaylarına,
+ - Okul yemekhanesindeki yemek listesine erişebilirsiniz.
+
+Not: Dersler sayfasına girince, dersler güncellenmektedir ve uyarı vermektedir. Her seferinde giriş yapmak zorunda değilsiniz..

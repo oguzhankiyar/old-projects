@@ -1,0 +1,47 @@
+﻿@model IEnumerable<bgk_yetki>
+@{
+    int i = 0;
+}
+
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a href="@Url.Action("index", "group")" style="width: 25%;">Gruplar</a>
+            <a href="@Url.Action("index", "member")" style="width: 24%;">Üyeler</a>
+            <a class="active" href="@Url.Action("index", "role")" style="width: 25%;">Yetkiler</a>
+            <a href="@Url.Action("index", "grade")" style="width: 25%;">Seviyeler</a>
+        </div>
+    </div>
+</div>
+
+<div class="table">
+    <div class="title">Yetkiler
+        <span>@Html.ActionLink("Yetki Ekle", "create")</span>
+    </div>
+    <div class="content">
+        <div class="list">
+            <ul>
+                <li style="width: 7%;">@Html.Label("Kod")</li>
+                <li style="width: 23%;">@Html.Label("Adı")</li>
+                <li style="width: 40%;">@Html.Label("Açıklama")</li>
+                <li style="width: 15%; text-align: center;">@Html.Label("Yetkili Sayısı")</li>
+                <li style="width: 13%;">@Html.Label("Araçlar")</li>
+            </ul>
+            @foreach (var role in Model)
+            {
+                i++;
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li style="width: 7%;">@role.Kod</li>
+                    <li style="width: 23%;">@Html.Raw(role.Adi)</li>
+                    <li style="width: 40%;">@role.Aciklama.GetSummary(100)</li>
+                    <li style="width: 15%; text-align: center;">@role.GetMembers().Count()</li>
+                    <li style="width: 13%;">
+                        @Html.ActionLink(" ", "edit", new { num = role.Id }, new { @class = "edit", title = "Düzenle" })
+                        @Html.ActionLink(" ", "details", new { num = role.Id }, new { @class = "details", title = "Detay" })
+                        <a class="delete" href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("delete", new { num = role.Id })', 'Eminim, sil', 'Vazgeç');"> </a>
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>

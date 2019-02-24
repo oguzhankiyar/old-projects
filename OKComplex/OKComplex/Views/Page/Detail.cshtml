@@ -1,0 +1,18 @@
+﻿@model club_page
+@{
+    ViewBag.Title = Model.Name;    
+}
+
+@section Map {
+    <div class="map">
+        <span>@Html.ActionLink(OK.ClubConfig("site-name"), "Index", "Home")</span>
+        <span class="active">@Model.Name</span>
+    </div>
+}
+
+<div class="table">
+    <div class="title">@Model.Name</div>
+    <div class="content">
+        @Html.Raw(Model.Content)
+    </div>
+</div>

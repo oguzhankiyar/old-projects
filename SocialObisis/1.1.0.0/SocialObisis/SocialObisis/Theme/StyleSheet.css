@@ -1,0 +1,115 @@
+﻿body {
+    background-color: darkred;
+    margin: 0;
+    color: #fff;
+    font-family: 'Segoe WP SemiLight', 'Segoe WP', 'Segoe UI';
+    cursor: default;
+}
+div, ul, li, span {
+    display: table;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+a:link, a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+    div.page {
+        width: 100%;
+        min-width: 1200px;
+    }
+div.header {
+    display: table;
+    position: fixed;
+    background-color: darkred;
+    font-size: 25px;
+    width: 100%;
+    min-width: 1300px;
+}
+    div.header div.title {
+        font-size: 18px;
+        padding: 5px 0 5px 25px;
+        background-color: #000;
+        width: 100%;
+        line-height: 25px;
+    }
+        div.header div.title span {
+            float: right;
+            font-size: 15px;
+            padding-right: 35px;
+        }
+    div.header div.sections {
+        width: 100%;
+        padding-bottom: 10px;
+    }
+    div.header div.sections div {
+        display: inline-table;
+        padding: 7px 25px;
+        font-size: 40px;
+        opacity: 0.7;
+        cursor: pointer;
+    }
+        div.header div.sections div.active {
+            opacity: 1;
+        }
+    div.page div.container {
+        width: 100%;
+        padding: 5px 25px;
+        margin-top: 110px;
+    }
+    div.form ul {
+        width: 100%;
+    }
+    div.form ul li {
+        width: 100%;
+        padding: 5px;
+        padding-left: 10px;
+    }
+        div.form ul.submit li:first-child {
+            float: left;
+            line-height: 30px;
+            width: auto;
+        }
+    div.form ul.submit li:last-child {
+        float: right;
+            width: auto;
+    }
+div.form input[type=text], div.form input[type=password], div.form input[type=number] {
+    background-color: #8f1919;
+    width: 100%;
+    height: 20px;
+    padding: 7px 10px;
+    border: none;
+    color: #fff;
+    outline: none;
+}
+    div.form input[type=text]:focus, div.form input[type=password]:focus, div.form input[type=number]:focus {
+        border: 1px solid #fff;
+    }
+div.form input[type=submit], div.form input[type=button] {
+    padding: 10px;
+    border: none;
+    color: gray;
+    font-size: 20px;
+}
+    div.form input[type=submit]:hover, div.form input[type=button]:hover {
+        background-color: #8f1919;
+        border: 1px solid #fff;
+        color: #fff;
+        cursor: pointer;
+    }
+    div.login {
+        margin: 75px auto;
+        width: 350px;
+    }
+
+div.list ul li:last-child {
+    font-size: 20px;
+}
+div.list ul li:first-child {
+    font-size: 27px;
+}

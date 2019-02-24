@@ -1,0 +1,73 @@
+﻿@model club_member
+@{
+    ViewBag.Title = "Üye Düzenle";
+    List<SelectListItem> roles = new List<SelectListItem>();
+    roles.Add(new SelectListItem { Text = "Yetkili", Value = "10" });
+    roles.Add(new SelectListItem { Text = "Normal Üye", Value = "1", Selected = true });
+    List<SelectListItem> genders = new List<SelectListItem>();
+    genders.Add(new SelectListItem { Text = "Erkek", Value = "Erkek" });
+    genders.Add(new SelectListItem { Text = "Kadın", Value = "Kadın" });
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm())
+{
+    <div class="form">
+        <ul>
+            <li>@Html.LabelFor(model => model.Name)</li>
+            <li>@Html.EditorFor(model => model.Name)<small>@Html.ValidationMessageFor(model => model.Name)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.Email)</li>
+            <li>@Html.EditorFor(model => model.Email)<small>@Html.ValidationMessageFor(model => model.Email)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.Image)</li>
+            <li>@Html.EditorFor(model => model.Image)<small>@Html.ValidationMessageFor(model => model.Image)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.Gender)</li>
+            <li>@Html.DropDownListFor(model => model.Gender, genders)<small>@Html.ValidationMessageFor(model => model.Gender)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.Birthday)</li>
+            <li>@Html.EditorFor(model => model.Birthday)<small>@Html.ValidationMessageFor(model => model.Birthday)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.Faculty)</li>
+            <li>@Html.EditorFor(model => model.Faculty)<small>@Html.ValidationMessageFor(model => model.Faculty)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.Program)</li>
+            <li>@Html.EditorFor(model => model.Program)<small>@Html.ValidationMessageFor(model => model.Program)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.Class)</li>
+            <li>@Html.EditorFor(model => model.Class)<small>@Html.ValidationMessageFor(model => model.Class)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.SchoolNo)</li>
+            <li>@Html.EditorFor(model => model.SchoolNo)<small>@Html.ValidationMessageFor(model => model.SchoolNo)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.Role)</li>
+            <li>@Html.DropDownListFor(model => model.Role, roles)<small>@Html.ValidationMessageFor(model => model.Role)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.IsApproval)</li>
+            <li>@Html.EditorFor(model => model.IsApproval)<small>@Html.ValidationMessageFor(model => model.IsApproval)</small></li>
+        </ul>
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Password)
+        @Html.HiddenFor(model => model.RegistrationDate)
+        <ul>
+            <li>Kaydet</li>
+            <li>
+                @Html.Button("Kaydet", new { type = "submit" })
+                @Html.Button("Vazgeç", new { onclick = "OpenNewPage('" + Url.Action("index") + "');" })
+            </li>
+        </ul>
+    </div>
+}

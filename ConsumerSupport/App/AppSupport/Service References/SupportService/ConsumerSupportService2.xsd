@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ObisisService.Data" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ObisisService.Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Support">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="App" nillable="true" type="tns:App" />
+      <xs:element minOccurs="0" name="AppId" type="xs:int" />
+      <xs:element minOccurs="0" name="Consumer" nillable="true" type="tns:Consumer" />
+      <xs:element minOccurs="0" name="ConsumerId" type="xs:int" />
+      <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsFlagged" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsRead" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SendDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Subject" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Support" nillable="true" type="tns:Support" />
+  <xs:complexType name="App">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Platform" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Version" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="App" nillable="true" type="tns:App" />
+  <xs:complexType name="Consumer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Consumer" nillable="true" type="tns:Consumer" />
+  <xs:complexType name="Admin">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Admin" nillable="true" type="tns:Admin" />
+  <xs:complexType name="SupportList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="List" nillable="true" type="tns:ArrayOfSupport" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SupportList" nillable="true" type="tns:SupportList" />
+  <xs:complexType name="ArrayOfSupport">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Support" nillable="true" type="tns:Support" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSupport" nillable="true" type="tns:ArrayOfSupport" />
+</xs:schema>

@@ -1,0 +1,32 @@
+﻿<Page
+    x:Class="OK.Mobisis.Pages.CalculateGanoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:OK.Mobisis.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Grid x:Name="LayoutRoot" Style="{StaticResource PageStyle}">
+        <Grid Margin="5, 5, 5, 20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="gano hesapla" Style="{StaticResource TitleStyle}" Grid.ColumnSpan="2" />
+
+            <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2">
+                <StackPanel x:Name="LessonsPanel" />
+            </ScrollViewer>
+
+            <Button Content="Hesapla" Click="btnCalculate_Click" Grid.Row="2" />
+            <TextBlock x:Name="tbGANO" FontSize="30" TextAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" />
+        </Grid>
+    </Grid>
+
+</Page>

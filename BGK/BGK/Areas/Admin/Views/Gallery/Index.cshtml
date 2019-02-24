@@ -1,0 +1,51 @@
+﻿@model IEnumerable<bgk_galeri>
+@{
+    int i = 0;
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);
+}
+
+<script type="text/javascript">
+    function ChangeApproval(id) {
+        $.post("@Url.Action("changeapproval")/" + id, { id: id }, function (msg) { $("a#" + id + "_approval").fadeOut(500).fadeIn(500, function () { $("a#" + id + "_approval").attr("class", $("a#" + id + "_approval").attr("class") == "approved" ? "deprecated" : "approved").attr("title", $("a#" + id + "_approval").attr("class") == "approved" ? "Onayı Kaldır" : "Onayla"); }); $("body").append(msg); });
+    }
+</script>
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a class="active" href="@Url.Action("index", "gallery")" style="width: 50%;">Galeriler</a>
+            <a href="@Url.Action("index", "image")" style="width: 49.9%;">Resimler</a>
+        </div>
+    </div>
+</div>
+<div class="table">
+    <div class="title">Galeriler
+        <span>@Html.ActionLink("Yeni Galeri", "create")</span>
+    </div>
+    <div class="content">
+        <div class="list">
+            <ul>
+                <li style="width: 25%;">@Html.Label("Adı")</li>
+                <li style="width: 45%;">@Html.Label("Açıklama")</li>
+                <li style="width: 15%;">@Html.Label("Tarih")</li>
+                <li style="width: 13%;">@Html.Label("Araçlar")</li>
+            </ul>
+            @foreach (var gallery in Model)
+            {
+                i++;
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li style="width: 25%;">@Html.DisplayFor(modelItem => gallery.Adi)</li>
+                    <li style="width: 45%;" title="@(gallery.Aciklama.Length > 75 ? gallery.Aciklama : "")">@gallery.Aciklama.GetSummary(75)</li>
+                    <li style="width: 15%;">@Html.ShortDateTime(gallery.OlusturulmaTarihi)</li>
+                    <li style="width: 13%;">
+                        <a id="@(gallery.Id + "_approval")" class="@(gallery.Onay == true ? "approved" : "deprecated")" title="@(gallery.Onay == true ? "Onayı Kaldır" : "Onayla")" href="javascript:void(0)" onclick="ChangeApproval('@gallery.Id')"></a>
+                        @Html.ActionLink(" ", "edit", new { num = gallery.Id }, new { @class = "edit", title = "Düzenle" })
+                        <a class="details" title="Detay" href="javascript:void(0);" onclick="$.BGK.Modal('@Url.Action("details", new { num = gallery.Id })');"> </a>
+                        <a class="delete" title="Sil" href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("delete", new { num = gallery.Id })', 'Eminim, sil', 'Vazgeç');"> </a>
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>
+@Html.Paging()

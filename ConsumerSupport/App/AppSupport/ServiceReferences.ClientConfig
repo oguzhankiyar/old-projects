@@ -1,0 +1,17 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_IConsumerSupportService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647" receiveTimeout="00:10:00" sendTimeout="00:10:00">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://apis.ogzkyr.net/ConsumerSupportService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IConsumerSupportService"
+                contract="SupportService.IConsumerSupportService" name="BasicHttpBinding_IConsumerSupportService" />
+        </client>
+    </system.serviceModel>
+</configuration>

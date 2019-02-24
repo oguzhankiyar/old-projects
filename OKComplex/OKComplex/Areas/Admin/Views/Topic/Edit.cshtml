@@ -1,0 +1,56 @@
+﻿@model topic
+@{
+    ViewBag.Title = "Konu Düzenle";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="form">
+        <ul>
+            <li>@Html.LabelFor(model => model.Title)</li>
+            <li>@Html.EditorFor(model => model.Title)<small>@Html.ValidationMessageFor(model => model.Title)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.Content)</li>
+            <li>@Html.TextAreaFor(model => model.Content)<small>@Html.ValidationMessageFor(model => model.Content)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.ImageFile)</li>
+            <li>@Html.EditorFor(model => model.ImageFile)<small>@Html.ValidationMessageFor(model => model.ImageFile)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.ForumId, "forum")</li>
+            <li>@Html.DropDownList("ForumId", String.Empty)<small>@Html.ValidationMessageFor(model => model.ForumId)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.IsSticky)</li>
+            <li>@Html.EditorFor(model => model.IsSticky)<small>@Html.ValidationMessageFor(model => model.IsSticky)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.IsClosed)</li>
+            <li>@Html.EditorFor(model => model.IsClosed)<small>@Html.ValidationMessageFor(model => model.IsClosed)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.IsApproval)</li>
+            <li>@Html.EditorFor(model => model.IsApproval)<small>@Html.ValidationMessageFor(model => model.IsApproval)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.ChangeModifyDate)</li>
+            <li>@Html.CheckBoxFor(model => model.ChangeModifyDate)</li>
+        </ul>
+        <ul>
+            <li>Kaydet</li>
+            <li>
+                @Html.Button("Kaydet", new { type = "submit" })
+                @Html.Button("Vazgeç", new { onclick = "OpenNewPage('" + Url.Action("index") + "');" })
+            </li>
+        </ul>
+        @Html.MyEditor("Content", "Standard")
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.WriterId)
+        @Html.HiddenFor(model => model.Rating)
+        @Html.HiddenFor(model => model.CreationDate)
+        @Html.HiddenFor(model => model.ModifyDate)
+        @Html.HiddenFor(model => model.ViewsCount)
+    </div>
+}

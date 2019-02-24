@@ -1,0 +1,467 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/client/2007" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+    xmlns:local="clr-namespace:TicketApp.Controls"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:converter="clr-namespace:TicketApp.Controls.Converters"
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+    <converter:StringToVisibilityConverter x:Name="visibilityConverter"/>
+    
+    <Style TargetType="local:InputBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:InputBox">
+                    <Grid x:Name="LayoutRoot" Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Rectangle Fill="White" Opacity=".3" Grid.RowSpan="2" />
+                        <TextBlock x:Name="LabelText" Text="{TemplateBinding Label}" Padding="0,10" Style="{StaticResource PhoneTextSmallStyle}"
+                                   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Label, Converter={StaticResource visibilityConverter}}" />
+                        <TextBox x:Name="ValueText" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Value, Mode=TwoWay}"
+                                 InputScope="{TemplateBinding Scope}" MaxLength="{TemplateBinding Length}" Foreground="White"
+                                 Padding="12,7.5,48,7.5" Margin="-12" BorderThickness="0" Background="Transparent" Grid.Row="1" />
+                        <Image x:Name="ClearButton" Source="/Assets/clear.png" Width="48" VerticalAlignment="Center" HorizontalAlignment="Right" Visibility="Collapsed" Opacity=".7" Grid.Row="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="local:DetailBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:DetailBox">
+                    <Grid x:Name="LayoutRoot" Background="Transparent" Margin="5">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="VisualStateGroup">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="LayoutRoot">
+                                            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFFFFF"/>
+                                            <EasingColorKeyFrame KeyTime="0:0:0.4" Value="Transparent"/>
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Rectangle Fill="White" Opacity=".3" />
+                        <StackPanel x:Name="ContentPanel" Margin="7.5">
+                            <TextBlock x:Name="LabelText" Text="{TemplateBinding Label}"
+                                       Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Label, Converter={StaticResource visibilityConverter}}"
+                                       FontSize="20" Opacity=".7" Margin="0,0,0,15" />
+                            <TextBlock x:Name="ValueText" Text="{TemplateBinding Value}"
+                                       Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Value, Converter={StaticResource visibilityConverter}}"
+                                       TextWrapping="Wrap" FontSize="25" HorizontalAlignment="{TemplateBinding Mode}" />
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:ExpandBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ExpandBox">
+                    <local:DetailBox x:Name="LayoutRoot">
+                        <local:DetailBox.Content>
+                            <Grid>
+                                <StackPanel x:Name="ContentPanel" Background="Transparent" />
+                                <Image x:Name="ToggleImage" Source="/Assets/down_light.png" Opacity=".7" Margin="5" Width="24" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                            </Grid>
+                        </local:DetailBox.Content>
+                    </local:DetailBox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:DigitBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:DigitBox">
+                    <Grid x:Name="LayoutRoot" Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="White" Opacity=".3" Grid.RowSpan="2" Grid.ColumnSpan="2" />
+                        <TextBlock x:Name="LabelText" Text="{TemplateBinding Label}" Padding="0,10,0,5" Style="{StaticResource PhoneTextSmallStyle}" />
+                        <TextBlock x:Name="ValueText" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Value, Mode=TwoWay}"
+                                   FontSize="25" Padding="24,12" Margin="-12" Grid.Row="1" />
+
+                        <Grid x:Name="IncrementGrid" Background="Transparent" Grid.Column="1">
+                            <Image Source="/Assets/up_light.png" Opacity=".7" Margin="15,10" Width="24" />
+                        </Grid>
+                        <Grid x:Name="DecrementGrid" Background="Transparent" Grid.Row="1" Grid.Column="1">
+                            <Image Source="/Assets/down_light.png" Opacity=".7" Margin="15,10" Width="24" />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    
+    <Style TargetType="local:DateBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:DateBox">
+                    <Grid x:Name="LayoutRoot" Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Rectangle Fill="White" Opacity=".3" Grid.RowSpan="2" />
+                        <TextBlock x:Name="LabelText" Text="{TemplateBinding Label}" Padding="0,10" Style="{StaticResource PhoneTextSmallStyle}" />
+                        <TextBlock x:Name="txtValue" Padding="10" FontSize="25" Margin="0" Grid.Row="1" />
+                        <toolkit:DatePicker x:Name="ValueText" ValueStringFormat="{}{0:d MMMMMMM yyyy}" Margin="-12" Grid.Row="1" Opacity="0"
+                                            Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Value, Mode=TwoWay}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:CompleteBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:CompleteBox">
+                    <Grid x:Name="LayoutRoot" Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Rectangle Fill="White" Opacity=".3" Grid.RowSpan="2" />
+                        <TextBlock x:Name="LabelText" Text="{TemplateBinding Label}" Padding="0,10" Style="{StaticResource PhoneTextSmallStyle}" />
+                        <toolkit:AutoCompleteBox x:Name="ValueText" Grid.Row="1" Padding="12,7.5,48,7.5" Margin="-12" Foreground="White" BorderThickness="0"
+                                                 Background="Transparent" FilterMode="Contains" MinimumPrefixLength="2" />
+                        <Image x:Name="ClearButton" Source="/Assets/clear.png" Width="48" VerticalAlignment="Center" HorizontalAlignment="Right" Visibility="Collapsed" Opacity=".7" Grid.Row="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:PickerBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:PickerBox">
+                    <Grid x:Name="LayoutRoot" Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Rectangle Fill="White" Opacity=".3" Grid.RowSpan="2" />
+                        <TextBlock x:Name="LabelText" Text="{TemplateBinding Label}" Padding="0,10" Style="{StaticResource PhoneTextSmallStyle}" />
+                        <toolkit:ListPicker x:Name="ValueText" BorderThickness="0" Grid.Row="1" Margin="0,6,0,0" Padding="20" ExpansionMode="FullScreenOnly" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:SelectBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:SelectBox">
+                    <Grid x:Name="LayoutRoot" Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Rectangle Fill="White" Opacity=".3" Grid.RowSpan="2" />
+                        <TextBlock x:Name="LabelText" Text="{TemplateBinding Label}" FontSize="20" Opacity=".7" Padding="12,10,12,5" />
+                        <TextBlock x:Name="ValueText" Grid.Row="1" Padding="12,11" FontSize="25" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="local:Title">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:Title">
+                    <Grid x:Name="LayoutRoot" Margin="5,10" Height="35">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{TemplateBinding Value}" FontSize="25" />
+                        <Rectangle Fill="White" Opacity=".3" Height="14" Margin="10,0,0,7.5" VerticalAlignment="Bottom" Grid.Column="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:Button">
+                    <Grid x:Name="LayoutRoot" Height="60" Background="White" Margin="5" Opacity=".7">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="VisualStateGroup">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="LayoutRoot">
+                                            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="Orange"/>
+                                            <EasingColorKeyFrame KeyTime="0:0:0.4" Value="#FFFFFF"/>
+                                        </ColorAnimationUsingKeyFrames>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="InnerText">
+                                            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFFFFF"/>
+                                            <EasingColorKeyFrame KeyTime="0:0:0.4" Value="Orange"/>
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Deactivated">
+                                    <Storyboard>
+                                        <ColorAnimation To="#CCCCCC" Duration="0:0:0.05" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="InnerText" />
+                                        <ColorAnimation To="#CCCCCC" Duration="0:0:0.05" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="Border" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="4" />
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="InnerText" Text="{TemplateBinding Value}" Foreground="Orange" FontSize="{TemplateBinding FontSize}" TextAlignment="Center" VerticalAlignment="Center" />
+                        <Border x:Name="Border" Background="Orange" Grid.Row="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="local:ProgressRing">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ProgressRing">
+                    <Viewbox Width="15" Margin="15,13,0,0">
+                        <Canvas Width="45" Height="45">
+                            <Path Data="M50,27.5 C50,24.23333 45,24.23333 45,27.5 C45,30.83333 50,30.83333 50,27.5"
+                  Stroke="White"
+                  StrokeThickness="5"
+                  Fill="Transparent"
+                  RenderTransformOrigin="0.5,0.83333">
+                                <Path.RenderTransform >
+                                    <RotateTransform x:Name="_rot1" Angle="0"/>
+                                </Path.RenderTransform>
+                                <Path.Triggers>
+                                    <EventTrigger RoutedEvent="Path.Loaded">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="_rot1"
+                                                               Storyboard.TargetProperty="Angle"
+                                                               RepeatBehavior="Forever">
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="360"/>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0">
+                                                        <EasingDoubleKeyFrame.EasingFunction>
+                                                            <PowerEase Power="1.3" EasingMode="EaseInOut"/>
+                                                        </EasingDoubleKeyFrame.EasingFunction>
+                                                    </EasingDoubleKeyFrame>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:3" Value="0"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Path.Triggers>
+                            </Path>
+                            <Path Data="M50,27.5 C50,24.23333 45,24.23333 45,27.5 C45,30.83333 50,30.83333 50,27.5"
+                  Stroke="White"
+                  StrokeThickness="5"
+                  Fill="Transparent"
+                  RenderTransformOrigin="5.5,0.83333">
+                                <Path.RenderTransform>
+                                    <RotateTransform x:Name="_rot2" Angle="26"/>
+                                </Path.RenderTransform>
+                                <Path.Triggers>
+                                    <EventTrigger RoutedEvent="Path.Loaded">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="_rot2"
+                                                               Storyboard.TargetProperty="Angle"
+                                                               RepeatBehavior="Forever">
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="13"/>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="13"/>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="-347">
+                                                        <EasingDoubleKeyFrame.EasingFunction>
+                                                            <PowerEase Power="1.3" EasingMode="EaseInOut"/>
+                                                        </EasingDoubleKeyFrame.EasingFunction>
+                                                    </EasingDoubleKeyFrame>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:3" Value="-347"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Path.Triggers>
+                            </Path>
+                            <Path Data="M50,27.5 C50,24.23333 45,24.23333 45,27.5 C45,30.83333 50,30.83333 50,27.5"
+                  Stroke="White"
+                  StrokeThickness="5"
+                  Fill="Transparent"
+                  RenderTransformOrigin="0.5,0.83333">
+                                <Path.RenderTransform>
+                                    <RotateTransform x:Name="_rot3" Angle="52"/>
+                                </Path.RenderTransform>
+                                <Path.Triggers>
+                                    <EventTrigger RoutedEvent="Path.Loaded">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="_rot3"
+                                                               Storyboard.TargetProperty="Angle"
+                                                               RepeatBehavior="Forever">
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="26"/>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="26"/>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:2.4" Value="-334">
+                                                        <EasingDoubleKeyFrame.EasingFunction>
+                                                            <PowerEase Power="1.3" EasingMode="EaseInOut"/>
+                                                        </EasingDoubleKeyFrame.EasingFunction>
+                                                    </EasingDoubleKeyFrame>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:3" Value="-334"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Path.Triggers>
+                            </Path>
+
+                            <Path Data="M50,27.5 C50,24.23333 45,24.23333 45,27.5 C45,30.83333 50,30.83333 50,27.5"
+                  Stroke="White"
+                  StrokeThickness="5"
+                  Fill="Transparent"
+                  RenderTransformOrigin="0.5,0.83333">
+                                <Path.RenderTransform>
+                                    <RotateTransform x:Name="_rot4" Angle="78"/>
+                                </Path.RenderTransform>
+                                <Path.Triggers>
+                                    <EventTrigger RoutedEvent="Path.Loaded">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="_rot4"
+                                                               Storyboard.TargetProperty="Angle"
+                                                               RepeatBehavior="Forever">
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="39"/>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="39"/>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:2.6" Value="-321">
+                                                        <EasingDoubleKeyFrame.EasingFunction>
+                                                            <PowerEase Power="1.3" EasingMode="EaseInOut"/>
+                                                        </EasingDoubleKeyFrame.EasingFunction>
+                                                    </EasingDoubleKeyFrame>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:3" Value="-321"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Path.Triggers>
+                            </Path>
+                            <Path Data="M50,27.5 C50,24.23333 45,24.23333 45,27.5 C45,30.83333 50,30.83333 50,27.5"
+                  Stroke="White"
+                  StrokeThickness="5"
+                  Fill="Transparent"
+                  RenderTransformOrigin="0.5,0.83333">
+                                <Path.RenderTransform>
+                                    <RotateTransform x:Name="_rot5" Angle="104"/>
+                                </Path.RenderTransform>
+                                <Path.Triggers>
+                                    <EventTrigger RoutedEvent="Path.Loaded">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="_rot5"
+                                                               Storyboard.TargetProperty="Angle"
+                                                               RepeatBehavior="Forever">
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="52"/>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="52"/>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:2.8" Value="-308">
+                                                        <EasingDoubleKeyFrame.EasingFunction>
+                                                            <PowerEase Power="1.3" EasingMode="EaseInOut"/>
+                                                        </EasingDoubleKeyFrame.EasingFunction>
+                                                    </EasingDoubleKeyFrame>
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:3" Value="-308"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Path.Triggers>
+                            </Path>
+                        </Canvas>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="local:Header">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:Header">
+                    <Grid x:Name="LayoutRoot" Background="Orange" VerticalAlignment="Top" Height="65">
+                        <Grid x:Name="LogoGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid x:Name="BackGrid" Width="65" Background="Transparent">
+                                <Image Source="/Assets/back_light.png" Width="28" Margin="0,5,0,0" />
+                            </Grid>
+                            <TextBlock x:Name="TitleText" VerticalAlignment="Center" FontSize="30" FontWeight="Thin" Grid.Column="1" />
+                        </Grid>
+                        <Grid x:Name="ProgressGrid" Visibility="Collapsed" Margin="30,0,15,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <ScrollViewer MaxHeight="400" Margin="0">
+                                <TextBlock x:Name="ProgressText" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="25" FontWeight="Thin"/>
+                            </ScrollViewer>
+                            <Grid Grid.Column="1">
+                                <local:ProgressRing x:Name="ProgressRing" Visibility="Collapsed" />
+                                <Image x:Name="ProgressImage" Width="32" Visibility="Collapsed" />
+                            </Grid>
+                            <Grid x:Name="ProgressButtons" Visibility="Collapsed" Margin="-25,0,-10,0"  Grid.ColumnSpan="2" Grid.Row="1" />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="local:ImageBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ImageBox">
+                    <Grid x:Name="LayoutRoot" Background="Transparent">
+
+                        <Image x:Name="ImgZoom"
+                               Source="{TemplateBinding Source}"
+               Stretch="UniformToFill"
+               RenderTransformOrigin="0,0">
+                            <Image.RenderTransform>
+                                <CompositeTransform
+                        ScaleX="1" ScaleY="1"
+                        TranslateX="0" TranslateY="0"/>
+                            </Image.RenderTransform>
+                        </Image>
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

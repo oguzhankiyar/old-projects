@@ -1,0 +1,103 @@
+﻿@model forum
+@{
+    OKDbEntities Db = new OKDbEntities();
+    int count = Convert.ToInt32(ViewBag.topiccount);
+    var subforums = Db.forum.Where(x => x.IsApproval == true && x.IsSubForum == true && x.ParentForumId == Model.Id).OrderBy(x => x.Sort).ToList();
+    forum parentforum = ViewBag.parentforum;
+}
+
+@section Map {
+    <div class="map">
+        <span>@Html.ActionLink(OK.Config("site-name"), "Index")</span>
+        <span>@Html.ActionLink(Model.category.Name, "Category", new { seo = Model.category.Seo, id = Model.category.Id })</span>
+        @Html.Raw(parentforum == null ? "" : "<span>" + Html.ActionLink(parentforum.Name, "Forum", new { seo = parentforum.Seo, id = parentforum.Id, page = 1 }) + "</span>")
+        <span class="active">@Model.Name</span>
+    </div>
+}
+
+@if (subforums.Count() != 0)
+{
+    <div class="table">
+        <div class="title">@Model.Name - Alt Forumlar</div>
+        <div class="content">
+            <div class="forums">
+                <ul>
+                    <li class="image"></li>
+                    <li class="name">Forum</li>
+                    <li class="topics-views">Konular / Okunma</li>
+                    <li class="lasttopic">Son Konu</li>
+                </ul>
+                @foreach (forum subforum in subforums)
+                {
+                    topic lasttopic = OK.LastTopic(subforum);
+                    <ul>
+                        <li class="image"><img src="@subforum.ImageFile" /></li>
+                        <li class="name">@Html.ActionLink(subforum.Name, "Forum", new { seo = subforum.Seo, id = subforum.Id, page = 1 })
+                            <span>@subforum.Description</span>
+                        </li>
+                        <li class="topics-views">Konular: @subforum.topics.Where(x => x.IsApproval == true).Count()<br />Okunma: @subforum.ViewsCount</li>
+                        <li class="lasttopic">
+                            @if (lasttopic != null)
+                            {
+                                @Html.ActionLink(OK.Summary(lasttopic.Title, 40), "Topic", new { seo = lasttopic.Seo, id = lasttopic.Id, page = 1 })
+                                <div>
+                                    Gön: <a href="javascript:void(0)" onclick="$.OK.Modal('@Url.Action("UserInfo", "Account", new { username = "i", id = lasttopic.WriterId })');">@OK.UserName(lasttopic.user)</a><br />
+                                    @Html.ShortDateTime((DateTime)lasttopic.CreationDate)
+                                </div>
+                            }
+                            else
+                            {
+                                <text>-</text>
+                            }
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+<div class="table">
+    <div class="title">@Model.Name<small>@Model.Description</small></div>
+    <div class="content">
+        @if (count + (int)ViewBag.stickycount == 0)
+        {
+            <div class="noitem">Henüz konu eklenmemiş</div>
+        }
+        else
+        {
+            <div class="topics">
+                <ul>
+                    <li class="image"></li>
+                    <li class="name">Konu</li>
+                    <li class="comments-views">Cevaplar / Okunma</li>
+                    <li class="lastcomment">Son Cevap</li>
+                </ul>
+                @foreach (topic topic in ViewBag.topics)
+                {
+                    comment lastcomment = OK.LastComment(topic);
+                    <ul>
+                        <li class="image"><img src="@topic.user.ImageFile" /></li>
+                        <li class="name">@(topic.IsSticky == true ? "[Sabit] " : null)@(topic.IsClosed == true ? "[Kilitli] " : null)@Html.ActionLink(topic.Title, "Topic", new { seo = topic.Seo, id = topic.Id, page = 1})
+                            <span>Gön: <a href="javascript:void(0)" onclick="$.OK.Modal('@Url.Action("UserInfo", "Account", new { username = "i", id = topic.WriterId })');">@OK.UserName(topic.user)</a>, @Html.ShortDateTime((DateTime)topic.CreationDate)</span>
+                        </li>
+                        <li class="comments-views">Cevaplar: @topic.comments.Where(x => x.IsApproval == true).Count()<br />Okunma: @topic.ViewsCount</li>
+                        <li class="lastcomment">
+                            @if (lastcomment != null)
+                            {
+                                <text>Gön: <a href="javascript:void(0)" onclick="$.OK.Modal('@Url.Action("UserInfo", "Account", new { id = lastcomment.WriterId })');">@OK.UserName(lastcomment.user)</a><br />@Html.ShortDateTime((DateTime)lastcomment.CreationDate)</text>
+                            }
+                            else
+                            {
+                                <text>-</text>
+                            }
+                        </li>
+                    </ul>
+                }
+            </div>
+        }
+    </div>
+</div>
+@Html.Button("Listeleme", new { onclick = "$.OK.FormModal('" + Url.Action("ListingOptions", "Forum", new { sort = Request.QueryString["sort"], order = Request.QueryString["order"], day = Request.QueryString["day"] }) + "', 'Listele', 'Vazgeç');" })
+@Html.Button("Yeni Konu Aç", new { onclick = "$.OK.FormModal('" + Url.Action("CreateTopic", "Forum", new { id = Model.Id }) + "', 'Gönder', 'Vazgeç');" })
+@Html.Paging("$.OK.OpenNewPage('" + Url.Action("Forum", new { seo = Model.Seo, id = Model.Id, page = "{page}" }) + "');", count, Convert.ToInt32(OK.Config("topic-paging-count")))

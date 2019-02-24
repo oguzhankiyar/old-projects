@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fdf8d43081ce40ecbd0164b25102fab9" Name="Diagram1" >
+        <EntityTypeShape EntityType="OKDbModel.Author" Width="1.5" PointX="0.75" PointY="4.875" />
+        <EntityTypeShape EntityType="OKDbModel.Category" Width="1.5" PointX="3" PointY="8.75" />
+        <EntityTypeShape EntityType="OKDbModel.Comment" Width="1.5" PointX="7.75" PointY="1.625" />
+        <EntityTypeShape EntityType="OKDbModel.Config" Width="1.5" PointX="7.875" PointY="6" />
+        <EntityTypeShape EntityType="OKDbModel.Post" Width="1.5" PointX="3" PointY="4.125" />
+        <EntityTypeShape EntityType="OKDbModel.PostCategory" Width="1.5" PointX="5.25" PointY="4.875" />
+        <EntityTypeShape EntityType="OKDbModel.PostTag" Width="1.5" PointX="5.25" PointY="1.875" />
+        <EntityTypeShape EntityType="OKDbModel.Rating" Width="1.5" PointX="5.25" PointY="7.625" />
+        <EntityTypeShape EntityType="OKDbModel.Tag" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="OKDbModel.FK_Post_Author" />
+        <AssociationConnector Association="OKDbModel.FK_PostCategory_Category" />
+        <AssociationConnector Association="OKDbModel.FK_PostCategory_Post" />
+        <AssociationConnector Association="OKDbModel.FK_PostTag_Post" />
+        <AssociationConnector Association="OKDbModel.FK_Rating_Post" />
+        <AssociationConnector Association="OKDbModel.FK_PostTag_Tag" />
+        <AssociationConnector Association="OKDbModel.FK_Comment_Author" />
+        <AssociationConnector Association="OKDbModel.FK_Comment_Post" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

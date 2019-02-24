@@ -1,0 +1,79 @@
+﻿@model IEnumerable<club_notice>
+
+<script type="text/javascript">
+    $(function () {
+        //$("div.notices div.list ul").click(function () {
+        //    var index = $("div.notices div.list ul").index(this);
+        //    $("div.notices div.list ul").removeClass("active");
+        //    $("div.notices div.list ul:eq(" + index + ")").addClass("active");
+        //    var height = $("div.notices div.detail ul").height();
+        //    $("div.notices div.detail ul, div.notices div.detail ul li").hide();
+        //    $("div.notices div.detail ul:eq(" + index + ")").stop().css({
+        //        "width": 0,
+        //        "height": 0,
+        //        "margin-left": "100%",
+        //        "margin-top": "25%"
+        //    }).show().animate({ width: "100%", height: height, marginLeft: 0, marginTop: 0 }, 500, function () {
+        //        $("div.notices div.detail ul:eq(" + index + ") li").fadeIn();
+        //    });
+        //});
+        $("div.notices div.list ul").click(function () {
+            var index = $("div.notices div.list ul").index(this);
+            $("div.notices div.list ul").removeClass("active");
+            $("div.notices div.list ul:eq(" + index + ")").addClass("active");
+            var height = $("div.notices div.detail ul").height();
+            $("div.notices div.detail ul, div.notices div.detail ul li").hide();
+            $("div.notices div.detail ul:eq(" + index + ")").stop().fadeIn(500, function () {
+                $("div.notices div.detail ul:eq(" + index + ") li").fadeIn();
+            });
+        });
+        $("div.notices div.detail ul").hover(function () { timer.pause(); }, function () { timer.resume(); });
+        $("div.notices div.list ul:first-child").click();
+        var length = $("div.notices div.list ul").length;
+        var timer = new RecurringTimer(function () {
+            var index = $("div.notices div.list ul.active").index();
+            $("div.notices div.list ul:eq(" + (index + 1) % length + ")").click();
+        }, 5000);
+
+        function RecurringTimer(callback, delay) {
+            var timerId, start, remaining = delay;
+            this.pause = function () {
+                window.clearTimeout(timerId);
+                remaining -= new Date() - start;
+            };
+            var resume = function () {
+                start = new Date();
+                timerId = window.setTimeout(function () {
+                    remaining = delay;
+                    resume();
+                    callback();
+                }, remaining);
+            };
+            this.resume = resume;
+            this.resume();
+        }
+    });
+</script>
+@if (Model.Count() != 0)
+{
+    <div class="notices">
+        <div class="detail">
+            @foreach (var notice in Model)
+            {
+                <ul style="background-image: url('@notice.Image');">
+                    <li><a href="@Url.Action("NoticeDetail", "Home", new { id = notice.Id, seo = notice.Seo })">@notice.Title</a></li>
+                    <li><a href="@Url.Action("NoticeDetail", "Home", new { id = notice.Id, seo = notice.Seo })">@OK.Summary(notice.Content, 200)</a></li>
+                </ul>
+            }
+        </div>
+        <div class="list">
+            @foreach (var notice in Model)
+            {
+                <ul>
+                    <li><img src="@notice.Image" /></li>
+                    <li><a href="@Url.Action("NoticeDetail", "Home", new { id = notice.Id, seo = notice.Seo })">@notice.Title</a></li>
+                </ul>
+            }
+        </div>
+    </div>
+}

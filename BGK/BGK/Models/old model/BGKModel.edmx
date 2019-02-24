@@ -1,0 +1,2700 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BGKModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="BGKModelStoreContainer">
+    <EntitySet Name="bgk_yetki" EntityType="BGKModel.Store.bgk_yetki" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_anket" EntityType="BGKModel.Store.bgk_anket" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_anket_secenek" EntityType="BGKModel.Store.bgk_anket_secenek" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_anket_secim" EntityType="BGKModel.Store.bgk_anket_secim" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_ayar" EntityType="BGKModel.Store.bgk_ayar" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_bildirim" EntityType="BGKModel.Store.bgk_bildirim" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_butce" EntityType="BGKModel.Store.bgk_butce" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_dokuman" EntityType="BGKModel.Store.bgk_dokuman" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_dokuman_kategori" EntityType="BGKModel.Store.bgk_dokuman_kategori" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_dosya" EntityType="BGKModel.Store.bgk_dosya" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_etkinlik" EntityType="BGKModel.Store.bgk_etkinlik" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_etkinlik_gorevli" EntityType="BGKModel.Store.bgk_etkinlik_gorevli" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_etkinlik_konusmaci" EntityType="BGKModel.Store.bgk_etkinlik_konusmaci" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_firma" EntityType="BGKModel.Store.bgk_firma" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_galeri" EntityType="BGKModel.Store.bgk_galeri" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_galeri_resim" EntityType="BGKModel.Store.bgk_galeri_resim" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_gorev" EntityType="BGKModel.Store.bgk_gorev" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_gorev_kategori" EntityType="BGKModel.Store.bgk_gorev_kategori" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_gorev_kategori_uye" EntityType="BGKModel.Store.bgk_gorev_kategori_uye" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_gorev_uye" EntityType="BGKModel.Store.bgk_gorev_uye" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_grup" EntityType="BGKModel.Store.bgk_grup" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_grup_uye" EntityType="BGKModel.Store.bgk_grup_uye" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_kategori" EntityType="BGKModel.Store.bgk_kategori" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_menu" EntityType="BGKModel.Store.bgk_menu" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_mesaj" EntityType="BGKModel.Store.bgk_mesaj" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_not" EntityType="BGKModel.Store.bgk_not" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_oylama" EntityType="BGKModel.Store.bgk_oylama" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_sayfa" EntityType="BGKModel.Store.bgk_sayfa" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_seviye" EntityType="BGKModel.Store.bgk_seviye" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_uye" EntityType="BGKModel.Store.bgk_uye" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_yazi" EntityType="BGKModel.Store.bgk_yazi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bgk_yorum" EntityType="BGKModel.Store.bgk_yorum" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_bgk_anket_secenek_bgk_anket" Association="BGKModel.Store.FK_bgk_anket_secenek_bgk_anket">
+      <End Role="bgk_anket" EntitySet="bgk_anket" />
+      <End Role="bgk_anket_secenek" EntitySet="bgk_anket_secenek" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_anket_secim_bgk_anket_secenek" Association="BGKModel.Store.FK_bgk_anket_secim_bgk_anket_secenek">
+      <End Role="bgk_anket_secenek" EntitySet="bgk_anket_secenek" />
+      <End Role="bgk_anket_secim" EntitySet="bgk_anket_secim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_anket_secim_bgk_uye" Association="BGKModel.Store.FK_bgk_anket_secim_bgk_uye">
+      <End Role="bgk_uye" EntitySet="bgk_uye" />
+      <End Role="bgk_anket_secim" EntitySet="bgk_anket_secim" />
+    </AssociationSet>
+    <AssociationSet Name="FK__bgk_bildi__UyeID__3EDC53F0" Association="BGKModel.Store.FK__bgk_bildi__UyeID__3EDC53F0">
+      <End Role="bgk_uye" EntitySet="bgk_uye" />
+      <End Role="bgk_bildirim" EntitySet="bgk_bildirim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_butce_bgk_dosya" Association="BGKModel.Store.FK_bgk_butce_bgk_dosya">
+      <End Role="bgk_dosya" EntitySet="bgk_dosya" />
+      <End Role="bgk_butce" EntitySet="bgk_butce" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_butce_bgk_etkinlik" Association="BGKModel.Store.FK_bgk_butce_bgk_etkinlik">
+      <End Role="bgk_etkinlik" EntitySet="bgk_etkinlik" />
+      <End Role="bgk_butce" EntitySet="bgk_butce" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_butce_bgk_firma" Association="BGKModel.Store.FK_bgk_butce_bgk_firma">
+      <End Role="bgk_firma" EntitySet="bgk_firma" />
+      <End Role="bgk_butce" EntitySet="bgk_butce" />
+    </AssociationSet>
+    <AssociationSet Name="FK__bgk_dokum__Dosya__54CB950F" Association="BGKModel.Store.FK__bgk_dokum__Dosya__54CB950F">
+      <End Role="bgk_dosya" EntitySet="bgk_dosya" />
+      <End Role="bgk_dokuman" EntitySet="bgk_dokuman" />
+    </AssociationSet>
+    <AssociationSet Name="FK__bgk_dokum__Kateg__53D770D6" Association="BGKModel.Store.FK__bgk_dokum__Kateg__53D770D6">
+      <End Role="bgk_dokuman_kategori" EntitySet="bgk_dokuman_kategori" />
+      <End Role="bgk_dokuman" EntitySet="bgk_dokuman" />
+    </AssociationSet>
+    <AssociationSet Name="FK__bgk_dokum__UyeID__4B422AD5" Association="BGKModel.Store.FK__bgk_dokum__UyeID__4B422AD5">
+      <End Role="bgk_uye" EntitySet="bgk_uye" />
+      <End Role="bgk_dokuman" EntitySet="bgk_dokuman" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_dosya_bgk_uye" Association="BGKModel.Store.FK_bgk_dosya_bgk_uye">
+      <End Role="bgk_uye" EntitySet="bgk_uye" />
+      <End Role="bgk_dosya" EntitySet="bgk_dosya" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_etkinlik_bgk_dosya" Association="BGKModel.Store.FK_bgk_etkinlik_bgk_dosya">
+      <End Role="bgk_dosya" EntitySet="bgk_dosya" />
+      <End Role="bgk_etkinlik" EntitySet="bgk_etkinlik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_firma_bgk_dosya" Association="BGKModel.Store.FK_bgk_firma_bgk_dosya">
+      <End Role="bgk_dosya" EntitySet="bgk_dosya" />
+      <End Role="bgk_firma" EntitySet="bgk_firma" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_galeri_resim_bgk_dosya" Association="BGKModel.Store.FK_bgk_galeri_resim_bgk_dosya">
+      <End Role="bgk_dosya" EntitySet="bgk_dosya" />
+      <End Role="bgk_galeri_resim" EntitySet="bgk_galeri_resim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_gorev_kategori_bgk_dosya" Association="BGKModel.Store.FK_bgk_gorev_kategori_bgk_dosya">
+      <End Role="bgk_dosya" EntitySet="bgk_dosya" />
+      <End Role="bgk_gorev_kategori" EntitySet="bgk_gorev_kategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_gorev_uye_bgk_dosya" Association="BGKModel.Store.FK_bgk_gorev_uye_bgk_dosya">
+      <End Role="bgk_dosya" EntitySet="bgk_dosya" />
+      <End Role="bgk_gorev_uye" EntitySet="bgk_gorev_uye" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_etkinlik_bgk_firma" Association="BGKModel.Store.FK_bgk_etkinlik_bgk_firma">
+      <End Role="bgk_firma" EntitySet="bgk_firma" />
+      <End Role="bgk_etkinlik" EntitySet="bgk_etkinlik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_etkinlik_gorevli_bgk_etkinlik" Association="BGKModel.Store.FK_bgk_etkinlik_gorevli_bgk_etkinlik">
+      <End Role="bgk_etkinlik" EntitySet="bgk_etkinlik" />
+      <End Role="bgk_etkinlik_gorevli" EntitySet="bgk_etkinlik_gorevli" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_etkinlik_konusmaci_bgk_etkinlik" Association="BGKModel.Store.FK_bgk_etkinlik_konusmaci_bgk_etkinlik">
+      <End Role="bgk_etkinlik" EntitySet="bgk_etkinlik" />
+      <End Role="bgk_etkinlik_konusmaci" EntitySet="bgk_etkinlik_konusmaci" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_etkinlik_gorevli_bgk_gorev" Association="BGKModel.Store.FK_bgk_etkinlik_gorevli_bgk_gorev">
+      <End Role="bgk_gorev" EntitySet="bgk_gorev" />
+      <End Role="bgk_etkinlik_gorevli" EntitySet="bgk_etkinlik_gorevli" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_etkinlik_gorevli_bgk_uye" Association="BGKModel.Store.FK_bgk_etkinlik_gorevli_bgk_uye">
+      <End Role="bgk_uye" EntitySet="bgk_uye" />
+      <End Role="bgk_etkinlik_gorevli" EntitySet="bgk_etkinlik_gorevli" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_firma_bgk_uye" Association="BGKModel.Store.FK_bgk_firma_bgk_uye">
+      <End Role="bgk_uye" EntitySet="bgk_uye" />
+      <End Role="bgk_firma" EntitySet="bgk_firma" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_galeri_resim_bgk_galeri" Association="BGKModel.Store.FK_bgk_galeri_resim_bgk_galeri">
+      <End Role="bgk_galeri" EntitySet="bgk_galeri" />
+      <End Role="bgk_galeri_resim" EntitySet="bgk_galeri_resim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_gorev_bgk_gorev_kategori" Association="BGKModel.Store.FK_bgk_gorev_bgk_gorev_kategori">
+      <End Role="bgk_gorev_kategori" EntitySet="bgk_gorev_kategori" />
+      <End Role="bgk_gorev" EntitySet="bgk_gorev" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_gorev_bgk_grup" Association="BGKModel.Store.FK_bgk_gorev_bgk_grup">
+      <End Role="bgk_grup" EntitySet="bgk_grup" />
+      <End Role="bgk_gorev" EntitySet="bgk_gorev" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_gorev_bgk_uye" Association="BGKModel.Store.FK_bgk_gorev_bgk_uye">
+      <End Role="bgk_uye" EntitySet="bgk_uye" />
+      <End Role="bgk_gorev" EntitySet="bgk_gorev" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_gorev_uye_bgk_gorev" Association="BGKModel.Store.FK_bgk_gorev_uye_bgk_gorev">
+      <End Role="bgk_gorev" EntitySet="bgk_gorev" />
+      <End Role="bgk_gorev_uye" EntitySet="bgk_gorev_uye" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_gorev_kategori_bgk_uye" Association="BGKModel.Store.FK_bgk_gorev_kategori_bgk_uye">
+      <End Role="bgk_uye" EntitySet="bgk_uye" />
+      <End Role="bgk_gorev_kategori" EntitySet="bgk_gorev_kategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_gorev_kategori_uye_bgk_gorev_kategori" Association="BGKModel.Store.FK_bgk_gorev_kategori_uye_bgk_gorev_kategori">
+      <End Role="bgk_gorev_kategori" EntitySet="bgk_gorev_kategori" />
+      <End Role="bgk_gorev_kategori_uye" EntitySet="bgk_gorev_kategori_uye" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_kategori_uye_bgk_uye" Association="BGKModel.Store.FK_bgk_kategori_uye_bgk_uye">
+      <End Role="bgk_uye" EntitySet="bgk_uye" />
+      <End Role="bgk_gorev_kategori_uye" EntitySet="bgk_gorev_kategori_uye" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_gorev_uye_bgk_uye" Association="BGKModel.Store.FK_bgk_gorev_uye_bgk_uye">
+      <End Role="bgk_uye" EntitySet="bgk_uye" />
+      <End Role="bgk_gorev_uye" EntitySet="bgk_gorev_uye" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_grup_uye_bgk_grup" Association="BGKModel.Store.FK_bgk_grup_uye_bgk_grup">
+      <End Role="bgk_grup" EntitySet="bgk_grup" />
+      <End Role="bgk_grup_uye" EntitySet="bgk_grup_uye" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_grup_uye_bgk_uye" Association="BGKModel.Store.FK_bgk_grup_uye_bgk_uye">
+      <End Role="bgk_uye" EntitySet="bgk_uye" />
+      <End Role="bgk_grup_uye" EntitySet="bgk_grup_uye" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_yazi_bgk_kategori" Association="BGKModel.Store.FK_bgk_yazi_bgk_kategori">
+      <End Role="bgk_kategori" EntitySet="bgk_kategori" />
+      <End Role="bgk_yazi" EntitySet="bgk_yazi" />
+    </AssociationSet>
+    <AssociationSet Name="FK__bgk_not__UyeID__3A179ED3" Association="BGKModel.Store.FK__bgk_not__UyeID__3A179ED3">
+      <End Role="bgk_uye" EntitySet="bgk_uye" />
+      <End Role="bgk_not" EntitySet="bgk_not" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_oylama_bgk_uye" Association="BGKModel.Store.FK_bgk_oylama_bgk_uye">
+      <End Role="bgk_uye" EntitySet="bgk_uye" />
+      <End Role="bgk_oylama" EntitySet="bgk_oylama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_oylama_bgk_yazi" Association="BGKModel.Store.FK_bgk_oylama_bgk_yazi">
+      <End Role="bgk_yazi" EntitySet="bgk_yazi" />
+      <End Role="bgk_oylama" EntitySet="bgk_oylama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_yazi_bgk_uye" Association="BGKModel.Store.FK_bgk_yazi_bgk_uye">
+      <End Role="bgk_uye" EntitySet="bgk_uye" />
+      <End Role="bgk_yazi" EntitySet="bgk_yazi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_yorum_bgk_uye" Association="BGKModel.Store.FK_bgk_yorum_bgk_uye">
+      <End Role="bgk_uye" EntitySet="bgk_uye" />
+      <End Role="bgk_yorum" EntitySet="bgk_yorum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bgk_yorum_bgk_yazi" Association="BGKModel.Store.FK_bgk_yorum_bgk_yazi">
+      <End Role="bgk_yazi" EntitySet="bgk_yazi" />
+      <End Role="bgk_yorum" EntitySet="bgk_yorum" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="bgk_yetki">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Yazi" Type="bit" Nullable="false" />
+    <Property Name="Yorum" Type="bit" Nullable="false" />
+    <Property Name="Sayfa" Type="bit" Nullable="false" />
+    <Property Name="Ayar" Type="bit" Nullable="false" />
+    <Property Name="Etkinlik" Type="bit" Nullable="false" />
+    <Property Name="Butce" Type="bit" Nullable="false" />
+    <Property Name="Dosya" Type="bit" Nullable="false" />
+    <Property Name="Grup" Type="bit" Nullable="false" />
+    <Property Name="Gorev" Type="bit" Nullable="false" />
+    <Property Name="Bildirim" Type="bit" Nullable="false" />
+    <Property Name="Firma" Type="bit" Nullable="false" />
+    <Property Name="Link" Type="bit" Nullable="false" />
+    <Property Name="Uye" Type="bit" Nullable="false" />
+    <Property Name="Seviye" Type="bit" Nullable="false" />
+    <Property Name="Dokuman" Type="bit" Nullable="false" />
+    <Property Name="Not" Type="bit" Nullable="false" />
+    <Property Name="Galeri" Type="bit" Nullable="false" />
+    <Property Name="Anket" Type="bit" Nullable="false" />
+    <Property Name="YaziOnay" Type="bit" Nullable="false" />
+    <Property Name="YorumOnay" Type="bit" Nullable="false" />
+    <Property Name="GorevVerme" Type="bit" Nullable="false" />
+    <Property Name="Kod" Type="int" Nullable="true" />
+    <Property Name="YaziYazma" Type="bit" Nullable="false" />
+    <Property Name="YorumYazma" Type="bit" Nullable="false" />
+    <Property Name="BakimdaGiris" Type="bit" Nullable="false" />
+    <Property Name="OyKullanma" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_anket">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Soru" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="CokluSecim" Type="bit" Nullable="false" />
+    <Property Name="SadeceUye" Type="bit" Nullable="false" />
+    <Property Name="BaslangicTarihi" Type="datetime" Nullable="false" />
+    <Property Name="BitisTarihi" Type="datetime" Nullable="false" />
+    <Property Name="Sira" Type="int" Nullable="false" />
+    <Property Name="Onay" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_anket_secenek">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="AnketID" Type="int" Nullable="false" />
+    <Property Name="Sira" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_anket_secim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UyeID" Type="int" Nullable="true" />
+    <Property Name="SecenekID" Type="int" Nullable="false" />
+    <Property Name="OylayanIP" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="SecimTarihi" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_ayar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="Deger" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="bgk_bildirim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Icerik" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UyeID" Type="int" Nullable="false" />
+    <Property Name="Tarih" Type="datetime" Nullable="false" />
+    <Property Name="Okundu" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_butce">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HarcananYer" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Miktar" Type="decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Aciklama" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EtkinlikID" Type="int" Nullable="true" />
+    <Property Name="FaturaID" Type="int" Nullable="true" />
+    <Property Name="FirmaID" Type="int" Nullable="false" />
+    <Property Name="IslemTarihi" Type="datetime" Nullable="true" />
+    <Property Name="Islem" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_dokuman">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Icerik" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UyeID" Type="int" Nullable="false" />
+    <Property Name="EklenmeTarihi" Type="datetime" Nullable="false" />
+    <Property Name="Onay" Type="bit" Nullable="false" />
+    <Property Name="Seo" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Sira" Type="int" Nullable="false" />
+    <Property Name="KategoriID" Type="int" Nullable="false" />
+    <Property Name="DosyaID" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="bgk_dokuman_kategori">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Onay" Type="bit" Nullable="false" />
+    <Property Name="Seo" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Sira" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_dosya">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Aciklama" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="DosyaAdi" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="DosyaTipi" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="YukleyenID" Type="int" Nullable="false" />
+    <Property Name="YuklenmeTarihi" Type="datetime" Nullable="false" />
+    <Property Name="Adres" Type="nvarchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="bgk_etkinlik">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FirmaID" Type="int" Nullable="true" />
+    <Property Name="AfisID" Type="int" Nullable="true" />
+    <Property Name="BaslangicTarihi" Type="datetime" Nullable="false" />
+    <Property Name="BitisTarihi" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_etkinlik_gorevli">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UyeID" Type="int" Nullable="false" />
+    <Property Name="GorevID" Type="int" Nullable="false" />
+    <Property Name="EtkinlikID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_etkinlik_konusmaci">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdSoyad" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Konu" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Aciklama" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="EtkinlikID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_firma">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="UyeID" Type="int" Nullable="true" />
+    <Property Name="ResimID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_galeri">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Seo" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="OlusturulmaTarihi" Type="datetime" Nullable="false" />
+    <Property Name="Onay" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_galeri_resim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Aciklama" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="ResimID" Type="int" Nullable="false" />
+    <Property Name="GaleriID" Type="int" Nullable="false" />
+    <Property Name="Sira" Type="int" Nullable="false" />
+    <Property Name="EklenmeTarihi" Type="datetime" Nullable="false" />
+    <Property Name="Onay" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_gorev">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GrupID" Type="int" Nullable="true" />
+    <Property Name="KategoriID" Type="int" Nullable="true" />
+    <Property Name="OlusturanID" Type="int" Nullable="false" />
+    <Property Name="Puan" Type="int" Nullable="false" />
+    <Property Name="CezaPuani" Type="int" Nullable="true" />
+    <Property Name="GunSayisi" Type="int" Nullable="true" />
+    <Property Name="OlusturulmaTarihi" Type="datetime" Nullable="false" />
+    <Property Name="BitisTarihi" Type="datetime" Nullable="true" />
+    <Property Name="Tip" Type="int" Nullable="false" />
+    <Property Name="Onay" Type="bit" Nullable="false" />
+    <Property Name="Sira" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="bgk_gorev_kategori">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ResimID" Type="int" Nullable="false" />
+    <Property Name="OlusturanID" Type="int" Nullable="false" />
+    <Property Name="PuanSiniri" Type="int" Nullable="true" />
+    <Property Name="Sira" Type="int" Nullable="false" />
+    <Property Name="Onay" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_gorev_kategori_uye">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UyeID" Type="int" Nullable="false" />
+    <Property Name="KategoriID" Type="int" Nullable="false" />
+    <Property Name="BaslamaTarihi" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_gorev_uye">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Aciklama" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="UyeID" Type="int" Nullable="false" />
+    <Property Name="GorevID" Type="int" Nullable="false" />
+    <Property Name="Rapor" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="DosyaID" Type="int" Nullable="true" />
+    <Property Name="BaslangicTarihi" Type="datetime" Nullable="false" />
+    <Property Name="BitisTarihi" Type="datetime" Nullable="false" />
+    <Property Name="Tamamlandi" Type="bit" Nullable="false" />
+    <Property Name="Kabul" Type="bit" Nullable="true" />
+    <Property Name="Onay" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="bgk_grup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Tip" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_grup_uye">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Aciklama" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="UyeID" Type="int" Nullable="false" />
+    <Property Name="GrupID" Type="int" Nullable="false" />
+    <Property Name="BaslangicTarihi" Type="datetime" Nullable="false" />
+    <Property Name="BitisTarihi" Type="datetime" Nullable="true" />
+    <Property Name="Tip" Type="int" Nullable="false" />
+    <Property Name="Aktif" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_kategori">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Seo" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Sira" Type="int" Nullable="false" />
+    <Property Name="Onay" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Adres" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Sira" Type="int" Nullable="false" />
+    <Property Name="SadeceUye" Type="bit" Nullable="false" />
+    <Property Name="Onay" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_mesaj">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Mesaj" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Tip" Type="int" Nullable="false" />
+    <Property Name="GonderenID" Type="int" Nullable="false" />
+    <Property Name="AliciID" Type="int" Nullable="false" />
+    <Property Name="Okundu" Type="bit" Nullable="false" />
+    <Property Name="YazimTarihi" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_not">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Konu" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Icerik" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UyeID" Type="int" Nullable="false" />
+    <Property Name="Tarih" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_oylama">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UyeID" Type="int" Nullable="true" />
+    <Property Name="YaziID" Type="int" Nullable="false" />
+    <Property Name="Puan" Type="int" Nullable="false" />
+    <Property Name="OylayanIP" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="bgk_sayfa">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Icerik" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Seo" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Onay" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_seviye">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="AltSinir" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_uye">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdSoyad" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Sifre" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Telefon" Type="int" Nullable="true" />
+    <Property Name="OgrenciNo" Type="int" Nullable="false" />
+    <Property Name="Fakulte" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Bolum" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="GirisYili" Type="int" Nullable="false" />
+    <Property Name="Puan" Type="int" Nullable="false" />
+    <Property Name="CezaPuani" Type="int" Nullable="false" />
+    <Property Name="Yetki" Type="int" Nullable="false" />
+    <Property Name="SonGiris" Type="datetime" Nullable="false" />
+    <Property Name="KayitTarihi" Type="datetime" Nullable="false" />
+    <Property Name="Onay" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_yazi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Baslik" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Icerik" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ozet" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="KategoriID" Type="int" Nullable="false" />
+    <Property Name="UyeID" Type="int" Nullable="false" />
+    <Property Name="Seo" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Okunma" Type="int" Nullable="false" />
+    <Property Name="YazimTarihi" Type="datetime" Nullable="false" />
+    <Property Name="Manset" Type="bit" Nullable="false" />
+    <Property Name="Onay" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bgk_yorum">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Yorum" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="YaziID" Type="int" Nullable="false" />
+    <Property Name="UyeID" Type="int" Nullable="true" />
+    <Property Name="Yazan" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="YazilmaTarihi" Type="datetime" Nullable="false" />
+    <Property Name="Onay" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_bgk_anket_secenek_bgk_anket">
+    <End Role="bgk_anket" Type="BGKModel.Store.bgk_anket" Multiplicity="1" />
+    <End Role="bgk_anket_secenek" Type="BGKModel.Store.bgk_anket_secenek" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_anket">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_anket_secenek">
+        <PropertyRef Name="AnketID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_anket_secim_bgk_anket_secenek">
+    <End Role="bgk_anket_secenek" Type="BGKModel.Store.bgk_anket_secenek" Multiplicity="1" />
+    <End Role="bgk_anket_secim" Type="BGKModel.Store.bgk_anket_secim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_anket_secenek">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_anket_secim">
+        <PropertyRef Name="SecenekID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_anket_secim_bgk_uye">
+    <End Role="bgk_uye" Type="BGKModel.Store.bgk_uye" Multiplicity="0..1" />
+    <End Role="bgk_anket_secim" Type="BGKModel.Store.bgk_anket_secim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_uye">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_anket_secim">
+        <PropertyRef Name="UyeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__bgk_bildi__UyeID__3EDC53F0">
+    <End Role="bgk_uye" Type="BGKModel.Store.bgk_uye" Multiplicity="1" />
+    <End Role="bgk_bildirim" Type="BGKModel.Store.bgk_bildirim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_uye">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_bildirim">
+        <PropertyRef Name="UyeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_butce_bgk_dosya">
+    <End Role="bgk_dosya" Type="BGKModel.Store.bgk_dosya" Multiplicity="0..1" />
+    <End Role="bgk_butce" Type="BGKModel.Store.bgk_butce" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_dosya">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_butce">
+        <PropertyRef Name="FaturaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_butce_bgk_etkinlik">
+    <End Role="bgk_etkinlik" Type="BGKModel.Store.bgk_etkinlik" Multiplicity="0..1" />
+    <End Role="bgk_butce" Type="BGKModel.Store.bgk_butce" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_etkinlik">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_butce">
+        <PropertyRef Name="EtkinlikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_butce_bgk_firma">
+    <End Role="bgk_firma" Type="BGKModel.Store.bgk_firma" Multiplicity="1" />
+    <End Role="bgk_butce" Type="BGKModel.Store.bgk_butce" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_firma">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_butce">
+        <PropertyRef Name="FirmaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__bgk_dokum__Dosya__54CB950F">
+    <End Role="bgk_dosya" Type="BGKModel.Store.bgk_dosya" Multiplicity="0..1" />
+    <End Role="bgk_dokuman" Type="BGKModel.Store.bgk_dokuman" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_dosya">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_dokuman">
+        <PropertyRef Name="DosyaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__bgk_dokum__Kateg__53D770D6">
+    <End Role="bgk_dokuman_kategori" Type="BGKModel.Store.bgk_dokuman_kategori" Multiplicity="1" />
+    <End Role="bgk_dokuman" Type="BGKModel.Store.bgk_dokuman" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_dokuman_kategori">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_dokuman">
+        <PropertyRef Name="KategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__bgk_dokum__UyeID__4B422AD5">
+    <End Role="bgk_uye" Type="BGKModel.Store.bgk_uye" Multiplicity="1" />
+    <End Role="bgk_dokuman" Type="BGKModel.Store.bgk_dokuman" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_uye">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_dokuman">
+        <PropertyRef Name="UyeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_dosya_bgk_uye">
+    <End Role="bgk_uye" Type="BGKModel.Store.bgk_uye" Multiplicity="1" />
+    <End Role="bgk_dosya" Type="BGKModel.Store.bgk_dosya" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_uye">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_dosya">
+        <PropertyRef Name="YukleyenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_etkinlik_bgk_dosya">
+    <End Role="bgk_dosya" Type="BGKModel.Store.bgk_dosya" Multiplicity="0..1" />
+    <End Role="bgk_etkinlik" Type="BGKModel.Store.bgk_etkinlik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_dosya">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_etkinlik">
+        <PropertyRef Name="AfisID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_firma_bgk_dosya">
+    <End Role="bgk_dosya" Type="BGKModel.Store.bgk_dosya" Multiplicity="1" />
+    <End Role="bgk_firma" Type="BGKModel.Store.bgk_firma" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_dosya">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_firma">
+        <PropertyRef Name="ResimID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_galeri_resim_bgk_dosya">
+    <End Role="bgk_dosya" Type="BGKModel.Store.bgk_dosya" Multiplicity="1" />
+    <End Role="bgk_galeri_resim" Type="BGKModel.Store.bgk_galeri_resim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_dosya">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_galeri_resim">
+        <PropertyRef Name="ResimID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_gorev_kategori_bgk_dosya">
+    <End Role="bgk_dosya" Type="BGKModel.Store.bgk_dosya" Multiplicity="1" />
+    <End Role="bgk_gorev_kategori" Type="BGKModel.Store.bgk_gorev_kategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_dosya">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_gorev_kategori">
+        <PropertyRef Name="ResimID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_gorev_uye_bgk_dosya">
+    <End Role="bgk_dosya" Type="BGKModel.Store.bgk_dosya" Multiplicity="0..1" />
+    <End Role="bgk_gorev_uye" Type="BGKModel.Store.bgk_gorev_uye" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_dosya">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_gorev_uye">
+        <PropertyRef Name="DosyaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_etkinlik_bgk_firma">
+    <End Role="bgk_firma" Type="BGKModel.Store.bgk_firma" Multiplicity="0..1" />
+    <End Role="bgk_etkinlik" Type="BGKModel.Store.bgk_etkinlik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_firma">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_etkinlik">
+        <PropertyRef Name="FirmaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_etkinlik_gorevli_bgk_etkinlik">
+    <End Role="bgk_etkinlik" Type="BGKModel.Store.bgk_etkinlik" Multiplicity="1" />
+    <End Role="bgk_etkinlik_gorevli" Type="BGKModel.Store.bgk_etkinlik_gorevli" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_etkinlik">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_etkinlik_gorevli">
+        <PropertyRef Name="EtkinlikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_etkinlik_konusmaci_bgk_etkinlik">
+    <End Role="bgk_etkinlik" Type="BGKModel.Store.bgk_etkinlik" Multiplicity="1" />
+    <End Role="bgk_etkinlik_konusmaci" Type="BGKModel.Store.bgk_etkinlik_konusmaci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_etkinlik">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_etkinlik_konusmaci">
+        <PropertyRef Name="EtkinlikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_etkinlik_gorevli_bgk_gorev">
+    <End Role="bgk_gorev" Type="BGKModel.Store.bgk_gorev" Multiplicity="1" />
+    <End Role="bgk_etkinlik_gorevli" Type="BGKModel.Store.bgk_etkinlik_gorevli" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_gorev">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_etkinlik_gorevli">
+        <PropertyRef Name="GorevID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_etkinlik_gorevli_bgk_uye">
+    <End Role="bgk_uye" Type="BGKModel.Store.bgk_uye" Multiplicity="1" />
+    <End Role="bgk_etkinlik_gorevli" Type="BGKModel.Store.bgk_etkinlik_gorevli" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_uye">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_etkinlik_gorevli">
+        <PropertyRef Name="UyeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_firma_bgk_uye">
+    <End Role="bgk_uye" Type="BGKModel.Store.bgk_uye" Multiplicity="0..1" />
+    <End Role="bgk_firma" Type="BGKModel.Store.bgk_firma" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_uye">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_firma">
+        <PropertyRef Name="UyeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_galeri_resim_bgk_galeri">
+    <End Role="bgk_galeri" Type="BGKModel.Store.bgk_galeri" Multiplicity="1" />
+    <End Role="bgk_galeri_resim" Type="BGKModel.Store.bgk_galeri_resim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_galeri">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_galeri_resim">
+        <PropertyRef Name="GaleriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_gorev_bgk_gorev_kategori">
+    <End Role="bgk_gorev_kategori" Type="BGKModel.Store.bgk_gorev_kategori" Multiplicity="0..1" />
+    <End Role="bgk_gorev" Type="BGKModel.Store.bgk_gorev" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_gorev_kategori">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_gorev">
+        <PropertyRef Name="KategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_gorev_bgk_grup">
+    <End Role="bgk_grup" Type="BGKModel.Store.bgk_grup" Multiplicity="0..1" />
+    <End Role="bgk_gorev" Type="BGKModel.Store.bgk_gorev" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_grup">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_gorev">
+        <PropertyRef Name="GrupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_gorev_bgk_uye">
+    <End Role="bgk_uye" Type="BGKModel.Store.bgk_uye" Multiplicity="1" />
+    <End Role="bgk_gorev" Type="BGKModel.Store.bgk_gorev" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_uye">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_gorev">
+        <PropertyRef Name="OlusturanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_gorev_uye_bgk_gorev">
+    <End Role="bgk_gorev" Type="BGKModel.Store.bgk_gorev" Multiplicity="1" />
+    <End Role="bgk_gorev_uye" Type="BGKModel.Store.bgk_gorev_uye" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_gorev">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_gorev_uye">
+        <PropertyRef Name="GorevID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_gorev_kategori_bgk_uye">
+    <End Role="bgk_uye" Type="BGKModel.Store.bgk_uye" Multiplicity="1" />
+    <End Role="bgk_gorev_kategori" Type="BGKModel.Store.bgk_gorev_kategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_uye">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_gorev_kategori">
+        <PropertyRef Name="OlusturanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_gorev_kategori_uye_bgk_gorev_kategori">
+    <End Role="bgk_gorev_kategori" Type="BGKModel.Store.bgk_gorev_kategori" Multiplicity="1" />
+    <End Role="bgk_gorev_kategori_uye" Type="BGKModel.Store.bgk_gorev_kategori_uye" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_gorev_kategori">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_gorev_kategori_uye">
+        <PropertyRef Name="KategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_kategori_uye_bgk_uye">
+    <End Role="bgk_uye" Type="BGKModel.Store.bgk_uye" Multiplicity="1" />
+    <End Role="bgk_gorev_kategori_uye" Type="BGKModel.Store.bgk_gorev_kategori_uye" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_uye">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_gorev_kategori_uye">
+        <PropertyRef Name="UyeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_gorev_uye_bgk_uye">
+    <End Role="bgk_uye" Type="BGKModel.Store.bgk_uye" Multiplicity="1" />
+    <End Role="bgk_gorev_uye" Type="BGKModel.Store.bgk_gorev_uye" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_uye">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_gorev_uye">
+        <PropertyRef Name="UyeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_grup_uye_bgk_grup">
+    <End Role="bgk_grup" Type="BGKModel.Store.bgk_grup" Multiplicity="1" />
+    <End Role="bgk_grup_uye" Type="BGKModel.Store.bgk_grup_uye" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_grup">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_grup_uye">
+        <PropertyRef Name="GrupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_grup_uye_bgk_uye">
+    <End Role="bgk_uye" Type="BGKModel.Store.bgk_uye" Multiplicity="1" />
+    <End Role="bgk_grup_uye" Type="BGKModel.Store.bgk_grup_uye" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_uye">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_grup_uye">
+        <PropertyRef Name="UyeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_yazi_bgk_kategori">
+    <End Role="bgk_kategori" Type="BGKModel.Store.bgk_kategori" Multiplicity="1" />
+    <End Role="bgk_yazi" Type="BGKModel.Store.bgk_yazi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_kategori">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_yazi">
+        <PropertyRef Name="KategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__bgk_not__UyeID__3A179ED3">
+    <End Role="bgk_uye" Type="BGKModel.Store.bgk_uye" Multiplicity="1" />
+    <End Role="bgk_not" Type="BGKModel.Store.bgk_not" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_uye">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_not">
+        <PropertyRef Name="UyeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_oylama_bgk_uye">
+    <End Role="bgk_uye" Type="BGKModel.Store.bgk_uye" Multiplicity="0..1" />
+    <End Role="bgk_oylama" Type="BGKModel.Store.bgk_oylama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_uye">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_oylama">
+        <PropertyRef Name="UyeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_oylama_bgk_yazi">
+    <End Role="bgk_yazi" Type="BGKModel.Store.bgk_yazi" Multiplicity="1" />
+    <End Role="bgk_oylama" Type="BGKModel.Store.bgk_oylama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_yazi">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_oylama">
+        <PropertyRef Name="YaziID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_yazi_bgk_uye">
+    <End Role="bgk_uye" Type="BGKModel.Store.bgk_uye" Multiplicity="1" />
+    <End Role="bgk_yazi" Type="BGKModel.Store.bgk_yazi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_uye">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_yazi">
+        <PropertyRef Name="UyeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_yorum_bgk_uye">
+    <End Role="bgk_uye" Type="BGKModel.Store.bgk_uye" Multiplicity="0..1" />
+    <End Role="bgk_yorum" Type="BGKModel.Store.bgk_yorum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_uye">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_yorum">
+        <PropertyRef Name="UyeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bgk_yorum_bgk_yazi">
+    <End Role="bgk_yazi" Type="BGKModel.Store.bgk_yazi" Multiplicity="1" />
+    <End Role="bgk_yorum" Type="BGKModel.Store.bgk_yorum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bgk_yazi">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="bgk_yorum">
+        <PropertyRef Name="YaziID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BGKModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="BGKEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bgk_yetki" EntityType="BGKModel.bgk_yetki" />
+          <EntitySet Name="bgk_anket" EntityType="BGKModel.bgk_anket" />
+          <EntitySet Name="bgk_anket_secenek" EntityType="BGKModel.bgk_anket_secenek" />
+          <EntitySet Name="bgk_anket_secim" EntityType="BGKModel.bgk_anket_secim" />
+          <EntitySet Name="bgk_ayar" EntityType="BGKModel.bgk_ayar" />
+          <EntitySet Name="bgk_bildirim" EntityType="BGKModel.bgk_bildirim" />
+          <EntitySet Name="bgk_butce" EntityType="BGKModel.bgk_butce" />
+          <EntitySet Name="bgk_dokuman" EntityType="BGKModel.bgk_dokuman" />
+          <EntitySet Name="bgk_dokuman_kategori" EntityType="BGKModel.bgk_dokuman_kategori" />
+          <EntitySet Name="bgk_dosya" EntityType="BGKModel.bgk_dosya" />
+          <EntitySet Name="bgk_etkinlik" EntityType="BGKModel.bgk_etkinlik" />
+          <EntitySet Name="bgk_etkinlik_gorevli" EntityType="BGKModel.bgk_etkinlik_gorevli" />
+          <EntitySet Name="bgk_etkinlik_konusmaci" EntityType="BGKModel.bgk_etkinlik_konusmaci" />
+          <EntitySet Name="bgk_firma" EntityType="BGKModel.bgk_firma" />
+          <EntitySet Name="bgk_galeri" EntityType="BGKModel.bgk_galeri" />
+          <EntitySet Name="bgk_galeri_resim" EntityType="BGKModel.bgk_galeri_resim" />
+          <EntitySet Name="bgk_gorev" EntityType="BGKModel.bgk_gorev" />
+          <EntitySet Name="bgk_gorev_kategori" EntityType="BGKModel.bgk_gorev_kategori" />
+          <EntitySet Name="bgk_gorev_kategori_uye" EntityType="BGKModel.bgk_gorev_kategori_uye" />
+          <EntitySet Name="bgk_gorev_uye" EntityType="BGKModel.bgk_gorev_uye" />
+          <EntitySet Name="bgk_grup" EntityType="BGKModel.bgk_grup" />
+          <EntitySet Name="bgk_grup_uye" EntityType="BGKModel.bgk_grup_uye" />
+          <EntitySet Name="bgk_kategori" EntityType="BGKModel.bgk_kategori" />
+          <EntitySet Name="bgk_menu" EntityType="BGKModel.bgk_menu" />
+          <EntitySet Name="bgk_mesaj" EntityType="BGKModel.bgk_mesaj" />
+          <EntitySet Name="bgk_not" EntityType="BGKModel.bgk_not" />
+          <EntitySet Name="bgk_oylama" EntityType="BGKModel.bgk_oylama" />
+          <EntitySet Name="bgk_sayfa" EntityType="BGKModel.bgk_sayfa" />
+          <EntitySet Name="bgk_seviye" EntityType="BGKModel.bgk_seviye" />
+          <EntitySet Name="bgk_uye" EntityType="BGKModel.bgk_uye" />
+          <EntitySet Name="bgk_yazi" EntityType="BGKModel.bgk_yazi" />
+          <EntitySet Name="bgk_yorum" EntityType="BGKModel.bgk_yorum" />
+          <AssociationSet Name="FK_bgk_anket_secenek_bgk_anket" Association="BGKModel.FK_bgk_anket_secenek_bgk_anket">
+            <End Role="bgk_anket" EntitySet="bgk_anket" />
+            <End Role="bgk_anket_secenek" EntitySet="bgk_anket_secenek" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_anket_secim_bgk_anket_secenek" Association="BGKModel.FK_bgk_anket_secim_bgk_anket_secenek">
+            <End Role="bgk_anket_secenek" EntitySet="bgk_anket_secenek" />
+            <End Role="bgk_anket_secim" EntitySet="bgk_anket_secim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_anket_secim_bgk_uye" Association="BGKModel.FK_bgk_anket_secim_bgk_uye">
+            <End Role="bgk_uye" EntitySet="bgk_uye" />
+            <End Role="bgk_anket_secim" EntitySet="bgk_anket_secim" />
+          </AssociationSet>
+          <AssociationSet Name="FK__bgk_bildi__UyeID__3EDC53F0" Association="BGKModel.FK__bgk_bildi__UyeID__3EDC53F0">
+            <End Role="bgk_uye" EntitySet="bgk_uye" />
+            <End Role="bgk_bildirim" EntitySet="bgk_bildirim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_butce_bgk_dosya" Association="BGKModel.FK_bgk_butce_bgk_dosya">
+            <End Role="bgk_dosya" EntitySet="bgk_dosya" />
+            <End Role="bgk_butce" EntitySet="bgk_butce" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_butce_bgk_etkinlik" Association="BGKModel.FK_bgk_butce_bgk_etkinlik">
+            <End Role="bgk_etkinlik" EntitySet="bgk_etkinlik" />
+            <End Role="bgk_butce" EntitySet="bgk_butce" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_butce_bgk_firma" Association="BGKModel.FK_bgk_butce_bgk_firma">
+            <End Role="bgk_firma" EntitySet="bgk_firma" />
+            <End Role="bgk_butce" EntitySet="bgk_butce" />
+          </AssociationSet>
+          <AssociationSet Name="FK__bgk_dokum__Dosya__54CB950F" Association="BGKModel.FK__bgk_dokum__Dosya__54CB950F">
+            <End Role="bgk_dosya" EntitySet="bgk_dosya" />
+            <End Role="bgk_dokuman" EntitySet="bgk_dokuman" />
+          </AssociationSet>
+          <AssociationSet Name="FK__bgk_dokum__Kateg__53D770D6" Association="BGKModel.FK__bgk_dokum__Kateg__53D770D6">
+            <End Role="bgk_dokuman_kategori" EntitySet="bgk_dokuman_kategori" />
+            <End Role="bgk_dokuman" EntitySet="bgk_dokuman" />
+          </AssociationSet>
+          <AssociationSet Name="FK__bgk_dokum__UyeID__4B422AD5" Association="BGKModel.FK__bgk_dokum__UyeID__4B422AD5">
+            <End Role="bgk_uye" EntitySet="bgk_uye" />
+            <End Role="bgk_dokuman" EntitySet="bgk_dokuman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_dosya_bgk_uye" Association="BGKModel.FK_bgk_dosya_bgk_uye">
+            <End Role="bgk_uye" EntitySet="bgk_uye" />
+            <End Role="bgk_dosya" EntitySet="bgk_dosya" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_etkinlik_bgk_dosya" Association="BGKModel.FK_bgk_etkinlik_bgk_dosya">
+            <End Role="bgk_dosya" EntitySet="bgk_dosya" />
+            <End Role="bgk_etkinlik" EntitySet="bgk_etkinlik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_firma_bgk_dosya" Association="BGKModel.FK_bgk_firma_bgk_dosya">
+            <End Role="bgk_dosya" EntitySet="bgk_dosya" />
+            <End Role="bgk_firma" EntitySet="bgk_firma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_galeri_resim_bgk_dosya" Association="BGKModel.FK_bgk_galeri_resim_bgk_dosya">
+            <End Role="bgk_dosya" EntitySet="bgk_dosya" />
+            <End Role="bgk_galeri_resim" EntitySet="bgk_galeri_resim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_gorev_kategori_bgk_dosya" Association="BGKModel.FK_bgk_gorev_kategori_bgk_dosya">
+            <End Role="bgk_dosya" EntitySet="bgk_dosya" />
+            <End Role="bgk_gorev_kategori" EntitySet="bgk_gorev_kategori" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_gorev_uye_bgk_dosya" Association="BGKModel.FK_bgk_gorev_uye_bgk_dosya">
+            <End Role="bgk_dosya" EntitySet="bgk_dosya" />
+            <End Role="bgk_gorev_uye" EntitySet="bgk_gorev_uye" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_etkinlik_bgk_firma" Association="BGKModel.FK_bgk_etkinlik_bgk_firma">
+            <End Role="bgk_firma" EntitySet="bgk_firma" />
+            <End Role="bgk_etkinlik" EntitySet="bgk_etkinlik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_etkinlik_gorevli_bgk_etkinlik" Association="BGKModel.FK_bgk_etkinlik_gorevli_bgk_etkinlik">
+            <End Role="bgk_etkinlik" EntitySet="bgk_etkinlik" />
+            <End Role="bgk_etkinlik_gorevli" EntitySet="bgk_etkinlik_gorevli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_etkinlik_konusmaci_bgk_etkinlik" Association="BGKModel.FK_bgk_etkinlik_konusmaci_bgk_etkinlik">
+            <End Role="bgk_etkinlik" EntitySet="bgk_etkinlik" />
+            <End Role="bgk_etkinlik_konusmaci" EntitySet="bgk_etkinlik_konusmaci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_etkinlik_gorevli_bgk_gorev" Association="BGKModel.FK_bgk_etkinlik_gorevli_bgk_gorev">
+            <End Role="bgk_gorev" EntitySet="bgk_gorev" />
+            <End Role="bgk_etkinlik_gorevli" EntitySet="bgk_etkinlik_gorevli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_etkinlik_gorevli_bgk_uye" Association="BGKModel.FK_bgk_etkinlik_gorevli_bgk_uye">
+            <End Role="bgk_uye" EntitySet="bgk_uye" />
+            <End Role="bgk_etkinlik_gorevli" EntitySet="bgk_etkinlik_gorevli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_firma_bgk_uye" Association="BGKModel.FK_bgk_firma_bgk_uye">
+            <End Role="bgk_uye" EntitySet="bgk_uye" />
+            <End Role="bgk_firma" EntitySet="bgk_firma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_galeri_resim_bgk_galeri" Association="BGKModel.FK_bgk_galeri_resim_bgk_galeri">
+            <End Role="bgk_galeri" EntitySet="bgk_galeri" />
+            <End Role="bgk_galeri_resim" EntitySet="bgk_galeri_resim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_gorev_bgk_gorev_kategori" Association="BGKModel.FK_bgk_gorev_bgk_gorev_kategori">
+            <End Role="bgk_gorev_kategori" EntitySet="bgk_gorev_kategori" />
+            <End Role="bgk_gorev" EntitySet="bgk_gorev" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_gorev_bgk_grup" Association="BGKModel.FK_bgk_gorev_bgk_grup">
+            <End Role="bgk_grup" EntitySet="bgk_grup" />
+            <End Role="bgk_gorev" EntitySet="bgk_gorev" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_gorev_bgk_uye" Association="BGKModel.FK_bgk_gorev_bgk_uye">
+            <End Role="bgk_uye" EntitySet="bgk_uye" />
+            <End Role="bgk_gorev" EntitySet="bgk_gorev" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_gorev_uye_bgk_gorev" Association="BGKModel.FK_bgk_gorev_uye_bgk_gorev">
+            <End Role="bgk_gorev" EntitySet="bgk_gorev" />
+            <End Role="bgk_gorev_uye" EntitySet="bgk_gorev_uye" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_gorev_kategori_bgk_uye" Association="BGKModel.FK_bgk_gorev_kategori_bgk_uye">
+            <End Role="bgk_uye" EntitySet="bgk_uye" />
+            <End Role="bgk_gorev_kategori" EntitySet="bgk_gorev_kategori" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_gorev_kategori_uye_bgk_gorev_kategori" Association="BGKModel.FK_bgk_gorev_kategori_uye_bgk_gorev_kategori">
+            <End Role="bgk_gorev_kategori" EntitySet="bgk_gorev_kategori" />
+            <End Role="bgk_gorev_kategori_uye" EntitySet="bgk_gorev_kategori_uye" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_kategori_uye_bgk_uye" Association="BGKModel.FK_bgk_kategori_uye_bgk_uye">
+            <End Role="bgk_uye" EntitySet="bgk_uye" />
+            <End Role="bgk_gorev_kategori_uye" EntitySet="bgk_gorev_kategori_uye" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_gorev_uye_bgk_uye" Association="BGKModel.FK_bgk_gorev_uye_bgk_uye">
+            <End Role="bgk_uye" EntitySet="bgk_uye" />
+            <End Role="bgk_gorev_uye" EntitySet="bgk_gorev_uye" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_grup_uye_bgk_grup" Association="BGKModel.FK_bgk_grup_uye_bgk_grup">
+            <End Role="bgk_grup" EntitySet="bgk_grup" />
+            <End Role="bgk_grup_uye" EntitySet="bgk_grup_uye" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_grup_uye_bgk_uye" Association="BGKModel.FK_bgk_grup_uye_bgk_uye">
+            <End Role="bgk_uye" EntitySet="bgk_uye" />
+            <End Role="bgk_grup_uye" EntitySet="bgk_grup_uye" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_yazi_bgk_kategori" Association="BGKModel.FK_bgk_yazi_bgk_kategori">
+            <End Role="bgk_kategori" EntitySet="bgk_kategori" />
+            <End Role="bgk_yazi" EntitySet="bgk_yazi" />
+          </AssociationSet>
+          <AssociationSet Name="FK__bgk_not__UyeID__3A179ED3" Association="BGKModel.FK__bgk_not__UyeID__3A179ED3">
+            <End Role="bgk_uye" EntitySet="bgk_uye" />
+            <End Role="bgk_not" EntitySet="bgk_not" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_oylama_bgk_uye" Association="BGKModel.FK_bgk_oylama_bgk_uye">
+            <End Role="bgk_uye" EntitySet="bgk_uye" />
+            <End Role="bgk_oylama" EntitySet="bgk_oylama" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_oylama_bgk_yazi" Association="BGKModel.FK_bgk_oylama_bgk_yazi">
+            <End Role="bgk_yazi" EntitySet="bgk_yazi" />
+            <End Role="bgk_oylama" EntitySet="bgk_oylama" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_yazi_bgk_uye" Association="BGKModel.FK_bgk_yazi_bgk_uye">
+            <End Role="bgk_uye" EntitySet="bgk_uye" />
+            <End Role="bgk_yazi" EntitySet="bgk_yazi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_yorum_bgk_uye" Association="BGKModel.FK_bgk_yorum_bgk_uye">
+            <End Role="bgk_uye" EntitySet="bgk_uye" />
+            <End Role="bgk_yorum" EntitySet="bgk_yorum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bgk_yorum_bgk_yazi" Association="BGKModel.FK_bgk_yorum_bgk_yazi">
+            <End Role="bgk_yazi" EntitySet="bgk_yazi" />
+            <End Role="bgk_yorum" EntitySet="bgk_yorum" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="bgk_yetki">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Adi" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Aciklama" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Yazi" Nullable="false" />
+          <Property Type="Boolean" Name="Yorum" Nullable="false" />
+          <Property Type="Boolean" Name="Sayfa" Nullable="false" />
+          <Property Type="Boolean" Name="Ayar" Nullable="false" />
+          <Property Type="Boolean" Name="Etkinlik" Nullable="false" />
+          <Property Type="Boolean" Name="Butce" Nullable="false" />
+          <Property Type="Boolean" Name="Dosya" Nullable="false" />
+          <Property Type="Boolean" Name="Grup" Nullable="false" />
+          <Property Type="Boolean" Name="Gorev" Nullable="false" />
+          <Property Type="Boolean" Name="Bildirim" Nullable="false" />
+          <Property Type="Boolean" Name="Firma" Nullable="false" />
+          <Property Type="Boolean" Name="Link" Nullable="false" />
+          <Property Type="Boolean" Name="Uye" Nullable="false" />
+          <Property Type="Boolean" Name="Seviye" Nullable="false" />
+          <Property Type="Boolean" Name="Dokuman" Nullable="false" />
+          <Property Type="Boolean" Name="Not" Nullable="false" />
+          <Property Type="Boolean" Name="Galeri" Nullable="false" />
+          <Property Type="Boolean" Name="Anket" Nullable="false" />
+          <Property Type="Boolean" Name="YaziOnay" Nullable="false" />
+          <Property Type="Boolean" Name="YorumOnay" Nullable="false" />
+          <Property Type="Boolean" Name="GorevVerme" Nullable="false" />
+          <Property Type="Int32" Name="Kod" />
+          <Property Type="Boolean" Name="YaziYazma" Nullable="false" />
+          <Property Type="Boolean" Name="YorumYazma" Nullable="false" />
+          <Property Type="Boolean" Name="BakimdaGiris" Nullable="false" />
+          <Property Type="Boolean" Name="OyKullanma" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bgk_anket">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Soru" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="CokluSecim" Nullable="false" />
+          <Property Type="Boolean" Name="SadeceUye" Nullable="false" />
+          <Property Type="DateTime" Name="BaslangicTarihi" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="BitisTarihi" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="Sira" Nullable="false" />
+          <Property Type="Boolean" Name="Onay" Nullable="false" />
+          <NavigationProperty Name="bgk_anket_secenek" Relationship="BGKModel.FK_bgk_anket_secenek_bgk_anket" FromRole="bgk_anket" ToRole="bgk_anket_secenek" />
+        </EntityType>
+        <EntityType Name="bgk_anket_secenek">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Adi" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="AnketID" Nullable="false" />
+          <Property Type="Int32" Name="Sira" Nullable="false" />
+          <NavigationProperty Name="bgk_anket" Relationship="BGKModel.FK_bgk_anket_secenek_bgk_anket" FromRole="bgk_anket_secenek" ToRole="bgk_anket" />
+          <NavigationProperty Name="bgk_anket_secim" Relationship="BGKModel.FK_bgk_anket_secim_bgk_anket_secenek" FromRole="bgk_anket_secenek" ToRole="bgk_anket_secim" />
+        </EntityType>
+        <EntityType Name="bgk_anket_secim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UyeID" />
+          <Property Type="Int32" Name="SecenekID" Nullable="false" />
+          <Property Type="String" Name="OylayanIP" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="SecimTarihi" Nullable="false" Precision="3" />
+          <NavigationProperty Name="bgk_anket_secenek" Relationship="BGKModel.FK_bgk_anket_secim_bgk_anket_secenek" FromRole="bgk_anket_secim" ToRole="bgk_anket_secenek" />
+          <NavigationProperty Name="bgk_uye" Relationship="BGKModel.FK_bgk_anket_secim_bgk_uye" FromRole="bgk_anket_secim" ToRole="bgk_uye" />
+        </EntityType>
+        <EntityType Name="bgk_ayar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Adi" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Aciklama" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Deger" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="bgk_bildirim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Icerik" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="UyeID" Nullable="false" />
+          <Property Type="DateTime" Name="Tarih" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="Okundu" Nullable="false" />
+          <NavigationProperty Name="bgk_uye" Relationship="BGKModel.FK__bgk_bildi__UyeID__3EDC53F0" FromRole="bgk_bildirim" ToRole="bgk_uye" />
+        </EntityType>
+        <EntityType Name="bgk_butce">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="HarcananYer" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="Miktar" Nullable="false" Precision="19" Scale="4" />
+          <Property Type="String" Name="Aciklama" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="EtkinlikID" />
+          <Property Type="Int32" Name="FaturaID" />
+          <Property Type="Int32" Name="FirmaID" Nullable="false" />
+          <Property Type="DateTime" Name="IslemTarihi" Precision="0" />
+          <Property Type="Int32" Name="Islem" Nullable="false" />
+          <NavigationProperty Name="bgk_dosya" Relationship="BGKModel.FK_bgk_butce_bgk_dosya" FromRole="bgk_butce" ToRole="bgk_dosya" />
+          <NavigationProperty Name="bgk_etkinlik" Relationship="BGKModel.FK_bgk_butce_bgk_etkinlik" FromRole="bgk_butce" ToRole="bgk_etkinlik" />
+          <NavigationProperty Name="bgk_firma" Relationship="BGKModel.FK_bgk_butce_bgk_firma" FromRole="bgk_butce" ToRole="bgk_firma" />
+        </EntityType>
+        <EntityType Name="bgk_dokuman">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Adi" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Icerik" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="UyeID" Nullable="false" />
+          <Property Type="DateTime" Name="EklenmeTarihi" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="Onay" Nullable="false" />
+          <Property Type="String" Name="Seo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Sira" Nullable="false" />
+          <Property Type="Int32" Name="KategoriID" Nullable="false" />
+          <Property Type="Int32" Name="DosyaID" />
+          <NavigationProperty Name="bgk_dosya" Relationship="BGKModel.FK__bgk_dokum__Dosya__54CB950F" FromRole="bgk_dokuman" ToRole="bgk_dosya" />
+          <NavigationProperty Name="bgk_dokuman_kategori" Relationship="BGKModel.FK__bgk_dokum__Kateg__53D770D6" FromRole="bgk_dokuman" ToRole="bgk_dokuman_kategori" />
+          <NavigationProperty Name="bgk_uye" Relationship="BGKModel.FK__bgk_dokum__UyeID__4B422AD5" FromRole="bgk_dokuman" ToRole="bgk_uye" />
+        </EntityType>
+        <EntityType Name="bgk_dokuman_kategori">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Adi" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Aciklama" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Onay" Nullable="false" />
+          <Property Type="String" Name="Seo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Sira" Nullable="false" />
+          <NavigationProperty Name="bgk_dokuman" Relationship="BGKModel.FK__bgk_dokum__Kateg__53D770D6" FromRole="bgk_dokuman_kategori" ToRole="bgk_dokuman" />
+        </EntityType>
+        <EntityType Name="bgk_dosya">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Aciklama" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DosyaAdi" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DosyaTipi" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="YukleyenID" Nullable="false" />
+          <Property Type="DateTime" Name="YuklenmeTarihi" Nullable="false" Precision="3" />
+          <Property Type="String" Name="Adres" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="bgk_butce" Relationship="BGKModel.FK_bgk_butce_bgk_dosya" FromRole="bgk_dosya" ToRole="bgk_butce" />
+          <NavigationProperty Name="bgk_dokuman" Relationship="BGKModel.FK__bgk_dokum__Dosya__54CB950F" FromRole="bgk_dosya" ToRole="bgk_dokuman" />
+          <NavigationProperty Name="bgk_uye" Relationship="BGKModel.FK_bgk_dosya_bgk_uye" FromRole="bgk_dosya" ToRole="bgk_uye" />
+          <NavigationProperty Name="bgk_etkinlik" Relationship="BGKModel.FK_bgk_etkinlik_bgk_dosya" FromRole="bgk_dosya" ToRole="bgk_etkinlik" />
+          <NavigationProperty Name="bgk_firma" Relationship="BGKModel.FK_bgk_firma_bgk_dosya" FromRole="bgk_dosya" ToRole="bgk_firma" />
+          <NavigationProperty Name="bgk_galeri_resim" Relationship="BGKModel.FK_bgk_galeri_resim_bgk_dosya" FromRole="bgk_dosya" ToRole="bgk_galeri_resim" />
+          <NavigationProperty Name="bgk_gorev_kategori" Relationship="BGKModel.FK_bgk_gorev_kategori_bgk_dosya" FromRole="bgk_dosya" ToRole="bgk_gorev_kategori" />
+          <NavigationProperty Name="bgk_gorev_uye" Relationship="BGKModel.FK_bgk_gorev_uye_bgk_dosya" FromRole="bgk_dosya" ToRole="bgk_gorev_uye" />
+        </EntityType>
+        <EntityType Name="bgk_etkinlik">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Adi" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Aciklama" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="FirmaID" />
+          <Property Type="Int32" Name="AfisID" />
+          <Property Type="DateTime" Name="BaslangicTarihi" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="BitisTarihi" Nullable="false" Precision="3" />
+          <NavigationProperty Name="bgk_butce" Relationship="BGKModel.FK_bgk_butce_bgk_etkinlik" FromRole="bgk_etkinlik" ToRole="bgk_butce" />
+          <NavigationProperty Name="bgk_dosya" Relationship="BGKModel.FK_bgk_etkinlik_bgk_dosya" FromRole="bgk_etkinlik" ToRole="bgk_dosya" />
+          <NavigationProperty Name="bgk_firma" Relationship="BGKModel.FK_bgk_etkinlik_bgk_firma" FromRole="bgk_etkinlik" ToRole="bgk_firma" />
+          <NavigationProperty Name="bgk_etkinlik_gorevli" Relationship="BGKModel.FK_bgk_etkinlik_gorevli_bgk_etkinlik" FromRole="bgk_etkinlik" ToRole="bgk_etkinlik_gorevli" />
+          <NavigationProperty Name="bgk_etkinlik_konusmaci" Relationship="BGKModel.FK_bgk_etkinlik_konusmaci_bgk_etkinlik" FromRole="bgk_etkinlik" ToRole="bgk_etkinlik_konusmaci" />
+        </EntityType>
+        <EntityType Name="bgk_etkinlik_gorevli">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UyeID" Nullable="false" />
+          <Property Type="Int32" Name="GorevID" Nullable="false" />
+          <Property Type="Int32" Name="EtkinlikID" Nullable="false" />
+          <NavigationProperty Name="bgk_etkinlik" Relationship="BGKModel.FK_bgk_etkinlik_gorevli_bgk_etkinlik" FromRole="bgk_etkinlik_gorevli" ToRole="bgk_etkinlik" />
+          <NavigationProperty Name="bgk_gorev" Relationship="BGKModel.FK_bgk_etkinlik_gorevli_bgk_gorev" FromRole="bgk_etkinlik_gorevli" ToRole="bgk_gorev" />
+          <NavigationProperty Name="bgk_uye" Relationship="BGKModel.FK_bgk_etkinlik_gorevli_bgk_uye" FromRole="bgk_etkinlik_gorevli" ToRole="bgk_uye" />
+        </EntityType>
+        <EntityType Name="bgk_etkinlik_konusmaci">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="AdSoyad" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Konu" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Aciklama" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="EtkinlikID" Nullable="false" />
+          <NavigationProperty Name="bgk_etkinlik" Relationship="BGKModel.FK_bgk_etkinlik_konusmaci_bgk_etkinlik" FromRole="bgk_etkinlik_konusmaci" ToRole="bgk_etkinlik" />
+        </EntityType>
+        <EntityType Name="bgk_firma">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Adi" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Aciklama" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="UyeID" />
+          <Property Type="Int32" Name="ResimID" Nullable="false" />
+          <NavigationProperty Name="bgk_butce" Relationship="BGKModel.FK_bgk_butce_bgk_firma" FromRole="bgk_firma" ToRole="bgk_butce" />
+          <NavigationProperty Name="bgk_dosya" Relationship="BGKModel.FK_bgk_firma_bgk_dosya" FromRole="bgk_firma" ToRole="bgk_dosya" />
+          <NavigationProperty Name="bgk_etkinlik" Relationship="BGKModel.FK_bgk_etkinlik_bgk_firma" FromRole="bgk_firma" ToRole="bgk_etkinlik" />
+          <NavigationProperty Name="bgk_uye" Relationship="BGKModel.FK_bgk_firma_bgk_uye" FromRole="bgk_firma" ToRole="bgk_uye" />
+        </EntityType>
+        <EntityType Name="bgk_galeri">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Adi" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Aciklama" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Seo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="OlusturulmaTarihi" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="Onay" Nullable="false" />
+          <NavigationProperty Name="bgk_galeri_resim" Relationship="BGKModel.FK_bgk_galeri_resim_bgk_galeri" FromRole="bgk_galeri" ToRole="bgk_galeri_resim" />
+        </EntityType>
+        <EntityType Name="bgk_galeri_resim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Aciklama" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ResimID" Nullable="false" />
+          <Property Type="Int32" Name="GaleriID" Nullable="false" />
+          <Property Type="Int32" Name="Sira" Nullable="false" />
+          <Property Type="DateTime" Name="EklenmeTarihi" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="Onay" Nullable="false" />
+          <NavigationProperty Name="bgk_dosya" Relationship="BGKModel.FK_bgk_galeri_resim_bgk_dosya" FromRole="bgk_galeri_resim" ToRole="bgk_dosya" />
+          <NavigationProperty Name="bgk_galeri" Relationship="BGKModel.FK_bgk_galeri_resim_bgk_galeri" FromRole="bgk_galeri_resim" ToRole="bgk_galeri" />
+        </EntityType>
+        <EntityType Name="bgk_gorev">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Adi" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Aciklama" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="GrupID" />
+          <Property Type="Int32" Name="KategoriID" />
+          <Property Type="Int32" Name="OlusturanID" Nullable="false" />
+          <Property Type="Int32" Name="Puan" Nullable="false" />
+          <Property Type="Int32" Name="CezaPuani" />
+          <Property Type="Int32" Name="GunSayisi" />
+          <Property Type="DateTime" Name="OlusturulmaTarihi" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="BitisTarihi" Precision="3" />
+          <Property Type="Int32" Name="Tip" Nullable="false" />
+          <Property Type="Boolean" Name="Onay" Nullable="false" />
+          <Property Type="Int32" Name="Sira" />
+          <NavigationProperty Name="bgk_etkinlik_gorevli" Relationship="BGKModel.FK_bgk_etkinlik_gorevli_bgk_gorev" FromRole="bgk_gorev" ToRole="bgk_etkinlik_gorevli" />
+          <NavigationProperty Name="bgk_gorev_kategori" Relationship="BGKModel.FK_bgk_gorev_bgk_gorev_kategori" FromRole="bgk_gorev" ToRole="bgk_gorev_kategori" />
+          <NavigationProperty Name="bgk_grup" Relationship="BGKModel.FK_bgk_gorev_bgk_grup" FromRole="bgk_gorev" ToRole="bgk_grup" />
+          <NavigationProperty Name="bgk_uye" Relationship="BGKModel.FK_bgk_gorev_bgk_uye" FromRole="bgk_gorev" ToRole="bgk_uye" />
+          <NavigationProperty Name="bgk_gorev_uye" Relationship="BGKModel.FK_bgk_gorev_uye_bgk_gorev" FromRole="bgk_gorev" ToRole="bgk_gorev_uye" />
+        </EntityType>
+        <EntityType Name="bgk_gorev_kategori">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Adi" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Aciklama" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ResimID" Nullable="false" />
+          <Property Type="Int32" Name="OlusturanID" Nullable="false" />
+          <Property Type="Int32" Name="PuanSiniri" />
+          <Property Type="Int32" Name="Sira" Nullable="false" />
+          <Property Type="Boolean" Name="Onay" Nullable="false" />
+          <NavigationProperty Name="bgk_dosya" Relationship="BGKModel.FK_bgk_gorev_kategori_bgk_dosya" FromRole="bgk_gorev_kategori" ToRole="bgk_dosya" />
+          <NavigationProperty Name="bgk_gorev" Relationship="BGKModel.FK_bgk_gorev_bgk_gorev_kategori" FromRole="bgk_gorev_kategori" ToRole="bgk_gorev" />
+          <NavigationProperty Name="bgk_uye" Relationship="BGKModel.FK_bgk_gorev_kategori_bgk_uye" FromRole="bgk_gorev_kategori" ToRole="bgk_uye" />
+          <NavigationProperty Name="bgk_gorev_kategori_uye" Relationship="BGKModel.FK_bgk_gorev_kategori_uye_bgk_gorev_kategori" FromRole="bgk_gorev_kategori" ToRole="bgk_gorev_kategori_uye" />
+        </EntityType>
+        <EntityType Name="bgk_gorev_kategori_uye">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UyeID" Nullable="false" />
+          <Property Type="Int32" Name="KategoriID" Nullable="false" />
+          <Property Type="DateTime" Name="BaslamaTarihi" Nullable="false" Precision="3" />
+          <NavigationProperty Name="bgk_gorev_kategori" Relationship="BGKModel.FK_bgk_gorev_kategori_uye_bgk_gorev_kategori" FromRole="bgk_gorev_kategori_uye" ToRole="bgk_gorev_kategori" />
+          <NavigationProperty Name="bgk_uye" Relationship="BGKModel.FK_bgk_kategori_uye_bgk_uye" FromRole="bgk_gorev_kategori_uye" ToRole="bgk_uye" />
+        </EntityType>
+        <EntityType Name="bgk_gorev_uye">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Aciklama" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="UyeID" Nullable="false" />
+          <Property Type="Int32" Name="GorevID" Nullable="false" />
+          <Property Type="String" Name="Rapor" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="DosyaID" />
+          <Property Type="DateTime" Name="BaslangicTarihi" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="BitisTarihi" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="Tamamlandi" Nullable="false" />
+          <Property Type="Boolean" Name="Kabul" />
+          <Property Type="Boolean" Name="Onay" />
+          <NavigationProperty Name="bgk_dosya" Relationship="BGKModel.FK_bgk_gorev_uye_bgk_dosya" FromRole="bgk_gorev_uye" ToRole="bgk_dosya" />
+          <NavigationProperty Name="bgk_gorev" Relationship="BGKModel.FK_bgk_gorev_uye_bgk_gorev" FromRole="bgk_gorev_uye" ToRole="bgk_gorev" />
+          <NavigationProperty Name="bgk_uye" Relationship="BGKModel.FK_bgk_gorev_uye_bgk_uye" FromRole="bgk_gorev_uye" ToRole="bgk_uye" />
+        </EntityType>
+        <EntityType Name="bgk_grup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Adi" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Aciklama" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Tip" Nullable="false" />
+          <NavigationProperty Name="bgk_gorev" Relationship="BGKModel.FK_bgk_gorev_bgk_grup" FromRole="bgk_grup" ToRole="bgk_gorev" />
+          <NavigationProperty Name="bgk_grup_uye" Relationship="BGKModel.FK_bgk_grup_uye_bgk_grup" FromRole="bgk_grup" ToRole="bgk_grup_uye" />
+        </EntityType>
+        <EntityType Name="bgk_grup_uye">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Aciklama" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="UyeID" Nullable="false" />
+          <Property Type="Int32" Name="GrupID" Nullable="false" />
+          <Property Type="DateTime" Name="BaslangicTarihi" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="BitisTarihi" Precision="3" />
+          <Property Type="Int32" Name="Tip" Nullable="false" />
+          <Property Type="Boolean" Name="Aktif" Nullable="false" />
+          <NavigationProperty Name="bgk_grup" Relationship="BGKModel.FK_bgk_grup_uye_bgk_grup" FromRole="bgk_grup_uye" ToRole="bgk_grup" />
+          <NavigationProperty Name="bgk_uye" Relationship="BGKModel.FK_bgk_grup_uye_bgk_uye" FromRole="bgk_grup_uye" ToRole="bgk_uye" />
+        </EntityType>
+        <EntityType Name="bgk_kategori">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Adi" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Seo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Sira" Nullable="false" />
+          <Property Type="Boolean" Name="Onay" Nullable="false" />
+          <NavigationProperty Name="bgk_yazi" Relationship="BGKModel.FK_bgk_yazi_bgk_kategori" FromRole="bgk_kategori" ToRole="bgk_yazi" />
+        </EntityType>
+        <EntityType Name="bgk_menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Adi" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Adres" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Sira" Nullable="false" />
+          <Property Type="Boolean" Name="SadeceUye" Nullable="false" />
+          <Property Type="Boolean" Name="Onay" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bgk_mesaj">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Mesaj" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Tip" Nullable="false" />
+          <Property Type="Int32" Name="GonderenID" Nullable="false" />
+          <Property Type="Int32" Name="AliciID" Nullable="false" />
+          <Property Type="Boolean" Name="Okundu" Nullable="false" />
+          <Property Type="DateTime" Name="YazimTarihi" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="bgk_not">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Konu" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Icerik" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="UyeID" Nullable="false" />
+          <Property Type="DateTime" Name="Tarih" Nullable="false" Precision="3" />
+          <NavigationProperty Name="bgk_uye" Relationship="BGKModel.FK__bgk_not__UyeID__3A179ED3" FromRole="bgk_not" ToRole="bgk_uye" />
+        </EntityType>
+        <EntityType Name="bgk_oylama">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UyeID" />
+          <Property Type="Int32" Name="YaziID" Nullable="false" />
+          <Property Type="Int32" Name="Puan" Nullable="false" />
+          <Property Type="String" Name="OylayanIP" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="bgk_uye" Relationship="BGKModel.FK_bgk_oylama_bgk_uye" FromRole="bgk_oylama" ToRole="bgk_uye" />
+          <NavigationProperty Name="bgk_yazi" Relationship="BGKModel.FK_bgk_oylama_bgk_yazi" FromRole="bgk_oylama" ToRole="bgk_yazi" />
+        </EntityType>
+        <EntityType Name="bgk_sayfa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Adi" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Icerik" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Seo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Onay" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bgk_seviye">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Adi" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Aciklama" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="AltSinir" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bgk_uye">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="AdSoyad" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Sifre" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Telefon" />
+          <Property Type="Int32" Name="OgrenciNo" Nullable="false" />
+          <Property Type="String" Name="Fakulte" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Bolum" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="GirisYili" Nullable="false" />
+          <Property Type="Int32" Name="Puan" Nullable="false" />
+          <Property Type="Int32" Name="CezaPuani" Nullable="false" />
+          <Property Type="Int32" Name="Yetki" Nullable="false" />
+          <Property Type="DateTime" Name="SonGiris" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="KayitTarihi" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="Onay" Nullable="false" />
+          <NavigationProperty Name="bgk_anket_secim" Relationship="BGKModel.FK_bgk_anket_secim_bgk_uye" FromRole="bgk_uye" ToRole="bgk_anket_secim" />
+          <NavigationProperty Name="bgk_bildirim" Relationship="BGKModel.FK__bgk_bildi__UyeID__3EDC53F0" FromRole="bgk_uye" ToRole="bgk_bildirim" />
+          <NavigationProperty Name="bgk_dokuman" Relationship="BGKModel.FK__bgk_dokum__UyeID__4B422AD5" FromRole="bgk_uye" ToRole="bgk_dokuman" />
+          <NavigationProperty Name="bgk_dosya" Relationship="BGKModel.FK_bgk_dosya_bgk_uye" FromRole="bgk_uye" ToRole="bgk_dosya" />
+          <NavigationProperty Name="bgk_etkinlik_gorevli" Relationship="BGKModel.FK_bgk_etkinlik_gorevli_bgk_uye" FromRole="bgk_uye" ToRole="bgk_etkinlik_gorevli" />
+          <NavigationProperty Name="bgk_firma" Relationship="BGKModel.FK_bgk_firma_bgk_uye" FromRole="bgk_uye" ToRole="bgk_firma" />
+          <NavigationProperty Name="bgk_gorev" Relationship="BGKModel.FK_bgk_gorev_bgk_uye" FromRole="bgk_uye" ToRole="bgk_gorev" />
+          <NavigationProperty Name="bgk_gorev_kategori" Relationship="BGKModel.FK_bgk_gorev_kategori_bgk_uye" FromRole="bgk_uye" ToRole="bgk_gorev_kategori" />
+          <NavigationProperty Name="bgk_gorev_kategori_uye" Relationship="BGKModel.FK_bgk_kategori_uye_bgk_uye" FromRole="bgk_uye" ToRole="bgk_gorev_kategori_uye" />
+          <NavigationProperty Name="bgk_gorev_uye" Relationship="BGKModel.FK_bgk_gorev_uye_bgk_uye" FromRole="bgk_uye" ToRole="bgk_gorev_uye" />
+          <NavigationProperty Name="bgk_grup_uye" Relationship="BGKModel.FK_bgk_grup_uye_bgk_uye" FromRole="bgk_uye" ToRole="bgk_grup_uye" />
+          <NavigationProperty Name="bgk_not" Relationship="BGKModel.FK__bgk_not__UyeID__3A179ED3" FromRole="bgk_uye" ToRole="bgk_not" />
+          <NavigationProperty Name="bgk_oylama" Relationship="BGKModel.FK_bgk_oylama_bgk_uye" FromRole="bgk_uye" ToRole="bgk_oylama" />
+          <NavigationProperty Name="bgk_yazi" Relationship="BGKModel.FK_bgk_yazi_bgk_uye" FromRole="bgk_uye" ToRole="bgk_yazi" />
+          <NavigationProperty Name="bgk_yorum" Relationship="BGKModel.FK_bgk_yorum_bgk_uye" FromRole="bgk_uye" ToRole="bgk_yorum" />
+        </EntityType>
+        <EntityType Name="bgk_yazi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Baslik" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Icerik" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Ozet" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="KategoriID" Nullable="false" />
+          <Property Type="Int32" Name="UyeID" Nullable="false" />
+          <Property Type="String" Name="Seo" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Okunma" Nullable="false" />
+          <Property Type="DateTime" Name="YazimTarihi" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="Manset" Nullable="false" />
+          <Property Type="Boolean" Name="Onay" Nullable="false" />
+          <NavigationProperty Name="bgk_kategori" Relationship="BGKModel.FK_bgk_yazi_bgk_kategori" FromRole="bgk_yazi" ToRole="bgk_kategori" />
+          <NavigationProperty Name="bgk_oylama" Relationship="BGKModel.FK_bgk_oylama_bgk_yazi" FromRole="bgk_yazi" ToRole="bgk_oylama" />
+          <NavigationProperty Name="bgk_uye" Relationship="BGKModel.FK_bgk_yazi_bgk_uye" FromRole="bgk_yazi" ToRole="bgk_uye" />
+          <NavigationProperty Name="bgk_yorum" Relationship="BGKModel.FK_bgk_yorum_bgk_yazi" FromRole="bgk_yazi" ToRole="bgk_yorum" />
+        </EntityType>
+        <EntityType Name="bgk_yorum">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Yorum" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="YaziID" Nullable="false" />
+          <Property Type="Int32" Name="UyeID" />
+          <Property Type="String" Name="Yazan" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="YazilmaTarihi" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="Onay" Nullable="false" />
+          <NavigationProperty Name="bgk_uye" Relationship="BGKModel.FK_bgk_yorum_bgk_uye" FromRole="bgk_yorum" ToRole="bgk_uye" />
+          <NavigationProperty Name="bgk_yazi" Relationship="BGKModel.FK_bgk_yorum_bgk_yazi" FromRole="bgk_yorum" ToRole="bgk_yazi" />
+        </EntityType>
+        <Association Name="FK_bgk_anket_secenek_bgk_anket">
+          <End Type="BGKModel.bgk_anket" Role="bgk_anket" Multiplicity="1" />
+          <End Type="BGKModel.bgk_anket_secenek" Role="bgk_anket_secenek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_anket">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_anket_secenek">
+              <PropertyRef Name="AnketID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_anket_secim_bgk_anket_secenek">
+          <End Type="BGKModel.bgk_anket_secenek" Role="bgk_anket_secenek" Multiplicity="1" />
+          <End Type="BGKModel.bgk_anket_secim" Role="bgk_anket_secim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_anket_secenek">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_anket_secim">
+              <PropertyRef Name="SecenekID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_anket_secim_bgk_uye">
+          <End Type="BGKModel.bgk_uye" Role="bgk_uye" Multiplicity="0..1" />
+          <End Type="BGKModel.bgk_anket_secim" Role="bgk_anket_secim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_uye">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_anket_secim">
+              <PropertyRef Name="UyeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__bgk_bildi__UyeID__3EDC53F0">
+          <End Type="BGKModel.bgk_uye" Role="bgk_uye" Multiplicity="1" />
+          <End Type="BGKModel.bgk_bildirim" Role="bgk_bildirim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_uye">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_bildirim">
+              <PropertyRef Name="UyeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_butce_bgk_dosya">
+          <End Type="BGKModel.bgk_dosya" Role="bgk_dosya" Multiplicity="0..1" />
+          <End Type="BGKModel.bgk_butce" Role="bgk_butce" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_dosya">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_butce">
+              <PropertyRef Name="FaturaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_butce_bgk_etkinlik">
+          <End Type="BGKModel.bgk_etkinlik" Role="bgk_etkinlik" Multiplicity="0..1" />
+          <End Type="BGKModel.bgk_butce" Role="bgk_butce" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_etkinlik">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_butce">
+              <PropertyRef Name="EtkinlikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_butce_bgk_firma">
+          <End Type="BGKModel.bgk_firma" Role="bgk_firma" Multiplicity="1" />
+          <End Type="BGKModel.bgk_butce" Role="bgk_butce" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_firma">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_butce">
+              <PropertyRef Name="FirmaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__bgk_dokum__Dosya__54CB950F">
+          <End Type="BGKModel.bgk_dosya" Role="bgk_dosya" Multiplicity="0..1" />
+          <End Type="BGKModel.bgk_dokuman" Role="bgk_dokuman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_dosya">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_dokuman">
+              <PropertyRef Name="DosyaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__bgk_dokum__Kateg__53D770D6">
+          <End Type="BGKModel.bgk_dokuman_kategori" Role="bgk_dokuman_kategori" Multiplicity="1" />
+          <End Type="BGKModel.bgk_dokuman" Role="bgk_dokuman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_dokuman_kategori">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_dokuman">
+              <PropertyRef Name="KategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__bgk_dokum__UyeID__4B422AD5">
+          <End Type="BGKModel.bgk_uye" Role="bgk_uye" Multiplicity="1" />
+          <End Type="BGKModel.bgk_dokuman" Role="bgk_dokuman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_uye">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_dokuman">
+              <PropertyRef Name="UyeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_dosya_bgk_uye">
+          <End Type="BGKModel.bgk_uye" Role="bgk_uye" Multiplicity="1" />
+          <End Type="BGKModel.bgk_dosya" Role="bgk_dosya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_uye">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_dosya">
+              <PropertyRef Name="YukleyenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_etkinlik_bgk_dosya">
+          <End Type="BGKModel.bgk_dosya" Role="bgk_dosya" Multiplicity="0..1" />
+          <End Type="BGKModel.bgk_etkinlik" Role="bgk_etkinlik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_dosya">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_etkinlik">
+              <PropertyRef Name="AfisID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_firma_bgk_dosya">
+          <End Type="BGKModel.bgk_dosya" Role="bgk_dosya" Multiplicity="1" />
+          <End Type="BGKModel.bgk_firma" Role="bgk_firma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_dosya">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_firma">
+              <PropertyRef Name="ResimID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_galeri_resim_bgk_dosya">
+          <End Type="BGKModel.bgk_dosya" Role="bgk_dosya" Multiplicity="1" />
+          <End Type="BGKModel.bgk_galeri_resim" Role="bgk_galeri_resim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_dosya">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_galeri_resim">
+              <PropertyRef Name="ResimID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_gorev_kategori_bgk_dosya">
+          <End Type="BGKModel.bgk_dosya" Role="bgk_dosya" Multiplicity="1" />
+          <End Type="BGKModel.bgk_gorev_kategori" Role="bgk_gorev_kategori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_dosya">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_gorev_kategori">
+              <PropertyRef Name="ResimID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_gorev_uye_bgk_dosya">
+          <End Type="BGKModel.bgk_dosya" Role="bgk_dosya" Multiplicity="0..1" />
+          <End Type="BGKModel.bgk_gorev_uye" Role="bgk_gorev_uye" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_dosya">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_gorev_uye">
+              <PropertyRef Name="DosyaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_etkinlik_bgk_firma">
+          <End Type="BGKModel.bgk_firma" Role="bgk_firma" Multiplicity="0..1" />
+          <End Type="BGKModel.bgk_etkinlik" Role="bgk_etkinlik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_firma">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_etkinlik">
+              <PropertyRef Name="FirmaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_etkinlik_gorevli_bgk_etkinlik">
+          <End Type="BGKModel.bgk_etkinlik" Role="bgk_etkinlik" Multiplicity="1" />
+          <End Type="BGKModel.bgk_etkinlik_gorevli" Role="bgk_etkinlik_gorevli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_etkinlik">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_etkinlik_gorevli">
+              <PropertyRef Name="EtkinlikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_etkinlik_konusmaci_bgk_etkinlik">
+          <End Type="BGKModel.bgk_etkinlik" Role="bgk_etkinlik" Multiplicity="1" />
+          <End Type="BGKModel.bgk_etkinlik_konusmaci" Role="bgk_etkinlik_konusmaci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_etkinlik">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_etkinlik_konusmaci">
+              <PropertyRef Name="EtkinlikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_etkinlik_gorevli_bgk_gorev">
+          <End Type="BGKModel.bgk_gorev" Role="bgk_gorev" Multiplicity="1" />
+          <End Type="BGKModel.bgk_etkinlik_gorevli" Role="bgk_etkinlik_gorevli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_gorev">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_etkinlik_gorevli">
+              <PropertyRef Name="GorevID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_etkinlik_gorevli_bgk_uye">
+          <End Type="BGKModel.bgk_uye" Role="bgk_uye" Multiplicity="1" />
+          <End Type="BGKModel.bgk_etkinlik_gorevli" Role="bgk_etkinlik_gorevli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_uye">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_etkinlik_gorevli">
+              <PropertyRef Name="UyeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_firma_bgk_uye">
+          <End Type="BGKModel.bgk_uye" Role="bgk_uye" Multiplicity="0..1" />
+          <End Type="BGKModel.bgk_firma" Role="bgk_firma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_uye">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_firma">
+              <PropertyRef Name="UyeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_galeri_resim_bgk_galeri">
+          <End Type="BGKModel.bgk_galeri" Role="bgk_galeri" Multiplicity="1" />
+          <End Type="BGKModel.bgk_galeri_resim" Role="bgk_galeri_resim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_galeri">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_galeri_resim">
+              <PropertyRef Name="GaleriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_gorev_bgk_gorev_kategori">
+          <End Type="BGKModel.bgk_gorev_kategori" Role="bgk_gorev_kategori" Multiplicity="0..1" />
+          <End Type="BGKModel.bgk_gorev" Role="bgk_gorev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_gorev_kategori">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_gorev">
+              <PropertyRef Name="KategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_gorev_bgk_grup">
+          <End Type="BGKModel.bgk_grup" Role="bgk_grup" Multiplicity="0..1" />
+          <End Type="BGKModel.bgk_gorev" Role="bgk_gorev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_grup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_gorev">
+              <PropertyRef Name="GrupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_gorev_bgk_uye">
+          <End Type="BGKModel.bgk_uye" Role="bgk_uye" Multiplicity="1" />
+          <End Type="BGKModel.bgk_gorev" Role="bgk_gorev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_uye">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_gorev">
+              <PropertyRef Name="OlusturanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_gorev_uye_bgk_gorev">
+          <End Type="BGKModel.bgk_gorev" Role="bgk_gorev" Multiplicity="1" />
+          <End Type="BGKModel.bgk_gorev_uye" Role="bgk_gorev_uye" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_gorev">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_gorev_uye">
+              <PropertyRef Name="GorevID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_gorev_kategori_bgk_uye">
+          <End Type="BGKModel.bgk_uye" Role="bgk_uye" Multiplicity="1" />
+          <End Type="BGKModel.bgk_gorev_kategori" Role="bgk_gorev_kategori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_uye">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_gorev_kategori">
+              <PropertyRef Name="OlusturanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_gorev_kategori_uye_bgk_gorev_kategori">
+          <End Type="BGKModel.bgk_gorev_kategori" Role="bgk_gorev_kategori" Multiplicity="1" />
+          <End Type="BGKModel.bgk_gorev_kategori_uye" Role="bgk_gorev_kategori_uye" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_gorev_kategori">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_gorev_kategori_uye">
+              <PropertyRef Name="KategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_kategori_uye_bgk_uye">
+          <End Type="BGKModel.bgk_uye" Role="bgk_uye" Multiplicity="1" />
+          <End Type="BGKModel.bgk_gorev_kategori_uye" Role="bgk_gorev_kategori_uye" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_uye">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_gorev_kategori_uye">
+              <PropertyRef Name="UyeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_gorev_uye_bgk_uye">
+          <End Type="BGKModel.bgk_uye" Role="bgk_uye" Multiplicity="1" />
+          <End Type="BGKModel.bgk_gorev_uye" Role="bgk_gorev_uye" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_uye">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_gorev_uye">
+              <PropertyRef Name="UyeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_grup_uye_bgk_grup">
+          <End Type="BGKModel.bgk_grup" Role="bgk_grup" Multiplicity="1" />
+          <End Type="BGKModel.bgk_grup_uye" Role="bgk_grup_uye" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_grup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_grup_uye">
+              <PropertyRef Name="GrupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_grup_uye_bgk_uye">
+          <End Type="BGKModel.bgk_uye" Role="bgk_uye" Multiplicity="1" />
+          <End Type="BGKModel.bgk_grup_uye" Role="bgk_grup_uye" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_uye">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_grup_uye">
+              <PropertyRef Name="UyeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_yazi_bgk_kategori">
+          <End Type="BGKModel.bgk_kategori" Role="bgk_kategori" Multiplicity="1" />
+          <End Type="BGKModel.bgk_yazi" Role="bgk_yazi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_kategori">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_yazi">
+              <PropertyRef Name="KategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__bgk_not__UyeID__3A179ED3">
+          <End Type="BGKModel.bgk_uye" Role="bgk_uye" Multiplicity="1" />
+          <End Type="BGKModel.bgk_not" Role="bgk_not" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_uye">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_not">
+              <PropertyRef Name="UyeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_oylama_bgk_uye">
+          <End Type="BGKModel.bgk_uye" Role="bgk_uye" Multiplicity="0..1" />
+          <End Type="BGKModel.bgk_oylama" Role="bgk_oylama" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_uye">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_oylama">
+              <PropertyRef Name="UyeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_oylama_bgk_yazi">
+          <End Type="BGKModel.bgk_yazi" Role="bgk_yazi" Multiplicity="1" />
+          <End Type="BGKModel.bgk_oylama" Role="bgk_oylama" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_yazi">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_oylama">
+              <PropertyRef Name="YaziID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_yazi_bgk_uye">
+          <End Type="BGKModel.bgk_uye" Role="bgk_uye" Multiplicity="1" />
+          <End Type="BGKModel.bgk_yazi" Role="bgk_yazi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_uye">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_yazi">
+              <PropertyRef Name="UyeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_yorum_bgk_uye">
+          <End Type="BGKModel.bgk_uye" Role="bgk_uye" Multiplicity="0..1" />
+          <End Type="BGKModel.bgk_yorum" Role="bgk_yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_uye">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_yorum">
+              <PropertyRef Name="UyeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bgk_yorum_bgk_yazi">
+          <End Type="BGKModel.bgk_yazi" Role="bgk_yazi" Multiplicity="1" />
+          <End Type="BGKModel.bgk_yorum" Role="bgk_yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bgk_yazi">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bgk_yorum">
+              <PropertyRef Name="YaziID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BGKModelStoreContainer" CdmEntityContainer="BGKEntities">
+    <EntitySetMapping Name="bgk_yetki">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_yetki)">
+        <MappingFragment StoreEntitySet="bgk_yetki">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="Yazi" ColumnName="Yazi" />
+          <ScalarProperty Name="Yorum" ColumnName="Yorum" />
+          <ScalarProperty Name="Sayfa" ColumnName="Sayfa" />
+          <ScalarProperty Name="Ayar" ColumnName="Ayar" />
+          <ScalarProperty Name="Etkinlik" ColumnName="Etkinlik" />
+          <ScalarProperty Name="Butce" ColumnName="Butce" />
+          <ScalarProperty Name="Dosya" ColumnName="Dosya" />
+          <ScalarProperty Name="Grup" ColumnName="Grup" />
+          <ScalarProperty Name="Gorev" ColumnName="Gorev" />
+          <ScalarProperty Name="Bildirim" ColumnName="Bildirim" />
+          <ScalarProperty Name="Firma" ColumnName="Firma" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="Uye" ColumnName="Uye" />
+          <ScalarProperty Name="Seviye" ColumnName="Seviye" />
+          <ScalarProperty Name="Dokuman" ColumnName="Dokuman" />
+          <ScalarProperty Name="Not" ColumnName="Not" />
+          <ScalarProperty Name="Galeri" ColumnName="Galeri" />
+          <ScalarProperty Name="Anket" ColumnName="Anket" />
+          <ScalarProperty Name="YaziOnay" ColumnName="YaziOnay" />
+          <ScalarProperty Name="YorumOnay" ColumnName="YorumOnay" />
+          <ScalarProperty Name="GorevVerme" ColumnName="GorevVerme" />
+          <ScalarProperty Name="Kod" ColumnName="Kod" />
+          <ScalarProperty Name="YaziYazma" ColumnName="YaziYazma" />
+          <ScalarProperty Name="YorumYazma" ColumnName="YorumYazma" />
+          <ScalarProperty Name="BakimdaGiris" ColumnName="BakimdaGiris" />
+          <ScalarProperty Name="OyKullanma" ColumnName="OyKullanma" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_anket">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_anket)">
+        <MappingFragment StoreEntitySet="bgk_anket">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Soru" ColumnName="Soru" />
+          <ScalarProperty Name="CokluSecim" ColumnName="CokluSecim" />
+          <ScalarProperty Name="SadeceUye" ColumnName="SadeceUye" />
+          <ScalarProperty Name="BaslangicTarihi" ColumnName="BaslangicTarihi" />
+          <ScalarProperty Name="BitisTarihi" ColumnName="BitisTarihi" />
+          <ScalarProperty Name="Sira" ColumnName="Sira" />
+          <ScalarProperty Name="Onay" ColumnName="Onay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_anket_secenek">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_anket_secenek)">
+        <MappingFragment StoreEntitySet="bgk_anket_secenek">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="AnketID" ColumnName="AnketID" />
+          <ScalarProperty Name="Sira" ColumnName="Sira" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_anket_secim">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_anket_secim)">
+        <MappingFragment StoreEntitySet="bgk_anket_secim">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UyeID" ColumnName="UyeID" />
+          <ScalarProperty Name="SecenekID" ColumnName="SecenekID" />
+          <ScalarProperty Name="OylayanIP" ColumnName="OylayanIP" />
+          <ScalarProperty Name="SecimTarihi" ColumnName="SecimTarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_ayar">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_ayar)">
+        <MappingFragment StoreEntitySet="bgk_ayar">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="Deger" ColumnName="Deger" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_bildirim">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_bildirim)">
+        <MappingFragment StoreEntitySet="bgk_bildirim">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+          <ScalarProperty Name="UyeID" ColumnName="UyeID" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="Okundu" ColumnName="Okundu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_butce">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_butce)">
+        <MappingFragment StoreEntitySet="bgk_butce">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HarcananYer" ColumnName="HarcananYer" />
+          <ScalarProperty Name="Miktar" ColumnName="Miktar" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="EtkinlikID" ColumnName="EtkinlikID" />
+          <ScalarProperty Name="FaturaID" ColumnName="FaturaID" />
+          <ScalarProperty Name="FirmaID" ColumnName="FirmaID" />
+          <ScalarProperty Name="IslemTarihi" ColumnName="IslemTarihi" />
+          <ScalarProperty Name="Islem" ColumnName="Islem" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_dokuman">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_dokuman)">
+        <MappingFragment StoreEntitySet="bgk_dokuman">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+          <ScalarProperty Name="UyeID" ColumnName="UyeID" />
+          <ScalarProperty Name="EklenmeTarihi" ColumnName="EklenmeTarihi" />
+          <ScalarProperty Name="Onay" ColumnName="Onay" />
+          <ScalarProperty Name="Seo" ColumnName="Seo" />
+          <ScalarProperty Name="Sira" ColumnName="Sira" />
+          <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+          <ScalarProperty Name="DosyaID" ColumnName="DosyaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_dokuman_kategori">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_dokuman_kategori)">
+        <MappingFragment StoreEntitySet="bgk_dokuman_kategori">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="Onay" ColumnName="Onay" />
+          <ScalarProperty Name="Seo" ColumnName="Seo" />
+          <ScalarProperty Name="Sira" ColumnName="Sira" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_dosya">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_dosya)">
+        <MappingFragment StoreEntitySet="bgk_dosya">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="DosyaAdi" ColumnName="DosyaAdi" />
+          <ScalarProperty Name="DosyaTipi" ColumnName="DosyaTipi" />
+          <ScalarProperty Name="YukleyenID" ColumnName="YukleyenID" />
+          <ScalarProperty Name="YuklenmeTarihi" ColumnName="YuklenmeTarihi" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_etkinlik">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_etkinlik)">
+        <MappingFragment StoreEntitySet="bgk_etkinlik">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="FirmaID" ColumnName="FirmaID" />
+          <ScalarProperty Name="AfisID" ColumnName="AfisID" />
+          <ScalarProperty Name="BaslangicTarihi" ColumnName="BaslangicTarihi" />
+          <ScalarProperty Name="BitisTarihi" ColumnName="BitisTarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_etkinlik_gorevli">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_etkinlik_gorevli)">
+        <MappingFragment StoreEntitySet="bgk_etkinlik_gorevli">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UyeID" ColumnName="UyeID" />
+          <ScalarProperty Name="GorevID" ColumnName="GorevID" />
+          <ScalarProperty Name="EtkinlikID" ColumnName="EtkinlikID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_etkinlik_konusmaci">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_etkinlik_konusmaci)">
+        <MappingFragment StoreEntitySet="bgk_etkinlik_konusmaci">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+          <ScalarProperty Name="Konu" ColumnName="Konu" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="EtkinlikID" ColumnName="EtkinlikID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_firma">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_firma)">
+        <MappingFragment StoreEntitySet="bgk_firma">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="UyeID" ColumnName="UyeID" />
+          <ScalarProperty Name="ResimID" ColumnName="ResimID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_galeri">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_galeri)">
+        <MappingFragment StoreEntitySet="bgk_galeri">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="Seo" ColumnName="Seo" />
+          <ScalarProperty Name="OlusturulmaTarihi" ColumnName="OlusturulmaTarihi" />
+          <ScalarProperty Name="Onay" ColumnName="Onay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_galeri_resim">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_galeri_resim)">
+        <MappingFragment StoreEntitySet="bgk_galeri_resim">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="ResimID" ColumnName="ResimID" />
+          <ScalarProperty Name="GaleriID" ColumnName="GaleriID" />
+          <ScalarProperty Name="Sira" ColumnName="Sira" />
+          <ScalarProperty Name="EklenmeTarihi" ColumnName="EklenmeTarihi" />
+          <ScalarProperty Name="Onay" ColumnName="Onay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_gorev">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_gorev)">
+        <MappingFragment StoreEntitySet="bgk_gorev">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="GrupID" ColumnName="GrupID" />
+          <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+          <ScalarProperty Name="OlusturanID" ColumnName="OlusturanID" />
+          <ScalarProperty Name="Puan" ColumnName="Puan" />
+          <ScalarProperty Name="CezaPuani" ColumnName="CezaPuani" />
+          <ScalarProperty Name="GunSayisi" ColumnName="GunSayisi" />
+          <ScalarProperty Name="OlusturulmaTarihi" ColumnName="OlusturulmaTarihi" />
+          <ScalarProperty Name="BitisTarihi" ColumnName="BitisTarihi" />
+          <ScalarProperty Name="Tip" ColumnName="Tip" />
+          <ScalarProperty Name="Onay" ColumnName="Onay" />
+          <ScalarProperty Name="Sira" ColumnName="Sira" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_gorev_kategori">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_gorev_kategori)">
+        <MappingFragment StoreEntitySet="bgk_gorev_kategori">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="ResimID" ColumnName="ResimID" />
+          <ScalarProperty Name="OlusturanID" ColumnName="OlusturanID" />
+          <ScalarProperty Name="PuanSiniri" ColumnName="PuanSiniri" />
+          <ScalarProperty Name="Sira" ColumnName="Sira" />
+          <ScalarProperty Name="Onay" ColumnName="Onay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_gorev_kategori_uye">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_gorev_kategori_uye)">
+        <MappingFragment StoreEntitySet="bgk_gorev_kategori_uye">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UyeID" ColumnName="UyeID" />
+          <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+          <ScalarProperty Name="BaslamaTarihi" ColumnName="BaslamaTarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_gorev_uye">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_gorev_uye)">
+        <MappingFragment StoreEntitySet="bgk_gorev_uye">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="UyeID" ColumnName="UyeID" />
+          <ScalarProperty Name="GorevID" ColumnName="GorevID" />
+          <ScalarProperty Name="Rapor" ColumnName="Rapor" />
+          <ScalarProperty Name="DosyaID" ColumnName="DosyaID" />
+          <ScalarProperty Name="BaslangicTarihi" ColumnName="BaslangicTarihi" />
+          <ScalarProperty Name="BitisTarihi" ColumnName="BitisTarihi" />
+          <ScalarProperty Name="Tamamlandi" ColumnName="Tamamlandi" />
+          <ScalarProperty Name="Kabul" ColumnName="Kabul" />
+          <ScalarProperty Name="Onay" ColumnName="Onay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_grup">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_grup)">
+        <MappingFragment StoreEntitySet="bgk_grup">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="Tip" ColumnName="Tip" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_grup_uye">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_grup_uye)">
+        <MappingFragment StoreEntitySet="bgk_grup_uye">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="UyeID" ColumnName="UyeID" />
+          <ScalarProperty Name="GrupID" ColumnName="GrupID" />
+          <ScalarProperty Name="BaslangicTarihi" ColumnName="BaslangicTarihi" />
+          <ScalarProperty Name="BitisTarihi" ColumnName="BitisTarihi" />
+          <ScalarProperty Name="Tip" ColumnName="Tip" />
+          <ScalarProperty Name="Aktif" ColumnName="Aktif" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_kategori">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_kategori)">
+        <MappingFragment StoreEntitySet="bgk_kategori">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Seo" ColumnName="Seo" />
+          <ScalarProperty Name="Sira" ColumnName="Sira" />
+          <ScalarProperty Name="Onay" ColumnName="Onay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_menu">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_menu)">
+        <MappingFragment StoreEntitySet="bgk_menu">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="Sira" ColumnName="Sira" />
+          <ScalarProperty Name="SadeceUye" ColumnName="SadeceUye" />
+          <ScalarProperty Name="Onay" ColumnName="Onay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_mesaj">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_mesaj)">
+        <MappingFragment StoreEntitySet="bgk_mesaj">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Mesaj" ColumnName="Mesaj" />
+          <ScalarProperty Name="Tip" ColumnName="Tip" />
+          <ScalarProperty Name="GonderenID" ColumnName="GonderenID" />
+          <ScalarProperty Name="AliciID" ColumnName="AliciID" />
+          <ScalarProperty Name="Okundu" ColumnName="Okundu" />
+          <ScalarProperty Name="YazimTarihi" ColumnName="YazimTarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_not">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_not)">
+        <MappingFragment StoreEntitySet="bgk_not">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Konu" ColumnName="Konu" />
+          <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+          <ScalarProperty Name="UyeID" ColumnName="UyeID" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_oylama">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_oylama)">
+        <MappingFragment StoreEntitySet="bgk_oylama">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UyeID" ColumnName="UyeID" />
+          <ScalarProperty Name="YaziID" ColumnName="YaziID" />
+          <ScalarProperty Name="Puan" ColumnName="Puan" />
+          <ScalarProperty Name="OylayanIP" ColumnName="OylayanIP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_sayfa">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_sayfa)">
+        <MappingFragment StoreEntitySet="bgk_sayfa">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+          <ScalarProperty Name="Seo" ColumnName="Seo" />
+          <ScalarProperty Name="Onay" ColumnName="Onay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_seviye">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_seviye)">
+        <MappingFragment StoreEntitySet="bgk_seviye">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="AltSinir" ColumnName="AltSinir" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_uye">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_uye)">
+        <MappingFragment StoreEntitySet="bgk_uye">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="OgrenciNo" ColumnName="OgrenciNo" />
+          <ScalarProperty Name="Fakulte" ColumnName="Fakulte" />
+          <ScalarProperty Name="Bolum" ColumnName="Bolum" />
+          <ScalarProperty Name="GirisYili" ColumnName="GirisYili" />
+          <ScalarProperty Name="Puan" ColumnName="Puan" />
+          <ScalarProperty Name="CezaPuani" ColumnName="CezaPuani" />
+          <ScalarProperty Name="Yetki" ColumnName="Yetki" />
+          <ScalarProperty Name="SonGiris" ColumnName="SonGiris" />
+          <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+          <ScalarProperty Name="Onay" ColumnName="Onay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_yazi">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_yazi)">
+        <MappingFragment StoreEntitySet="bgk_yazi">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Baslik" ColumnName="Baslik" />
+          <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+          <ScalarProperty Name="Ozet" ColumnName="Ozet" />
+          <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+          <ScalarProperty Name="UyeID" ColumnName="UyeID" />
+          <ScalarProperty Name="Seo" ColumnName="Seo" />
+          <ScalarProperty Name="Okunma" ColumnName="Okunma" />
+          <ScalarProperty Name="YazimTarihi" ColumnName="YazimTarihi" />
+          <ScalarProperty Name="Manset" ColumnName="Manset" />
+          <ScalarProperty Name="Onay" ColumnName="Onay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bgk_yorum">
+      <EntityTypeMapping TypeName="IsTypeOf(BGKModel.bgk_yorum)">
+        <MappingFragment StoreEntitySet="bgk_yorum">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Yorum" ColumnName="Yorum" />
+          <ScalarProperty Name="YaziID" ColumnName="YaziID" />
+          <ScalarProperty Name="UyeID" ColumnName="UyeID" />
+          <ScalarProperty Name="Yazan" ColumnName="Yazan" />
+          <ScalarProperty Name="YazilmaTarihi" ColumnName="YazilmaTarihi" />
+          <ScalarProperty Name="Onay" ColumnName="Onay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

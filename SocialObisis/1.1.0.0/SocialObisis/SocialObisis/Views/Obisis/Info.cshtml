@@ -1,0 +1,55 @@
+﻿@model Obisis.Ogrenci
+@{
+    if (Request.QueryString["type"] == "partial")
+    {
+        Layout = "";
+    }
+    ViewBag.menuID = "obisis_info";
+}
+<div class="list">
+    <ul>
+        <li>@Html.LabelFor(model => model.AdSoyad)</li>
+        <li>@Model.AdSoyad</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.Fakulte)</li>
+        <li>@Model.Fakulte</li>
+        
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.Bolum)</li>
+        <li>@Model.Bolum</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.Sinif)</li>
+        <li>@Model.Sinif</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.ToplamKredi)</li>
+        <li>@Model.ToplamKredi / @Model.MezuniyetKredisi</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.GANO)</li>
+        <li>@Model.GANO</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.StajDurum)</li>
+        <li>@(Model.StajDurum ? "Tamamlandı" : "Tamamlanmadı")</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Kaldığın Ders Sayısı")<br />
+        <li>
+            @{
+                var kalanDersler = Model.Dersler.Where(x => x.Durum != null).OrderBy(x => x.Donem.No).GroupBy(x => x.DersAdi).Where(x => x.First().Durum == "KALDI");
+                string dersler = "";
+                foreach (var item in kalanDersler)
+                {
+                    dersler += item.First().DersAdi + ", ";
+                }
+                dersler = dersler.Trim().TrimEnd(',');
+            }
+            @kalanDersler.Count() dersten: @dersler
+        </li>
+    </ul>
+</div>
+<div id="chart3"></div>

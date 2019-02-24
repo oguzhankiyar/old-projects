@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="TicketApp.UserControls.PassengerForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <Grid x:Name="LayoutRoot" Margin="0,-75,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Tap="OpenFavorites_Tap" Text="+ Favori Kişiler" HorizontalAlignment="Right" Padding="15" Foreground="Orange" />
+        <control:PickerBox x:Name="FavoritePassengerListPicker" MemberPath="FullName" Opacity="0" Width="0" Height="0" ValueChanged="FavoritePassengers_ValueChanged" />
+        <StackPanel Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <control:InputBox x:Name="txtTCKN" Label="TC kimlik numarası:" Value="{Binding Path=TCKN, Mode=TwoWay}" Scope="Number" Length="11" Grid.ColumnSpan="2" />
+                <control:InputBox x:Name="txtFirstName" Label="Ad:" Value="{Binding Path=FirstName, Mode=TwoWay}" CasingMode="UpperAfterSpace" Grid.Row="1" />
+                <control:InputBox x:Name="txtLastName" Label="Soyad:" Value="{Binding Path=LastName, Mode=TwoWay}" CasingMode="UpperAfterSpace" Grid.Row="1" Grid.Column="1" />
+                <control:DateBox x:Name="dbBirthday" Label="Doğum tarihi:" Value="{Binding Path=Birthday, Mode=TwoWay}" Grid.Row="2" Grid.ColumnSpan="2" />
+            </Grid>
+            <control:PickerBox x:Name="pbFromServiceStop" Label="Servis biniş durağı:" Value="{Binding Path=FromServiceStop, Mode=TwoWay}" MemberPath="FullName" />
+            <control:PickerBox x:Name="pbToServiceStop" Label="Servis iniş durağı:" Value="{Binding Path=ToServiceStop, Mode=TwoWay}" MemberPath="FullName" />
+        </StackPanel>
+    </Grid>
+</UserControl>

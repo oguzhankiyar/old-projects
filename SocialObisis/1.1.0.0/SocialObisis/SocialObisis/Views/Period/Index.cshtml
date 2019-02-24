@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Obisis.Donem>
+@{
+    if (Request.QueryString["type"] == "partial")
+    {
+        Layout = "";
+    }
+    ViewBag.menuID = "obisis_periods";
+}
+
+<div class="list">
+    @foreach (Obisis.Donem donem in Model)
+    {
+        <ul>
+            <li><a href="javascript:void(0);" onclick="ChangePage('@Url.Action("Index", "Lesson", new { id = donem.No, page = donem.OgretimYiliKodu })', 'obisis_lessons');">@donem.OgretimYili @donem.Adi</a></li>
+            <li>GANO: @donem.GANO - @donem.Dersler.Count() ders</li>
+        </ul>
+    }
+</div>

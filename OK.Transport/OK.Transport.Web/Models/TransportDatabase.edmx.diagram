@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7c82447694934cba8ddd6a0f9cd1507e" Name="Diagram1">
+        <EntityTypeShape EntityType="TransportDbModel.Factory" Width="1.5" PointX="3" PointY="8.375" />
+        <EntityTypeShape EntityType="TransportDbModel.Journey" Width="1.5" PointX="10.5" PointY="5.625" />
+        <EntityTypeShape EntityType="TransportDbModel.JourneyStop" Width="1.5" PointX="12.75" PointY="5.875" />
+        <EntityTypeShape EntityType="TransportDbModel.Member" Width="1.5" PointX="3" PointY="4.125" />
+        <EntityTypeShape EntityType="TransportDbModel.Payment" Width="1.5" PointX="0.75" PointY="2.375" />
+        <EntityTypeShape EntityType="TransportDbModel.Place" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="TransportDbModel.Reservation" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="TransportDbModel.ReservationAction" Width="1.5" PointX="5.25" PointY="4.625" />
+        <EntityTypeShape EntityType="TransportDbModel.Transporter" Width="1.5" PointX="8.25" PointY="4.5" />
+        <AssociationConnector Association="TransportDbModel.FK_Factory_Address" />
+        <AssociationConnector Association="TransportDbModel.FK_Transporter_Factory" />
+        <AssociationConnector Association="TransportDbModel.FK_Journey_ArrivalPlace" />
+        <AssociationConnector Association="TransportDbModel.FK_Journey_DeparturePlace" />
+        <AssociationConnector Association="TransportDbModel.FK_Journey_Transporter" />
+        <AssociationConnector Association="TransportDbModel.FK_JourneyStop_Journey" />
+        <AssociationConnector Association="TransportDbModel.FK_JourneyStop_Place" />
+        <AssociationConnector Association="TransportDbModel.FK_Member_Address" />
+        <AssociationConnector Association="TransportDbModel.FK_Reservationaction_EditedMember" />
+        <AssociationConnector Association="TransportDbModel.FK_Transporter_Driver" />
+        <AssociationConnector Association="TransportDbModel.FK_Reservation_Payment" />
+        <AssociationConnector Association="TransportDbModel.FK_Transporter_WorkingCity" />
+        <AssociationConnector Association="TransportDbModel.FK_Reservationaction_Reservation" />
+        <AssociationConnector Association="TransportDbModel.FK_Reservation_Journey" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

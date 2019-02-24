@@ -1,0 +1,36 @@
+﻿@model bgk_anket_secenek
+
+<div class="table">
+    <div class="title">@("'" + ViewBag.pollName + "' Anketine Seçenek Ekle")</div>
+    <div class="content">
+        <div class="form">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <ul>
+                    <li>@Html.LabelFor(model => model.Adi)</li>
+                    <li>@Html.EditorFor(model => model.Adi)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Adi)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.AnketID)</li>
+                    <li>@ViewBag.pollName</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Sira)</li>
+                    <li>@Html.EditorFor(model => model.Sira)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Sira)</li>
+                </ul>
+                <ul>
+                    <li>Kaydet</li>
+                    <li>
+                        @Html.Button("Kaydet", new { type = "submit" })
+                        @Html.Button("Vazgeç", new { onclick = "window.location.href='" + Url.Action("index") + "';" })
+                    </li>
+                </ul>
+                @Html.HiddenFor(model => model.AnketID)
+            }
+        </div>
+    </div>
+</div>

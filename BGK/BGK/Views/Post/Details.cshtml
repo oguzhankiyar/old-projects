@@ -1,0 +1,147 @@
+﻿@model bgk_yazi
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);
+    IEnumerable<bgk_yorum> comments = (IEnumerable<bgk_yorum>)(ViewBag.comments);
+}
+<script type="text/javascript">
+    $(function () {
+        $("div.rating a").click(function () {
+            var point = $(this).attr("id");
+            $.post("@Url.Action("Vote")", { id: "@Model.Id", point: point }, function (msg) {
+                $("div.rating div.message").fadeOut().fadeIn(500, function () {
+                    $(this).html(msg);
+                });
+            });
+        });
+        $(window).keyup(function (e) {
+            if (e.keyCode == 13 && $("div.createcomment textarea").is(":focus")) {
+                CreateComment();
+            }
+        });
+    });
+    function ToggleCommentBar() {
+        $("div.createcomment .info").html("");
+        $("div.createcomment input[type=text]").val("");
+        $("div.createcomment textarea").val("");
+        $("div.createcomment").stop().slideToggle(500);
+    }
+    function CreateComment() {
+        $.post($("div.createcomment form").attr("action"), $("div.createcomment form").serialize(), function (msg) {
+            $("div.createcomment .info").html(msg);
+        });
+    }
+</script>
+<div class="table">
+    <div class="title">@Model.Baslik</div>
+    <div class="content">@Html.Raw(Model.Icerik)
+            <div>
+                <a href="@Url.Action("Category", "Post", new { seo = Model.bgk_kategori.Seo })">@Model.bgk_kategori.Adi</a> - 
+                <a href="@Url.Action("Details", "Member", new { id = Model.UyeID })">@Model.bgk_uye.AdSoyad</a> - 
+                @Html.ShortDateTime(Model.YazimTarihi) - 
+                @Model.Okunma okunma
+            </div>
+        <div class="rating">            @*<div class="post-info">
+                        <span class="date" title="Yazıldığı Tarih">@Html.ShortDateTime(post.YazimTarihi)</span>
+                        <span class="rating" title="Puan">
+                @for (int i = 0; i < BGKFunction.GetPostPoint(post.Id); i++)
+                {
+                    <a class="active"></a>
+                }
+                @for (int i = 0; i < 5 - BGKFunction.GetPostPoint(post.Id); i++)
+                {
+                    <a></a>
+                }
+            </span>
+        </div>*@
+            @for (int i = 1; i <= BGKFunction.GetPostPoint(Model.Id); i++)
+            {
+                <a id="@i" href="javascript:void(0);"><b>@i</b></a>
+            }
+            @for (int j = BGKFunction.GetPostPoint(Model.Id) + 1; j <= 5; j++)
+            {
+                <a id="@j" href="javascript:void(0);">@j</a>
+            }
+            @if (BGKFunction.IsPostVoted(Model.Id))
+	        {
+		        <div class="message">Daha önce oy kullandınız.</div>
+	        }
+            else
+	        {
+                <div class="message">Oyla!</div>
+	        }
+        </div>
+    </div>
+</div>
+<div class="table">
+    <div class="title">Yorumlar (@count)<span><a href="javascript:void(0)" onclick="ToggleCommentBar()">Yorum yap</a></span></div>
+    <div class="content">
+        <div class="createcomment">
+            @if (BGKFunction.GetMyRole().YorumYazma)
+            {
+                using (Html.BeginForm("CreateCommentSave", "Post", FormMethod.Post))
+                {
+                    <div class="form">
+                        @if (Session["memberInfo"] == null)
+                        {
+                            <ul>
+                                <li>@Html.Label("İsim Soyisim")</li>
+                                <li>@Html.Editor("Yazan")</li>
+                            </ul>
+                        }
+                        else
+                        {
+                            @Html.Hidden("UyeID", Session["memberID"])
+                        }
+                        <ul>
+                            <li>@Html.Label("Yorumunuz")</li>
+                            <li>@Html.TextArea("Yorum")</li>
+                        </ul>
+                        <ul>
+                            <li class="info" style="width: auto; font-weight: normal;"></li>
+                            <li style="width: auto; float: right;">
+                                @Html.Button("Gönder", new { onclick = "CreateComment()" })
+                                @Html.Button("Vazgeç", new { onclick = "ToggleCommentBar()" })
+                            </li>
+                        </ul>
+                        @Html.Hidden("YaziID", Model.Id)
+                    </div>
+                }
+            }
+            else
+            {
+                <script type="text/javascript">setTimeout(function () { ToggleCommentBar(); }, 2000);</script>
+                <div class="warning">
+                    Yorum yazma yetkiniz yok :(
+                </div>
+            }
+        </div>
+        @if (count == 0)
+        {
+            <div class="warning">Bu yazıya ilk yorumu siz yapın</div>
+        }
+        else
+        {
+            <div class="comments">
+                @foreach (bgk_yorum comment in ViewBag.comments)
+                {
+                    if (comment.UyeID == null)
+                    {
+                        <ul>
+                            <li>@comment.Yazan<span>@Html.ShortDateTime(comment.YazilmaTarihi, true)</span></li>
+                            <li>@comment.Yorum</li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul>
+                            <li><a href="@Url.Action("Details", "Member", new { id = comment.bgk_uye.Id })">@comment.bgk_uye.AdSoyad</a><span>@Html.ShortDateTime(comment.YazilmaTarihi, true)</span></li>
+                            <li>@comment.Yorum</li>
+                        </ul>
+                    }
+                }
+            </div>
+        }
+    </div>
+</div>
+@Html.Paging()

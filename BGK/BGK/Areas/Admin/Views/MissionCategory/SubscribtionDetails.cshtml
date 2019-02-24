@@ -1,0 +1,21 @@
+﻿@model bgk_gorev_kategori_uye
+
+<div class="title">Abonelik Detayları</div>
+<div class="content details">
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.KategoriID)</li>
+        <li><a href="@Url.Action("Details", new { num = Model.KategoriID })">@Model.bgk_gorev_kategori.Adi</a></li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.UyeID)</li>
+        <li><a href="@Url.Action("Details", "Member", new { num = Model.UyeID })">@Model.bgk_uye.AdSoyad</a></li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.BaslamaTarihi)</li>
+        <li>@Html.ShortDateTime(Model.BaslamaTarihi)</li>
+    </ul>
+</div>
+<div class="buttons">
+    @Html.Button("Yaptığı Görevler", new { onclick = "window.location.href='" + Url.Action("index", "mission", new { memberID = Model.UyeID }) + "';" })
+    @Html.Button("Kapat", new { onclick = "$.BGK.ModalClose();" })
+</div>

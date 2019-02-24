@@ -1,0 +1,75 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Activity"
+    style="@style/ActivityStyle"
+    tools:context=".InfoActivity" >
+
+    <TextView
+        android:id="@+id/Title"
+        style="@style/TitleStyle"
+        android:text="@string/title_activity_info" />
+
+    <TextView
+      	android:id="@+id/MenuLink"
+        style="@style/MenuLinkStyle" />
+		
+	<ScrollView 
+        android:id="@+id/Container"
+    	style="@style/ContainerStyle" >
+
+	    <LinearLayout
+        	android:id="@+id/ContainerLayout"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical" >
+	        
+	        <TextView
+				style="@style/SmallTextStyle"
+				android:text="@string/info_fullName" />
+	
+	        <TextView
+	            android:id="@+id/tvAdSoyad"
+				style="@style/LargeTextStyle"
+	            android:layout_marginBottom="15dp" />
+	        
+	        <TextView
+				style="@style/SmallTextStyle"
+				android:text="@string/info_faculty" />
+	
+	        <TextView
+	            android:id="@+id/tvFakulte"
+				style="@style/LargeTextStyle"
+	            android:layout_marginBottom="15dp" />
+	        
+	        <TextView
+				style="@style/SmallTextStyle"
+				android:text="@string/info_program" />
+	
+	        <TextView
+	            android:id="@+id/tvBolum"
+				style="@style/LargeTextStyle"
+	            android:layout_marginBottom="15dp" />
+	        
+	        <TextView
+				style="@style/SmallTextStyle"
+				android:text="@string/info_class" />
+	
+	        <TextView
+	            android:id="@+id/tvSinif"
+				style="@style/LargeTextStyle"
+	            android:layout_marginBottom="15dp" />
+	        
+	        <TextView
+				style="@style/SmallTextStyle"
+				android:text="@string/info_gano" />
+	
+	        <TextView
+	            android:id="@+id/tvGANO"
+				style="@style/LargeTextStyle"
+	            android:layout_marginBottom="15dp" />
+        
+        </LinearLayout>
+        
+ 	</ScrollView>
+ 	
+</RelativeLayout>

@@ -1,0 +1,11 @@
+﻿@{
+      Layout = "~/Views/BaseLayout.cshtml";
+      OKDbEntities Db = new OKDbEntities();
+}
+<div style="padding: 50px 100px;">
+    <h2>Page List</h2>
+    @foreach (var page in Db.Pages.Where(x => x.IsApproval).ToList())
+    {
+        <a href="@Url.Action("Details", "Page", new { pageURL = page.ShortURL })">@page.Name</a><br />
+    }
+</div>

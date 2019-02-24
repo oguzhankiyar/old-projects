@@ -1,0 +1,38 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TicketApp.Pages.Help.DetailsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    Orientation="Portrait"
+    mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource PageStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <control:Header />
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="5">
+                <control:Title Value="Sefer detay" />
+                <TextBlock TextWrapping="Wrap" LineHeight="30" FontWeight="Light" Padding="5">
+                    İstediğiniz seferi hız bir şekilde seçtiniz ve sıra sonraki aşamada..<LineBreak />
+                    <LineBreak />
+                    - Bu aşamada seçtiğiniz sefer(ler)in detaylarını gözden geçirebilirsiniz.<LineBreak />
+                    - Eğer otobüs seferi seçtiyseniz, 'Koltuk seç' düğmesine dokunarak 'koltuk seçme' aşamasına geçebilirsiniz.<LineBreak />
+                    - Eğer uçak seferi seçtiyseniz, bu aşamada yapacağınız bir işlem daha var: sefer sınıfı seçme<LineBreak />
+                    - Her bir seferin altında seçebileceğiniz sefer sınıfları vardır. İstediğiniz sınıfları seçin.<LineBreak />
+                    - Tüm seferler için sınıf belirlediyseniz en altta 'fiyat detayları' bölümü belirecektir. Buradan fiyat detaylarını inceleyebilirsiniz.<LineBreak />
+                    - Devam etmek istediğiniz işleme göre 'Rezervasyon yap' veya 'Satın al' düğmesine dokunarak sonraki aşamaya geçebilirsiniz.
+                </TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</phone:PhoneApplicationPage>

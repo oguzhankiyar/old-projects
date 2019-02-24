@@ -1,0 +1,15 @@
+﻿@model IEnumerable<club_post>
+
+<div class="table">
+    <div class="title">Çok Okunanlar</div>
+    <div class="content">
+        <div class="itemlist">
+            <ul>
+                @foreach (var post in Model)
+                {
+                    <li><a href="@Url.Action("Detail", "Post", new { id = post.Id, seo = post.Seo, page = 1 })">@post.Title</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

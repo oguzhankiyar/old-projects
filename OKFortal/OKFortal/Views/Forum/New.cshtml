@@ -1,0 +1,54 @@
+﻿@model IEnumerable<topic>
+@{
+    ViewBag.Title = "Yeni Konular";
+    int count = Convert.ToInt32(ViewBag.count);    
+}
+
+@section Map {
+    <div class="map">
+        <span>@Html.ActionLink(OK.Config("site-name"), "Index")</span>
+        <span class="active">Yeni Konular</span>
+    </div>
+}
+<div class="table">
+    <div class="title">Yeni Konular</div>
+    <div class="content">
+        @if (Model.Count() == 0)
+        {
+            <div class="noitem">Henüz konu eklenmemiş</div>
+        }
+        else
+        {
+            <div class="topics">
+                <ul>
+                    <li class="image"></li>
+                    <li class="name">Konu</li>
+                    <li class="comments-views">Cevaplar / Okunma</li>
+                    <li class="lastcomment">Son Cevap</li>
+                </ul>
+                @foreach (topic topic in Model)
+                {
+                    comment lastcomment = OK.LastComment(topic);
+                    <ul>
+                        <li class="image"><img src="@topic.user.ImageFile" /></li>
+                        <li class="name">@(topic.IsSticky == true ? "[Sabit] " : null)@(topic.IsClosed == true ? "[Kilitli] " : null)@Html.ActionLink(topic.Title, "Topic", new { seo = topic.Seo, id = topic.Id, page = 1})
+                            <span>Forum: @topic.forum.Name, Gön: <a href="javascript:void(0)" onclick="$.OK.Modal('@Url.Action("UserInfo", "Account", new { username = "i", id = topic.WriterId })');">@OK.UserName(topic.user)</a>, @Html.ShortDateTime((DateTime)topic.CreationDate)</span>
+                        </li>
+                        <li class="comments-views">Cevaplar: @topic.comments.Where(x => x.IsApproval == true).Count()<br />Okunma: @topic.ViewsCount</li>
+                        <li class="lastcomment">
+                            @if (lastcomment != null)
+                            {
+                                <text>Gön: <a href="javascript:void(0)" onclick="$.OK.Modal('@Url.Action("UserInfo", "Account", new { id = lastcomment.WriterId })');">@OK.UserName(lastcomment.user)</a><br />@Html.ShortDateTime((DateTime)lastcomment.CreationDate)</text>
+                            }
+                            else
+                            {
+                                <text>-</text>
+                            }
+                        </li>
+                    </ul>
+                }
+            </div>
+        }
+    </div>
+</div>
+@Html.Paging("$.OK.OpenNewPage('" + Url.Action("new", new { page = "{page}" }) + "');", count, Convert.ToInt32(OK.Config("topic-paging-count")))

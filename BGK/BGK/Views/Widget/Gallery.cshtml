@@ -1,0 +1,13 @@
+﻿@model IEnumerable<bgk_galeri_resim>
+
+<div class="table">
+    <div class="title">Galeriden
+        <span><a href="@Url.Action("Index", "Gallery")">Tümü</a></span>
+    </div>
+    <div class="content">
+        @foreach (var image in Model)
+        {
+            <img src="@BGKFunction.GetFile(image.bgk_dosya)" width="100" />
+        }
+    </div>
+</div>

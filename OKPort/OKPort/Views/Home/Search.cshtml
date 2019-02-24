@@ -1,0 +1,19 @@
+﻿@model IEnumerable<OKPort.Models.Page>
+@{
+    Layout = "~/Views/BaseLayout.cshtml";
+}
+     
+<div style="padding: 50px 100px;">
+    <h2>Search Results</h2>
+    @if (!Model.Any())
+    {
+        <div>Aramanıza uygun sonuç bulunamadı!</div>
+    }
+    else
+    {
+        foreach (var page in Model.ToList())
+        {
+            <a href="@Url.Action("Details", "Page", new { pageURL = page.ShortURL })">@page.Name</a><br />
+        }
+    }
+</div>

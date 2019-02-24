@@ -1,0 +1,64 @@
+﻿<Application
+    x:Class="TicketApp.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
+
+    <!--Application Resources-->
+    <Application.Resources>
+        <local:LocalizedStrings xmlns:local="clr-namespace:TicketApp" x:Key="LocalizedStrings"/>
+        
+        <Style TargetType="phone:PhoneApplicationPage">
+            <Setter Property="SupportedOrientations" Value="Portrait" />
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}" />
+            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}" />
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeNormal}" />
+        </Style>
+
+        <Style x:Name="PageStyle" TargetType="Grid">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <!--<ImageBrush ImageSource="/Assets/10896941_818379231534605_2578188208716084675_n.jpg" Stretch="UniformToFill" />-->
+                    <ImageBrush ImageSource="/Assets/Background.png" Stretch="UniformToFill" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="phone:LongListSelector">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="phone:LongListSelector">
+                        <Grid Background="{TemplateBinding Background}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="ScrollStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="00:00:00.5" />
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Scrolling">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="VerticalScrollBar" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="NotScrolling" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid Margin="{TemplateBinding Padding}">
+                                <ViewportControl x:Name="ViewportControl" HorizontalContentAlignment="Stretch" VerticalAlignment="Top" />
+                                <ScrollBar x:Name="VerticalScrollBar" Margin="4,0,-7,0" Opacity="0" HorizontalAlignment="Right" Orientation="Vertical" />
+                            </Grid>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Application.Resources>
+
+    <Application.ApplicationLifetimeObjects>
+        <!--Required object that handles lifetime events for the application-->
+        <shell:PhoneApplicationService
+            Launching="Application_Launching" Closing="Application_Closing"
+            Activated="Application_Activated" Deactivated="Application_Deactivated"/>
+    </Application.ApplicationLifetimeObjects>
+
+</Application>

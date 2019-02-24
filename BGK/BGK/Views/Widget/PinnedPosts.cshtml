@@ -1,0 +1,40 @@
+﻿@model IEnumerable<bgk_yazi>
+@{
+    int i = 0;    
+}
+@if (Model.Count() != 0)
+{
+    <script type="text/javascript">
+        $(function () {
+            var postCount = $("div.notices div.pages input").length;
+            var index = 0;
+            setInterval(function () {
+                $("div.notices div.pages input:eq(" + index++ % postCount + ")").click();
+            }, 7000);
+            function ChangePost(i) {
+                $("div.notices div.content").hide();
+                $("div.notices div.content:eq(" + i % postCount + ")").fadeIn(500);
+                index = ++i;
+            }
+            $("div.notices div.pages input:radio[name='page']").change(function () {
+                ChangePost($(this).val());
+            });
+            $("div.notices div.pages input:eq(" + index + ")").click();
+        });
+    </script>
+    <div class="table notices" style="height: 250px;">
+        @foreach (var post in Model)
+        {
+            <div class="content" style="display: none; height: 220px;">
+                <h3>@post.Baslik</h3>
+                @Html.Raw(post.Ozet)
+            </div>
+        }
+        <div class="pages" style="text-align: center;">
+            @foreach (var post in Model)
+            {
+                <input type="radio" value="@(i++)" name="page" title="@post.Baslik" />
+            }
+        </div>
+    </div>
+}

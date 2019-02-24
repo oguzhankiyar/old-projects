@@ -1,0 +1,54 @@
+﻿@model forum
+@{
+    ViewBag.Title = "Forum Ekle";
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm())
+{
+    <div class="form">
+        <ul>
+            <li>@Html.LabelFor(model => model.Name)</li>
+            <li>@Html.EditorFor(model => model.Name)<small>@Html.ValidationMessageFor(model => model.Name)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.Description)</li>
+            <li>@Html.EditorFor(model => model.Description)<small>@Html.ValidationMessageFor(model => model.Description)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.ImageFile)</li>
+            <li>@Html.EditorFor(model => model.ImageFile)<small>@Html.ValidationMessageFor(model => model.ImageFile)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.CategoryId, "category")</li>
+            <li>@Html.DropDownList("CategoryId", String.Empty)<small>@Html.ValidationMessageFor(model => model.CategoryId)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.ParentForumId)</li>
+            <li>@Html.EditorFor(model => model.ParentForumId)<small>@Html.ValidationMessageFor(model => model.ParentForumId)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.Sort)</li>
+            <li>@Html.EditorFor(model => model.Sort)<small>@Html.ValidationMessageFor(model => model.Sort)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.IsSubForum)</li>
+            <li>@Html.EditorFor(model => model.IsSubForum)<small>@Html.ValidationMessageFor(model => model.IsSubForum)</small></li>
+        </ul>
+        <ul>
+            <li>@Html.LabelFor(model => model.IsApproval)</li>
+            <li>@Html.EditorFor(model => model.IsApproval)<small>@Html.ValidationMessageFor(model => model.IsApproval)</small></li>
+        </ul>
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.ViewsCount)
+        <ul>
+            <li>Kaydet</li>
+            <li>
+                @Html.Button("Kaydet", new { type = "submit" })
+                @Html.Button("Vazgeç", new { onclick = "OpenNewPage('" + Url.Action("index") + "');" })
+            </li>
+        </ul>
+    </div>
+}

@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="iTunesMusic.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:iTunesMusic"
+    xmlns:converter="using:iTunesMusic.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <converter:VisibilityConverter x:Key="VisibilityConverter" />
+    </Page.Resources>
+    
+    <Grid x:Name="LayoutRoot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <MediaElement x:Name="Player" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="query" />
+            <Button Grid.Column="1"  Click="Button_Click" Content="Ara / Sayfa geç" />
+        </Grid>
+        <ListView x:Name="ListView1" Grid.Row="1"  ItemsSource="{Binding}" SelectionChanged="ListView_SelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Height="75">
+                        <TextBlock Text="{Binding Name}" />
+                        <TextBlock Text="{Binding Info}" Visibility="{Binding Info, Converter={StaticResource VisibilityConverter}}" />
+                        <TextBlock Text="{Binding Type}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

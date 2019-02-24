@@ -1,0 +1,32 @@
+﻿@model IEnumerable<bgk_grup_uye>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);  
+    int memberID = Convert.ToInt32(ViewBag.memberID);
+    var member = BGKFunction.GetMember(memberID);
+    int i = 0;
+}
+
+<div class="table">
+    <div class="title">@member.AdSoyad > Gruplar</div>
+    <div class="content list" style="padding: 0;">
+        @if (count == 0)
+        {
+            <div class="warning">
+                Bu üyemiz henüz gruba üye olmamış :(
+            </div>
+        }
+        @foreach (var group in Model)
+        {
+            i++;
+            <a href="@Url.Action("Details", "Group", new { id = group.GrupID })">
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li class="name">@group.bgk_grup.Adi<br />
+                        <span>@group.Aciklama.GetSummary(100)</span>
+                    </li>
+                </ul>
+            </a>
+        }
+    </div>
+</div>
+@Html.Paging()

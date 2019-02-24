@@ -1,0 +1,99 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="KargoTakip.HakkindaPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Orange">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,15,0,15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image x:Name="BackImage" Tap="BackImage_Tap" Grid.Column="0" Source="/Assets/back.png" HorizontalAlignment="Right" Margin="0,0,5,0" Width="50" />
+                <TextBlock Grid.Column="1" Text="Hakkında" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            </Grid>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource PhoneTextNormalStyle}">
+                    Kargo Takip v 1.1
+                </TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource PhoneTextNormalStyle}">
+                    Oğuzhan Kiyar
+                </TextBlock>
+                <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource PhoneTextNormalStyle}">
+                    Öneri ve hata bildirimleriniz için iletişim:
+                </TextBlock>
+                <HyperlinkButton Grid.Row="2" Grid.ColumnSpan="2" Content="http://www.ogzkyr.net" TargetName="_blank" NavigateUri="http://www.ogzkyr.net" HorizontalAlignment="Left" />
+                <TextBlock Grid.Row="3" Margin="0,15,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}">Geçmiş</TextBlock>
+                <TextBlock x:Name="Gecmis_Uyari" Grid.Row="4" Grid.ColumnSpan="2" Margin="15,15,0,0" Visibility="Collapsed" Style="{StaticResource PhoneTextSubtleStyle}" HorizontalAlignment="Stretch">Şuanlık gösterilecek öğe yok!<LineBreak />Sorgulama yaptıkça buraya eklenecektir.</TextBlock>
+            </Grid>
+            <ScrollViewer Grid.Row="4" Padding="0,10">
+                <phone:LongListSelector x:Name="GecmisLLS" SelectionChanged="GecmisLLS_SelectionChanged">
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="33" />
+                                    <RowDefinition Height="33" />
+                                    <RowDefinition Height="33" />
+                                </Grid.RowDefinitions>
+                                <Rectangle Fill="White" Opacity="0.2" Grid.RowSpan="3" Grid.ColumnSpan="2" />
+                                <Image Source="{Binding Sirket.Resim}" Width="99" Height="99" Margin="10" Grid.RowSpan="3" Grid.Column="0" />
+                                <TextBlock Text="{Binding Kod}" Grid.Row="0" Grid.Column="1" Style="{StaticResource PhoneTextNormalStyle}" />
+                                <TextBlock Text="{Binding Sirket.Adi}" Grid.Row="1" Grid.Column="1" Style="{StaticResource PhoneTextNormalStyle}" />
+                                <TextBlock Text="{Binding SonGiris}" Grid.Row="2" Grid.Column="1" Style="{StaticResource PhoneTextNormalStyle}" />
+                                <toolkit:ContextMenuService.ContextMenu>
+                                    <toolkit:ContextMenu>
+                                        <toolkit:MenuItem Header="Geçmişten sil" Click="GecmistenSil_Click" />
+                                    </toolkit:ContextMenu>
+                                </toolkit:ContextMenuService.ContextMenu>
+                            </Grid>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

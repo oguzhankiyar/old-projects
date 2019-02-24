@@ -1,0 +1,71 @@
+﻿@model basvuru
+@{
+    ViewBag.Title = "Online Kayıt";
+    List<SelectListItem> tips = new List<SelectListItem>();
+    tips.Add(new SelectListItem() { Text = "Konaklamalı (₺50)", Value = "1" });
+    tips.Add(new SelectListItem() { Text = "Konaklamasız (₺120)", Value = "2" });
+}
+<div class="table">
+    <div class="title">Online Kayıt</div>
+    <div class="content">
+        <div class="form">
+            @using (Html.BeginForm())
+            {
+                <div>
+                    Online kayıt işlemi için aşağıdaki formu doldurarak 'Gönder' düğmesine basınız.<br />
+                    * Kayıt yapabilmeniz için bankaya yatırdığınız ödeme tarihi ve dekont numarası gerekmektedir!<br />
+                    * Kayıttan sonra size bir şifre vereceğiz ve bu şifreyle başvurunuzu inceleyebileceksiniz.
+                </div>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Ad)</li>
+                    <li>@Html.EditorFor(model => model.Ad)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Ad)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Soyad)</li>
+                    <li>@Html.EditorFor(model => model.Soyad)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Soyad)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Email)</li>
+                    <li>@Html.EditorFor(model => model.Email)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Email)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Telefon)</li>
+                    <li>@Html.EditorFor(model => model.Telefon)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Telefon)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Kurum)</li>
+                    <li>@Html.EditorFor(model => model.Kurum)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Kurum)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Meslek)</li>
+                    <li>@Html.EditorFor(model => model.Meslek)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Meslek)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Tur)</li>
+                    <li>@Html.DropDownListFor(model => model.Tur, tips, String.Empty)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Tur)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.OdemeTarihi)</li>
+                    <li>@Html.EditorFor(model => model.OdemeTarihi)</li>
+                    <li>@Html.ValidationMessageFor(model => model.OdemeTarihi)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.DekontNumarasi)</li>
+                    <li>@Html.EditorFor(model => model.DekontNumarasi)</li>
+                    <li>@Html.ValidationMessageFor(model => model.DekontNumarasi)</li>
+                </ul>
+                <ul>
+                    <li>&nbsp;</li>
+                    <li><input type="submit" value="Gönder" /></li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>

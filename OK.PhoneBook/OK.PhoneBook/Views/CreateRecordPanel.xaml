@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="OK.PhoneBook.Views.CreateRecordPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OK.PhoneBook.Views"
+             xmlns:control="clr-namespace:OK.PhoneBook.Controls"
+             mc:Ignorable="d"
+             d:DesignWidth="400">
+
+    <ScrollViewer Background="#252525" Margin="5" VerticalScrollBarVisibility="Auto">
+        <StackPanel x:Name="pnlPeople" Margin="10">
+            <TextBlock x:Name="txtTitle" Text="Kayıt Ekle" Foreground="#57b68b" FontSize="25" Margin="10,5" />
+            
+            <StackPanel Background="#444" Margin="0,0,0,10">
+                <TextBlock Text="Adı:" Foreground="#CCC" FontSize="15" Margin="10,5" />
+                <TextBox Text="{Binding Path=FirstName, Mode=TwoWay}" Background="#555" Foreground="#FFF" FontSize="15" BorderThickness="0" Padding="10,5" />
+            </StackPanel>
+
+            <StackPanel Background="#444" Margin="0,0,0,10">
+                <TextBlock Text="Soyadı:" Foreground="#CCC" FontSize="15" Margin="10,5" />
+                <TextBox Text="{Binding Path=LastName, Mode=TwoWay}" Background="#555" Foreground="#FFF" FontSize="15" BorderThickness="0" Padding="10,5" />
+            </StackPanel>
+
+            <StackPanel Background="#444" Margin="0,0,0,10">
+                <TextBlock Text="Görevi:" Foreground="#CCC" FontSize="15" Margin="10,5" />
+                <TextBox Text="{Binding Path=Job, Mode=TwoWay}" Background="#555" Foreground="#FFF" FontSize="15" BorderThickness="0" Padding="10,5" />
+            </StackPanel>
+
+            <StackPanel Background="#444" Margin="0,0,0,10">
+                <TextBlock Text="Kurumu:" Foreground="#CCC" FontSize="15" Margin="10,5" />
+                <TextBox Text="{Binding Path=Institution, Mode=TwoWay}" Background="#555" Foreground="#FFF" FontSize="15" BorderThickness="0" Padding="10,5" />
+            </StackPanel>
+            
+            <StackPanel Background="#444" Margin="0,0,0,10">
+                <TextBlock Text="E-posta:" Foreground="#CCC" FontSize="15" Margin="10,5" />
+                <TextBox Text="{Binding Path=Email, Mode=TwoWay}" Background="#555" Foreground="#FFF" FontSize="15" BorderThickness="0" Padding="10,5" />
+            </StackPanel>
+
+            <StackPanel Background="#444" Margin="0,0,0,10">
+                <TextBlock Text="Adresi:" Foreground="#CCC" FontSize="15" Margin="10,5" />
+                <TextBox Text="{Binding Path=Address, Mode=TwoWay}" Background="#555" Foreground="#FFF" FontSize="15" BorderThickness="0" Padding="10,5" />
+            </StackPanel>
+
+            <StackPanel Background="#444" Margin="0,0,0,10">
+                <TextBlock Text="Açıklama:" Foreground="#CCC" FontSize="15" Margin="10,5" />
+                <TextBox Text="{Binding Path=Description, Mode=TwoWay}" Background="#555" Foreground="#FFF" FontSize="15" BorderThickness="0" Padding="10,5" />
+            </StackPanel>
+
+            <ItemsControl x:Name="lsPhoneNumbers" Background="Transparent" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Background="#444" Margin="0,0,0,10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Background="#555" HorizontalAlignment="Stretch" Orientation="Horizontal">
+                                <TextBlock Text="Telefon: " Foreground="#FFF" FontSize="15" Padding="10,5,0,5" />
+                                <TextBlock Text="{Binding Path=Type}" Foreground="#FFF" FontSize="15" Padding="0,5,10,5" />
+                            </StackPanel>
+                            <TextBox Text="{Binding Path=Number, Mode=TwoWay}" TextChanged="txtPhoneNumber_TextChanged" Background="#555" Foreground="#FFF" FontSize="15" BorderThickness="0" Padding="10,5" Grid.Row="1" />
+
+                            <control:ImageButton Source="/Assets/close.png" Tag="{Binding}" Clicked="btnRemovePhoneNumber_Clicked" Margin="-10,0,0,0" Grid.RowSpan="2" Grid.Column="1" />
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+                
+            <Grid Background="#444">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Tür:" Foreground="#CCC" FontSize="15" Margin="10,5" />
+
+                <TextBox x:Name="txtOther" Background="#555" Foreground="#FFF" FontSize="15" BorderThickness="0" Padding="10,5" Grid.Column="1" Grid.ColumnSpan="2" />
+                <ComboBox x:Name="cbPhoneType" Background="#444" Grid.Column="1" Grid.ColumnSpan="2">
+                    <ComboBoxItem>Cep</ComboBoxItem>
+                    <ComboBoxItem>Ev</ComboBoxItem>
+                    <ComboBoxItem>Fax</ComboBoxItem>
+                    <ComboBoxItem>Dahili</ComboBoxItem>
+                    <ComboBoxItem>Diğer</ComboBoxItem>
+                </ComboBox>
+
+                <TextBlock Text="No:" VerticalAlignment="Center" Foreground="#CCC" FontSize="15" Margin="10,5" Grid.Row="1" />
+                <TextBox x:Name="txtPhoneNumber" TextChanged="txtPhoneNumber_TextChanged" Background="#555" Foreground="#FFF" FontSize="15" BorderThickness="0" Padding="10,5" Margin="0,5,0,0" Grid.Row="1" Grid.Column="1" />
+
+                <Grid HorizontalAlignment="Right" Height="30" Grid.Row="1" Grid.Column="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <control:ImageButton Source="/Assets/check.png" Margin="0,-5,0,0" Clicked="btnAddPhoneSend_Clicked" />
+                    <control:ImageButton Source="/Assets/close.png" Margin="0,-5,0,0" Clicked="btnAddPhoneCancel_Clicked" Grid.Column="1" />
+                </Grid>
+            </Grid>
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <control:ImageButton Source="/Assets/check.png" Margin="1" Clicked="btnSend_Clicked" />
+                <control:ImageButton Source="/Assets/close.png" Margin="1" Clicked="btnCancel_Clicked" Grid.Column="1" />
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+    
+</UserControl>

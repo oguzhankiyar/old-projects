@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="TicketApp.UserControls.TicketPassengerItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:TicketApp.UserControls"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    xmlns:converter="clr-namespace:TicketApp.Converters"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <UserControl.Resources>
+        <converter:PassengerTypeToStringConverter x:Name="passengerTypeConverter" />
+        <converter:ActionTypeToStringConverter x:Name="actionTypeConverter" />
+        <converter:StringToVisibilityConverter x:Name="visibilityConverter" />
+        <converter:GenderToImageSourceConverter x:Name="imageSourceConverter" />
+    </UserControl.Resources>
+    
+    <Grid x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <CheckBox x:Name="cbPassenger" Margin="-7,-12,-12,-12" Checked="cbPassenger_StateChanged" Unchecked="cbPassenger_StateChanged" VerticalAlignment="Center" Visibility="Collapsed" />
+        <control:ExpandBox x:Name="PassengerPanel" Mode="Image" Grid.ColumnSpan="2">
+            <control:ExpandBox.MinimizedPanel>
+                <Grid Margin="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Image Source="{Binding Path=Gender, Converter={StaticResource imageSourceConverter}}" Width="50" Margin="0,0,5,0" Grid.RowSpan="3" />
+                    <TextBlock Grid.Column="1">
+                        <Run Text="{Binding Path=FirstName}" />
+                        <Run Text="{Binding Path=LastName}" />
+                    </TextBlock>
+                    <TextBlock Text="{Binding Path=Type, Converter={StaticResource passengerTypeConverter}}" Grid.Row="1" Grid.Column="1" />
+                    <TextBlock Text="{Binding Path=LastAction.Type, Converter={StaticResource actionTypeConverter}}" Grid.Row="2" Grid.Column="1" />
+                </Grid>
+            </control:ExpandBox.MinimizedPanel>
+            <control:ExpandBox.MaximizedPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding Path=Seat.Number, StringFormat='{}Koltuk No: {0}'}" Visibility="{Binding Path=Seat.Number, Converter={StaticResource visibilityConverter}}" FontSize="25" Margin="15,0,5,5" />
+                    <TextBlock Text="{Binding Path=ETicketId, StringFormat='{}E-Bilet No: {0}'}" Visibility="{Binding Path=ETicketId, Converter={StaticResource visibilityConverter}}" FontSize="25" Margin="15,0,5,5" />
+                    <Grid x:Name="PriceDetailsPanel" Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Net Fiyat" TextAlignment="Center" Opacity=".7" />
+                        <TextBlock Text="Vergi" TextAlignment="Center" Opacity=".7" Grid.Column="1" />
+                        <TextBlock Text="Hizmet" TextAlignment="Center" Opacity=".7" Grid.Column="2" />
+                        <TextBlock Text="Toplam" TextAlignment="Center" Opacity=".7" Grid.Column="3" />
+
+                        <TextBlock Text="{Binding Path=Price.NetPrice, StringFormat='{}₺{0:0.##}'}" TextAlignment="Center" Grid.Row="1" />
+                        <TextBlock Text="{Binding Path=Price.Tax, StringFormat='{}₺{0:0.##}'}" TextAlignment="Center" Grid.Row="1" Grid.Column="1" />
+                        <TextBlock Text="{Binding Path=Price.ServicePrice, StringFormat='{}₺{0:0.##}'}" TextAlignment="Center" Grid.Row="1" Grid.Column="2" />
+                        <TextBlock Text="{Binding Path=Price.TotalPrice, StringFormat='{}₺{0:0.##}'}" TextAlignment="Center" Grid.Row="1" Grid.Column="3" />
+                    </Grid>
+                    <Grid x:Name="BusPricePanel" Visibility="Collapsed" Margin="15,0,0,0" Grid.Row="1">
+                        <TextBlock Text="{Binding Path=Price.TotalPrice, StringFormat='{}Bilet Fiyatı: ₺{0:0.##}'}" FontSize="25" />
+                    </Grid>
+                </Grid>
+            </control:ExpandBox.MaximizedPanel>
+        </control:ExpandBox>
+    </Grid>
+</UserControl>

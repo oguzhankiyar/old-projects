@@ -1,0 +1,32 @@
+﻿@model IEnumerable<club_member>
+@{
+    ViewBag.Title = "Üyeler";
+    int count = Convert.ToInt32(ViewBag.count);
+    int i = 0;
+}
+<script type="text/javascript">
+    function ChangeApproval(id) {
+        $.post("@Url.Action("changeapproval")/" + id, { id: id }, function (msg) { $("a#" + id + "_approval").fadeOut(500).fadeIn(500, function () { $("a#" + id + "_approval").attr("class", $("a#" + id + "_approval").attr("class") == "approved" ? "deprecated" : "approved").attr("title", $("a#" + id + "_approval").attr("class") == "approved" ? "Onayı Kaldır" : "Onayla"); }); $("body").append(msg); });
+    }
+</script>
+
+<div class="list">
+    @foreach (var member in Model)
+    {
+        i++;
+        <ul class="@(i % 2 == 0 ? "second" : "first")">
+            <li>
+                <b>@Html.DisplayFor(modelItem => member.Name)</b><br />
+                <small><b>Kayıt Tarihi: </b>@Html.DisplayFor(modelItem => member.RegistrationDate)</small>
+            </li>
+            <li class="manage">
+                @Html.ActionLink(" ", "info", "member", new { area = "", id = member.Id }, new { @class = "view", target = "_blank", title = "Sitede Göster" })
+                <a id="@(member.Id + "_approval")" class="@(member.IsApproval == true ? "approved" : "deprecated")" title="@(member.IsApproval == true ? "Onayı Kaldır" : "Onayla")" href="javascript:void(0)" onclick="ChangeApproval('@member.Id')"></a>
+                @Html.ActionLink(" ", "edit", new { num = member.Id }, new { @class = "edit", title = "Düzenle" })
+                @Html.ActionLink(" ", "details", new { num = member.Id }, new { @class = "details", title = "Detay" })
+                @Html.ActionLink(" ", "delete", new { num = member.Id }, new { @class = "delete", title = "Sil" })
+            </li>
+        </ul>
+    }
+</div>
+@Html.Paging("OpenNewPage('" + Url.Action("index", new { num = "{page}" }) + "');", count, 10)

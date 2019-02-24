@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Obisis.Duyuru>
+@{
+    if (Request.QueryString["type"] == "partial")
+    {
+        Layout = "";
+    }
+    int i = 0;
+}
+<div class="table">
+    <div class="title">Duyurular</div>
+    <div class="content list" style="padding: 0;">
+        @foreach (var duyuru in Model)
+        {
+            i++;
+            <ul class="@(i % 2 == 0 ? "second" : "first")">
+                <li class="name">
+                    @duyuru.Baslik<br />
+                    <span>@duyuru.Icerik.GetSummary(75)</span>
+                </li>
+            </ul>
+        }
+    </div>
+</div>

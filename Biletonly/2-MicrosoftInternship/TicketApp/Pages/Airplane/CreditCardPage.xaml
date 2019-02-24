@@ -1,0 +1,119 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TicketApp.Pages.Airplane.CreditCardPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:TicketApp.UserControls"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    Orientation="Portrait"
+    mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource PageStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <control:Header />
+        <ScrollViewer Grid.Row="1">
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.ColumnSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <local:TicketPriceSummaryPanel />
+                    <phone:Pivot Grid.Row="2">
+                        <phone:PivotItem Margin="0,12,0,0">
+                            <phone:PivotItem.Header>
+                                <TextBlock Text="kredi kartı" FontSize="30" />
+                            </phone:PivotItem.Header>
+                            <Grid DataContext="{Binding Path=CreditCard, Mode=TwoWay}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <control:InputBox x:Name="txtOwnerName" Label="Kartın sahibi:" Value="{Binding Path=OwnerName, Mode=TwoWay}" CasingMode="UpperAfterSpace" Grid.Row="1" Grid.ColumnSpan="2" />
+                                <control:InputBox x:Name="txtCardNumber" Label="Kart numarası:" Value="{Binding Path=Number, Mode=TwoWay}" Scope="Number" Length="16" Grid.Row="2" Grid.ColumnSpan="2" />
+                                <control:InputBox x:Name="txtExpirationMonth" Label="Son kullanım ayı:" Value="{Binding Path=ExpirationMonth, Mode=TwoWay}" Scope="Number" Length="2" Grid.Row="3" />
+                                <control:InputBox x:Name="txtExpirationYear" Label="Son kullanım yılı:" Value="{Binding Path=ExpirationYear, Mode=TwoWay}" Scope="Number" Length="4" Grid.Row="3" Grid.Column="1" />
+                                <control:InputBox x:Name="txtCVC" Label="CVV2 / CVC2 kodu:" Value="{Binding Path=CVC, Mode=TwoWay}" Scope="Number" Length="3" Grid.Row="4" Grid.ColumnSpan="2" />
+
+                                <TextBlock Text="Kullanım koşullarını" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Grid.Row="5" Foreground="Orange" Tap="BuyingRules_Tap" />
+                                <CheckBox x:Name="cbAcceptRules" Content="kabul ediyorum" Grid.Row="5" Grid.Column="1" />
+                            </Grid>
+                        </phone:PivotItem>
+                        <phone:PivotItem Margin="0">
+                            <phone:PivotItem.Header>
+                                <TextBlock Text="fatura" FontSize="30" />
+                            </phone:PivotItem.Header>
+                            <Grid DataContext="{Binding Path=Bill, Mode=TwoWay}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Name="OpenFavoriesText" Tap="OpenFavorites_Tap" Text="+ Favori Kişiler" HorizontalAlignment="Right" Padding="15" Foreground="Orange" Grid.ColumnSpan="2" Margin="0,-45,0,0" />
+                                <control:PickerBox x:Name="FavoritePassengerListPicker" MemberPath="FullName" Opacity="0" Width="0" Height="0" ValueChanged="FavoritePassengers_ValueChanged" />
+
+                                <RadioButton x:Name="cbPersonBill" Content="kişi adına" GroupName="BillType" HorizontalAlignment="Center" Checked="BillType_Checked" />
+                                <RadioButton x:Name="cbFactoryBill" Content="şirket adına" GroupName="BillType" HorizontalAlignment="Center" Checked="BillType_Checked" Grid.Column="1" />
+                                <Grid x:Name="PersonBillPanel" Grid.Row="1" Grid.ColumnSpan="2">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <control:InputBox x:Name="txtBillTCKN" Label="Kişi TC kimlik numarası:" Value="{Binding Path=PersonTCKN, Mode=TwoWay}" Scope="Number" Length="11" />
+                                    <control:InputBox x:Name="txtBillFirstName" Label="Kişi adı:" Value="{Binding Path=PersonFirstName, Mode=TwoWay}" CasingMode="UpperAfterSpace" Grid.Row="1" />
+                                    <control:InputBox x:Name="txtBillLastName" Label="Kişi soyadı:" Value="{Binding Path=PersonLastName, Mode=TwoWay}" CasingMode="UpperAfterSpace" Grid.Row="2" />
+                                </Grid>
+                                <Grid x:Name="FactoryBillPanel" Visibility="Collapsed" Grid.Row="1" Grid.ColumnSpan="2">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <control:InputBox x:Name="txtBillFactoryName" Label="Firma adı:" Value="{Binding Path=FactoryName, Mode=TwoWay}" CasingMode="UpperAfterSpace" />
+                                    <control:InputBox x:Name="txtBillTaxId" Label="Firma vergi numarası:" Value="{Binding Path=FactoryTaxId, Mode=TwoWay}" Scope="Number" Grid.Row="1" />
+                                    <control:InputBox x:Name="txtBillTaxOfficeName" Label="Firma vergi dairesi adı:" Value="{Binding Path=FactoryTaxOfficeName, Mode=TwoWay}" CasingMode="UpperAfterSpace" Grid.Row="2" />
+                                </Grid>
+                                <control:InputBox x:Name="txtBillAddress" Label="Adresi:" Value="{Binding Path=Address, Mode=TwoWay}" CasingMode="UpperAfterSpace" Grid.Row="2" Grid.ColumnSpan="2" />
+                            </Grid>
+                        </phone:PivotItem>
+                    </phone:Pivot>
+                </Grid>
+                <TextBlock Text="Ödeme hesap ekstrenizde 'BİLETAL A.Ş.' olarak görünecektir." Opacity=".5" FontWeight="Light" TextWrapping="Wrap" TextAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2" />
+                <Grid x:Name="use3DPanel" Background="Transparent" Grid.Row="2">
+                    <CheckBox x:Name="cbUse3DSecure" Content="3D secure kullan" />
+                </Grid>
+                <control:Button x:Name="btnBuy" Value="Satın al" Grid.Row="2" Grid.Column="1" Clicked="btnBuy_Clicked" />
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+
+</phone:PhoneApplicationPage>

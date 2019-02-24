@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dde70b0fab8b4cc7879001dc9dd45280" Name="Diagram1">
+        <EntityTypeShape EntityType="CargoTrackingModel.Action" Width="1.5" PointX="8" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="CargoTrackingModel.Button" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CargoTrackingModel.Device" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CargoTrackingModel.DeviceMessage" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CargoTrackingModel.Factory" Width="1.5" PointX="5.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CargoTrackingModel.Message" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CargoTrackingModel.MessageButton" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="CargoTrackingModel.FK_Action_Factory" ManuallyRouted="false" />
+        <AssociationConnector Association="CargoTrackingModel.FK_MessageButton_Button" ManuallyRouted="false" />
+        <AssociationConnector Association="CargoTrackingModel.FK_DeviceMessage_Device" ManuallyRouted="false" />
+        <AssociationConnector Association="CargoTrackingModel.FK_DeviceMessage_Message" ManuallyRouted="false" />
+        <AssociationConnector Association="CargoTrackingModel.FK_MessageButton_Message" ManuallyRouted="false" />
+        <AssociationConnector Association="CargoTrackingModel.FK_Action_Device" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<bgk_ayar>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);
+    int i = 0;
+}
+<div class="table">
+    <div class="title">Ayarlar
+        <span><a href="@Url.Action("Create")">Ayar Ekle</a></span>
+    </div>
+    <div class="content">
+        <div class="list">
+            <ul>
+                <li style="width: 20%;">@Html.Label("Adı")</li>
+                <li style="width: 37%;">@Html.Label("Değer")</li>
+                <li style="width: 33%;">@Html.Label("Açıklama")</li>
+                <li style="width: 9%;">@Html.Label("Araçlar")</li>
+            </ul>
+            @foreach (var config in Model)
+            {
+                i++;
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li style="width: 20%;">@Html.DisplayFor(modelItem => config.Adi)</li>
+                    <li style="width: 37%;" title="@(config.Deger.Length > 50 ? config.Deger : "")">@config.Deger.GetSummary(50)</li>
+                    <li style="width: 33%;" title="@(config.Aciklama.Length > 60 ? config.Aciklama : "")">@config.Aciklama.GetSummary(60)</li>
+                    <li style="width: 9%;">
+                        @Html.ActionLink(" ", "edit", new { num = config.Id }, new { @class = "edit", title = "Düzenle" })
+                        <a class="details" title="Detay" href="javascript:void(0);" onclick="$.BGK.Modal('@Url.Action("details", new { num = config.Id })');"> </a>
+                        <a class="delete" title="Sil" href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("delete", new { num = config.Id })', 'Eminim, sil', 'Vazgeç');"> </a>
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>
+@Html.Paging()

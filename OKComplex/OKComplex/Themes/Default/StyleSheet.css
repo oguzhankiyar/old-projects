@@ -1,0 +1,583 @@
+﻿/*
+    METRO STYLE THEME FOR OKFORTAL
+    DESIGNED BY OĞUZHAN KİYAR
+    ALL RIGHTS RESERVED
+*/
+
+body {
+    background: #f5f5f5 url('images/background.gif') fixed;
+    margin: 0;
+    padding: 0;
+    font-size: .85em;
+    font-family: 'Segoe UI', Tahoma, Arial, Helvetica, sans-serif;
+    color: #363636;
+    cursor: default;
+    overflow-y: scroll;
+}
+
+/*FOR BROWSER DIFFERENCES*/
+div, ul, li, span, input, select, textarea {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+/*SELECTION STYLE*/
+::selection {
+    background-color: rgba(0,0,0,0.05);
+}
+::-moz-selection {
+    background-color: rgba(0,0,0,0.05);
+}
+
+/*BASIC ELEMENTS STYLE*/
+header, footer, nav, section {
+    display: block;
+}
+p {
+    margin: 0.25% 0;
+}
+hr {
+    border: 1px dotted gray;
+    border-bottom: 0;
+}
+h1, h2, h3, h4, h5, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+a:link {
+    color: #1FA2E1;
+    text-decoration: none;
+}
+a:visited {
+    color: #1FA2E1;
+    text-decoration: none;
+}
+a:hover {
+    color: #333333;
+}
+a:active {
+    color: #FFAB00;
+}
+
+/*PAGING STYLE*/
+div.paging {
+    display: table;
+    background-color: #fff;
+    float: right;
+    line-height: 18px;
+    padding: 2px 10px;
+    margin-bottom: 7px;
+    font-size: 12px;
+    color: #666;
+}
+    div.paging ul li {
+        display: inline-block;
+        font-weight: bold;
+        margin: 2px;
+    }
+        div.paging ul li img {
+            vertical-align: middle;
+        }
+        div.paging ul li.first img {
+            background: url('images/first.gif') center center no-repeat;
+            padding: 8px;
+        }
+        div.paging ul li.previous img {
+            background: url('images/previous.gif') center center no-repeat;
+            padding: 8px;
+        }
+        div.paging ul li.next img {
+            background: url('images/next.gif') center center no-repeat;
+            padding: 8px;
+        }
+        div.paging ul li.last img {
+            background: url('images/last.gif') center center no-repeat;
+            padding: 8px;
+        }
+        div.paging ul li a {
+            text-decoration: none;
+            padding: 2px 6px 2px 6px;
+            color: #000;
+        }
+        div.paging ul li a:hover {
+            background-color: #f5f5f5;
+            color: #000;
+            padding: 1px 5px 1px 5px;
+            border: 1px solid Gray;
+            cursor: pointer;
+        }
+        div.paging ul li.active {
+            background-color: #eee;
+            color: Black;
+            padding: 1px 5px 1px 5px;
+            border: 1px solid gray;
+            cursor: default;
+        }
+
+/*GO TOP AND LOADING IMAGE STYLE*/
+#loading {
+    display: none;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin: 0 0 25px 60px;
+}
+#top {
+    display: none;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 0 75px 25px 0;
+    cursor: pointer;
+    background-color: #ccc;
+    border-radius: 25px;
+}
+    #top:hover {
+        background-color: #fff;
+    }
+    
+div.form {
+    display: table;
+    width: 100%;
+}
+    div.form ul {
+        display: table;
+        line-height: 35px;
+        width: 100%;
+    }
+        div.form ul li {
+            display: inline-table;
+            float: left;
+            width: 100%;
+        }
+/*FORM ELEMENTS STYLE*/
+input[type="text"], input[type="select"], input[type="password"], textarea, select {
+    background-color: #F0F0F0;
+    border: 0;
+    outline: none;
+    min-width: 300px;
+    padding: 8px;
+    font-size: 10pt;
+    font-family: 'Segoe UI';
+    color: #666;
+    width: 100%;
+}
+select {
+    min-width: 315px;
+}
+textarea {
+    min-height: 100px;
+}
+input[type="button"], input[type="submit"] {
+    background-color: #ddd;
+    border: 0;
+    margin: 0 0 0 5px;
+    padding: 6px 14px;
+    color: gray;
+}
+    input[type="button"]:hover, input[type="submit"]:hover {
+        background-color: gray;
+        color: #fff;
+        cursor: pointer;
+    }
+    input[type="button"]:active, input[type="submit"]:active {
+        background-color: #000;
+        color: #fff;
+    }
+input.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+div.buttons {
+    float: right;
+    margin-bottom: 7px;
+}
+
+div.page {
+    display: table;
+    background-color: #fff;
+    border-top: 0;
+    border-bottom: 0;
+    width: 1000px;
+    margin: auto;
+}
+
+/*LOGO AND MEMBERSHIP TABLES STYLE*/
+div.top {
+    display: table;
+    background-color: #eee;
+    width: 100%;
+    border-bottom: 2px solid #ccc;
+}
+    div.top div.logo {
+        display: inline-table;
+        float: left;
+        background: url('images/logo.jpg') no-repeat;
+        width: 70%;
+        height: 90px;
+        margin-top: 10px;
+        font-size: 18pt;
+        font-family: 'Segoe UI';
+    }
+    div.top div.membership {
+        display: inline-table;
+        float: right;
+        padding: 7px 15px;
+    }
+    div.top div.menu {
+        display: table;
+        width: 100%;
+    }
+        div.top div.menu ul {
+            display: table;
+        }
+        div.top div.menu ul li {
+            display: inline-block;
+            background-color: #e5e5e5;
+            border: 1px solid #ccc;
+            border-bottom: 0;
+            box-shadow: #ccc 0 0 5px;
+            margin-left: 15px;
+        }
+            div.top div.menu ul li:hover {
+                background-color: #ddd;
+                cursor: pointer;
+            }
+            div.top div.menu ul li:active {
+                background-color: #ccc;
+            }
+            div.top div.menu ul li a {
+                display: block;
+                padding: 5px 14px;
+                color: inherit;
+            }
+
+div.main {
+    display: table;
+    width: 100%;
+    padding: 7px;
+}
+    div.main div.left {
+        display: table;
+        float: left;
+        width: 68%;
+        border-right: 1px dotted #ccc;
+        padding-right: 7px;
+    }
+    div.main div.right {
+        display: table;
+        float: right;
+        width: 32%;
+    }
+div.bottom {
+    background-color: gray;
+    display: table;
+    width: 100%;
+    padding: 5px;
+    color: #ddd;
+}
+
+    div.bottom div.menu {
+        float: right;
+        margin-bottom: 5px;
+    }
+        div.bottom div.menu ul {
+        }
+        div.bottom div.menu ul li {
+            display: inline-block;
+            margin-right: 15px;
+        }
+            div.bottom div.menu ul li a {
+                display: block;
+                padding: 2px;
+                color: inherit;
+            }
+            div.bottom div.menu ul li a:hover {
+                border-bottom: 2px solid #f5f5f5;
+                padding: 0 2px;
+                color: #f5f5f5;
+                cursor: pointer;
+            }
+            div.bottom div.menu ul li a:active {
+                border-bottom: 2px solid #fff;
+                padding: 0 2px;
+                color: #fff;
+            }
+
+
+div.groups ul li a {
+    display: block;
+    background-color: #f9f9f9;
+    margin-bottom: 7px;
+    padding: 15px 30px;
+    font-size: 17px;
+    color: inherit;
+}
+div.groups ul li a:hover {
+    background-color: #eee;
+    cursor: pointer;
+}
+div.group div.name {
+    background-color: #f9f9f9;
+    margin-bottom: 7px;
+    padding: 15px 30px;
+    font-size: 17px;
+}
+div.group div.menu {
+    float: right;
+    margin-bottom: 7px;
+}
+    div.group div.menu ul li {
+        display: inline-table;
+        margin-right: 10px;
+    }
+        div.group div.menu ul li.active {
+            padding: 2px 2px 0 2px;
+            border-bottom: 2px solid gray;
+            font-weight: bold;
+        }
+        div.group div.menu ul li a {
+            padding: 2px 2px 2.5px 2px;
+            color: inherit;
+        }
+            div.group div.menu ul li a:hover {
+                border-bottom: 2px solid #ddd;
+            }
+div.group div.content {
+    display: table;
+    width: 100%;
+}
+
+div.post ul.info {
+    background-color: #f7f7f7;
+    padding: 5px;
+}
+    div.post ul.info li {
+        display: inline-block;
+        margin-right: 15px;
+    }
+    div.post ul.info li a {
+        color: inherit;
+    }
+    div.post ul.content li.image img {
+        display: table;
+        float: left;
+        border: 1px solid #000;
+        max-width: 250px;
+        max-height: 250px;
+        padding: 3px;
+        margin: 5px 7px 0 0;
+    }
+div.post ul.content li a.continue {
+    float: right;
+    font-weight: bold;
+    padding: 2px 5px;
+    color: gray;
+}
+    div.post ul.content li a.continue:hover {
+        background-color: #f5f5f5;
+    }
+div.createcomment {
+    display: none;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #ccc;
+}
+div.comments ul {
+    background-color: #fafafa;
+    padding: 5px;
+    margin: 3px 0;
+}
+    div.comments ul li:first-child {
+        font-weight: bold;
+    }
+    div.comments ul li:first-child span {
+        float: right;
+        font-weight: normal;
+        font-size: 13px;
+    }
+
+div.table {
+    display: table;
+    width: 100%;
+    margin-bottom: 7px;
+}
+    div.table div.title {
+        border-bottom: 1px dashed #ccc;
+        padding: 5px;
+        font-weight: bold;
+        color: gray;
+        font-size: 20px;
+        font-family: 'Trebuchet MS';
+        text-shadow: 0 0 4px #ccc;
+    }
+        div.table div.title a {
+            color: inherit;
+        }
+            div.table div.title a:hover {
+                color: #000;
+            }
+        div.table div.title span {
+            float: right;
+            font-size: 15px;
+            font-weight: normal;
+        }
+    div.table div.content {
+        padding: 5px;
+        line-height: 24px;
+        text-align: justify;
+    }
+
+div.right div.table {
+    display: table;
+    width: 100%;
+}
+    div.right div.table div.title {
+        background-color: #f5f5f5;
+        border-bottom: 1px dashed #ccc;
+        padding: 5px;
+        font-weight: bold;
+        color: gray;
+        font-size: 17px;
+        font-family: 'Trebuchet MS';
+        text-shadow: 0 0 5px #ccc;
+        margin-bottom: 4px;
+    }
+    div.right div.table div.content {
+        padding: 5px;
+    }
+div.notices {
+    height: 385px;
+}
+div.notices img {
+    display: table;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+div.notices div.detail {
+    float: left;
+    width: 68%;
+    padding: 0px 5px 5px 0;
+}
+div.notices div.detail ul {
+    display: none;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 375px;
+}
+    div.notices div.detail ul li:first-child {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 7px 15px 0;
+        font-size: 17px;
+        font-weight: bold;
+        color: #fff;
+    }
+    div.notices div.detail ul li:last-child {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 10px 15px;
+        color: #fff;
+    }
+    div.notices div.detail ul li a {
+        color: inherit;
+    }
+div.notices div.list {
+    float: left;
+    width: 32%;
+}
+div.notices div.list ul {
+    display: table;
+    background-color: #f9f9f9;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 1px;
+}
+div.notices div.list ul.active {
+    background-color: #eee;
+}
+div.notices div.list ul:not(.active):hover {
+    background-color: #f5f5f5;
+    border: 1px solid gray;
+    padding: 4px;
+    cursor: pointer;
+}
+div.notices div.list ul li {
+    display: table;
+    width: 26%;
+    float: left;
+}
+    div.notices div.list ul li a {
+        color: inherit;
+    }
+        div.notices div.list ul li a:hover {
+            text-decoration: underline;
+        }
+div.notices div.list ul li:last-child {
+    width: 74%;
+    font-weight: bold;
+    padding-left: 7px;
+}
+div.notices div.list ul li img {
+    width: 75px;
+    height: 52px;
+}
+
+/*MAP TABLE STYLE*/
+div.map {
+    display: table;
+    width: 100%;
+    margin-bottom: 5px;
+}
+    div.map span {
+        display: inline-table;
+        padding: 5px 10px;
+        border-right: 2px solid #ccc;
+        border-radius: 25px;
+    }
+    div.map span.active {
+        border-right: 0;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+/*QUOTE STYLE*/
+blockquote {
+    display: table;
+    width: 95%;
+    border-left: 5px solid #ddd;
+    margin: 5px 15px;
+    padding: 5px 15px;
+}
+    blockquote div {
+        display: table;
+    }
+
+div.itemlist ul {
+    display: table;
+    line-height: 25px;
+    width: 100%;
+}
+div.itemlist ul li {
+    padding: 3px 0 3px 10px;
+    margin-bottom: 3px;
+    border-left: 3px solid #ddd;
+}
+    div.itemlist ul li a {
+        display: table;
+        color: inherit;
+        width: 100%;
+    }
+    div.itemlist ul li:hover {
+        background-color: #f5f5f5;
+    }
+    div.itemlist ul li:active {
+        background-color: #ddd;
+    }
+
+
+div.user-info ul li:first-child {
+    float: left;
+    width: 20%;
+    font-weight: bold;
+}

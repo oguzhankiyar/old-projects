@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "~/Views/BaseLayout.cshtml";
+    ViewBag.Title += " - ";
+    OKDbEntities Db = new OKDbEntities();
+    string pageURL = ViewContext.RouteData.Values["pageURL"].ToString();
+    var page = Db.Pages.SingleOrDefault(x => x.ShortURL == pageURL);
+    if (page != null)
+    {
+        ViewBag.Title += page.Name + " on ";
+    }
+}
+<style type="text/css">
+    div.page {
+        display: table;
+        padding: 15px;
+    }
+    div.page div.logo {
+        display: inline-table;
+    }
+    div.page div.menu {
+        display: inline-table;
+        vertical-align: top;
+        margin: 0 25px;
+    }
+        div.page div.menu ul {
+            list-style: none;
+        }
+            div.page div.menu ul li {
+                display: inline-table;
+                padding: 7px 10px;
+            }
+    div.page div.container {
+        display: table;
+    }
+    div.page div.box {
+        display: table;
+        width: 100%;
+        background: #f5f5f5;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+</style>
+<div class="page">
+    @Html.Raw(OKPort.Functions.OKParser.GetHtml(page.LayoutTemplate).Replace("{Container}", RenderBody().ToHtmlString()))
+</div>

@@ -1,0 +1,2 @@
+# Hatalar
+- Menüden ayni geçerli sayfa seçildiginde yönlendirme olmamasi

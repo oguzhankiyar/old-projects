@@ -1,0 +1,31 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Activity"
+    style="@style/ActivityStyle"
+    tools:context=".PeriodActivity" >
+
+    <TextView
+        android:id="@+id/Title"
+        style="@style/TitleStyle"
+        android:text="@string/title_activity_period" />
+
+    <TextView
+      	android:id="@+id/MenuLink"
+        style="@style/MenuLinkStyle" />
+    
+    <TableLayout
+        android:id="@+id/Container"
+        style="@style/ContainerStyle"
+        android:padding="0dp" >
+        
+        <ListView
+            android:id="@+id/listPeriods"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fadingEdge="none"
+            android:layout_margin="2dp"
+            android:divider="@null" >
+        </ListView>
+        
+  	</TableLayout>
+</RelativeLayout>

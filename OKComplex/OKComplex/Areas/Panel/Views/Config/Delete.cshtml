@@ -1,0 +1,28 @@
+﻿@model club_config
+@{
+    ViewBag.Title = "Ayar Sil";
+}
+
+<h3>Aşağıdaki ayarı silmek istediğinizden emin misiniz?<br /><br />
+Bu ayarın sitede kullanılmadığından emin olun.. Aksi takdirde sorun çıkartabilir..</h3>
+<div class="detail">
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Key)</li>
+        <li>@Html.DisplayFor(model => model.Key)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Value)</li>
+        <li>@Html.DisplayFor(model => model.Value)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Description)</li>
+        <li>@Html.DisplayFor(model => model.Description)</li>
+    </ul>
+</div>
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.Button("Eminim, sil", new { type = "submit" })
+        @Html.Button("Vazgeç", new { onclick = "OpenNewPage('" + Url.Action("index") + "');" })
+    </p>
+}

@@ -1,0 +1,152 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TicketApp.SearchPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource AppPageStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="DodgerBlue">
+            <TextBlock Padding="15,5" Text="biletall - nereye gitmek istiyorsan oraya..." FontSize="{StaticResource PhoneFontSizeMedium}" />
+        </Grid>
+
+        <ScrollViewer Grid.Row="1">
+            <Grid Margin="12,0,12,0" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,15">
+                    <Rectangle Fill="White" Opacity=".3" />
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Image Grid.Column="0" Grid.RowSpan="2" Source="http://icons.iconarchive.com/icons/fatcow/farm-fresh/32/plane-icon.png" Width="20" Height="20" Margin="0,0,10,0" />
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Nereden?" Foreground="LightBlue" />
+                        <TextBlock x:Name="WhereFromCity" Grid.Column="1" Grid.Row="1" />
+                        <Image Grid.Column="2" Grid.RowSpan="2" Source="http://icons.iconarchive.com/icons/visualpharm/ios7v2/16/Arrows-Down-4-icon.png" Width="20" Height="20" />
+                        <toolkit:ListPicker x:Name="WhereFromCities" Grid.RowSpan="2" Grid.ColumnSpan="3" Opacity="0" Margin="-12" SelectionChanged="WhereFromCities_SelectionChanged">
+                            <toolkit:ListPicker.FullModeItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <TextBlock Text="{Binding Adi}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="0,10" />
+                                    </Grid>
+                                </DataTemplate>
+                            </toolkit:ListPicker.FullModeItemTemplate>
+                        </toolkit:ListPicker>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0,15">
+                    <Rectangle Fill="White" Opacity=".3" />
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Image Grid.Column="0" Grid.RowSpan="2" Source="http://icons.iconarchive.com/icons/fatcow/farm-fresh/32/plane-icon.png" Width="20" Height="20" Margin="0,0,10,0" />
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Nereye?" Foreground="LightBlue" />
+                        <TextBlock x:Name="WhereToCity" Grid.Column="1" Grid.Row="1"/>
+                        <Image Grid.Column="2" Grid.RowSpan="2" Source="http://icons.iconarchive.com/icons/visualpharm/ios7v2/16/Arrows-Down-4-icon.png" Width="20" Height="20" />
+                        <toolkit:ListPicker x:Name="WhereToCities" Grid.RowSpan="2" Grid.ColumnSpan="3" Opacity="0" Margin="-12" SelectionChanged="WhereToCities_SelectionChanged">
+                            <toolkit:ListPicker.FullModeItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Adi}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="0,10" />
+                                </DataTemplate>
+                            </toolkit:ListPicker.FullModeItemTemplate>
+                        </toolkit:ListPicker>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0,0,15">
+                    <Rectangle Fill="White" Opacity=".3" />
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Image Grid.Column="0" Grid.RowSpan="2" Source="http://icons.iconarchive.com/icons/fatcow/farm-fresh/32/plane-icon.png" Width="20" Height="20" Margin="0,0,10,0" />
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Yolculuk Tarihi" Foreground="LightBlue" />
+                        <TextBlock x:Name="DateFrom" Grid.Column="1" Grid.Row="1" />
+                        <Image Grid.Column="2" Grid.RowSpan="2" Source="http://icons.iconarchive.com/icons/visualpharm/ios7v2/16/Arrows-Down-4-icon.png" Width="20" Height="20" />
+                        <toolkit:DatePicker x:Name="DateFromPicker" Grid.RowSpan="2" Grid.ColumnSpan="3" Margin="-12" Opacity="0" ValueChanged="DateFromPicker_ValueChanged">
+
+                        </toolkit:DatePicker>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="0" Margin="0,0,15,15">
+                    <Rectangle Fill="White" Opacity=".3" />
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Image Grid.Column="0" Grid.RowSpan="2" Source="http://icons.iconarchive.com/icons/fatcow/farm-fresh/32/plane-icon.png" Width="20" Height="20" Margin="0,0,10,0" />
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Yolcu Sayısı" Foreground="LightBlue" />
+                        <TextBlock x:Name="PassengerCount" Grid.Column="1" Grid.Row="1" />
+                        <Image Grid.Column="2" Grid.Row="0"  Source="Assets/up.png" Width="20" Height="20" Tap="PassengerUp_Tap" />
+                        <Image Grid.Column="2" Grid.Row="1"  Source="Assets/down.png" Width="20" Height="20" Tap="PassengerDown_Tap" />
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="1" Margin="0,0,0,15" Tap="ActionType_Tap">
+                    <Rectangle Fill="White" Opacity=".3" />
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Image Grid.Column="0" Grid.RowSpan="2" Source="http://icons.iconarchive.com/icons/fatcow/farm-fresh/32/plane-icon.png" Width="20" Height="20" Margin="0,0,10,0" />
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="İşlem Tipi" Foreground="LightBlue" />
+                        <TextBlock x:Name="ActionType" Grid.Column="1" Grid.Row="1" />
+                    </Grid>
+                </Grid>
+                <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Seferleri Listele" Margin="-12" Padding="10" Click="Search_Click" />
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</phone:PhoneApplicationPage>

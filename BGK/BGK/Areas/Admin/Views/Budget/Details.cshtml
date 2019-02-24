@@ -1,0 +1,54 @@
+﻿@model bgk_butce
+
+<div class="title">İşlem Detayları</div>
+<div class="content details">
+    <ul>
+        <li>@Html.LabelFor(model => model.Aciklama)</li>
+        <li>@Html.Raw(Model.Aciklama)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.Miktar)</li>
+        <li>@Html.DisplayFor(model => model.Miktar)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.Islem)</li>
+        <li>@(Model.Islem == 1 ? "Gelir" : "Gider")</li>
+    </ul>
+    @if (Model.HarcananYer != null)
+    {
+        <ul>
+            <li>@Html.LabelFor(model => model.HarcananYer)</li>
+            <li>@Html.DisplayFor(model => model.HarcananYer)</li>
+        </ul>
+    }
+    @if (Model.EtkinlikID != null)
+    {
+        <ul>
+            <li>@Html.LabelFor(model => model.EtkinlikID)</li>
+            <li>@Html.DisplayFor(model => model.bgk_etkinlik.Adi)</li>
+        </ul>
+    }
+    @if (Model.FirmaID != null)
+    {
+        <ul>
+            <li>@Html.LabelFor(model => model.FirmaID)</li>
+            <li>@Html.DisplayFor(model => model.bgk_firma.Adi)</li>
+        </ul>
+    }
+    @if (Model.FaturaID != null)
+    {
+        <ul>
+            <li>@Html.LabelFor(model => model.FaturaID)</li>
+            <li><a href="@BGKFunction.GetFile(Model.bgk_dosya)" target="_blank">Faturayı görmek için tıklayın</a></li>
+        </ul>
+    }
+    <ul>
+        <li>@Html.LabelFor(model => model.IslemTarihi)</li>
+        <li>@(((DateTime)Model.IslemTarihi).ToString("d MMMMMMM yyyy"))</li>
+    </ul>
+</div>
+<div class="buttons">
+    @Html.Button("Düzenle", new { onclick = "window.location.href='" + Url.Action("edit", new { num = Model.Id }) + "';" })
+    @Html.Button("İşlemi Sil", new { onclick = "$.BGK.FormModal('" + Url.Action("delete", new { num = Model.Id }) + "', 'Eminim, sil', 'Vazgeç');" })
+    @Html.Button("Kapat", new { onclick = "$.BGK.ModalClose();" })
+</div>

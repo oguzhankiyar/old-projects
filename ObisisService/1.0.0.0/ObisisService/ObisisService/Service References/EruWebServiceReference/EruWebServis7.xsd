@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/OBISISMOBILData" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/OBISISMOBILData" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
+  <xs:import schemaLocation="http://mobil.erciyes.edu.tr/EruServiceWeb/EruWebServis.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="DONEMLER">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q1:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DONEM_ADI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DONEM_NO" type="xs:short" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DONEMLER" nillable="true" type="tns:DONEMLER" />
+  <xs:complexType name="Yil_Result">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q2:ComplexObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="OGRETIM_YILI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OGRETIM_YILI_KODU" type="xs:short" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Yil_Result" nillable="true" type="tns:Yil_Result" />
+  <xs:complexType name="OGRENCI">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q3:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ACIKLAMA" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ADI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AF_GECME_NOTU" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="ALT_BOLUM_KODU" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="ANADALUNVANI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ANADALUNVANIENG" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ANNE_ADI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ANNE_MESLEGI" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="ASKERLIK_DURUMU" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="ASKERLIK_SUBESI_IL" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="ASKERLIK_SUBESI_ILCE" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="AYRILMA_NEDEN_KODU" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="AYRILMA_NEDEN_KODU2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AYRILMA_NEDEN_KODU3" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AYRILMA_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="AYRILMA_TARIHI2" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="AYRILMA_TARIHI3" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="AZAMI_OGRENIM_SURESINI_BITIRMIS" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="BABA_ADI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BABA_MESLEGI" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="BARAJ_KONTROLU" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BILGI_GONDERME_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="BOLUM_KODU" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="BOLUM_KODU2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BOLUM_KODU3" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CATALOGDOLDUR" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CATALOGDOLDURGECICI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CATALOGDOLDURZAMAN" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="CEP_TELEFONU" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CEP_ULKE_TEL_KODU" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CIKIS_VERILDIMI2X" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CIKIS_VERILDIMIX" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CINSIYETI" type="xs:short" />
+          <xs:element minOccurs="0" name="DAIMI_ADRESI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DAIMI_ADRESI_IL" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="DAIMI_ADRESI_POSTA_KODU" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DAIMI_ADRES_TEL" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DANISMAN_DERS_KAYIT_ACIK" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DANISMAN_KODU" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="DANISMAN_KODU2" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="DERS_KAYIT_ACIK" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DERS_LISTESI_URETILSIN" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DINI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DIPLOMA_DUZ_TARIHI2X" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DIPLOMA_DUZ_TARIHIX" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DIPLOMA_EKI_HAZIR" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DIPLOMA_IKINCI_NUSHA_DUZ_TARIHI2X" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DIPLOMA_IKINCI_NUSHA_DUZ_TARIHIX" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DIPLOMA_NO2X" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DIPLOMA_NOX" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DIPLOMA_TESLIM_TARIHIX" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DIPLOMA_VERILDIMI2X" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DIPLOMA_VERILDIMIX" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DIP_EKI_VERILDIMI2X" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DIP_EKI_VERILDIMIX" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="DISIPLIN_SUCU_DURUMU" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="DISIPLNs" nillable="true" type="tns:ArrayOfDISIPLN" />
+          <xs:element minOccurs="0" name="DOGUM_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DOGUM_YERI_ADI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DOGUM_YERI_IL" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="DOGUM_YERI_ILCE" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="DONUS_NEDEN_KODU" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="DONUS_NEDEN_KODU2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DONUS_NEDEN_KODU3" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DONUS_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DONUS_TARIHI2" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DONUS_TARIHI3" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DUYURU_OKUDUM" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="EK_PUAN" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="EMAIL" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ENGEL_BILGISI" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ENGEL_DIGER" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ENGEL_DURUMU" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="ENGEL_GOZLUK" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ENGEL_GUNLUKDIL" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ENGEL_GUNLUKYASAM" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ENGEL_HATIRLAMA" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ENGEL_ISITME" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ENGEL_YIKANMA" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ENGEL_YURUME" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ENOCTA_AKTIF" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ENOCTA_ID" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="ESDEGER_KAYIT_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ESDEGER_MUFREDAT_NO" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="ESKI_KARTNO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="EV_ULKE_TEL_KODU" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FAKULTE_KODU" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="FAKULTE_KODU2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FAKULTE_KODU3" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="GANO" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="GANO2" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="GANO3" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="GELDIGI_FAKULTE_KODU" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="GELDIGI_PROGRAM_KODU" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="GELDIGI_UNV_KODU" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="GIRIS_ENGELLI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="GITTIGI_FAKULTE_KODU" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="GITTIGI_PROGRAM_KODU" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="GITTIGI_UNV_KODU" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="HARC_ALIYOR" type="xs:short" />
+          <xs:element minOccurs="0" name="HARC_KREDI_NO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="HARCs" nillable="true" type="tns:ArrayOfHARC" />
+          <xs:element minOccurs="0" name="HAZIRLIK_OKUDUMU" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="HAZIRLIK_OKUMAK_ISTIYOR" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="HAZIRLIK_SINIFI" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="HAZIRLIK_SINIFI_GECME_SEKLI" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="HAZIRLIK_SINIFI_MUAFIYET" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IBAN_NO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ID_ALMA_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="IKAMETGAH_TEZ_NO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IKINCIANADALUNVANI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IKINCI_OGRETIMDEN_GECIS" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ILH_TEZ_ALDIGI_TARIH" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ILH_TEZ_DANISMAN_ADI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ILH_TEZ_KONUSU" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ILH_TEZ_SUBE" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="ILH_TEZ_TESLIM_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="INTERNET_ONKAYIT" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="KAN_GRUBU" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="KARTNO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="KART_SKT" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="KAYIP_CALINTI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="KAYIT_SEKLI" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="KAYIT_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="KAYSERI_ADRES" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="KAYSERI_ADRES_TEL" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="KONTROLDEGERI" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="KUTUPHANE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LISE_DIPLOMA_NO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LISE_MEZUNIYET_DERC" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LISE_MEZUNIYET_NOTU" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="LISE_MEZUNIYET_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="LISE_MEZUNIYET_YILI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MAIL_HESABI_VAR" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="MAIL_STATU" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="MAVI_KARTI_VAR" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="MEDENI_HALI" type="xs:short" />
+          <xs:element minOccurs="0" name="MESAJ" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MEZUN" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="MEZ_GER_TOP_KREDI_ISTISNA" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="MEZ_GER_TOP_KREDI_ISTISNA_ACIKLAMA" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MUFREDAT_ISTISNA" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="MUFREDAT_NO" type="xs:short" />
+          <xs:element minOccurs="0" name="NCYX" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NORMAL_OGRENIM_SURESINI_BITIRMIS" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="NOTEKSIKKAYITENGELLI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NOTSISTEMI" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="NUFUS_CILT_NO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NUFUS_CUZDAN_NO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NUFUS_IL" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="NUFUS_ILCE" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="NUFUS_KAYIT_NO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NUFUS_KUTUK_NO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NUFUS_MAH_KOY" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NUFUS_SAYFA_NO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NUFUS_VER_NEDENI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NUFUS_VER_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="NUFUS_VER_YER" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OGRENCILIK_HAKKI_YOK" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="OGRENCI_NO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OGRENIM_DURUMU" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="OGRENIM_DUR_ONCEKI" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="OGRENIM_KREDI_ALIYOR" type="xs:short" />
+          <xs:element minOccurs="0" name="OGRENIM_KREDI_NO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ONCEKI_OGR_KREDI_ALDI" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="ONCEKI_OGR_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ONCEKI_SOYADI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OPSIYON2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OPSIYON_NO" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="OPSIYON_NO_MANUEL_GIRIS" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OPSIYON_NO_MANUEL_GIRISLE_DEGISTI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ORT_OGR_YURT_DISINDA_TAMAMLAMIS" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="OSYM_BITIRDIGI_YIL" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OSYM_EPOSTA" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OSYM_KAZANDIGI_BOLUM" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OSYM_KONTENJAN" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="OSYM_NO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OSYM_OGRENIM_DURUMU" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="OSYM_OKUL_IL" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="OSYM_OKUL_ILCE" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="OSYM_OKUL_KODU" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OSYM_OKUL_KOLU" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="OSYM_OKUL_TURU" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="OSYM_YABANCI_DIL" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="PASAPORT_NO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PF_ANADALIKINCIANADALKAYIT" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="PF_AYRILMA_NEDEN_KODU" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PF_AYRILMA_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="PF_BASLAMA_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="PF_BOLUM_KODU" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PF_DONUS_NEDEN_KODU" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PF_DONUS_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="PF_FAKULTE_KODU" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PF_GANO" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="PF_NOTSISTEMI" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="PF_SERTIFIKA_DUZ_TARIHIX" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="PF_SERTIFIKA_NOX" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PF_SERTIFIKA_VERILDIMIX" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="POSTA_ADRESI" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="RESIM" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="RESIM_SAYISI" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="RKS_KAYIT_BASLATAN_KULLANICI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RKS_KAYIT_SURECI_BASLAMA_ZAMANI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="RKS_RANDEVU_SAAT_ID" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="RKS_RANDEVU_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="SENE" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="SIFRE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SIFREDOTNET" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SIFREDOTNETMD5" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SINIF" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="SINIRSIZSINAVHAKKI" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="SIRALAMA_BOLUM" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="SIRALAMA_FAKULTE" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="SIRALAMA_SINIF" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="SOYADI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="STATU" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="STATU2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="STATU3" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="STATUPF" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TAH_BAS_TAR" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="TAH_BIT_TAR" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="TCKIMLIKNO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TERCIH_SIRASI" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="TURKIYE_GENELI_SIRASI" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="TURK_ASILLI_MI" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="ULKE_KODU" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="UNIVERSITE_KODU" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="UYRUGU" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="YAKINI_ADI_SOYADI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="YAKINI_ADRESI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="YAKINI_ADRES_IL" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="YAKINI_ADRES_ILCE" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="YAKINI_ADRES_TEL" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="YAKINI_YAKINLIGI" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="YBNC_BELEDIYE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="YBNC_MEM_ADRESI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="YBNC_TELEFON" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="YENI_KIMLIK_AKTIF_PASIF" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="YENI_KIMLIK_ALMA_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="YENI_KIMLIK_ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="YENI_KIMLIK_KARTI" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="YERLESTIGI_PUAN_TURU_ADI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="YERLESTIRME_PUANI" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="YERLESTIRME_PUAN_SIRA" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="YERLESTIRME_PUAN_TURU" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="YERLESTIRME_PUAN_YUZDE" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="YERLESTIRME_YDILP" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="YONERGE_NO" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="YONETMELIK_NO" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="YON_BOLUM_KODU" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="YON_FAKULTE_KODU" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OGRENCI" nillable="true" type="tns:OGRENCI" />
+  <xs:complexType name="ArrayOfDISIPLN">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DISIPLN" nillable="true" type="tns:DISIPLN" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDISIPLN" nillable="true" type="tns:ArrayOfDISIPLN" />
+  <xs:complexType name="DISIPLN">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q4:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ACIKLAMA" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AFFA_UGRADI" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="AF_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="BOLUM_KODU" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="CEZA_BASLAMA_DONEM" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="CEZA_BASLAMA_OGRETIM_YILI_KODU" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="CEZA_BASLAMA_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="CEZA_KODU" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="CEZA_NEDENI_KODU" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="CEZA_VER_TARIHI" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DONEM" type="xs:short" />
+          <xs:element minOccurs="0" name="FAKULTE_KODU" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="OGRENCI" nillable="true" type="tns:OGRENCI" />
+          <xs:element minOccurs="0" name="OGRENCIReference" nillable="true" type="q4:EntityReferenceOfOGRENCInrmlFler" />
+          <xs:element minOccurs="0" name="OGRENCI_NO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OGRETIM_YILI_KODU" type="xs:short" />
+          <xs:element minOccurs="0" name="SINIF" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="SON_GUNCELLEME_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="SON_GUNCELLEME_YAPAN" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DISIPLN" nillable="true" type="tns:DISIPLN" />
+  <xs:complexType name="ArrayOfHARC">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HARC" nillable="true" type="tns:HARC" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHARC" nillable="true" type="tns:ArrayOfHARC" />
+  <xs:complexType name="HARC">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q5:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AF_KANUNU" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ARS_GOR" type="xs:short" />
+          <xs:element minOccurs="0" name="ASKERLIK_ERTELEMESI_VAR" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AUTOMODE" type="xs:short" />
+          <xs:element minOccurs="0" name="AZAMI_OGRENIM_SURESINI_BITIRMIS" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="BOLUM_KODU" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="CATALOGDOLDUR" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CEZA_MIKTARI" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="CEZA_ODEME_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DERSKAYIT" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DERS_KATKI_MIKTARI_TOPLAMI" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="DERS_KAYDI_YAPAMAZ" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DERS_KAYDI_YAPAMAZ_ACIKLAMA" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DERS_SECMEDI_HARC_IPTAL_EDILDI" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="DONEM" type="xs:short" />
+          <xs:element minOccurs="0" name="DONEM_BASARI_DURUMU" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="DONEM_DERSLERI_ONAYLI" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="DONEM_FARKI" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="DSBHO" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="EGITIM_DURUMU" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="FAKULTE_KODU" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="GANO" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="GANODONEM" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="HARCDETAYHESAPLA" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="HAZIRLIK_SINIF_TURU" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="INTIBAK" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ISTISNA_KODU" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="KAY_BAS_TAR" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="KAY_BIT_TAR" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="KREDI_ALIYOR" type="xs:short" />
+          <xs:element minOccurs="0" name="KREDI_KURUM_KODU" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="KURUM_ODEMESI" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="MAZ_BAS_TAR" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="MAZ_BIT_TAR" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="MUAF" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NCY" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="NORMAL_OGRENIM_SURESINI_BITIRMIS" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="NOTVERDI" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="ODEME_MIKTARI_ESKI" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="ODEME_TARIHI_ESKI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ODEME_TIPI" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OGRENCI" nillable="true" type="tns:OGRENCI" />
+          <xs:element minOccurs="0" name="OGRENCILIK_HAKKI_YOK" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="OGRENCIReference" nillable="true" type="q5:EntityReferenceOfOGRENCInrmlFler" />
+          <xs:element minOccurs="0" name="OGRENCI_DEGISIM" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OGRENCI_NO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OGRETIM_YILI_KODU" type="xs:short" />
+          <xs:element minOccurs="0" name="OGR_EK_ODEMESI" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="OGR_ISLERI_DERS_SECIM_ENGELLI" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="OGR_TABAN_ODEMESI" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="OGR_TOPLAM_ODEMESI" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="OGR_UNV_ODEMESI" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="OZURLULUK_INDIRIMI" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="OZURLULUK_ORANI" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SENE" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="SINIF" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="SON_GUNCELLEME_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="SON_GUNCELLEME_YAPAN" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SON_ODEME_TARIHI" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="TAH_BAS_TAR" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="TAH_BIT_TAR" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="TOS_SINAV_HAZ" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="UPD1" nillable="true" type="xs:short" />
+          <xs:element minOccurs="0" name="YET_SINAV_HAZ" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="YUZDE10" nillable="true" type="xs:short" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="HARC" nillable="true" type="tns:HARC" />
+</xs:schema>

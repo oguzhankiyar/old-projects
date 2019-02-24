@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Yönetim Paneli - @OK.ClubConfig("site-name")</title>
+    <script src="@Url.Content("~/Scripts/jquery-1.7.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/OK.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Tools/CKEditor/ckeditor.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Areas/Panel/Themes/" + OK.ClubConfig("admin-theme") + "/StyleSheet.css")" rel="stylesheet" />
+    @{string id = OK.ConvertSeo(ViewContext.RouteData.Values["controller"].ToString()) + "_" + OK.ConvertSeo(ViewContext.RouteData.Values["action"].ToString());}
+    <script type="text/javascript">
+        $(function () {
+            $("div.page").css("min-height", $(window).height());
+            $("div.top").css({ "width": $("div.main").width(), "height": $("div.left div.title").height() + 24 });
+            $("div.bottom").css("width", $("div.main").width() - 5).hide();
+            $("div.menu ul li div").hide();
+            $(".@id").addClass("active").attr("onclick", "").children("div").slideDown(500);
+            $(".@id").addClass("active").attr("onclick", "").parent("li").addClass("active").attr("onclick", "").children("div").slideDown(500);
+        });
+        function OpenNewPage(url, second) {
+            setTimeout(function () { window.location.href = url; }, second);
+        }
+        function PageReload(second) {
+            setTimeout(function () { window.location.reload(); }, second);
+        }
+        function SuccessInfo(message) {
+            $("div.bottom").html("").hide().animate({
+                opacity: 0.7,
+                width: ['toggle', 'swing']
+            }, 750, function () {
+                $("div.bottom").html("<span class=\"green\">" + message + "</span>");
+                setTimeout(function () { $("div.bottom").fadeOut(); }, 2500);
+            });
+        }
+        function ErrorInfo(message) {
+            $("div.bottom").html("").hide().animate({
+                opacity: 0.7,
+                width: ['toggle', 'swing']
+            }, 750, function () {
+                $("div.bottom").html("<span class=\"red\">" + message + "</span>");
+                setTimeout(function () { $("div.bottom").fadeOut(); }, 2500);
+            });
+        }
+    </script>
+    <link href="@Url.Content("~/Themes/" + OK.ClubConfig("site-theme") + "/Images/favicon.ico")" rel="icon" />
+</head>
+<body>
+    <div class="page">
+        <div class="top">@ViewBag.Title</div>
+        <div class="main">
+            <div class="left">
+                <div class="title">Yönetim Paneli</div>
+                <div class="menu">
+                    <ul>
+                        <li class="home_index" onclick="OpenNewPage('@Url.Action("index", "home")');">Anasayfa
+                            <div onclick="window.open('@Url.Action("index", "home", new { area = "" })', '_blank');">Site Önizleme</div>
+                            <div class="home_help">Yardım</div>
+                            <div class="home_update">Güncelleme</div>
+                        </li>
+                        <li class="config_details config_edit config_delete" onclick="OpenNewPage('@Url.Action("index", "config")');">Ayar Yönetimi
+                            <div class="config_index" onclick="OpenNewPage('@Url.Action("index", "config")');">Ayarlar</div>
+                            <div class="config_create" onclick="OpenNewPage('@Url.Action("create", "config")');">Ayar Ekle</div>
+                        </li>
+                        <li class="menu_details menu_edit menu_delete" onclick="OpenNewPage('@Url.Action("index", "menu")');">Menü Yönetimi
+                            <div class="menu_index" onclick="OpenNewPage('@Url.Action("index", "menu")');">Linkler</div>
+                            <div class="menu_create" onclick="OpenNewPage('@Url.Action("create", "menu")');">Link Ekle</div>
+                        </li>
+                        <li class="notice_details notice_edit notice_delete" onclick="OpenNewPage('@Url.Action("index", "notice")');">Duyuru Yönetimi
+                            <div class="notice_index" onclick="OpenNewPage('@Url.Action("index", "notice")');">Duyurular</div>
+                            <div class="notice_create" onclick="OpenNewPage('@Url.Action("create", "notice")');">Duyuru Ekle</div>
+                        </li>
+                        <li class="page_details page_edit page_delete" onclick="OpenNewPage('@Url.Action("index", "page")');">Sayfa Yönetimi
+                            <div class="page_index" onclick="OpenNewPage('@Url.Action("index", "page")');">Sayfalar</div>
+                            <div class="page_create" onclick="OpenNewPage('@Url.Action("create", "page")');">Sayfa Ekle</div>
+                        </li>
+                        <li class="group_details group_edit group_delete" onclick="OpenNewPage('@Url.Action("index", "group")');">Grup Yönetimi
+                            <div class="group_index" onclick="OpenNewPage('@Url.Action("index", "group")');">Gruplar</div>
+                            <div class="group_create" onclick="OpenNewPage('@Url.Action("create", "group")');">Grup Ekle</div>
+                        </li>
+                        <li class="category_details category_edit category_delete" onclick="OpenNewPage('@Url.Action("index", "category")');">Kategori Yönetimi
+                            <div class="category_index" onclick="OpenNewPage('@Url.Action("index", "category")');">Kategoriler</div>
+                            <div class="category_create" onclick="OpenNewPage('@Url.Action("create", "category")');">Kategori Ekle</div>
+                        </li>
+                        <li class="post_details post_edit post_delete" onclick="OpenNewPage('@Url.Action("index", "post")');">Yazı Yönetimi
+                            <div class="post_index" onclick="OpenNewPage('@Url.Action("index", "post")');">Yazılar</div>
+                            <div class="post_create" onclick="OpenNewPage('@Url.Action("create", "post")');">Yazı Ekle</div>
+                        </li>
+                        <li class="comment_details comment_edit comment_delete" onclick="OpenNewPage('@Url.Action("index", "comment")');">Yorum Yönetimi
+                            <div class="comment_index" onclick="OpenNewPage('@Url.Action("index", "comment")');">Yorumlar</div>
+                            <div class="comment_create" onclick="OpenNewPage('@Url.Action("create", "comment")');">Yorum Ekle</div>
+                        </li>
+                        <li class="member_details member_edit member_delete" onclick="OpenNewPage('@Url.Action("index", "member")');">Üye Yönetimi
+                            <div class="member_index" onclick="OpenNewPage('@Url.Action("index", "member")');">Üyeler</div>
+                            <div class="member_create" onclick="OpenNewPage('@Url.Action("create", "member")');">Üye Ekle</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right">
+                @RenderBody()
+            </div>
+        </div>
+        <div class="bottom"></div>
+    </div>
+</body>
+</html>

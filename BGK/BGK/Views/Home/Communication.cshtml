@@ -1,0 +1,41 @@
+﻿@model bgk_communication
+@{
+    ViewBag.Title = "İletişim";
+}
+
+<div class="table">
+    <div class="title">İletişim</div>
+    <div class="content">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="form">
+                <ul>
+                    <li>@Html.LabelFor(model => model.AdSoyad)</li>
+                    <li>@Html.EditorFor(model => model.AdSoyad)</li>
+                    <li>@Html.ValidationMessageFor(model => model.AdSoyad)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Email)</li>
+                    <li>@Html.EditorFor(model => model.Email)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Email)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Konu)</li>
+                    <li>@Html.EditorFor(model => model.Konu)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Konu)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Mesaj)</li>
+                    <li>@Html.TextAreaFor(model => model.Mesaj)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Mesaj)</li>
+                </ul>
+                <ul class="buttons">
+                    <li>@Html.Button("Gönder", new { type = "submit" })</li>
+                    <li>@Html.Button("İptal", new { type = "button", onclick = "window.location.href='" + Url.Action("Index", "Home") + "';" })</li>
+                </ul>
+            </div>
+        }
+    </div>
+</div>

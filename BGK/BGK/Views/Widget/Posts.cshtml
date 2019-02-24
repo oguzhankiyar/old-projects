@@ -1,0 +1,20 @@
+﻿@model IEnumerable<bgk_yazi>
+
+<div class="table">
+    <div class="title">Neler Okunuyor?
+        <span><a href="@Url.Action("Popular", "Post")">Tümü</a></span>
+    </div>
+    <div class="content" style="padding: 0;">
+        <div class="posts">
+            @foreach (var post in Model)
+            {
+                <a href="@Url.Action("Details", "Post", new { seo = post.Seo, id = post.Id })">
+                    <ul>
+                        <li>@post.Baslik</li>
+                        <li>@post.Icerik.GetSummary(100)</li>
+                    </ul>
+                </a>
+            }
+        </div>
+    </div>
+</div>

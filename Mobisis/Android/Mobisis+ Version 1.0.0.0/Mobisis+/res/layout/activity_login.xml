@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Activity"
+    style="@style/ActivityStyle"
+    android:gravity="center_vertical"
+    tools:context=".LoginActivity" >
+
+    <TextView
+        android:id="@+id/Title"
+        style="@style/TitleStyle"
+        android:text="@string/title_activity_login" />
+
+    <TextView
+      	android:id="@+id/MenuLink"
+        style="@style/MenuLinkStyle" />
+    
+    <TableLayout
+        android:id="@+id/Container"
+        style="@style/ContainerStyle" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            style="@style/TableRowStyle" >
+            <EditText
+                android:id="@+id/editText1"
+                style="@style/EditTextStyle"
+                android:inputType="number"
+				android:maxLength="10"
+                android:hint="@string/studentID" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            style="@style/TableRowStyle" >
+            <EditText
+                android:id="@+id/editText2"
+                style="@style/EditTextStyle"
+                android:inputType="textPassword"
+                android:hint="@string/password" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            style="@style/TableRowStyle" >
+
+            <Button
+                android:id="@+id/button1"
+                style="@style/ButtonStyle"
+                android:text="@string/login" />
+
+            <CheckBox
+                android:id="@+id/checkBox1"
+                style="@style/CheckBoxStyle"
+                android:checked="true"
+                android:text="@string/rememberMe" />
+
+        </TableRow>
+
+    </TableLayout>
+
+
+</RelativeLayout>

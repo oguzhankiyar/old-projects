@@ -1,0 +1,30 @@
+﻿@model IEnumerable<topic>
+
+<script type="text/javascript">
+    $(function () {
+        $("#topics").css("font-weight", "bold");
+    });
+</script>
+<div class="profile">
+    @{
+        string username = ViewContext.RouteData.Values["username"].ToString();
+        int count = Convert.ToInt32(ViewBag.count);
+        Html.RenderAction("UserMenu", "Account", new { username = username });
+    }
+    <div class="right">
+        <div class="table">
+            <div class="title">Yazdığı Konular</div>
+            <div class="content">
+                @if (Model.Count() == 0)
+                {
+                    <div class="noitem">Henüz yazdığı konu yok</div>
+                }
+                @foreach (var topic in Model)
+                {
+                    @topic.Title<br />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Paging("window.location.href='" + Url.Action("topics", "account", new { username = username, page = "{page}" }) + "'", count, 10)

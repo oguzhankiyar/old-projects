@@ -1,0 +1,130 @@
+﻿@model bgk_firma
+@{
+    var activities = Model.bgk_etkinlik;
+    var budgets = Model.bgk_butce;
+    var categories = Model.bgk_uye == null ? null : Model.bgk_uye.bgk_gorev_kategori;
+    int i = 0, j = 0;
+}
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a href="@Url.Action("index", "activity")" style="width: 50%;">Etkinlikler</a>
+            <a class="active" href="@Url.Action("index", "factory")" style="width: 49%;">Firmalar</a>
+        </div>
+    </div>
+</div>
+<div class="table">
+    <div class="title">@Model.Adi</div>
+    <div class="content details">
+        @Html.Raw(Model.Aciklama)
+    </div>
+</div>
+<div class="buttons">
+    @Html.Button("Düzenle", new { onclick = "window.location.href='" + Url.Action("edit", new { num = Model.Id }) + "';" })
+    @Html.Button("Firmayı Sil", new { onclick = "$.BGK.FormModal('" + Url.Action("delete", new { num = Model.Id }) + "', 'Eminim, sil', 'Vazgeç');" })
+</div>
+@if (categories != null)
+{
+    <div class="table">
+        <div class="title">Görev Kategorileri (@categories.Count())
+            <span>@Html.ActionLink("Kategori Ekle", "create", "missioncategory", new { memberID = Model.UyeID })</span>
+        </div>
+        <div class="content list">
+            @if (categories.Count() == 0)
+            {
+                <div class="warning">
+                    Henüz adına oluşturulmuş kategori yok :(
+                </div>
+            }
+            else
+            {
+                <ul>
+                    <li style="width: 7%;">@Html.Label("Sıra")</li>
+                    <li style="width: 48%;">@Html.Label("Adı")</li>
+                    <li style="width: 15%; text-align: center;">@Html.Label("Abone Sayısı")</li>
+                    <li style="width: 15%; text-align: center;">@Html.Label("Görev Sayısı")</li>
+                    <li style="width: 13%;">@Html.Label("Araçlar")</li>
+                </ul>
+                foreach (var category in categories)
+                {
+                    i++;
+                    <ul class="@(i % 2 == 0 ? "second" : "first")">
+                        <li style="width: 7%;">@Html.DisplayFor(modelItem => category.Sira)</li>
+                        <li style="width: 48%;">@category.Adi.GetSummary(100)</li>
+                        <li style="width: 15%; text-align: center;">@category.bgk_gorev_kategori_uye.Count()</li>
+                        <li style="width: 15%; text-align: center;">@category.bgk_gorev.Count()</li>
+                        <li style="width: 13%;">
+                            @Html.ActionLink(" ", "edit", "missioncategory", new { num = category.Id }, new { @class = "edit", title = "Düzenle" })
+                            @Html.ActionLink(" ", "details", "missioncategory", new { num = category.Id }, new { @class = "details", title = "Detay" })
+                            @Html.ActionLink(" ", "delete", "missioncategory", new { num = category.Id }, new { @class = "delete", title = "Sil" })
+                        </li>
+                    </ul>
+                }
+            }
+        </div>
+    </div>
+}
+@if (activities.Count() == 0)
+{
+    <div class="table">
+        <div class="title">Ana Sponsorluklar (@activities.Count())</div>
+        <div class="content list">
+            <ul>
+                <li style="width: 50%;">@Html.Label("Adı")</li>
+                <li style="width: 17%;">@Html.Label("Başlangıç Tarihi")</li>
+                <li style="width: 17%;">@Html.Label("Bitiş Tarihi")</li>
+                <li style="width: 15%;">@Html.Label("Araçlar")</li>
+            </ul>
+            @foreach (var activity in activities)
+            {
+                i++;
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li style="width: 50%;">@Html.DisplayFor(modelItem => activity.Adi)</li>
+                    <li style="width: 17%;">@Html.ShortDateTime(activity.BaslangicTarihi)</li>
+                    <li style="width: 17%;">@Html.ShortDateTime(activity.BitisTarihi)</li>
+                    <li style="width: 15%;">
+                        @Html.ActionLink(" ", "edit", "activity", new { num = activity.Id }, new { @class = "edit", title = "Düzenle" })
+                        @Html.ActionLink(" ", "details", "activity", new { num = activity.Id }, new { @class = "details", title = "Detay" })
+                        <a class="delete" href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("delete", "activity", new { num = activity.Id })', 'Eminim, sil', 'Vazgeç');" title="Sil"></a>
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+}
+<div class="table">
+    <div class="title">Destekler (@budgets.Count())</div>
+    <div class="content list">
+        @if (budgets.Count() == 0)
+        {
+            <div class="warning">
+                Henüz yaptığı destek yok :(
+            </div>
+        }
+        else
+        {
+            <ul>
+                <li style="width: 35%;">@Html.Label("Açıklama")</li>
+                <li style="width: 15%;">@Html.Label("Miktar")</li>
+                <li style="width: 15%;">@Html.Label("İşlem")</li>
+                <li style="width: 20%;">@Html.Label("İşlem Tarihi")</li>
+                <li style="width: 13%;">@Html.Label("Araçlar")</li>
+            </ul>
+            foreach (var budget in budgets)
+            {
+                j++;
+                <ul class="@(j % 2 == 0 ? "second" : "first")">
+                    <li style="width: 35%;">@budget.Aciklama.GetSummary(75)</li>
+                    <li style="width: 15%;">@Html.DisplayFor(modelItem => budget.Miktar)</li>
+                    <li style="width: 15%;">@(budget.Islem == 1 ? "Gelir" : "Gider")</li>
+                    <li style="width: 20%;">@Html.ShortDateTime((DateTime)budget.IslemTarihi)</li>
+                    <li style="width: 13%;">
+                        @Html.ActionLink(" ", "edit", "budget", new { num = budget.Id }, new { @class = "edit", title = "Düzenle" })
+                        <a class="details" title="Detay" href="javascript:void(0);" onclick="$.BGK.Modal('@Url.Action("details", "budget", new { num = budget.Id })');"> </a>
+                        <a class="delete" href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("delete", "budget", new { num = budget.Id })', 'Eminim, sil', 'Vazgeç');"> </a>
+                    </li>
+                </ul>
+            }
+        }
+    </div>
+</div>

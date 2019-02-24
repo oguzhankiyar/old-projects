@@ -1,0 +1,35 @@
+﻿@model IEnumerable<bgk_menu>
+
+<script type="text/javascript">
+    $(function () {
+        menuBG();
+        $(window).resize(function () {
+            menuBG();
+        });
+    });
+    function menuBG() {
+        $("div.menu-bg").css({
+            "width": $("body").width()
+        });
+    }
+</script>
+<div class="menu-bg">&nbsp;</div>
+<div class="menu">
+    <ul>
+        @if (BGKFunction.GetConfig("site-on/off") == "1" || Session["memberRole"].ToString() == "100")
+        {
+            <li><a class="home" href="@Url.Action("Index", "Home")"></a></li>
+            foreach (var link in Model)
+            {
+                if (link.Adres.Contains(";"))
+                {
+                    <li><a href="javascript:void(0);" onclick="@link.Adres">@link.Adi</a></li>
+                }
+                else
+                {
+                    <li><a href="@link.Adres">@link.Adi</a></li>
+                }
+            }
+        }
+    </ul>
+</div>

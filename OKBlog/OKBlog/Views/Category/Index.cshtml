@@ -1,0 +1,13 @@
+﻿@model IEnumerable<OKBlog.Models.Category>
+@{
+    ViewBag.Title = "Categories";
+}
+<div class="section">
+    <h2>Categories</h2>
+    @foreach (var category in Model)
+    {
+        <div style="cursor:pointer; display: inline-table; background-color: rgba(0,0,0,0.2); width: 150px; margin: 7.5px; text-align: center; padding: 25px;" onclick="openPage('@Url.Action("Details", "Category", new { url = category.ShortURL })');">
+            <span style="font-weight: bold; padding-bottom: 10px; display: table;">@category.Name</span>
+        </div>
+    }
+</div>

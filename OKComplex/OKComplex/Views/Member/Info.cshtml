@@ -1,0 +1,82 @@
+﻿@model club_member
+@{
+    ViewBag.Title = Model.Name;    
+}
+<div class="table">
+    <div class="title">Üye Bilgileri</div>
+    <div class="content">
+        <div class="user-info">
+            <ul>
+                <li>@Html.DisplayNameFor(modelItem => Model.Name)</li>
+                <li>@Html.DisplayFor(modelItem => Model.Name)</li>
+            </ul>
+            <ul>
+                <li>@Html.DisplayNameFor(modelItem => Model.Email)</li>
+                <li>@Html.DisplayFor(modelItem => Model.Email)</li>
+            </ul>
+            <ul>
+                <li>@Html.DisplayNameFor(modelItem => Model.Gender)</li>
+                <li>@Html.DisplayFor(modelItem => Model.Gender)</li>
+            </ul>
+            <ul>
+                <li>@Html.DisplayNameFor(modelItem => Model.Birthday)</li>
+                <li>@Html.DisplayFor(modelItem => Model.Birthday)</li>
+            </ul>
+            <ul>
+                <li>@Html.DisplayNameFor(modelItem => Model.Faculty)</li>
+                <li>@Html.DisplayFor(modelItem => Model.Faculty)</li>
+            </ul>
+            <ul>
+                <li>@Html.DisplayNameFor(modelItem => Model.Program)</li>
+                <li>@Html.DisplayFor(modelItem => Model.Program)</li>
+            </ul>
+            <ul>
+                <li>@Html.DisplayNameFor(modelItem => Model.Class)</li>
+                <li>@Html.DisplayFor(modelItem => Model.Class)</li>
+            </ul>
+            <ul>
+                <li>@Html.DisplayNameFor(modelItem => Model.About)</li>
+                <li>@Html.DisplayFor(modelItem => Model.About)</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="table">
+    <div class="title">Üyesi olduğu gruplar</div>
+    <div class="content">
+        <div class="itemlist">
+            <ul>
+                @foreach (var grup in Model.club_groups.ToList())
+                {
+                    <li><a href="@Url.Action("Detail", "Group", new { seo = grup.club_group.Seo })">@grup.club_group.Name</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="table">
+    <div class="title">Yazdığı yazılar</div>
+    <div class="content">
+        <div class="itemlist">
+            <ul>
+                @foreach (var post in Model.club_posts.Where(x => x.IsApproval == true && !(x.CategoryId != null ? (x.club_category.IsApproval == false) : x.club_group == null)).OrderByDescending(x => x.ModifyDate).ToList())
+                {
+                    <li><a href="@Url.Action("Detail", "Post", new { id = post.Id, seo = post.Seo, page = 1 })">@post.Title</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="table">
+    <div class="title">Yazdığı yorumlar</div>
+    <div class="content">
+        <div class="itemlist">
+            <ul>
+                @foreach (var comment in Model.club_comments.Where(x => x.IsApproval == true && x.club_post.IsApproval == true).OrderByDescending(x => x.WritingDate).ToList())
+                {
+                    <li><a href="@Url.Action("Detail", "Post", new { id = comment.club_post.Id, seo = comment.club_post.Seo, page = 1 })">@comment.club_post.Title</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

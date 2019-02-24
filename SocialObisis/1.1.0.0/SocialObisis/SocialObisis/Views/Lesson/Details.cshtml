@@ -1,0 +1,15 @@
+﻿@model Obisis.Ders
+@{
+    if (Request.QueryString["type"] == "partial")
+    {
+        Layout = "";
+    }
+    ViewBag.menuID = "obisis_lessons";
+}
+
+<div class="list">
+    <ul>
+        <li>@Model.Kod @Model.DersAdi</li>
+        <li>@Model.Kredi kredi - ganoya etki @Model.OrtalamayaEtki - @Model.Sinif. sinif - @Model.BasariKatsayisi katsayı</li>
+    </ul>
+</div>

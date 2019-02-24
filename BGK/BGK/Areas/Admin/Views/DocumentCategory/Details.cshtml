@@ -1,0 +1,27 @@
+﻿@model bgk_dokuman_kategori
+
+<div class="title">@Model.Adi</div>
+<div class="content details">
+    <ul>
+        <li>@Html.LabelFor(model => model.Seo)</li>
+        <li>@Html.DisplayFor(model => model.Seo)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.Sira)</li>
+        <li>@Html.DisplayFor(model => model.Sira)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.Onay)</li>
+        <li>@Html.DisplayFor(model => model.Onay)</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Yazı Sayısı")</li>
+        <li>@Model.bgk_dokuman.Count()</li>
+    </ul>
+</div>
+<div class="buttons">
+    @Html.Button("Dökümanları", new { onclick = "window.location.href='" + Url.Action("index", "document", new { categoryID = Model.Id }) + "';" })
+    @Html.Button("Düzenle", new { onclick = "window.location.href='" + Url.Action("edit", new { num = Model.Id }) + "';" })
+    @Html.Button("Dökümanı Sil", new { onclick = "$.BGK.FormModal('" + Url.Action("delete", new { num = Model.Id }) + "', 'Eminim, sil', 'Vazgeç');" })
+    @Html.Button("Kapat", new { onclick = "$.BGK.ModalClose();" })
+</div>

@@ -1,0 +1,21 @@
+﻿@model message
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div class="title">Mesaj Yaz</div>
+<div class="content">
+    @using (Html.BeginForm("SendMessageSave", "Account", FormMethod.Post))
+    {    
+        <div class="form">
+            <ul>
+                <li><b>@Html.DisplayNameFor(model => model.ReceiverId)</b>@ViewBag.receiver</li>
+            </ul>
+            <ul>
+                <li>@Html.TextAreaFor(model => model.Content, new { placeholder = "Mesajınızı yazınız.." })</li>
+            </ul>
+            @Html.HiddenFor(model => model.SenderId)
+            @Html.HiddenFor(model => model.ReceiverId)
+        </div>
+    }
+</div>

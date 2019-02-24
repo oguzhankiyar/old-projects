@@ -1,0 +1,60 @@
+﻿@model user
+@{
+    ViewBag.Title = OK.UserName(Model);    
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#info").css("font-weight", "bold");
+    });
+</script>
+<div class="profile">
+    @{Html.RenderAction("UserMenu", "Account", new { username = ViewContext.RouteData.Values["username"].ToString() });}
+    <div class="right">
+        <div class="table">
+            <div class="title">Hakkında</div>
+            <div class="content" style="color: gray; font-size: 15px; line-height: 25px;">
+                <div style="float: left; width: 50%;">
+                    <span style="color: #ccc; font-size: 20px; font-family: 'Segoe UI';">Adı Soyadı</span><br />
+                    <span style="padding-left: 5px;">@Model.Name</span><br />
+                    <span style="color: #ccc; font-size: 20px; font-family: 'Segoe UI';">Kullanıcı Adı</span><br />
+                    <span style="padding-left: 5px;">@Model.UserName</span><br />
+                    <span style="color: #ccc; font-size: 20px; font-family: 'Segoe UI';">Eposta Adresi</span><br />
+                    <span style="padding-left: 5px;">@Model.Email</span><br />
+                    <span style="color: #ccc; font-size: 20px; font-family: 'Segoe UI';">Cinsiyet</span><br />
+                    <span style="padding-left: 5px;">@Model.Gender</span><br />
+                    <span style="color: #ccc; font-size: 20px; font-family: 'Segoe UI';">Meslek</span><br />
+                    <span style="padding-left: 5px;">@Model.Job</span><br />
+                    <span style="color: #ccc; font-size: 20px; font-family: 'Segoe UI';">Yaşı</span><br />
+                    <span style="padding-left: 5px;">@((((TimeSpan)(DateTime.Now - Model.Birthday)).TotalDays / 365).ToString().Split(',')[0])</span><br />
+                    <span style="color: #ccc; font-size: 20px; font-family: 'Segoe UI';">Yaşadığı Şehir</span><br />
+                    <span style="padding-left: 5px;">@Model.City</span><br />
+                    <span style="color: #ccc; font-size: 20px; font-family: 'Segoe UI';">Facebook & Twitter</span><br />
+                    <span style="padding-left: 5px;">@Model.SocialSites</span><br />
+                </div>
+                <div style="float: right; width: 50%;">
+                    <span style="color: #ccc; font-size: 20px; font-family: 'Segoe UI';">Sitedeki Yetkisi</span><br />
+                    <span style="padding-left: 5px;">@Html.Raw(Model.type.Name)</span><br />
+                    <span style="color: #ccc; font-size: 20px; font-family: 'Segoe UI';">Son Giriş</span><br />
+                    <span style="padding-left: 5px;">@Model.LastLoginDate</span><br />
+                    <span style="color: #ccc; font-size: 20px; font-family: 'Segoe UI';">Kayıt Tarihi</span><br />
+                    <span style="padding-left: 5px;">@Model.RegistrationDate</span><br />
+                    <span style="color: #ccc; font-size: 20px; font-family: 'Segoe UI';">Giriş Sayısı</span><br />
+                    <span style="padding-left: 5px;">@Model.LoginCount</span><br />
+                    <span style="color: #ccc; font-size: 20px; font-family: 'Segoe UI';">Konu Sayısı</span><br />
+                    <span style="padding-left: 5px;">@Model.topics.Where(x => x.IsApproval == true).Count()</span><br />
+                    <span style="color: #ccc; font-size: 20px; font-family: 'Segoe UI';">Cevap Sayısı</span><br />
+                    <span style="padding-left: 5px;">@Model.comments.Where(x => x.IsApproval == true).Count()</span><br />
+                    <span style="color: #ccc; font-size: 20px; font-family: 'Segoe UI';">Oylama Sayısı</span><br />
+                    <span style="padding-left: 5px;">@Model.ratings.Count()</span><br />
+                </div>
+                <div style="display: table; width: 100%;">
+                    <span style="color: #ccc; font-size: 20px; font-family: 'Segoe UI';">Hakkında Bir Kaç Şey</span><br />
+                    <span style="padding-left: 5px;">
+                        @Model.About
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

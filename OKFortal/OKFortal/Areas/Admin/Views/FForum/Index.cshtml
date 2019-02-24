@@ -1,0 +1,50 @@
+﻿@model IEnumerable<category>
+@{
+    ViewBag.Title = "Forumlar";
+    int i = 0;
+    OKDbEntities Db = new OKDbEntities();
+}
+<script type="text/javascript">
+    function ChangeApproval(id) {
+        $.post("@Url.Action("changeapproval")/" + id, { id: id }, function (msg) { $("a#" + id + "_approval").fadeOut(500).fadeIn(500, function () { $("a#" + id + "_approval").attr("class", $("a#" + id + "_approval").attr("class") == "approved" ? "deprecated" : "approved").attr("title", $("a#" + id + "_approval").attr("class") == "approved" ? "Onayı Kaldır" : "Onayla"); }); $("body").append(msg); });
+    }
+</script>
+<div class="list">
+    @foreach (var category in Model)
+    {
+        <h4>@category.Name</h4>
+        foreach (var forum in category.forums.Where(x => x.IsSubForum == false).OrderBy(x => x.Sort).ToList())
+        {
+            i++;
+            <ul class="@(i % 2 == 0 ? "second" : "first")">
+                <li>
+                    <b>@Html.DisplayFor(modelItem => forum.Name)</b><br />
+                    @OK.Summary(forum.Description, 100)
+                </li>
+                <li class="manage">
+                    @Html.ActionLink(" ", "Forum", "Forum", new { area = "", id = forum.Id, seo = forum.Seo, page = 1 }, new { @class = "view", target = "_blank", title = "Sitede Göster" })
+                    <a id="@(forum.Id + "_approval")" class="@(forum.IsApproval == true ? "approved" : "deprecated")" title="@(forum.IsApproval == true ? "Onayı Kaldır" : "Onayla")" href="javascript:void(0)" onclick="ChangeApproval('@forum.Id')"></a>
+                    @Html.ActionLink(" ", "edit", new { num = forum.Id }, new { @class = "edit", title = "Düzenle" })
+                    @Html.ActionLink(" ", "details", new { num = forum.Id }, new { @class = "details", title = "Detay" })
+                    @Html.ActionLink(" ", "delete", new { num = forum.Id }, new { @class = "delete", title = "Sil" })
+                </li>
+            </ul>
+            foreach (var subforum in Db.forum.Where(x => x.ParentForumId == forum.Id && x.IsSubForum == true).OrderBy(x => x.Sort).ToList())
+            {
+                <ul class="third">
+                    <li>
+                        <b>@Html.DisplayFor(modelItem => subforum.Name)</b><br />
+                        @OK.Summary(subforum.Description, 100)
+                    </li>
+                    <li class="manage">
+                        @Html.ActionLink(" ", "Forum", "Forum", new { area = "", id = subforum.Id, seo = subforum.Seo, page = 1 }, new { @class = "view", target = "_blank", title = "Sitede Göster" })
+                        <a id="@(subforum.Id + "_approval")" class="@(subforum.IsApproval == true ? "approved" : "deprecated")" title="@(subforum.IsApproval == true ? "Onayı Kaldır" : "Onayla")" href="javascript:void(0)" onclick="ChangeApproval('@subforum.Id')"></a>
+                        @Html.ActionLink(" ", "edit", new { num = subforum.Id }, new { @class = "edit", title = "Düzenle" })
+                        @Html.ActionLink(" ", "details", new { num = subforum.Id }, new { @class = "details", title = "Detay" })
+                        @Html.ActionLink(" ", "delete", new { num = subforum.Id }, new { @class = "delete", title = "Sil" })
+                    </li>
+                </ul>
+            }
+        }
+    }
+</div>

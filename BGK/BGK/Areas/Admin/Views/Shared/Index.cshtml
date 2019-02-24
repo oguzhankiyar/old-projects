@@ -1,0 +1,64 @@
+﻿@{
+    BGKEntities Db = new BGKEntities();
+}
+<style type="text/css">
+    div.table {
+        display: inline-table;
+        margin: 0 5px 10px 5px;
+        width: 255px;
+        height: 230px;
+    }
+        div.table div.content {
+            padding: 5px;
+        }
+</style>
+<div class="table">
+    <div class="title">Görevlerden</div>
+    <div class="content">
+        Toplam @Db.bgk_gorev.Count() görev
+    </div>
+</div>
+<div class="table">
+    <div class="title">Gelir-Gider</div>
+    <div class="content">
+        Toplam Gelir @*@Db.bgk_butce.Where(x => x.Islem == 1).Sum(x => x.Miktar)₺*@<br />
+        Toplam Gider @*@Db.bgk_butce.Where(x => x.Islem == 2).Sum(x => x.Miktar)₺*@<br />
+        son işlemler vs...
+    </div>
+</div>
+<div class="table">
+    <div class="title">İstatistik</div>
+    <div class="content">
+        bu sayfa için filter ayarlanmadı!
+    </div>
+</div>
+<div class="table">
+    <div class="title">İstatistik</div>
+    <div class="content">
+        istaskdşla lad asldş
+    </div>
+</div>
+<div class="table">
+    <div class="title">İstatistik</div>
+    <div class="content">
+        istaskdşla lad asldş
+    </div>
+</div>
+<div class="table">
+    <div class="title">İstatistik</div>
+    <div class="content">
+        istaskdşla lad asldş
+    </div>
+</div>
+<div class="table">
+    <div class="title">İstatistik</div>
+    <div class="content">
+        istaskdşla lad asldş
+    </div>
+</div>
+<div class="table">
+    <div class="title">İstatistik</div>
+    <div class="content">
+        istaskdşla lad asldş
+    </div>
+</div>

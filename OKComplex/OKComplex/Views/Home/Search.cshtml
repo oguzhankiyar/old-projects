@@ -1,0 +1,17 @@
+﻿
+
+<script type="text/javascript">
+    $(function () {
+        $(window).keyup(function (e) {
+            if (e.keyCode == 13 && $("#search input[type=text]").is(":focus")) {
+                $.OK.OpenNewPage("@Url.Action("search", "post")?q=" + $("#search input[type=text]").val());
+            }
+        });
+    });
+</script>
+<div class="table">
+    <div class="title">Arama yapın</div>
+    <div id="search" class="content" style="width: 150px;">
+        @Html.TextBox("Search", null, new { placeholder = "Arayacağınız kelimeyi girin ve Enter'a basın" })
+    </div>
+</div>

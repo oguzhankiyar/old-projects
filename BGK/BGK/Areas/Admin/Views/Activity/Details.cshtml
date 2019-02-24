@@ -1,0 +1,114 @@
+﻿@model bgk_etkinlik
+@{
+    var speakers = Model.bgk_etkinlik_konusmaci.OrderBy(x => x.AdSoyad);
+    var officers = Model.bgk_etkinlik_gorevli.OrderBy(x => x.bgk_uye.AdSoyad);
+    var budgets = Model.bgk_butce.OrderByDescending(x => x.IslemTarihi);
+    int i = 0, j = 0, k = 0;
+}
+<div class="table">
+    <div class="content">
+        <div class="sections">
+            <a class="active" href="@Url.Action("index", "activity")" style="width: 50%;">Etkinlikler</a>
+            <a href="@Url.Action("index", "factory")" style="width: 49%;">Firmalar</a>
+        </div>
+    </div>
+</div>
+<div class="table-group-1">
+    <div class="first">
+        <div class="table">
+            <div class="title">@Model.Adi</div>
+            <div class="content" style="padding: 5px;">
+                @(Model.bgk_dosya != null ? "<img src=\"" + Model.bgk_dosya.DosyaAdi + "\" style=\"width: 100%;\" />" : "")
+                @Html.Raw(Model.Aciklama)
+            </div>
+        </div>
+        <div class="buttons">
+            @Html.Button("Düzenle", new { onclick = "window.location.href='" + Url.Action("edit", new { num = Model.Id }) + "';" })
+            @Html.Button("Etkinliği Sil", new { onclick = "$.BGK.FormModal('" + Url.Action("delete", new { num = Model.Id }) + "', 'Eminim, sil', 'Vazgeç');" })
+        </div>
+        @if (budgets.Count() != 0)
+        {
+            <div class="table">
+                <div class="title">Harcamalar</div>
+                <div class="content list budgets">
+                    <ul>
+                        <li style="width: 35%;">@Html.Label("Açıklama")</li>
+                        <li style="width: 15%;">@Html.Label("Miktar")</li>
+                        <li style="width: 10%;">@Html.Label("İşlem")</li>
+                        <li style="width: 23%;">@Html.Label("İşlem Tarihi")</li>
+                        <li style="width: 13%;">@Html.Label("Araçlar")</li>
+                    </ul>
+                    @foreach (var budget in budgets)
+                    {
+                        i++;
+                        <ul class="@(i % 2 == 0 ? "second" : "first")">
+                            <li style="width: 35%;">@budget.Aciklama.GetSummary(75)</li>
+                            <li style="width: 15%;">@Html.DisplayFor(modelItem => budget.Miktar)</li>
+                            <li style="width: 10%;">@(budget.Islem == 1 ? "Gelir" : "Gider")</li>
+                            <li style="width: 23%;">@Html.ShortDateTime(budget.IslemTarihi)</li>
+                            <li style="width: 13%;">
+                                @Html.ActionLink(" ", "edit", "budget", new { num = budget.Id }, new { @class = "edit", title = "Düzenle" })
+                                @Html.ActionLink(" ", "details", "budget", new { num = budget.Id }, new { @class = "details", title = "Detay" })
+                                <a class="delete" href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("delete", "budget", new { num = budget.Id })', 'Eminim, sil', 'Vazgeç');"> </a>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+    <div class="second">
+        <div class="table">
+            <div class="title">Detaylar</div>
+            <div class="content" style="padding: 5px;">
+                <ul>
+                    <li><b>Başlangıç</b></li>
+                    <li>@Html.ShortDateTime(Model.BaslangicTarihi)</li>
+                </ul>
+                <ul>
+                    <li><b>Bitiş</b></li>
+                    <li>@Html.ShortDateTime(Model.BitisTarihi) (@Html.Raw(Model.BitisTarihi > DateTime.Now ? "<font color=\"red\">Tamamlanmadı</font>" : "<font color=\"green\">Tamamlandı</font>"))</li>
+                </ul>
+                @if (Model.FirmaID != null)
+                {
+                    <ul>
+                        <li><b>Ana Sponsor</b></li>
+                        <li><a href="@Url.Action("Details", "Factory", new { num = Model.FirmaID })">@Model.bgk_firma.Adi</a></li>
+                    </ul>
+                }
+            </div>
+        </div>
+        <div class="table">
+            <div class="title">Konuşmacılar (@speakers.Count())
+                <span><a href="@Url.Action("addspeaker", new { num = Model.Id })">Konuşmacı Ekle</a></span>
+            </div>
+            <div class="content normal-list">
+                @foreach (var speaker in speakers)
+                {
+                    j++;
+                    <a href="javascript:void(0);" onclick="$.BGK.Modal('@Url.Action("speakerdetails", new { num = speaker.Id })');">
+                        <ul class="@(j % 2 == 0 ?  "second" : "first")">
+                            <li>@speaker.AdSoyad</li>
+                        </ul>
+                    </a>
+                }
+            </div>
+        </div>
+        <div class="table">
+            <div class="title">Görevliler (@officers.Count())
+                <span><a href="javascript:void(0);" onclick="$.BGK.FormModal('@Url.Action("addofficer", new { num = Model.Id })', 'Ekle', 'Vazgeç');">Görevli Ekle</a></span>
+            </div>
+            <div class="content normal-list">
+                @foreach (var officer in officers)
+                {
+                    k++;
+                    <a href="javascript:void(0);" onclick="$.BGK.Modal('@Url.Action("officerdetails", new { num = officer.Id })');">
+                        <ul class="@(k % 2 == 0 ?  "second" : "first")">
+                            <li>@officer.bgk_uye.AdSoyad</li>
+                        </ul>
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</div>

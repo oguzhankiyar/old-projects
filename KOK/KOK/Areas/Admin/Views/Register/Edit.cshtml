@@ -1,0 +1,106 @@
+﻿@model KOK.Models.basvuru
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>basvuru</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Ad)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Ad)
+            @Html.ValidationMessageFor(model => model.Ad)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Soyad)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Soyad)
+            @Html.ValidationMessageFor(model => model.Soyad)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Kurum)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Kurum)
+            @Html.ValidationMessageFor(model => model.Kurum)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Meslek)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Meslek)
+            @Html.ValidationMessageFor(model => model.Meslek)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Tur)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Tur)
+            @Html.ValidationMessageFor(model => model.Tur)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OdemeTarihi)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.OdemeTarihi)
+            @Html.ValidationMessageFor(model => model.OdemeTarihi)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DekontNumarasi)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DekontNumarasi)
+            @Html.ValidationMessageFor(model => model.DekontNumarasi)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Telefon)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Telefon)
+            @Html.ValidationMessageFor(model => model.Telefon)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Onay)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Onay)
+            @Html.ValidationMessageFor(model => model.Onay)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

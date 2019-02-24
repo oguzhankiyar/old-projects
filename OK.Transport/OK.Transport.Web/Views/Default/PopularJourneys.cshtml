@@ -1,0 +1,18 @@
+﻿@model IEnumerable<OK.Transport.Web.Models.Journey>
+@{
+    ViewBag.ActiveLink = "linkPopularJourneys";
+}
+
+<div style="width: 80%;">
+    <div style="background-color: rgba(54, 54, 54, .75); display: table; width: 100%; padding: 20px; margin: 10px;">
+        <h2>Popular Journeys</h2>
+        @foreach (var item in Model)
+        {
+            <div>
+                <a href="@Url.Action("Transporters", "Default", new { from = item.DeparturePlace.GoogleId, to = item.ArrivalPlace.GoogleId })">
+                    @(item.DeparturePlace.Name + " -> " + item.ArrivalPlace.Name)
+                </a>
+            </div>
+        }
+    </div>
+</div>

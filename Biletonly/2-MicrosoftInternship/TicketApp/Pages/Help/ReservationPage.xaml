@@ -1,0 +1,33 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TicketApp.Pages.Help.ReservationPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    Orientation="Portrait"
+    mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource PageStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <control:Header />
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="5">
+                <control:Title Value="Rezervasyon işlemi" />
+                <TextBlock TextWrapping="Wrap" LineHeight="30" FontWeight="Light" Padding="5">
+                    Rezervasyon işlemleri sonucunda bir PNR kodu oluşmaktadır. İşleminiz tamamlandığında otomatik olarak 'İşlem Detayları' sayfasına yönlendirilirsiniz.<LineBreak />
+                    <LineBreak />Ayrıca belirttiğiniz eposta adresine bilet detayları tarafımızdan iletilecektir.<LineBreak />
+                    <LineBreak />Bu sayfada PNR kodu ve Rezervasyon opsiyon tarihi de yer almaktadır.<LineBreak />Rezervasyon opsiyon tarihi, bileti satışa çevirebileceğiniz son tarihi ifade etmektedir. Bu tarihe kadar satışa dönüştürülmemiş rezervasyonlar otomatik olarak iptal edilmektedir.<LineBreak />
+                </TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</phone:PhoneApplicationPage>

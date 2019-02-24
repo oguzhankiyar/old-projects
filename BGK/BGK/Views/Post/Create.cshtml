@@ -1,0 +1,46 @@
+﻿@model bgk_yazi
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div class="table">
+    <div class="title">Yazı Ekle</div>
+    <div class="content">
+        <div class="form">
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                @Html.AntiForgeryToken()
+                <ul>
+                    <li>@Html.LabelFor(model => model.Baslik)</li>
+                    <li>@Html.EditorFor(model => model.Baslik)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Baslik)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Ozet)</li>
+                    <li>@Html.TextAreaFor(model => model.Ozet)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Ozet)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.Icerik)</li>
+                    <li>@Html.TextAreaFor(model => model.Icerik)</li>
+                    <li>@Html.ValidationMessageFor(model => model.Icerik)</li>
+                </ul>
+                <ul>
+                    <li>@Html.LabelFor(model => model.KategoriID)</li>
+                    <li>@Html.DropDownList("KategoriID", String.Empty)</li>
+                    <li>@Html.ValidationMessageFor(model => model.KategoriID)</li>
+                </ul>
+                <ul>
+                    <li>Kaydet</li>
+                    <li>
+                        @Html.Button("Kaydet", new { type = "submit" })
+                        @Html.Button("Vazgeç", new { onclick = "window.location.href='" + Url.Action("index") + "';" })
+                    </li>
+                </ul>
+                @Html.MyEditor("Ozet", "Standard")
+                @Html.MyEditor("Icerik", "Standard")
+            }
+        </div>
+    </div>
+</div>

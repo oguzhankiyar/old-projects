@@ -1,0 +1,27 @@
+﻿@model IEnumerable<bgk_dosya>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);  
+    int memberID = Convert.ToInt32(ViewBag.memberID);  
+}
+
+<div class="table">
+    <div class="title">Yazılar</div>
+    <div class="content">
+        @if (count == 0)
+        {
+            <div class="warning">
+                Bu üyemiz henüz dosya yüklememiş :(
+            </div>
+        }
+        @foreach (var upload in Model)
+        {
+            <div>
+                <span>@upload.DosyaAdi</span>
+                <span>@upload.DosyaTipi</span>
+                <span>@upload.YuklenmeTarihi</span>
+            </div>
+        }
+    </div>
+</div>
+@Html.Paging()

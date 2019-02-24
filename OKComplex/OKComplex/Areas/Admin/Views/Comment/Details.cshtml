@@ -1,0 +1,38 @@
+﻿@model comment
+@{
+    ViewBag.Title = "Cevap Detayları";
+}
+<div class="detail">
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.topic.Title)</li>
+        <li>@Html.DisplayFor(model => model.topic.Title)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Content)</li>
+        <li>@Html.DisplayFor(model => model.Content)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.WriterId)</li>
+        <li>@OK.UserName(Model.user)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.Rating)</li>
+        <li>@Html.DisplayFor(model => model.Rating)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.CreationDate)</li>
+        <li>@Html.DisplayFor(model => model.CreationDate)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.ModifyDate)</li>
+        <li>@Html.DisplayFor(model => model.ModifyDate)</li>
+    </ul>
+    <ul>
+        <li>@Html.DisplayNameFor(model => model.IsApproval)</li>
+        <li>@Html.DisplayFor(model => model.IsApproval)</li>
+    </ul>
+</div>
+<p>
+    @Html.Button("Düzenle", new { onclick = "OpenNewPage('" + Url.Action("edit", new { num = Model.Id }) + "');" })
+    @Html.Button("Sil", new { onclick = "OpenNewPage('" + Url.Action("delete", new { num = Model.Id }) + "');" })
+</p>

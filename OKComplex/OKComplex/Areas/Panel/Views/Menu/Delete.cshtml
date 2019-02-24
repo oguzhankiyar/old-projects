@@ -1,0 +1,35 @@
+﻿@model club_menulink
+@{
+    ViewBag.Title = "Link Sil";
+}
+
+<h3>Aşağıdaki linki silmek istediğinizden emin misiniz?</h3>
+<div class="detail">
+    <ul>
+        <li>@Html.LabelFor(model => model.Name)</li>
+        <li>@Html.DisplayFor(model => model.Name)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.OnClick)</li>
+        <li>@Html.DisplayFor(model => model.OnClick)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.Type)</li>
+        <li>@Html.Display(Model.Type == 1 ? "Üst Menü Linki" : "Alt Menü Linki")</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.Sort)</li>
+        <li>@Html.DisplayFor(model => model.Sort)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.IsApproval)</li>
+        <li>@Html.DisplayFor(model => model.IsApproval)</li>
+    </ul>
+</div>
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.Button("Eminim, sil", new { type = "submit" })
+        @Html.Button("Vazgeç", new { onclick = "OpenNewPage('" + Url.Action("index") + "');" })
+    </p>
+}

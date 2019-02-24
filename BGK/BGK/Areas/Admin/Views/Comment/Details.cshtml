@@ -1,0 +1,31 @@
+﻿@model bgk_yorum
+
+<div class="title">Yorum Detayları</div>
+<div class="content">
+    <div class="details">
+        <ul>
+            <li>@Html.DisplayNameFor(model => model.bgk_yazi.Baslik)</li>
+            <li><a href="@Url.Action("details", "post", new { num = Model.YaziID })">@Html.DisplayFor(model => model.bgk_yazi.Baslik)</a></li>
+        </ul>
+        <ul>
+            <li>@Html.DisplayNameFor(model => model.UyeID)</li>
+            <li>@(Model.UyeID == null ? Model.Yazan : Model.bgk_uye.AdSoyad)</li>
+        </ul>
+        <ul>
+            <li>@Html.DisplayNameFor(model => model.YazilmaTarihi)</li>
+            <li>@Html.ShortDateTime(Model.YazilmaTarihi)</li>
+        </ul>
+        <ul>
+            <li>@Html.DisplayNameFor(model => model.Onay)</li>
+            <li>@Html.DisplayFor(model => model.Onay)</li>
+        </ul>
+        <ul>
+            <li>@Html.DisplayNameFor(model => model.Yorum)</li>
+            <li>@Html.DisplayFor(model => model.Yorum)</li>
+        </ul>
+    </div>
+</div>
+<div class="buttons">
+    @Html.Button("Düzenle", new { onclick = "window.location.href='" + Url.Action("edit", new { num = Model.Id }) + "';" })
+    @Html.Button("Sil", new { onclick = "window.location.href='" + Url.Action("delete", new { num = Model.Id }) + "';" })
+</div>

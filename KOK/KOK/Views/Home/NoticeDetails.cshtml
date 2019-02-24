@@ -1,0 +1,11 @@
+﻿@model duyuru
+@{
+    ViewBag.Title = Model.Baslik;
+}
+<div class="table">
+    <div class="title">@Model.Baslik</div>
+    <div class="content">
+        @Html.Raw(Model.Icerik)
+        <div style="float: right; font-style: italic; font-size: 14px;">@Model.Tarih</div>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+﻿@model KOK.Models.link
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>link</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Adi)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Adi)
+            @Html.ValidationMessageFor(model => model.Adi)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Adres)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Adres)
+            @Html.ValidationMessageFor(model => model.Adres)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Sira)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Sira)
+            @Html.ValidationMessageFor(model => model.Sira)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Onay)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Onay)
+            @Html.ValidationMessageFor(model => model.Onay)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AltLink)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AltLink)
+            @Html.ValidationMessageFor(model => model.AltLink)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UstLinkID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UstLinkID)
+            @Html.ValidationMessageFor(model => model.UstLinkID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AnaMenu)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AnaMenu)
+            @Html.ValidationMessageFor(model => model.AnaMenu)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

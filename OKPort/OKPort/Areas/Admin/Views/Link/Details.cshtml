@@ -1,0 +1,74 @@
+﻿@model OKPort.Models.Link
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Link</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Target)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Target)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.IsApproval)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.IsApproval)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Sort)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Sort)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Page.Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Page.Name)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

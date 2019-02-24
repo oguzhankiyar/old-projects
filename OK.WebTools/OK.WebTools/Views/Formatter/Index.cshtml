@@ -1,0 +1,134 @@
+﻿@model OK.WebTools.Controllers.Result
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Formatter</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".tree-row span.opened").text("-");
+            $(".tree-row span.closed").text("+");
+            $(".tree-row span").click(function () {
+                var inner = $(this).parent().find(".inner");
+                inner.slideToggle(250);
+                
+                if ($(this).attr("class") == "opened")
+                    $(this).attr("class", "closed");
+                else
+                    $(this).attr("class", "opened");
+
+                $(".tree-row span.opened").text("-");
+                $(".tree-row span.closed").text("+");
+            });
+            $("#toggleController").click(function () {
+                $("#controller").slideToggle();
+                if ($(this).text() == "↓") {
+                    $(this).text("↑");
+                    $("#result").css("padding-top", "225px");
+                }
+                else {
+                    $(this).text("↓");
+                    $("#result").css("padding-top", "0");
+                }
+            });
+            $("#format").click(function () {
+                $("form").submit();
+            });
+        });
+    </script>
+    <style type="text/css">
+        body {
+            font-size: medium;
+            font-family: Consolas;
+            overflow-y: scroll;
+        }
+        .value-row {
+            display: table;
+            background-color: #eee;
+            margin: 5px;
+            margin-left: 30px;
+        }
+        .value-row .tag {
+            float: left;
+            width: 200px;
+            padding: 7.5px 5px;
+        }
+        .value-row .value {
+            float: right;
+            background-color: #f5f5f5;
+            font-weight: bold;
+            width: 400px;
+            padding: 7.5px 5px;
+            overflow-wrap: break-word;
+            flex-wrap: wrap;
+        }
+        .tree-row .closed {
+            display: inline-table;
+            cursor: pointer;
+            padding: 5px;
+            margin-left: -18px;
+        }
+        .tree-row .opened {
+            display: inline-table;
+            cursor: pointer;
+            padding: 5px;
+            margin-left: -18px;
+        }
+        .tree-row {
+            margin-left: 50px;
+        }
+        #toggleController {
+            padding: 25px;
+            font-size: 35px;
+            font-family: 'Times New Roman';
+            cursor: pointer;
+        }
+        #format {
+            display: table;
+            padding: 35px;
+            font-size: 50px;
+            font-family: 'Times New Roman';
+            cursor: pointer;
+            margin: 30% 0 0 0;
+        }
+        i.empty {
+            font-weight: 100;
+            opacity: .5;
+        }
+        p {margin:0;padding:0;}
+        textarea {width:100%;font-size:medium;height:125px;resize:none;margin:2.5px;border:none;background-color:#f5f5f5;outline:none;padding:10px;font-family:Consolas;}
+        input[type='text'] {width:100%;font-size:medium;border:none;background-color:#f5f5f5;outline:none;padding:10px;margin:2.5px;font-family:Consolas;}
+    </style>
+</head>
+<body>
+    <div>
+        <div id="controller" style="top:0;left:0;padding:10px;width:100%;background-color:#fff;position:fixed;">
+            @using (Html.BeginForm())
+            {
+                <div style="float:left;width:85%;">
+                    <input id="Url" name="Url" type="text" value="@(Model == null ? "" : Model.Url)" placeholder="Url" /><br />
+                    <textarea id="Text" name="Text" placeholder="XML or JSON">@(Model == null ? "" : Model.Text)</textarea>
+                </div>
+                <div style="float:left;width:10%;">
+                    <span id="format">↵</span>
+                </div>
+            }
+        </div>
+        <div style="position:fixed;right:0;top:0;">
+            <span id="toggleController">↑</span>
+        </div>
+        <div id="result" style="padding-top: 225px;">
+            @if (Model != null)
+            {
+                @Html.Raw(Model.Value)
+            }
+        </div>
+    </div>
+</body>
+</html>

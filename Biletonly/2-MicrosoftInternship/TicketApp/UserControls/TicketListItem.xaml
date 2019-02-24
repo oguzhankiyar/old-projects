@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="TicketApp.UserControls.TicketListItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    xmlns:control="clr-namespace:TicketApp.Controls;assembly=TicketApp.Controls"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <CheckBox x:Name="cbTicket" Margin="-7,-12,-12,-12" Checked="cbTicket_StateChanged" Unchecked="cbTicket_StateChanged" VerticalAlignment="Center" Visibility="Collapsed" />
+        <control:DetailBox x:Name="TicketPanel" Clicked="Ticket_Clicked" Grid.Column="1">
+            <control:DetailBox.Content>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock FontSize="25" Grid.ColumnSpan="2">
+                        <Run Text="{Binding Path=PNR.Code}" />
+                        <Run Text="{Binding Path=Journeys[0].Factory.Name}" />
+                    </TextBlock>
+                    <TextBlock Text="{Binding Path=Journeys[0].From.FullName}" Grid.Row="1" />
+                    <TextBlock Text="{Binding Path=Journeys[0].To.FullName}" Grid.Row="1" Grid.Column="1" />
+                    <TextBlock Text="{Binding Path=Journeys[0].DepartureDate, StringFormat='d MMM yyyy HH:mm'}" Opacity=".7" Grid.Row="2" Grid.ColumnSpan="2" />
+                </Grid>
+            </control:DetailBox.Content>
+        </control:DetailBox>
+    </Grid>
+</UserControl>

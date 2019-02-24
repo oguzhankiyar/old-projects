@@ -1,0 +1,22 @@
+﻿@model IEnumerable<config>
+@{
+    ViewBag.Title = "Ayarlar";
+    int i = 0;
+}
+<div class="list">
+    @foreach (var config in Model)
+    {
+        i++;
+        <ul class="@(i % 2 == 0 ? "second" : "first")">
+            <li>
+                <b>@Html.DisplayFor(modelItem => config.Key)</b>&nbsp;&nbsp;<small>@Html.DisplayFor(modelItem => config.Description)</small><br />
+                @OK.Summary(config.Value, 100)
+            </li>
+            <li class="manage">
+                @Html.ActionLink(" ", "edit", new { num = config.Id }, new { @class = "edit", title = "Düzenle" })
+                @Html.ActionLink(" ", "details", new { num = config.Id }, new { @class = "details", title = "Detay" })
+                @Html.ActionLink(" ", "delete", new { num = config.Id }, new { @class = "delete", title = "Sil" })
+            </li>
+        </ul>
+    }
+</div>

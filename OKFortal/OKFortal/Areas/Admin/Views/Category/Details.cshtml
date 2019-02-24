@@ -1,0 +1,57 @@
+﻿@model category
+@{
+    ViewBag.Title = "Kategori Detayları";
+    int topiccount = 0, commentcount = 0;
+    foreach (var forum in Model.forums)
+    {
+        topiccount += forum.topics.Count();
+        foreach (var topic in forum.topics)
+        {
+            commentcount += topic.comments.Count();
+        }
+    }
+}
+
+<div class="detail">
+    <ul>
+        <li>@Html.LabelFor(model => model.Name)</li>
+        <li>@Html.DisplayFor(model => model.Name)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.Description)</li>
+        <li>@Html.DisplayFor(model => model.Description)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.Seo)</li>
+        <li>@Html.DisplayFor(model => model.Seo)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.Sort)</li>
+        <li>@Html.DisplayFor(model => model.Sort)</li>
+    </ul>
+    <ul>
+        <li>@Html.LabelFor(model => model.IsApproval)</li>
+        <li>@Html.DisplayFor(model => model.IsApproval)</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Forum Sayısı")</li>
+        <li>@Model.forums.Where(x => x.IsSubForum == false).Count()</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Alt Forum Sayısı")</li>
+        <li>@Model.forums.Where(x => x.IsSubForum == true).Count()</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Konu Sayısı")</li>
+        <li>@topiccount</li>
+    </ul>
+    <ul>
+        <li>@Html.Label("Cevap Sayısı")</li>
+        <li>@commentcount</li>
+    </ul>
+</div>
+<p>
+    @Html.Button("Forum Ekle", new { onclick = "OpenNewPage('" + Url.Action("create", "fforum") + "');" })
+    @Html.Button("Düzenle", new { onclick = "OpenNewPage('" + Url.Action("edit", new { num = Model.Id }) + "');" })
+    @Html.Button("Sil", new { onclick = "OpenNewPage('" + Url.Action("delete", new { num = Model.Id }) + "');" })
+</p>

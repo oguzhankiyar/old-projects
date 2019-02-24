@@ -1,0 +1,109 @@
+﻿@model IEnumerable<post>
+@{
+    OKDbEntities Db = new OKDbEntities();    
+}
+<script type="text/javascript">
+    $(function () {
+        $("#actions").css("font-weight", "bold");
+    });
+</script>
+<div class="profile">
+    @{
+        string username = ViewContext.RouteData.Values["username"].ToString();
+        int count = Convert.ToInt32(ViewBag.count);
+        Html.RenderAction("UserMenu", "Account", new { username = username });
+    }
+    <div class="right">
+        <div class="table">
+            <div class="title">Yaptığı İşlemler</div>
+            <div class="content">
+                @if (Model.Count() == 0)
+                {
+                    <div class="noitem">Henüz yaptığı işlem yok</div>
+                }
+                @foreach (var post in Model)
+                {
+                    string type = post.Type;
+                    <div style="display: table; padding: 5px; width: 100%; border-bottom: 1px dotted #ccc;">
+                        <div style="display: table; float: left; margin-right: 5px; border: 1px solid #ccc; padding: 1px;"><img src="@post.user.ImageFile" width="60" height="60" style=" vertical-align: middle;" /></div>
+                        <div style="display: table; float: right;">@Html.ShortDateTime((DateTime)post.CreationDate)</div>
+                        @if (type == "create-topic")
+                        {
+                            var forum = Db.forum.Find(Convert.ToInt32(post.ItemId.Split('-')[0]));
+                            var topic = Db.topic.Find(Convert.ToInt32(post.ItemId.Split('-')[1]));
+                            <div>
+                                <b>@OK.UserName(post.user)</b>, <b>@forum.Name</b> adlı forumda bir konu açtı..<br />
+                                <b>@topic.Title</b><br />
+                                @OK.Summary(topic.Content, 250)
+                            </div>
+                        }
+                        else if (type == "create-comment")
+                        {
+                            var topic = Db.topic.Find(Convert.ToInt32(post.ItemId.Split('-')[0]));
+                            var comment = Db.comment.Find(Convert.ToInt32(post.ItemId.Split('-')[1]));
+                            <div>
+                                <b>@OK.UserName(post.user)</b>, <b>@topic.Title</b> başlıklı konuya bir cevap yazdı..<br />
+                                @OK.Summary(comment.Content, 250)
+                            </div>
+                        }
+                        else if (type == "like-topic")
+                        {
+                            var topic = Db.topic.Find(Convert.ToInt32(post.ItemId));
+                            <div>
+                                <b>@OK.UserName(post.user)</b> bir konuyu beğendi..<br />
+                                <b>@topic.Title</b><br />
+                                @OK.Summary(topic.Content, 250)
+                            </div>
+                        }
+                        else if (type == "dislike-topic")
+                        {
+                            var topic = Db.topic.Find(Convert.ToInt32(post.ItemId));
+                            <div>
+                                <b>@OK.UserName(post.user)</b> bir konuyu beğenmedi..<br />
+                                <b>@topic.Title</b><br />
+                                @OK.Summary(topic.Content, 250)
+                            </div>
+                        }
+                        else if (type == "like-comment")
+                        {
+                            var comment = Db.comment.Find(Convert.ToInt32(post.ItemId));
+                            <div>
+                                <b>@OK.UserName(post.user)</b> bir cevabı beğendi..<br />
+                                @OK.Summary(comment.Content, 250)
+                            </div>
+                        }
+                        else if (type == "dislike-comment")
+                        {
+                            var comment = Db.comment.Find(Convert.ToInt32(post.ItemId));
+                            <div>
+                                <b>@OK.UserName(post.user)</b> bir cevabı beğenmedi..<br />
+                                @OK.Summary(comment.Content, 250)
+                            </div>
+                        }
+                        else if (type == "register")
+                        {
+		                    <div>
+                                <b>@OK.UserName(post.user)</b> sitemize kayıt oldu..<br />
+		                    </div>
+                        }
+                        else if (type == "change-picture")
+                        {
+		                    <div>
+                                <b>@OK.UserName(post.user)</b> profil resmini güncelledi..<br />
+                                <img src="@post.user.ImageFile" />
+		                    </div>
+                        }
+                        else if (type == "change-info")
+                        {
+		                    <div>
+                                <b>@OK.UserName(post.user)</b> profil bilgilerini güncelledi..<br />
+                                <img src="@post.user.ImageFile" />
+		                    </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Paging("window.location.href='" + Url.Action("actions", "account", new { username = username, page = "{page}" }) + "'", count, 10)

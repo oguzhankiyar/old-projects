@@ -1,0 +1,33 @@
+﻿@model IEnumerable<bgk_yorum>
+@{
+    int count = Convert.ToInt32(ViewBag.count);
+    int take = Convert.ToInt32(ViewBag.take);
+    int memberID = Convert.ToInt32(ViewBag.memberID);
+    var member = BGKFunction.GetMember(memberID);
+    int i = 0;
+}
+
+<div class="table">
+    <div class="title">@member.AdSoyad > Yorumlar</div>
+    <div class="content list" style="padding: 0;">
+        @if (count == 0)
+        {
+            <div class="warning">
+                Bu üyemiz henüz yorum yazmamış :(
+            </div>
+        }
+        @foreach (var comment in Model)
+        {
+            i++;
+            var post = comment.bgk_yazi;
+            <a href="@Url.Action("Details", "Post", new { id = post.Id, seo = post.Seo })">
+                <ul class="@(i % 2 == 0 ? "second" : "first")">
+                    <li class="name">@post.Baslik<br />
+                        <span>@comment.Yorum.GetSummary(100)</span>
+                    </li>
+                </ul>
+            </a>
+        }
+    </div>
+</div>
+@Html.Paging()
